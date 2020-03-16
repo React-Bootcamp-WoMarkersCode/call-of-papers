@@ -1,5 +1,5 @@
 import React from 'react';
 
-const LecturesList = () => <h1>Lectures List</h1>;
+const LecturesList = () => <h2>Lectures List</h2>;
 
 export default LecturesList;

@@ -5,7 +5,7 @@ import './App.css';
 const App = () => {
   return (
     <div className="App">
-      <h1>Eu funciono!</h1>
+      <h1>Menu</h1>
       <Routes /> 
     </div>
   )
