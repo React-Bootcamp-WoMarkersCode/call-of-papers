@@ -1,5 +1,12 @@
 import React from 'react';
+import { useParams } from 'react-router';
 
-const Lecture = () => <h2>Lecture Page</h2>;
+const Lecture = () => {
+    let { lectureId } = useParams();
+    
+    return (
+        <h2>Lecture Page ID: {lectureId}</h2>
+    );
+};
 
 export default Lecture;
