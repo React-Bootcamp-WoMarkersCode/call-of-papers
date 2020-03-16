@@ -2,12 +2,12 @@ import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 const Home = React.lazy(() => import('pages/Home'));
-const Event = React.lazy(() => import('pages/Event'));
-const EventsList = React.lazy(() => import('pages/EventsList'));
-const EventForm = React.lazy(() => import('pages/EventForm'));
-const Lecture = React.lazy(() => import('pages/Lecture'));
-const LecturesList = React.lazy(() => import('pages/LecturesList'));
-const LectureForm = React.lazy(() => import('pages/LectureForm'));
+const Event = React.lazy(() => import('pages/Events/Event'));
+const EventsList = React.lazy(() => import('pages/Events/EventsList'));
+const EventForm = React.lazy(() => import('pages/Events/EventForm'));
+const Lecture = React.lazy(() => import('pages/Lectures/Lecture'));
+const LecturesList = React.lazy(() => import('pages/Lectures/LecturesList'));
+const LectureForm = React.lazy(() => import('pages/Lectures/LectureForm'));
 const MyProfile = React.lazy(() => import('pages/MyProfile'));
 
 const Routes = props => (
