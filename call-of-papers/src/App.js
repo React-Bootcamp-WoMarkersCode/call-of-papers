@@ -12,7 +12,6 @@ const App = () => {
 			<Header>
         <Menu />
       </Header>
-			{/* <Header/> */}
 			<Content>
 				<Routes />
 			</Content>

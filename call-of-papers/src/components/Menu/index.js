@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Menu } from 'antd';
+import { Menu, Avatar } from 'antd';
 import { CalendarOutlined, BookOutlined, UserOutlined } from '@ant-design/icons';
 import '../../App.css';
 
@@ -37,7 +37,7 @@ function HeaderComponent() {
                     <BookOutlined style={smallIcon} />
                     Minhas palestras
                 </Menu.Item>
-                <SubMenu title={<UserOutlined style={largeIcon} />}>
+                <SubMenu title={<Avatar icon={<UserOutlined style={{fontSize: '18px'}} />} />}>
                     <Menu.Item key="my-profile">Meu perfil</Menu.Item>
                     <Menu.Item key="logout">Sair</Menu.Item>
                 </SubMenu>
