@@ -12,10 +12,10 @@ const App = () => {
 			<Header>
         <Menu />
       </Header>
-			<Content>
+			<Content className="App">
 				<Routes />
 			</Content>
-			<Footer>Footer</Footer>
+			<Footer className="App">Footer</Footer>
 		</Layout>
 	);
 };
