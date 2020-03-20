@@ -2,7 +2,6 @@ import React from 'react';
 import Routes from './Routes';
 import { Layout } from 'antd';
 import Menu from './components/Menu';
-import './App.css';
 
 const { Header, Footer, Content } = Layout;
 
@@ -12,10 +11,10 @@ const App = () => {
 			<Header>
 				<Menu />
 			</Header>
-			<Content className="App">
+			<Content>
 				<Routes />
 			</Content>
-			<Footer className="App">Footer</Footer>
+			<Footer>Footer</Footer>
 		</Layout>
 	);
 };

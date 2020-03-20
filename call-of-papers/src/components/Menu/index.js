@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { Menu, Avatar } from 'antd';
 import { CalendarOutlined, BookOutlined, UserOutlined } from '@ant-design/icons';
-import '../../App.css';
+import './style.css';
 
 const { SubMenu } = Menu;
 
