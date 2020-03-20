@@ -10,8 +10,8 @@ const App = () => {
 	return (
 		<Layout>
 			<Header>
-        <Menu />
-      </Header>
+				<Menu />
+			</Header>
 			<Content className="App">
 				<Routes />
 			</Content>
