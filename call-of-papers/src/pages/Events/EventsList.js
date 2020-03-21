@@ -1,9 +1,12 @@
 import React from 'react';
-import { Row, Col, Table, Tag } from 'antd';
+import { Row, Col, Table } from 'antd';
+import { Link } from 'react-router-dom';
+
+import { events } from "../../mock";
 
 const EventsList = () => {
 
-    const columns = [
+    const columnsTable = [
         {
             title: 'Data/Horário',
             dataIndex: 'data',
@@ -20,47 +23,23 @@ const EventsList = () => {
             key: 'local'
         },
         {
-            title: '',
             dataIndex: 'acao',
             key: 'acao',
             render: (text) => (
                 <span>
-                    <a>Detalhes</a>
+                    <Link to="/events/1">Detalhes</Link>
                 </span>
             )
         },
     ];
 
-    const data = [
-        {
-            key: '1',
-            data: '21 Mar, 07:30',
-            evento: 'Women Dev Summit',
-            local: 'Secretaria',
-        },
-        {
-            key: '2',
-            data: '21 Mar, 07:30',
-            evento: 'Women Dev Summit',
-            local: 'Secretaria',
-        },
-    ]
-
     return (
         <>
             <Row>
-                <Col span={4}></Col>
-                <Col span={16}>
+                <Col span={16} offset={4}>
                     <h1>Meus eventos</h1>
+                    <Table columns={columnsTable} dataSource={events} />
                 </Col>
-                <Col span={4}></Col>
-            </Row>
-            <Row>
-                <Col span={4}></Col>
-                <Col span={16}>
-                    <Table columns={columns} dataSource={data} />
-                </Col>
-                <Col span={4}></Col>
             </Row>
         </>
     );
