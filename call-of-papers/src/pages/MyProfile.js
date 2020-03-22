@@ -3,6 +3,8 @@ import { useParams } from 'react-router';
 import { Row, Col, Avatar, Descriptions, Tag, List } from 'antd';
 import { UserOutlined, GithubOutlined, MediumOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined } from '@ant-design/icons';
 
+import styles from './myprofile.less';
+
 const { Item } = Descriptions;
 
 const MyProfile = () => {
@@ -23,15 +25,15 @@ const MyProfile = () => {
     return (
       <>
       <Row>
-        <Col span={16} offset={4} style={{backgroundColor: '#FFF'}}>
+        <Col span={16} offset={4} style={{backgroundColor: '#FFF', borderRadius: '6px', padding: '15px'}}>
           <Row>
-            <Col span={6} style={{backgroundColor: '#000', textAlign: 'center'}}>
+            <Col span={6} style={{textAlign: 'center'}}>
               <Avatar shape="square" size={100} icon={<UserOutlined />} />
             </Col>
             <Col span={18}>
-              <Descriptions title={`Nome do usuário ${profileId}`} layout="vertical">
+              <Descriptions title={`Nome do usuário ${profileId}`} layout="vertical" className={styles.teste}>
                 <Item label="Apresentação" span={3}>
-                  Adicione sua apresentação
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </Item>
                 <Item label="Interesses" span={3}>
                   {interests && interests.map(item => <Tag style={{marginBottom: '8px'}}>{item}</Tag>)}
