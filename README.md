@@ -30,7 +30,7 @@ Orientadoras:
 
 Para ver as definições das **páginas**, clique em [aqui]()
 
-### *Tecnologias usuadas:*
+### *Tecnologias usadas:*
 
 - [React](https://pt-br.reactjs.org/docs/getting-started.html) e [Redux](https://redux.js.org/introduction/getting-started);
 - React router;
