@@ -22,7 +22,7 @@ Orientadoras:
 ## *Sobre o projeto* ⭐️
 ### *Principais funcionalidades:*
 
-- Gerencionamento de eventos da comunidade;
+- Gerenciamento de eventos da comunidade;
 - Visualização e submissão de palestras;
 - Criação de grupos.
 
