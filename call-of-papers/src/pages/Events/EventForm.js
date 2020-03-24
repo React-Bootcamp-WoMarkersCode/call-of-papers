@@ -1,5 +1,5 @@
-import React from 'react';
+import React from 'react'
 
-const EventForm = () => <h2>Event Form</h2>;
+const EventForm = () => <h2>Event Form</h2>
 
-export default EventForm;
+export default EventForm

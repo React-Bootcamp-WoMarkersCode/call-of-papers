@@ -1,9 +1,9 @@
-import React from 'react';
-import Routes from './Routes';
-import { Layout } from 'antd';
-import Menu from './components/Menu';
+import React from 'react'
+import Routes from './Routes'
+import { Layout } from 'antd'
+import Menu from './components/Menu'
 
-const { Header, Footer, Content } = Layout;
+const { Header, Footer, Content } = Layout
 
 const App = () => {
 	return (
@@ -16,7 +16,7 @@ const App = () => {
 			</Content>
 			<Footer>Footer</Footer>
 		</Layout>
-	);
-};
+	)
+}
 
-export default App;
+export default App

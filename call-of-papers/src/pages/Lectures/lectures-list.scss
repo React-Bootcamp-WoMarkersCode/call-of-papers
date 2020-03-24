@@ -1,32 +1,32 @@
 .div-content {
-    margin: 0 auto;
-    text-align: center;
-  }
+  margin: 0 auto;
+  text-align: center;
+}
 
 .div-content li:hover {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 .listed-lecture {
-    text-align: center;
-    width: 1000px;
-    text-decoration: none;
-    color: #000;
+  text-align: center;
+  width: 1000px;
+  text-decoration: none;
+  color: #000;
 }
 
 .lecture-status {
-    text-align: center;
-    vertical-align: middle;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .approved {
-    color: #7cb305;
+  color: #7cb305;
 }
 
 .in-analysis {
-    color: #d4b106;
+  color: #d4b106;
 }
 
 .rejected {
-    color: #f5222d;
+  color: #f5222d;
 }
