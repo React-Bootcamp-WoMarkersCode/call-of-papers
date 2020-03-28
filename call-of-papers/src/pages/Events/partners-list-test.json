@@ -1,0 +1,33 @@
+[
+  "Women Dev Summit",
+  {
+    "title": "Magazine Luiza",
+    "description": "Pra você é Magalu!",
+    "avatar": "https://logospng.org/download/magazine-luiza/logo-magazine-luiza-256.png",
+    "website": "https://www.magazineluiza.com.br/"
+  },
+  {
+    "title": "Uber",
+    "description": "Criamos oportunidades ao colocar o mundo em movimento.",
+    "avatar": "https://logospng.org/download/uber/logo-uber-256.png",
+    "website": "https://www.uber.com/"
+  },
+  {
+    "title": "IBM",
+    "description": "Trabalhe com mais inteligência.",
+    "avatar": "https://assets.cloud.im/prod/ux1/images/logos/ibm/ibm-2x.png",
+    "website": "https://www.ibm.com/br-pt"
+  },
+  {
+    "title": "Gamers Club",
+    "description": "Aqui você vive o game.",
+    "avatar": "https://res-3.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/nmcycm45dzxeubiqfsr2",
+    "website": "https://www.gamersclub.com.br"
+  },
+  {
+    "title": "NuBank",
+    "description": "Reinventando o futuro.",
+    "avatar": "https://logospng.org/download/nubank/logo-nu-nubank-roxo-icon-256.png",
+    "website": "https://nubank.com.br/"
+  }
+]
