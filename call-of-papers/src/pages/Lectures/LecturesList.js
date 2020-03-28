@@ -4,7 +4,7 @@ import './lectures-list.scss'
 import data from './lectures-list-test.json'
 
 const LecturesList = () => (
-  <div className='div-content'>
+  <div className='listed'>
     <List
       itemLayout='horizontal'
       dataSource={data}
@@ -14,7 +14,7 @@ const LecturesList = () => (
             <tr></tr>
             <tr>
               <a href='womakerscode.org'>
-                <td className='listed-lecture'>
+                <td className='listed__lecture'>
                   <h3>{item.title}</h3>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -22,7 +22,7 @@ const LecturesList = () => (
                     nisi.
                   </p>
                 </td>
-                <td className={item.status + ' lecture-status'}>
+                <td className={'listed__lecture-status--' + item.status}>
                   {item.status.toUpperCase()}
                 </td>
               </a>
