@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router'
 import { Row, Col, Card } from 'antd'
 
-import { events } from "../../mock";
+import "./event.scss";
 
 const Event = () => {
   let { eventId } = useParams()
@@ -12,7 +12,7 @@ const Event = () => {
       <Row>
         {/* Banner */}
         <Col span={24}>
-          <div className="site-card-border-less-wrapper" style={{ background: '#ececec', padding: 30 }}>
+          <div className="content-banner">
             <Col span={17} offset={3}>
               <Card bordered={false}>
                 <img src="" />
@@ -23,16 +23,16 @@ const Event = () => {
       </Row>
 
       {/* Descrição  */}
-      <Row style={{ marginTop: 30 }}>
+      <Row className="content-detalhe">
         <Col span={16} offset={4}>
           <Row>
-            <Col span={16} style={{ paddingRight: 50 }}>
-              <div>
+            <Col span={16} className="pr-50">
+              <div className="title">
                 <span>21 Mar, 07:30</span>
                 <h1>Women Dev Summit</h1>
                 <small>Código do evento: {eventId}</small>
               </div>
-              <div style={{ marginTop: 30 }}>
+              <div className="mt-30">
                 <h2 style={{ fontWeight: 300 }}>Detalhes do evento</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent et vestibulum massa, efficitur malesuada elit.
@@ -52,17 +52,17 @@ const Event = () => {
               </div>
             </Col>
             <Col span={8}>
-              <Card style={{ width: 300, marginTop: 15 }}>
+              <Card className="mt-15">
                 <small>Comunidade</small>
                 <br />
                 <b>WoMakersCode</b>
               </Card>
-              <Card style={{ width: 300, marginTop: 15 }}>
+              <Card className="mt-15">
                 <small>Data/Horário</small>
                 <br />
                 <b>21 Mar, 07:30</b>
               </Card>
-              <Card style={{ width: 300, marginTop: 15 }}>
+              <Card className="mt-15">
                 <small>Ingressos</small>
                 <br />
                 <b>Grátis</b>
