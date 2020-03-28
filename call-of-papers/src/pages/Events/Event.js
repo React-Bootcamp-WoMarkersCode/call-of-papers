@@ -14,8 +14,15 @@ const Event = () => {
         <Col span={24}>
           <div className="content-banner">
             <Col span={17} offset={3}>
-              <Card bordered={false}>
-                <img src="" />
+              <Card bordered={false}
+                hoverable
+                style={{ width: '100%' }}
+                cover={
+                  <img alt="banner-event"
+                    src="https://secure.meetupstatic.com/photos/event/7/5/f/3/highres_489930195.jpeg" 
+                  />
+                }
+              >
               </Card>
             </Col>
           </div>
@@ -53,20 +60,53 @@ const Event = () => {
             </Col>
             <Col span={8}>
               <Card className="mt-15">
-                <small>Comunidade</small>
+                <span>
+                  <small>Comunidade</small>
+                  <br />
+                  <b>WoMakersCode</b>
+                </span>
                 <br />
-                <b>WoMakersCode</b>
+                <i style={{ textSize: 10 }}>
+                  Organizador(a)
+                  <span> Maria</span>
+                </i>
               </Card>
               <Card className="mt-15">
-                <small>Data/Horário</small>
-                <br />
-                <b>21 Mar, 07:30</b>
+                <p>
+                  <small>Data/Horário</small>
+                  <br />
+                  <b>21 Mar, 07:30</b>
+                </p>
+                <p>
+                  <small>Local</small>
+                  <br />
+                  <a href="#">Evento Online</a>
+                </p>
               </Card>
               <Card className="mt-15">
                 <small>Ingressos</small>
                 <br />
                 <b>Grátis</b>
               </Card>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+
+      {/* Patrocinadores */}
+      <Row className="content-partner">
+        <Col span={16} offset={4}>
+          <Row>
+            <Col span={16} className="pr-50">
+              <div className="mt-10">
+                <h2 style={{ fontWeight: 300 }}>Patrocinadores do evento</h2>
+                <Card
+                  hoverable
+                  style={{ width: 150 }}
+                  cover={<img alt="example" src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Stone_pagamentos.png" />}
+                >
+                </Card>
+              </div>
             </Col>
           </Row>
         </Col>
