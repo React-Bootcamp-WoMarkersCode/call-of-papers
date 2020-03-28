@@ -1,0 +1,30 @@
+.content-banner{
+    background-color: #ececec;
+    padding: 30px !important;
+}
+.content-detalhe{
+    margin-top: 30px;
+
+    .card{
+        width: 300px;
+    }
+}
+
+// Margin
+$mt-15: 15px; 
+$mt-30: 30px;
+
+// Padding
+$pt-15: 15px;
+$pt-30: 30px;
+$pr-50: 50px;
+
+.mt-15{
+    margin-top: 15px;
+}
+.mt-30{
+    margin-top: 50px;
+}
+.pr-50{
+    padding-right: 50px;
+}
