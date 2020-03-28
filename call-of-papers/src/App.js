@@ -13,7 +13,7 @@ const App = () => {
 				<Menu />
 			</Header>
 			<Content>
-				{/* <Routes /> */}
+				<Routes />
 				<Partners/>
 			</Content>
 			<Footer>Footer</Footer>
