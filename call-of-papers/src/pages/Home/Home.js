@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row } from 'antd'
-import { events } from '../../mock'
+import { events } from '../Events/events-list-test'
 import CardEvent from './CardEvent'
 
 function Home() {
