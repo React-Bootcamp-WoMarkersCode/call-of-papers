@@ -1,32 +1,36 @@
-.div-content {
-  margin: 0 auto;
+%alignment {
   text-align: center;
 }
 
-.div-content li:hover {
+.listed {
+  margin: 0 auto;
+  @extend %alignment;
+}
+
+.listed li:hover {
   background-color: #fff;
 }
 
-.listed-lecture {
-  text-align: center;
+.listed__lecture {
+  @extend %alignment;
   width: 1000px;
   text-decoration: none;
   color: #000;
 }
 
-.lecture-status {
-  text-align: center;
+.listed__lecture-status {
+  @extend %alignment;
   vertical-align: middle;
 }
 
-.approved {
+.listed__lecture-status--approved {
   color: #7cb305;
 }
 
-.in-analysis {
+.listed__lecture-status--in-analysis {
   color: #d4b106;
 }
 
-.rejected {
+.listed__lecture-status--rejected {
   color: #f5222d;
 }
