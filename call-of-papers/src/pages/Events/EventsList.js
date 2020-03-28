@@ -2,7 +2,9 @@ import React from 'react'
 import { Row, Col, Table } from 'antd'
 import { Link } from 'react-router-dom'
 
-import { events } from '../../mock'
+import { events } from './events-list-test'
+
+import "./events-list.scss"
 
 const columnsTable = [
   {
@@ -35,8 +37,10 @@ const EventsList = () => {
   return (
     <Row>
       <Col span={16} offset={4}>
-        <h1>Meus eventos</h1>
-        <Table columns={columnsTable} dataSource={events} />
+        <div className="content-events">
+          <h1>Meus eventos</h1>
+          <Table columns={columnsTable} dataSource={events} />
+        </div>
       </Col>
     </Row>
   )
