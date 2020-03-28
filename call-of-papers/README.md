@@ -1,68 +1,77 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Projeto: Call of papers 
+Plataforma que conecta eventos da comunidade a voluntários(as).
 
-## Available Scripts
+Desenvolvedoras:
+[Alessandra](https://github.com/Alessandra-Nastassja),
+[Fernanda](https://github.com/arfernanda),
+[Isa](https://github.com/IsabellaSoares),
+[Kathleen](https://github.com/kathleenpallotta), 
+[Lia](), 
+[Mariana]() e
+[Olívia](https://github.com/oliviaresende).
 
-In the project directory, you can run:
+Orientadoras:
+[Adriele](),
+[Becca](),
+[Laís](https://github.com/lalizita) e
+[Marília](https://github.com/GabrieleSuzart)
 
-### `yarn start`
+#### React bootcamp @WoMakersCode 🦄
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**** 
+## *Sobre o projeto* ⭐️
+### *Principais funcionalidades:*
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Gerenciamento de eventos da comunidade;
+- Visualização e submissão de palestras;
+- Criação de grupos.
 
-### `yarn test`
+### *Wireframe:* 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para ver as definições das **páginas**, clique em [aqui]()
 
-### `yarn build`
+### *Tecnologias usadas:*
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [React](https://pt-br.reactjs.org/docs/getting-started.html) e [Redux](https://redux.js.org/introduction/getting-started);
+- React router;
+- React PDF;
+- [Ant Design](https://ant.design/docs/react/introduce);
+- [Formik](https://jaredpalmer.com/formik/docs/api/formik).
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+****
+## *Como instalar e rodar ?* 🚀
+###  *Pré-requisitos:*
+1. Ter o **[Node js](https://nodejs.org/en/) instalado** e junto dele a **[NPM](https://www.npmjs.com/)**;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Clonar o repositório** em sua máquina, usando comando abaixo em seu terminal:
 
-### `yarn eject`
+```
+  git clone https://github.com/React-Bootcamp-WoMarkersCode/call-of-papers.git
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Após clonar, entrar na pasta **call-of-papers**, utilizando o comando abaixo no terminal:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+  cd call-of-papers
+``` 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+4. Agora basta **instalar as dependências** do seu projeto, digitando no terminal:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+  npm install
+```
 
-## Learn More
+5. E por ultimo dar o comando para **rodar** seu projeto:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+  npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+ > *Obs: O projeto irá abrir em seu navegador, rodando no http://localhost:3000*
+ 
+ ****
+ ## Referências:
+ [Meetup](https://www.meetup.com/apps/)
+ [Sympla](https://www.sympla.com.br/)
+ [Eventbrite](https://www.eventbrite.com.br/)
+ [Ticket360](https://www.ticket360.com.br/)
