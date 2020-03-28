@@ -4,6 +4,7 @@ import data from './partners-list-test.json'
 
 let db = data
 const {Meta} = Card
+
 const event = db[0]
 db = db.splice(1, db.length)
 
@@ -24,9 +25,9 @@ const Partners = () => (
                         <a href={item.website} target="_blank" rel="noopener noreferrer">
                             <Card 
                             hoverable
-                            style={{height: 210}} 
-                            cover={<img src={item.avatar} alt={item.title}/>}>
-                            <Meta
+                            style={{height: 210}, {marginBottom: 20}} 
+                            cover={<img src={item.avatar}/>}>
+                            <Meta title={item.title}
                             />
                             </Card>
                         </a>
