@@ -10,5 +10,11 @@ export const events = [
     data: '21 Mar, 07:30',
     evento: 'Women Dev Summit',
     local: 'Secretaria'
+  },
+  {
+    key: '3',
+    data: '21 Mar, 07:30',
+    evento: 'Women Dev Summit',
+    local: 'Secretaria'
   }
 ]

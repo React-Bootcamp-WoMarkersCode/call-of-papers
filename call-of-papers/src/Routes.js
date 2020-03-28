@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-const Home = React.lazy(() => import('pages/Home'))
+const Home = React.lazy(() => import('pages/Home/Home'))
 const Event = React.lazy(() => import('pages/Events/Event'))
 const EventsList = React.lazy(() => import('pages/Events/EventsList'))
 const EventForm = React.lazy(() => import('pages/Events/EventForm'))
