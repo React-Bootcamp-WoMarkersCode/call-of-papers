@@ -11,7 +11,7 @@ const Partners = () => (
   <div>
     <Row>
       <Col span={16} offset={4}>
-        <h1>{event} » Conheça nossos parceiros</h1>
+        <h1>{event} » Call for partners</h1>
       </Col>
       <Col span={4}></Col>
     </Row>
@@ -25,14 +25,15 @@ const Partners = () => (
               <a href={item.website} target='_blank' rel='noopener noreferrer'>
                 <Card
                   hoverable
-                  style={{ height: 210 }}
+                  style={{ height: 180 }, {marginBottom: 10}}
+                  
                   cover={<img src={item.avatar} alt={item.title} />}
                 >
-                  <Meta />
+                  <Meta title={item.title} />
                 </Card>
               </a>
             </List.Item>
-          )} //renderItem
+          )}
         />
       </Col>
     </Row>

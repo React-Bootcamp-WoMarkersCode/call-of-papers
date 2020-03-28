@@ -1,33 +1,27 @@
 [
   "Women Dev Summit",
   {
-    "title": "Magazine Luiza",
-    "description": "Pra você é Magalu!",
-    "avatar": "https://logospng.org/download/magazine-luiza/logo-magazine-luiza-256.png",
-    "website": "https://www.magazineluiza.com.br/"
+    "title": "Patrocinadores",
+    "avatar": "https://www.avantis.co.in/static/images/categories/homepage/Secretarial/1.png"
   },
   {
-    "title": "Uber",
-    "description": "Criamos oportunidades ao colocar o mundo em movimento.",
-    "avatar": "https://logospng.org/download/uber/logo-uber-256.png",
-    "website": "https://www.uber.com/"
+    "title": "Universidades",
+    "avatar": "https://d1ung6i9j8i9xc.cloudfront.net/wp-content/blogs.dir/123/files/2011/05/assets1105040009-256x256.jpg"
   },
   {
-    "title": "IBM",
-    "description": "Trabalhe com mais inteligência.",
-    "avatar": "https://assets.cloud.im/prod/ux1/images/logos/ibm/ibm-2x.png",
-    "website": "https://www.ibm.com/br-pt"
+    "title": "Comunidade",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSe7Sdy65bFzRJEPNMtDLkT5muf0H4Kboq3_Wmpp8cqNBTsDnka"
   },
   {
-    "title": "Gamers Club",
-    "description": "Aqui você vive o game.",
-    "avatar": "https://res-3.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/nmcycm45dzxeubiqfsr2",
-    "website": "https://www.gamersclub.com.br"
+    "title": "Startups",
+    "avatar": "https://startup-mannheim.de/wp-content/uploads/2017/11/MG_6323-256x256.jpg"
   },
   {
-    "title": "NuBank",
-    "description": "Reinventando o futuro.",
-    "avatar": "https://logospng.org/download/nubank/logo-nu-nubank-roxo-icon-256.png",
-    "website": "https://nubank.com.br/"
+    "title": "Palestrantes",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTXhJKK5idHDcO0T0oYbDs6wUpzMfGDe3tr4w4yv4d2gr7l5XuH"
+  },
+  {
+    "title": "Imprensa",
+    "avatar": "https://d26oc3sg82pgk3.cloudfront.net/files/media/edit/image/4440/square_thumb%402x.jpg"
   }
 ]
