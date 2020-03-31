@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import { Row, Col, Avatar, Descriptions, Tag, List } from 'antd';
-import { UserOutlined, GithubOutlined, MediumOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined } from '@ant-design/icons';
+import { Row, Col, Avatar, Descriptions, Tag, List, Button } from 'antd';
+import { UserOutlined, GithubOutlined, MediumOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined, EditOutlined } from '@ant-design/icons';
 
 const { Item } = Descriptions;
 
@@ -26,7 +26,10 @@ const MyProfile = () => {
         <Col span={16} offset={4} style={{backgroundColor: '#FFF', borderRadius: '6px', padding: '15px'}}>
           <Row>
             <Col span={6} style={{textAlign: 'center'}}>
-              <Avatar shape="square" size={100} icon={<UserOutlined />} />
+              <Avatar shape="square" size={150} icon={<UserOutlined />} />
+              <Button type="primary" icon={<EditOutlined />} size="small" style={{marginTop: '20px'}}>
+                Editar perfil
+              </Button>
             </Col>
             <Col span={18}>
               <Descriptions title={`Nome do usuário ${profileId}`} layout="vertical">
