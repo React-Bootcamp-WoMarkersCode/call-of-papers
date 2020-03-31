@@ -12,7 +12,7 @@ const App = () => {
 			<Header>
 				<Menu />
 			</Header>
-			<Content>
+			<Content style={{padding: '30px 0'}}>
 				<Routes />
 				<Partners/>
 			</Content>
