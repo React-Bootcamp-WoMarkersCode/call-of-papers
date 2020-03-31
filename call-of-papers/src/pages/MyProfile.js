@@ -69,4 +69,4 @@ const MyProfile = () => {
     );
 };
 
-export default MyProfile;
+export default MyProfile

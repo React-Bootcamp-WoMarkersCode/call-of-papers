@@ -1,5 +1,5 @@
-import React from 'react';
+import React from 'react'
 
-const LectureForm = () => <h2>Lecture Form</h2>;
+const LectureForm = () => <h2>Lecture Form</h2>
 
-export default LectureForm;
+export default LectureForm
