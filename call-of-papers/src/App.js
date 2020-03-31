@@ -1,6 +1,6 @@
 import React from 'react'
 import Routes from './Routes'
-import { Layout } from 'antd'
+import { Layout, Button } from 'antd'
 import Menu from './components/Menu'
 import Partners from './pages/Events/Partners'
 
@@ -16,7 +16,7 @@ const App = () => {
 				<Routes />
 				<Partners/>
 			</Content>
-			<Footer>Footer</Footer>
+			<Footer>Footer <Button type="primary">Button</Button> </Footer>
 		</Layout>
 	)
 }
