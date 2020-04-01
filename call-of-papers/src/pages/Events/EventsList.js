@@ -35,7 +35,7 @@ const columnsTable = [
 
 const EventsList = () => {
   return (
-    <Row>
+    <Row style={{marginBottom: 30}}>
       <Col span={16} offset={4}>
         <div className="content-events">
           <h1>Meus eventos</h1>
