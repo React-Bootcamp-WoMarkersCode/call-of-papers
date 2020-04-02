@@ -1,6 +1,6 @@
 import React from 'react'
 import Routes from './Routes'
-import { Layout } from 'antd'
+import { Layout, Button } from 'antd'
 import Menu from './components/Menu'
 import Partners from './pages/Events/Partners'
 
@@ -15,7 +15,7 @@ const App = () => {
 			<Content style={{padding: '30px 0'}}>
 				<Routes />
 			</Content>
-			<Footer>Footer</Footer>
+			<Footer>Footer <Button type="primary">Button</Button> </Footer>
 		</Layout>
 	)
 }
