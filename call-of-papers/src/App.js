@@ -14,7 +14,6 @@ const App = () => {
 			</Header>
 			<Content style={{padding: '30px 0'}}>
 				<Routes />
-				<Partners/>
 			</Content>
 			<Footer>Footer</Footer>
 		</Layout>
