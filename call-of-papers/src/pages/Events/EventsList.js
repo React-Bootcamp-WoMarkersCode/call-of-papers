@@ -1,6 +1,7 @@
 import React from 'react'
 import { Row, Col, Table } from 'antd'
 import { Link } from 'react-router-dom'
+import FBLogin from '../Login/FBLogin'
 
 import { events } from './events-list-test'
 
@@ -37,6 +38,8 @@ const EventsList = () => {
   return (
     <Row style={{marginBottom: 30}}>
       <Col span={16} offset={4}>
+      <div style={{float:'right'}}><FBLogin /></div>
+            <br></br>
         <div className="content-events">
           <h1>Meus eventos</h1>
           <Table columns={columnsTable} dataSource={events} />
