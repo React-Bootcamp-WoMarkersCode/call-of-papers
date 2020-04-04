@@ -1,11 +1,13 @@
 import React from 'react'
 import { List } from 'antd'
+import { Link } from 'react-router-dom'
 import './lectures-list.scss'
 import data from './lectures-list-test.json'
 
 const LecturesList = () => (
   <div className='listed'>
     <List
+      pagination
       itemLayout='horizontal'
       dataSource={data}
       renderItem={item => (
@@ -13,19 +15,17 @@ const LecturesList = () => (
           <table>
             <tr></tr>
             <tr>
-              <a href='womakerscode.org'>
+              <Link to={`/lectures/${item.id}`}>
                 <td className='listed__lecture'>
                   <h3>{item.title}</h3>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Donec nisi felis, molestie et odio rhoncus, luctus viverra
-                    nisi.
+                    {item.description}
                   </p>
                 </td>
                 <td className={'listed__lecture-status--' + item.status}>
                   {item.status.toUpperCase()}
                 </td>
-              </a>
+              </Link>
             </tr>
           </table>
         </List.Item>
