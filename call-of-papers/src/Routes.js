@@ -16,13 +16,13 @@ const Routes = props => (
       <Route exact path="/" component={routerProps => <Home {...routerProps} />} />
 
       <Route exact path="/events" component={routerProps => <EventsList {...routerProps} />} />
+      <Route exact path="/events/form" component={routerProps => <EventForm {...routerProps} />} />
       <Route path="/events/:eventId" component={routerProps => <Event {...routerProps} />} />
-      <Route path="/events/form" component={routerProps => <EventForm {...routerProps} />} />
-
+      
       <Route exact path="/lectures" component={routerProps => <LecturesList {...routerProps} />} />
+      <Route exact path="/lectures/form" component={routerProps => <LectureForm {...routerProps} />} />
       <Route path="/lectures/:lectureId" component={routerProps => <Lecture {...routerProps} />} />
-      <Route path="/lectures/form" component={routerProps => <LectureForm {...routerProps} />} />
-
+      
       <Route path="/profile/:profileId" component={routerProps => <MyProfile {...routerProps} />} />
     </Switch>
   </Suspense>
