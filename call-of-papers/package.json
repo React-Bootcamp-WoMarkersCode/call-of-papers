@@ -22,7 +22,7 @@
     "react-scripts": "3.4.0"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "react-app-rewired start & json-server --port 3001 --watch server.json",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
