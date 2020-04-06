@@ -70,8 +70,41 @@ Para ver as definições das **páginas**, clique em [aqui]()
  > *Obs: O projeto irá abrir em seu navegador, rodando no http://localhost:3000*
  
  ****
+ 
+ ### Como funciona Json-server ? 🚀
+
+Baseado em um único json que contém **events, lectures e profile**. Pode-se efetuar o GET,POST, PUT e DELETE. Basta apenas escrever **http://localhost:3001/events**, como por exemplo. 
+
+> *Obs.: Ao rodar o projeto, ele irá criar uma API fake em **http://localhost:3001/** e o front **http://localhost:3000/***
+ 
+*Exemplo:*
+
+Request | URL | Detalhes
+-- | -- | --
+GET | /events | Busca todos os eventos
+GET | /events/1 | Busca um evento
+GET | /events?local=Online | Busca um evento que seja online
+GET | /events?_limit=2 | Busca apenas dois eventos
+GET | /events?_limit=2&_page=1 | Busca apenas dois eventos por página
+POST | /events | Salvar um evento
+PUT | /events/1 | Editar os dados do evento
+DELETE | /events/1 | Remove o evento
+
+
+*Exemplo de filtro - Palestra*:
+
+```
+/lectures?status=approved&_limit=10&_page=1
+```
+
+> *Obs.:  Realiza filtro nas palestras aprovadas, trazendo apenas 10 por página*
+
+ ****
  ## Referências:
  [Meetup](https://www.meetup.com/apps/)
  [Sympla](https://www.sympla.com.br/)
  [Eventbrite](https://www.eventbrite.com.br/)
  [Ticket360](https://www.ticket360.com.br/)
+ 
+ [Tutorial - Json server](https://code.tutsplus.com/pt/tutorials/fake-rest-api-up-and-running-using-json-server--cms-27871)
+ [Filtros - Json server](https://code.tutsplus.com/pt/tutorials/fake-rest-api-up-and-running-using-json-server--cms-27871)
