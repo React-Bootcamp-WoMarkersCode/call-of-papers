@@ -63,7 +63,7 @@
             "id": 2,
             "event": "React Bootcamp",
             "description": "Bootcamp voltado ao Front-end usando a tecnologia React",
-            "data": "18 Abril,07: 30",
+            "schedule": "18 Abril,07: 30",
             "local": "Online",
             "organizer": "Laís Lima",
             "categories": [
@@ -79,9 +79,9 @@
         },
         {
             "id": 3,
-            "data": "",
             "event": "Data science Bootcamp",
             "description": "Bootcamp voltado ao Ciência de Dados.",
+            "schedule": "",
             "local": "",
             "organizer": "Cynthia",
             "categories": [

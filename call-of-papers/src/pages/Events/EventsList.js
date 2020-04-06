@@ -1,21 +1,19 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Col, Table } from 'antd'
 import { Link } from 'react-router-dom'
-
-import { events } from './events-list-test'
 
 import "./events-list.scss"
 
 const columnsTable = [
   {
     title: 'Data/Horário',
-    dataIndex: 'data',
-    key: 'data'
+    dataIndex: 'schedule',
+    key: 'schedule'
   },
   {
     title: 'Eventos',
-    dataIndex: 'evento',
-    key: 'evento'
+    dataIndex: 'event',
+    key: 'event'
   },
   {
     title: 'Local',
@@ -23,23 +21,36 @@ const columnsTable = [
     key: 'local'
   },
   {
-    dataIndex: 'acao',
-    key: 'acao',
-    render: (text) => (
+    dataIndex: 'id',
+    key: 'id',
+    render: (key) => (
       <span>
-        <Link to="/events/1">Detalhes</Link>
+        <Link to={`/events/${key}`}>Detalhes</Link>
       </span>
     )
   },
 ]
 
 const EventsList = () => {
+  const [api, setApi] = useState([])
+
+  const environment = 'http://localhost:3001';
+
+  useEffect(() => {
+    fetch(`${environment}/events`)
+      .then(res => res.json())
+      .then(data => {
+        setApi(data)
+      })
+      .catch(err => console.error(err, 'Nenhum evento por aqui!'))
+  }, [])
+
   return (
-    <Row style={{marginBottom: 30}}>
+    <Row style={{ marginBottom: 30 }}>
       <Col span={16} offset={4}>
         <div className="content-events">
           <h1>Meus eventos</h1>
-          <Table columns={columnsTable} dataSource={events} />
+          <Table columns={columnsTable} dataSource={api} rowKey='id' />
         </div>
       </Col>
     </Row>
