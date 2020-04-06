@@ -22,6 +22,15 @@ const menuStyle = {
 
 function HeaderComponent() {
   let history = useHistory()
+  let userPicture = localStorage.getItem('userPicture');
+
+  function logout () {
+    localStorage.removeItem('userId')
+    localStorage.removeItem('userPicture')
+    localStorage.removeItem('userName')
+    localStorage.removeItem('userEmail')
+    history.push("/");
+  }
 
   return (
     <>
@@ -39,16 +48,17 @@ function HeaderComponent() {
         </Menu.Item>
         <SubMenu
           title={
-            <Avatar icon={<UserOutlined style={{ fontSize: '18px' }} />} />
+            <Avatar src={userPicture} />
           }
         >
           <Menu.Item
             key='my-profile'
+            style={{color: 'black'}}
             onClick={() => history.push('/profile/1')}
           >
             Meu perfil
           </Menu.Item>
-          <Menu.Item key='logout'>Sair</Menu.Item>
+          <Menu.Item key='logout' onClick={() => logout()} style={{color: 'black'}}>Sair</Menu.Item>
         </SubMenu>
       </Menu>
     </>
