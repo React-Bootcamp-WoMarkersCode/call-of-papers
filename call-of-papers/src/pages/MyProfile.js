@@ -6,7 +6,10 @@ import { UserOutlined, GithubOutlined, MediumOutlined, LinkedinOutlined, Faceboo
 const { Item } = Descriptions;
 
 const MyProfile = () => {
-    let { profileId } = useParams();
+    let userId = localStorage.getItem('userId');
+    let userPicture = localStorage.getItem('userPicture')
+    let userName = localStorage.getItem('userName')
+    let userEmail = localStorage.getItem('userEmail')
 
     const interests = ['ReactJS', 'Javascript', 'CSS', 'Front-end'];
     const communities = [
@@ -26,13 +29,16 @@ const MyProfile = () => {
         <Col span={16} offset={4} style={{backgroundColor: '#FFF', borderRadius: '6px', padding: '15px'}}>
           <Row>
             <Col span={6} style={{textAlign: 'center'}}>
-              <Avatar shape="square" size={150} icon={<UserOutlined />} />
+              <Avatar shape="square" size={150} src={userPicture} />
               <Button type="primary" icon={<EditOutlined />} size="small" style={{marginTop: '20px'}}>
                 Editar perfil
               </Button>
             </Col>
             <Col span={18}>
-              <Descriptions title={`Nome do usuário ${profileId}`} layout="vertical">
+              <Descriptions title={`Nome: ${userName}`} layout="vertical">
+                <Item label="E-mail" span={3}>
+                  {`${userEmail}`}
+                </Item>
                 <Item label="Apresentação" span={3}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </Item>

@@ -1,68 +1,49 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from 'react-router-dom'
 import FacebookLogin from 'react-facebook-login';
 
-export default class FBLogin extends Component {
+export default function FBLogin() {
 
-    state = {
-        isLoggedIn: false,
-        userID: "",
-        name: "",
-        email: "",
-        picture: ""
+    let history = useHistory()
+    const [fbContent, setFbContent] = useState("");
+
+    const responseFacebook = response => {
+
+        // Armazena os dados do usuário no navegador. Quando houver logout eles serão apagados
+        localStorage.setItem('userId', response.userID)
+        localStorage.setItem('userPicture', response.picture.data.url)
+        localStorage.setItem('userName', response.name)
+        localStorage.setItem('userEmail', response.email)
+
+        // Redireciona para a página inicial
+        history.push("/");
     };
 
-    responseFacebook = response => {
-        // console.log(response);
+    useEffect(() => {
+        // Lógica para o botão de login do facebook aparecer oi não na tela
+        // Toda vez que o id de usuário armazenado na sessão mudar, ele vai executar isso
 
-        this.setState({
-            isLoggedIn: true,
-            userID: response.userID,
-            name: response.name,
-            email: response.email,
-            picture: response.picture.data.url
-        });
-    };
-
-    componentClicked = () => console.log("clicked");
-
-    render() {
-        let fbContent;
-
-        if (this.state.isLoggedIn) {
-            fbContent = (
-                <div
-                    style={{
-                        width: "400px",
-                        margin: "auto",
-                        background: "#f4f4f4",
-
-                    }}
-                >
-
-                    <h2><img src={this.state.picture} alt={this.state.name} /> {this.state.name}</h2>
-              Email: {this.state.email}
-                </div>
-            );
-        } else {
-            fbContent = (
+        if (!localStorage.getItem('userId')) {
+            setFbContent(
                 <FacebookLogin
                     appId="675476209915681"
                     autoLoad={true}
                     fields="name,email,picture"
-                    onClick={this.componentClicked}
-                    callback={this.responseFacebook}
+                    callback={responseFacebook}
                 />
             );
         }
+        else {
+            setFbContent("")
+        }
+    }, [localStorage.getItem('userId')])
 
+    return (
+        <div>
+            {fbContent}
+        </div>
+    )
 
-        return (
-            <div>
-                {fbContent}
-            </div>
-        )
-
-    }
 }
 
 
