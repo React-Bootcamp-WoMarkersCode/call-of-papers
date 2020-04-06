@@ -10,6 +10,7 @@
     "antd": "^4.0.3",
     "babel-plugin-import": "^1.13.0",
     "customize-cra": "^0.9.1",
+    "json-server": "^0.16.1",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
     "node-sass": "^4.13.1",
@@ -21,7 +22,7 @@
     "react-scripts": "3.4.0"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "react-app-rewired start & json-server --port 3001 --watch server.json",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
