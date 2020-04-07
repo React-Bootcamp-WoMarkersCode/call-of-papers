@@ -60,6 +60,7 @@ const EventForm = () => {
                         rules={[{ required: true, message: 'Preencha corretamente o campo de organizador!' }]}>
                         <Input {...formik.getFieldProps("organizer")} />
                     </Form.Item>
+
                     <Form.Item
                         label="Categoria do evento"
                         name="categories"
@@ -87,6 +88,7 @@ const EventForm = () => {
                         rules={[{ required: false }]}>
                         <Input {...formik.getFieldProps("limited_spaces")} />
                     </Form.Item>
+                    
                     <Form.Item
                         label="Aceita parceiros"
                         name="partners"
