@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import { Row, Col, Card } from 'antd'
 
 import "./event.scss";
 
 const Event = () => {
+  const [api, setApi] = useState([])
+
   let { eventId } = useParams()
+
+  const { event, schedule, description, organizer, local } = api
+
+  const environment = 'http://localhost:3001';
+
+  useEffect(() => {
+    fetch(`${environment}/events/${eventId}`)
+      .then(res => res.json())
+      .then(data => {
+        setApi(data)
+      })
+      .catch(err => console.error(err, 'Nenhum evento por aqui!'))
+  }, [])
 
   return (
     <>
@@ -19,7 +34,7 @@ const Event = () => {
                 style={{ width: '100%' }}
                 cover={
                   <img alt="banner-event"
-                    src="https://secure.meetupstatic.com/photos/event/7/5/f/3/highres_489930195.jpeg" 
+                    src="https://secure.meetupstatic.com/photos/event/7/5/f/3/highres_489930195.jpeg"
                   />
                 }
               >
@@ -35,27 +50,13 @@ const Event = () => {
           <Row>
             <Col span={16} className="pr-50">
               <div className="title">
-                <span>21 Mar, 07:30</span>
-                <h1>Women Dev Summit</h1>
+                <span>{schedule}</span>
+                <h1>{event}</h1>
                 <small>Código do evento: {eventId}</small>
               </div>
               <div className="mt-30">
                 <h2 style={{ fontWeight: 300 }}>Detalhes do evento</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent et vestibulum massa, efficitur malesuada elit.
-                Nullam urna turpis, convallis ut tincidunt non, ultrices sit amet libero.
-                Donec non massa ex. Morbi enim sem, finibus a tristique at, viverra vel urna.
-                Mauris a urna tempor, luctus tellus eget, pulvinar lacus.
-                Donec ex lorem, auctor vitae luctus at, convallis vitae ipsum.
-                Maecenas imperdiet tempor dui eu rhoncus.
-                Integer viverra mauris ut mattis finibus.
-                Proin eget metus euismod, iaculis felis in, mattis risus.
-                Nunc in nunc blandit, blandit elit at, porta orci.
-                Aenean lobortis tincidunt porta.
-                Vivamus vulputate diam quis orci porta ultrices.
-                Phasellus nec sapien turpis. Duis nec eros molestie,
-                tristique massa eu, accumsan nisl.
-                   Vivamus aliquam lorem volutpat, convallis leo hendrerit, malesuada magna.</p>
+                <p>{description}</p>
               </div>
             </Col>
             <Col span={8}>
@@ -68,19 +69,19 @@ const Event = () => {
                 <br />
                 <i style={{ textSize: 10 }}>
                   Organizador(a)
-                  <span> Maria</span>
+              <span> {organizer}</span>
                 </i>
               </Card>
               <Card className="mt-15">
                 <p>
                   <small>Data/Horário</small>
                   <br />
-                  <b>21 Mar, 07:30</b>
+                  <b>{schedule}</b>
                 </p>
                 <p>
                   <small>Local</small>
                   <br />
-                  <a href="#">Evento Online</a>
+                  <a href="#">{local}</a>
                 </p>
               </Card>
               <Card className="mt-15">
