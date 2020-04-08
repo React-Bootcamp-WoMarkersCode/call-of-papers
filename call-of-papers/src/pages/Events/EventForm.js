@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, Form, Input, Checkbox, Radio, Button } from 'antd';
 import { useFormik } from 'formik';
+
+const formItemLayout = null;
+
+const { TextArea } = Input;
 
 const initialValues = {
     event: '',
     description: '',
+    local: '',
     schedule: '',
     organizer: '',
-    categories: [],
     limited_spaces: '',
     partners: []
 }
@@ -15,31 +19,47 @@ const initialValues = {
 const EventForm = () => {
     const [form] = Form.useForm();
     const [formLayout, setFormLayout] = useState('vertical');
-    const [values, setValues] = useState();
+    const [values, setValuesChecked] = useState([]);
+    const [radio, setValuesRadio] = useState([]);
+    const [partner, setValuesPartner] = useState([]);
 
-    const formItemLayout = null;
+    const environment = 'http://localhost:3001';
 
-    const { TextArea } = Input;
-
-    function onChange(checkedValues) {
-        setValues(checkedValues)
-    }
-    
     const formik = useFormik({
         initialValues
-    })   
-   
+    })
 
-    const { event, description } = formik.values;
+    function onChangeCategories(categories) {
+        setValuesChecked(categories)
+    }
+    function onChangeSpaces(spaces) {
+        setValuesRadio(spaces.target.value);
+    }
+    function onChangePartners(partners) {
+        setValuesPartner(partners);
+    }
+
+    const { event, description, local, schedule, organizer } = formik.values;
 
     const bodyApi = {
         event,
         description,
-        categories: values
+        schedule,
+        local,
+        organizer,
+        categories: values,
+        limited_spaces: radio,
+        partners: partner
     }
 
-    console.log(bodyApi);
-    
+    function onsubmit(bodyApi) {
+        fetch(`${environment}/events`, {
+            method: 'post',
+            body: JSON.stringify(bodyApi)
+        })
+            .then(res => res.json())
+            .then(function(data){ alert( JSON.stringify( data ) ) })
+    }
 
     return (
         <Row>
@@ -49,7 +69,8 @@ const EventForm = () => {
                     {...formItemLayout}
                     layout={formLayout}
                     form={form}
-                    initialValues={{ layout: formLayout }}>
+                    initialValues={{ layout: formLayout }}
+                    onSubmit={onsubmit}>
                     <Form.Item
                         label="Evento"
                         name="event"
@@ -69,6 +90,12 @@ const EventForm = () => {
                         <Input {...formik.getFieldProps("schedule")} />
                     </Form.Item>
                     <Form.Item
+                        label="Local"
+                        name="local"
+                        rules={[{ required: false }]}>
+                        <Input {...formik.getFieldProps("local")} />
+                    </Form.Item>
+                    <Form.Item
                         label="Organizador"
                         name="organizer"
                         rules={[{ required: true, message: 'Preencha corretamente o campo de organizador!' }]}>
@@ -79,9 +106,9 @@ const EventForm = () => {
                         label="Categoria do evento"
                         name="categories"
                         rules={[{ required: true, message: 'Preencha corretamente o campo de categoria!' }]}>
-                        <Checkbox.Group 
-                            style={{ width: '50%' }} 
-                            onChange={onChange}>
+                        <Checkbox.Group
+                            style={{ width: '50%' }}
+                            onChange={onChangeCategories}>
                             <Row>
                                 <Col span={6}>
                                     <Checkbox
@@ -103,26 +130,47 @@ const EventForm = () => {
                         label="Vagas limitadas"
                         name="limited_spaces"
                         rules={[{ required: false }]}>
-                        <Input {...formik.getFieldProps("limited_spaces")} />
+                        <Radio.Group name="limited_spaces" defaultValue={1} onChange={onChangeSpaces}>
+                            <Radio value={"Sim"}>Sim</Radio>
+                            <Radio value={"Não"}>Não</Radio>
+                        </Radio.Group>
+
                     </Form.Item>
 
                     <Form.Item
-                        label="Aceita parceiros"
+                        label="Quais parceiros aceita ?"
                         name="partners"
                         rules={[{ required: false }]}>
-                        <Radio.Group name="radiogroup" defaultValue={1}>
-                            <Radio value={1}>Sim</Radio>
-                            <Radio value={2}>Não</Radio>
-                        </Radio.Group>
+                        <Checkbox.Group
+                            style={{ width: '50%' }}
+                            onChange={onChangePartners}>
+                            <Row>
+                                <Col span={6}>
+                                    <Checkbox value="sponsors">Sponsors</Checkbox>
+                                </Col>
+                                <Col span={6}>
+                                    <Checkbox value="universidade">Universidades</Checkbox>
+                                </Col>
+                                <Col span={6}>
+                                    <Checkbox value="Comunidades">Comunidades</Checkbox>
+                                </Col>
+                                <Col span={6}>
+                                    <Checkbox value="startups">Startups</Checkbox>
+                                </Col>
+                                <Col span={6}>
+                                    <Checkbox value="palestrantes">Palestrantes</Checkbox>
+                                </Col>
+                                <Col span={6}>
+                                    <Checkbox value="impresa">Impresa</Checkbox>
+                                </Col>
+                            </Row>
+                        </Checkbox.Group>
                     </Form.Item>
                     <Form.Item>
                         <Button type="primary">Cadastrar evento</Button>
                     </Form.Item>
 
                 </Form>
-                <div>
-                    <pre>{JSON.stringify(formik.values, null, 2)}</pre>
-                </div>
             </Col>
         </Row>
     );
