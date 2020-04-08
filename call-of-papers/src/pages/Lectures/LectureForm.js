@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import { Form, Input, Row, Col, Button, Select, Radio, Checkbox} from 'antd'
 import './lectures-list.scss'
@@ -7,8 +7,15 @@ const { TextArea } = Input
 const { Option } = Select
 
 const LectureForm = () => {
-    const formik = useFormik({
-      initialValues: {
+
+  const [values, setValues] = useState()
+
+  function onChange(checkedValues) {
+    setValues(checkedValues)
+  }
+
+  const formik = useFormik({
+    initialValues: {
         name: '',
         email: '',
         rg: '',
@@ -23,16 +30,23 @@ const LectureForm = () => {
         instagram: '',
         youtube: '',
         portfolio: '',
-        haveLecturedBefore: '',
-        activityType: '',
-        activityCategory: '',
+        // haveLecturedBefore: '',
+        // activityType: '',
+        // activityCategory: '',
         activityTitle: '',
         activityDescription: '',
       },
+
       onSubmit: values => {
-        console.log(values)
+        // console.log(values)
       },
     })
+
+    const { haveLecturedBefore, activityType, activityCategory } = formik.values
+    const checkedValues = {haveLecturedBefore, activityType, activityCategory: values}
+    formik.values = Object.assign(checkedValues, formik.values)
+    console.log('formik.values', formik.values)
+    console.log('useState values', values)
     return (
       <div className='listed'>
         <Row>
@@ -228,11 +242,10 @@ const LectureForm = () => {
               >
                 <Select
                   placeholder="Selecione uma opção"
-                  // onChange={formik.handleChange}
-                  // value={formik.values.haveLecturedBefore}
-                  {...formik.getFieldProps("haveLecturedBefore")}
+                  onChange={onChange}
+                  // {...formik.getFieldProps("haveLecturedBefore")}
                 >
-                  <Option value="Sim" >Sim</Option>
+                  <Option value={"Sim"} >Sim</Option>
                   <Option value="Não" >Não</Option>
                 </Select>
               </Form.Item>
@@ -242,7 +255,9 @@ const LectureForm = () => {
               <Form.Item name="activityType" label="Tipo de atividade proposta:" 
               // rules={[{ required: true, message: 'Por favor, informe um tipo de atividade' }]}
               >
-                <Radio.Group style={{textAlign: 'left'}} onChange={formik.handleChange} value={formik.values.activityType}>
+                <Radio.Group style={{textAlign: 'left'}} 
+                  onChange={onChange} 
+                >
                   <Radio style={{display: 'block'}} value="Palestra" >Palestra (1 palestrante)</Radio>
                   <Radio style={{display: 'block'}} value="Painel" >Painel (1 moderador + até 3 painelistas)</Radio>
                   <Radio style={{display: 'block'}} value="Workshop" >Workshop (1 palestrante + até 2 facilitadores)</Radio>
@@ -254,7 +269,9 @@ const LectureForm = () => {
               <Form.Item name="activityCategory" label="Categoria da atividade proposta:" 
                 // rules={[{ required: true, message: 'Por favor, informe pelo menos uma categoria!' }]}
               >
-                <Checkbox.Group style={{textAlign: 'left'}} onChange={formik.handleChange} value={formik.values.activityCategory}>
+                <Checkbox.Group style={{textAlign: 'left'}} 
+                  onChange={onChange}
+                >
                   <Checkbox style={{display: 'block'}, {marginLeft: '8px'}} value="Segurança" >Segurança</Checkbox>
                   <Checkbox style={{display: 'block'}} value="Criatividade/ Design / Entretenimento/ Marketing Digital" >Criatividade/Design/ Entretenimento/Marketing Digital</Checkbox>
                   <Checkbox style={{display: 'block'}} value="Empreendedorismo" >Empreendedorismo</Checkbox>
