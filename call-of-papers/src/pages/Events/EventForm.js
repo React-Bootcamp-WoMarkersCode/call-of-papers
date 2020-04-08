@@ -12,6 +12,7 @@ const initialValues = {
     local: '',
     schedule: '',
     organizer: '',
+    categories:[],
     limited_spaces: '',
     partners: []
 }
@@ -115,7 +116,7 @@ const EventForm = () => {
                                         value="workshop">Workshop</Checkbox>
                                 </Col>
                                 <Col span={6}>
-                                    <Checkbox value="bootcamp">Bootscamp</Checkbox>
+                                    <Checkbox value="bootcamp">Bootcamp</Checkbox>
                                 </Col>
                                 <Col span={6}>
                                     <Checkbox value="frontend">Front-end</Checkbox>
