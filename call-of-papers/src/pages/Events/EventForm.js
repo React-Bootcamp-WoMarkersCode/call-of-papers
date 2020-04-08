@@ -12,21 +12,35 @@ const initialValues = {
     partners: []
 }
 
-function onChange(checkedValues) {
-    console.log('checked = ', checkedValues);
-}
-
 const EventForm = () => {
     const [form] = Form.useForm();
     const [formLayout, setFormLayout] = useState('vertical');
+    const [values, setValues] = useState();
 
     const formItemLayout = null;
 
     const { TextArea } = Input;
 
+    function onChange(checkedValues) {
+        setValues(checkedValues)
+    }
+    
     const formik = useFormik({
         initialValues
-    })
+    })   
+   
+
+    const { event, description } = formik.values;
+
+    const bodyApi = {
+        event,
+        description,
+        categories: values
+    }
+
+    console.log(bodyApi);
+    
+
     return (
         <Row>
             <Col span={16} offset={4}>
@@ -65,10 +79,13 @@ const EventForm = () => {
                         label="Categoria do evento"
                         name="categories"
                         rules={[{ required: true, message: 'Preencha corretamente o campo de categoria!' }]}>
-                        <Checkbox.Group style={{ width: '50%' }} onChange={onChange}>
+                        <Checkbox.Group 
+                            style={{ width: '50%' }} 
+                            onChange={onChange}>
                             <Row>
                                 <Col span={6}>
-                                    <Checkbox value="workshop">Workshop</Checkbox>
+                                    <Checkbox
+                                        value="workshop">Workshop</Checkbox>
                                 </Col>
                                 <Col span={6}>
                                     <Checkbox value="bootcamp">Bootscamp</Checkbox>
@@ -88,7 +105,7 @@ const EventForm = () => {
                         rules={[{ required: false }]}>
                         <Input {...formik.getFieldProps("limited_spaces")} />
                     </Form.Item>
-                    
+
                     <Form.Item
                         label="Aceita parceiros"
                         name="partners"
