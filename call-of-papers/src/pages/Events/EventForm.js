@@ -12,7 +12,7 @@ const initialValues = {
     local: '',
     schedule: '',
     organizer: '',
-    categories:[],
+    categories: [],
     limited_spaces: '',
     partners: []
 }
@@ -53,13 +53,21 @@ const EventForm = () => {
         partners: partner
     }
 
-    function onsubmit(bodyApi) {
+    function onsubmit() {
         fetch(`${environment}/events`, {
             method: 'post',
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                'Access-Control-Allow-Origin': '*'
+            },
             body: JSON.stringify(bodyApi)
+        }).then(function (response) {
+            alert('Evento cadastrado com sucesso!')
+            return response.json(); 
+        }).catch(function (error) {
+            alert(`Erro ao cadastrar: ${error}`)
         })
-            .then(res => res.json())
-            .then(function(data){ alert( JSON.stringify( data ) ) })
     }
 
     return (
@@ -70,8 +78,7 @@ const EventForm = () => {
                     {...formItemLayout}
                     layout={formLayout}
                     form={form}
-                    initialValues={{ layout: formLayout }}
-                    onSubmit={onsubmit}>
+                    initialValues={{ layout: formLayout }}>
                     <Form.Item
                         label="Evento"
                         name="event"
@@ -168,7 +175,7 @@ const EventForm = () => {
                         </Checkbox.Group>
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary">Cadastrar evento</Button>
+                        <Button type="primary" onClick={onsubmit}>Cadastrar evento</Button>
                     </Form.Item>
 
                 </Form>
