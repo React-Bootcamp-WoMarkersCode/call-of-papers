@@ -8,7 +8,7 @@ const EventForm = React.lazy(() => import('pages/Events/EventForm'))
 const Lecture = React.lazy(() => import('pages/Lectures/Lecture'))
 const LecturesList = React.lazy(() => import('pages/Lectures/LecturesList'))
 const LectureForm = React.lazy(() => import('pages/Lectures/LectureForm'))
-const MyProfile = React.lazy(() => import('pages/MyProfile'))
+const MyProfile = React.lazy(() => import('pages/Profile/MyProfile'))
 const About = React.lazy(() => import('pages/About'))
 
 const Routes = props => (
