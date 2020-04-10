@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Avatar, Descriptions, Tag, List, Button, Table } from 'antd';
+import { Row, Col, Avatar, Descriptions, Tag, List, Button } from 'antd';
 import { UserOutlined, GithubOutlined, MediumOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined, EditOutlined } from '@ant-design/icons';
 import "./MyProfile.css"
+import { getEnvironment } from './../../utils/environment'
+import { useHistory } from 'react-router-dom'
 
 const { Item } = Descriptions;
 
 const MyProfile = () => {
+  let history = useHistory()
   const [profile, setProfile] = useState([])
-  const environment = 'http://localhost:3001';
 
   useEffect(() => {
-    fetch(`${environment}/profiles`)
+    fetch(`${getEnvironment()}/profiles`)
       .then(res => res.json())
       .then(data => {
-        setProfile(data.find(profile => profile.id == localStorage.getItem('userId')))
+        setProfile(data.find(profile => profile.id === localStorage.getItem('userId')))
       })
       .catch(err => console.error(err, 'Nenhum usuário encontrado'))
   }, [])
@@ -44,7 +46,7 @@ const MyProfile = () => {
               <br />
               <Avatar shape="square" size={50} src={userPicture} />
               <br />
-              <Button type="primary" icon={<EditOutlined />} size="small" style={{ marginTop: '20px' }}>
+              <Button type="primary" onClick={() => history.push('/profileForm')} icon={<EditOutlined />} size="small" style={{ marginTop: '20px' }}>
                 Editar perfil
               </Button>
             </Col>
@@ -59,7 +61,7 @@ const MyProfile = () => {
                   <i>{profile.apresentation? `${profile.apresentation}` : 'Sem dados'}{console.log()}</i>
                 </Item>
                 <Item label="Data de cadastro" span={3}>
-                  {profile.registerDate? `${profile.registerDate}` : 'Sem dados'}
+                  {profile.registerDate? `${(profile.registerDate)}` : 'Sem dados'}
                 </Item>
                 <Item label="Interesses" span={3}>
                   {profile.interests? profile.interests && profile.interests.map(item => <Tag style={{ marginBottom: '8px' }}>{item}</Tag>) : "Sem dados"}

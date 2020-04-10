@@ -9,6 +9,7 @@ const Lecture = React.lazy(() => import('pages/Lectures/Lecture'))
 const LecturesList = React.lazy(() => import('pages/Lectures/LecturesList'))
 const LectureForm = React.lazy(() => import('pages/Lectures/LectureForm'))
 const MyProfile = React.lazy(() => import('pages/Profile/MyProfile'))
+const ProfileForm = React.lazy(() => import('pages/Profile/ProfileForm'))
 const About = React.lazy(() => import('pages/About'))
 
 const Routes = props => (
@@ -26,7 +27,8 @@ const Routes = props => (
       <Route exact path="/lectures/form" component={routerProps => <LectureForm {...routerProps} />} />
       <Route path="/lectures/:lectureId" component={routerProps => <Lecture {...routerProps} />} />
       
-      <Route path="/profile/:profileId" component={routerProps => <MyProfile {...routerProps} />} />
+      <Route path="/profile/" component={routerProps => <MyProfile {...routerProps} />} />
+      <Route path="/profileForm" component={routerProps => <ProfileForm {...routerProps} />} />
     </Switch>
   </Suspense>
 )

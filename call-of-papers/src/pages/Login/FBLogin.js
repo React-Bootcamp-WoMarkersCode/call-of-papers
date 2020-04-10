@@ -24,7 +24,7 @@ export default function FBLogin() {
         fetch(`${getEnvironment()}/profiles`)
             .then(res => res.json())
             .then(data => {
-                if (!data.find(profile => profile.id == localStorage.getItem('userId'))) {
+                if (!data.find(profile => profile.id === localStorage.getItem('userId'))) {
                     let newProfile = new Object({
                         "id": response.userID,
                         "localization": "",

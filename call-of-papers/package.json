@@ -12,6 +12,7 @@
     "concurrently": "^5.1.0",
     "customize-cra": "^0.9.1",
     "formik": "^2.1.4",
+    "formik-antd": "^2.0.1",
     "json-server": "^0.16.1",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",

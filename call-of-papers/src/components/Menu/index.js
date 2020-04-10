@@ -54,7 +54,7 @@ function HeaderComponent() {
           <Menu.Item
             key='my-profile'
             style={{color: 'black'}}
-            onClick={() => history.push('/profile/1')}
+            onClick={() => history.push('/profile')}
           >
             Meu perfil
           </Menu.Item>
