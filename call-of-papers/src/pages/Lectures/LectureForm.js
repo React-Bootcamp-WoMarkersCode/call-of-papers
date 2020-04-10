@@ -8,6 +8,7 @@ const { Option } = Select
 
 const LectureForm = () => {
 
+<<<<<<< HEAD
   const environment = 'http://localhost:3001';
 
   const [valuesRadio, setRadioValues] = useState()
@@ -20,6 +21,18 @@ const LectureForm = () => {
   function onChange(radioValues) {
     setRadioValues(radioValues.target.value)
   }
+=======
+  const [valuesRadio, setRadioValues] = useState()
+  const [valuesCheck, setCheckValues] = useState()
+  const [valuesSelect, setSelectValues] = useState()
+
+  function onChangeSelect(selectValues) {
+    setSelectValues(selectValues)
+  }
+  function onChange(radioValues) {
+    setRadioValues(radioValues.target.value)
+  }
+>>>>>>> cde3b95ff1442f68af6fe2ff8cd752edfda2654d
   function onChangeCheck(checkedValues) {
     setCheckValues(checkedValues)
   } 
@@ -44,6 +57,7 @@ const LectureForm = () => {
       activityDescription: '',
     },
 
+<<<<<<< HEAD
     onSubmit: (values) => {
       fetch(`${environment}/lectures`, {
         method: 'post',
@@ -59,6 +73,10 @@ const LectureForm = () => {
         }).catch(function (error) {
             alert(`Erro ao cadastrar: ${error}`)
         })
+=======
+    onSubmit: values => {
+      // console.log(values)
+>>>>>>> cde3b95ff1442f68af6fe2ff8cd752edfda2654d
     },
   })
 
@@ -74,6 +92,11 @@ const LectureForm = () => {
       'haveLecturedBefore': valuesSelect
     })
 
+<<<<<<< HEAD
+=======
+    console.log(formik.values);
+
+>>>>>>> cde3b95ff1442f68af6fe2ff8cd752edfda2654d
   return (
     <div className='listed'>
       <Row>
