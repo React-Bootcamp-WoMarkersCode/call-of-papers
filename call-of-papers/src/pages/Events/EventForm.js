@@ -1,10 +1,18 @@
 import React, { useState } from 'react'
 import { Row, Col, Form, Input, Checkbox, Radio, Button } from 'antd'
 import { useFormik } from 'formik'
+import { useHistory } from 'react-router-dom'
+
+let bodyApi = {}
+
+const formItemLayout = null;
+
+const { TextArea } = Input;
 
 const initialValues = {
     event: '',
     description: '',
+    local: '',
     schedule: '',
     organizer: '',
     categories: [],
@@ -12,23 +20,64 @@ const initialValues = {
     partners: []
 }
 
-function onChange(checkedValues) {
-    console.log('checked = ', checkedValues);
-}
-
 const EventForm = () => {
     const [form] = Form.useForm();
     const [formLayout, setFormLayout] = useState('vertical');
+    const [values, setValuesChecked] = useState([]);
+    const [radio, setValuesRadio] = useState([]);
+    const [partner, setValuesPartner] = useState([]);
 
-    const formItemLayout = null;
+    const history = useHistory();
 
-    const { TextArea } = Input;
+    const environment = 'http://localhost:3001';
 
     const formik = useFormik({
         initialValues
     })
+
+    function onChangeCategories(categories) {
+        setValuesChecked(categories)
+    }
+    function onChangeSpaces(spaces) {
+        setValuesRadio(spaces.target.value);
+    }
+    function onChangePartners(partners) {
+        setValuesPartner(partners);
+    }
+
+    const { event, description, local, schedule, organizer } = formik.values;
+
+    bodyApi = {
+        event,
+        description,
+        schedule,
+        local,
+        organizer,
+        categories: values,
+        limited_spaces: radio,
+        partners: partner
+    }
+
+    function onsubmit() {
+        fetch(`${environment}/events`, {
+            method: 'post',
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify(bodyApi)
+        }).then(function (response) {
+            alert('Evento cadastrado com sucesso!');
+            history.push("/events");
+            return response.json();
+        }).catch(function (error) {
+            alert(`Erro ao cadastrar: ${error}`)
+        })
+    }
+
     return (
-        <Row>
+        <Row style={{ marginTop: 30 }}>
             <Col span={16} offset={4}>
                 <h1>Crie um evento</h1>
                 <Form
@@ -37,67 +86,114 @@ const EventForm = () => {
                     form={form}
                     initialValues={{ layout: formLayout }}>
                     <Form.Item
-                        label="Evento"
+                        label="Nome do evento:"
                         name="event"
                         rules={[{ required: true, message: 'Preencha corretamente o campo de evento!' }]}>
-                        <Input {...formik.getFieldProps("event")} />
+                        <Input {...formik.getFieldProps("event")} placeholder="Digite o nome do evento" />
                     </Form.Item>
                     <Form.Item
-                        label="Descrição"
+                        label="Descrição do evento:"
                         name="description"
-                        rules={[{ required: false }]}>
-                        <TextArea {...formik.getFieldProps("description")} />
+                        rules={[{ required: true, message: 'Preencha corretamente o campo de descrição do evento.' }]}>
+                        <TextArea {...formik.getFieldProps("description")} placeholder="Digite a descrição do evento (sobre o evento, agenda, regras...)" />
                     </Form.Item>
+                    <Row>
+                        <Col span={12} style={{ paddingRight: 10 }}>
+                            <Form.Item
+                                label="Data/Horário do evento:"
+                                name="schedule"
+                                rules={[{ required: false }]}>
+                                <Input {...formik.getFieldProps("schedule")} placeholder="Digite a data e horário" />
+                                <small>Exemplo: 18 Abril, 07:30</small>
+                            </Form.Item>
+                        </Col>
+                        <Col span={12} style={{ paddingLeft: 10 }}>
+                            <Form.Item
+                                label="Local do evento:"
+                                name="local"
+                                rules={[{ required: false }]}>
+                                <Input {...formik.getFieldProps("local")} placeholder="Digite o local do evento" />
+                            </Form.Item>
+                        </Col>
+                    </Row>
                     <Form.Item
-                        label="Data/Horário"
-                        name="schedule"
-                        rules={[{ required: false }]}>
-                        <Input {...formik.getFieldProps("schedule")} />
-                    </Form.Item>
-                    <Form.Item
-                        label="Organizador"
+                        label="Organizador do evento:"
                         name="organizer"
                         rules={[{ required: true, message: 'Preencha corretamente o campo de organizador!' }]}>
-                        <Input {...formik.getFieldProps("organizer")} />
+                        <Input {...formik.getFieldProps("organizer")} placeholder="Digite o nome do organizador responsável" />
                     </Form.Item>
+
+                    <Row>
+                        <Col span={12}>
+                            <Form.Item
+                                label="Categoria do evento: "
+                                name="categories"
+                                rules={[{ required: true, message: 'Preencha corretamente o campo de categoria!' }]}>
+                                <Checkbox.Group
+                                    onChange={onChangeCategories}>
+                                    <Row>
+                                        <Col span={8}>
+                                            <Checkbox
+                                                value="workshop">Workshop</Checkbox>
+                                        </Col>
+                                        <Col span={8}>
+                                            <Checkbox value="bootcamp">Bootcamp</Checkbox>
+                                        </Col>
+                                        <Col span={8}>
+                                            <Checkbox value="frontend">Front-end</Checkbox>
+                                        </Col>
+                                        <Col span={8}>
+                                            <Checkbox value="backend">Back-end</Checkbox>
+                                        </Col>
+                                    </Row>
+                                </Checkbox.Group>
+                            </Form.Item>
+                        </Col>
+                        <Col span={12}>
+                            <Form.Item
+                                label="Quais parceiros aceita ?"
+                                name="partners"
+                                rules={[{ required: false }]}>
+                                <Checkbox.Group
+                                    onChange={onChangePartners}>
+                                    <Row>
+                                        <Col span={10}>
+                                            <Checkbox value="sponsors">Sponsors</Checkbox>
+                                        </Col>
+                                        <Col span={10}>
+                                            <Checkbox value="universidade">Universidades</Checkbox>
+                                        </Col>
+                                        <Col span={10}>
+                                            <Checkbox value="comunidades">Comunidades</Checkbox>
+                                        </Col>
+                                        <Col span={10}>
+                                            <Checkbox value="startups">Startups</Checkbox>
+                                        </Col>
+                                        <Col span={10}>
+                                            <Checkbox value="palestrantes">Palestrantes</Checkbox>
+                                        </Col>
+                                        <Col span={10}>
+                                            <Checkbox value="impresa">Impresa</Checkbox>
+                                        </Col>
+                                        <Col span={24}>
+                                            <Checkbox value="Nao">Não aceito parceiros</Checkbox>
+                                        </Col>
+                                    </Row>
+                                </Checkbox.Group>
+                            </Form.Item>
+                        </Col>
+                    </Row>
                     <Form.Item
-                        label="Categoria do evento"
-                        name="categories"
-                        rules={[{ required: true, message: 'Preencha corretamente o campo de categoria!' }]}>
-                        <Checkbox.Group style={{ width: '50%' }} onChange={onChange}>
-                            <Row>
-                                <Col span={6}>
-                                    <Checkbox value="workshop">Workshop</Checkbox>
-                                </Col>
-                                <Col span={6}>
-                                    <Checkbox value="bootcamp">Bootscamp</Checkbox>
-                                </Col>
-                                <Col span={6}>
-                                    <Checkbox value="frontend">Front-end</Checkbox>
-                                </Col>
-                                <Col span={6}>
-                                    <Checkbox value="backend">Back-end</Checkbox>
-                                </Col>
-                            </Row>
-                        </Checkbox.Group>
-                    </Form.Item>
-                    <Form.Item
-                        label="Vagas limitadas"
+                        label="Vagas limitadas ?"
                         name="limited_spaces"
                         rules={[{ required: false }]}>
-                        <Input {...formik.getFieldProps("limited_spaces")} />
-                    </Form.Item>
-                    <Form.Item
-                        label="Aceita parceiros"
-                        name="partners"
-                        rules={[{ required: false }]}>
-                        <Radio.Group name="radiogroup" defaultValue={1}>
-                            <Radio value={1}>Sim</Radio>
-                            <Radio value={2}>Não</Radio>
+                        <Radio.Group name="limited_spaces" defaultValue={1} onChange={onChangeSpaces}>
+                            <Radio value={"Sim"}>Sim</Radio>
+                            <Radio value={"Não"}>Não</Radio>
                         </Radio.Group>
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary">Cadastrar evento</Button>
+                        <Button type="primary" onClick={onsubmit}>Cadastrar evento</Button>
                     </Form.Item>
 
                 </Form>

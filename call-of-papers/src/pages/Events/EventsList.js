@@ -37,7 +37,7 @@ const EventsList = () => {
   const environment = 'http://localhost:3001';
 
   useEffect(() => {
-    fetch(`${environment}/events`)
+    fetch(`${environment}/events?_limit=15&_page=1`)
       .then(res => res.json())
       .then(data => {
         setApi(data)
@@ -54,7 +54,7 @@ const EventsList = () => {
               <h1>Meus eventos</h1>
             </Col>
             <Col span={4}>
-              <Link type="primary" to="/events/form">Cadastre um evento</Link>
+              <Link id="btn-cadastrar" to="/events/form">Cadastre um evento</Link>
             </Col>
           </Row>
           <Table columns={columnsTable} dataSource={api} rowKey='id' />
