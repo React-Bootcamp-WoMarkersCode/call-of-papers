@@ -49,7 +49,14 @@ const EventsList = () => {
     <Row style={{ marginBottom: 30 }}>
       <Col span={16} offset={4}>
         <div className="content-events">
-          <h1>Meus eventos</h1>
+          <Row style={{ marginBottom: 20 }}>
+            <Col span={20}>
+              <h1>Meus eventos</h1>
+            </Col>
+            <Col span={4}>
+              <Link type="primary" to="/events/form">Cadastre um evento</Link>
+            </Col>
+          </Row>
           <Table columns={columnsTable} dataSource={api} rowKey='id' />
         </div>
       </Col>

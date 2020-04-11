@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Row, Col, Form, Input, Checkbox, Radio, Button } from 'antd';
-import { useFormik } from 'formik';
+import React, { useState } from 'react'
+import { Row, Col, Form, Input, Checkbox, Radio, Button } from 'antd'
+import { useFormik } from 'formik'
 
 const initialValues = {
     event: '',
@@ -101,9 +101,6 @@ const EventForm = () => {
                     </Form.Item>
 
                 </Form>
-                <div>
-                    <pre>{JSON.stringify(formik.values, null, 2)}</pre>
-                </div>
             </Col>
         </Row>
     );
