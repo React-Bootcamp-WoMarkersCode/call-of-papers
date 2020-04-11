@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useFormik } from 'formik'
-import { Form, Input, Row, Col, Button, Select, Radio, Checkbox } from 'antd'
+import { Form, Input, Row, Col, Button, Select, Radio, Checkbox} from 'antd'
+
 import './lectures-list.scss'
 
 const { TextArea } = Input
@@ -8,11 +9,12 @@ const { Option } = Select
 
 const LectureForm = () => {
 
-  const environment = 'http://localhost:3001';
+  const environment = 'http://localhost:3001'
 
   const [valuesRadio, setRadioValues] = useState()
   const [valuesCheck, setCheckValues] = useState()
   const [valuesSelect, setSelectValues] = useState()
+  const [imageUpload, setImageUpload] = useState()
 
   function onChangeSelect(selectValues) {
     setSelectValues(selectValues)
@@ -22,7 +24,19 @@ const LectureForm = () => {
   }
   function onChangeCheck(checkedValues) {
     setCheckValues(checkedValues)
-  } 
+  }
+
+  const onChangeHandler = event => {
+    const file = event.target.files[0]
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = function () {
+      setImageUpload(reader.result)
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error)
+    }
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -42,6 +56,7 @@ const LectureForm = () => {
       portfolio: '',
       activityTitle: '',
       activityDescription: '',
+      uploadedImage: '',
     },
 
     onSubmit: (values) => {
@@ -65,6 +80,9 @@ const LectureForm = () => {
   formik.values = Object.assign(
     formik.values,
     {
+      'uploadedImage': imageUpload
+    },
+    {
       'activityType': valuesRadio
     },
     {
@@ -74,8 +92,9 @@ const LectureForm = () => {
       'haveLecturedBefore': valuesSelect
     }, {
       'id': (Math.floor(Math.random() * 1000)).toString()
-    })
-
+    }
+  )
+    
   return (
     <div className='listed'>
       <Row>
@@ -96,11 +115,10 @@ const LectureForm = () => {
             <Form.Item
               label="Nome completo:"
               name="name"
-            // rules={[{ required: true, message: 'Por favor, insira seu nome completo!' }]}
+            rules={[{ required: true, message: 'Por favor, insira seu nome completo!' }]}
             >
               <Input
-                onChange={formik.handleChange}
-                value={formik.values.name}
+                {...formik.getFieldProps("name")}
               />
             </Form.Item>
 
@@ -109,11 +127,10 @@ const LectureForm = () => {
             <Form.Item
               label="Email:"
               name="email"
-            // rules={[{ required: true, message: 'Por favor, insira um email válido!' }]}
+            rules={[{ type: 'email', required: true, message: 'Por favor, insira um email válido!' }]}
             >
               <Input
-                onChange={formik.handleChange}
-                value={formik.values.email}
+                {...formik.getFieldProps("email")}
               />
             </Form.Item>
 
@@ -122,11 +139,11 @@ const LectureForm = () => {
             <Form.Item
               label="RG:"
               name="rg"
-            // rules={[{ required: true, message: 'Por favor, insira um RG válido!' }]}
+            rules={[{ required: true, message: 'Por favor, insira um RG válido!' }]}
             >
               <Input
-                onChange={formik.handleChange}
-                value={formik.values.rg}
+                maxLength={9}
+                {...formik.getFieldProps("rg")}
               />
             </Form.Item>
 
@@ -134,11 +151,11 @@ const LectureForm = () => {
             <Form.Item
               label="CPF:"
               name="cpf"
-            // rules={[{ required: true, message: 'Por favor, insira um CPF válido!' }]}
+            rules={[{ required: true, message: 'Por favor, insira um CPF válido!' }]}
             >
               <Input
-                onChange={formik.handleChange}
-                value={formik.values.cpf}
+                maxLength={11}
+                {...formik.getFieldProps("cpf")}
               />
             </Form.Item>
 
@@ -147,11 +164,11 @@ const LectureForm = () => {
             <Form.Item
               label="Telefone celular:"
               name="cellphone"
-            // rules={[{ required: true, message: 'Por favor, insira um número de celular válido!' }]}
+            rules={[{ required: true, message: 'Por favor, insira um número de celular válido!' }]}
             >
               <Input
-                onChange={formik.handleChange}
-                value={formik.values.cellphone}
+                maxLength={11}
+                {...formik.getFieldProps("cellphone")}
               />
             </Form.Item>
 
@@ -160,11 +177,10 @@ const LectureForm = () => {
             <Form.Item
               label="Endereço:"
               name="adress"
-            // rules={[{ required: true, message: 'Por favor, insira um endereço válido!' }]}
+            rules={[{ required: true, message: 'Por favor, insira um endereço válido!' }]}
             >
               <Input
-                onChange={formik.handleChange}
-                value={formik.values.adress}
+                {...formik.getFieldProps("adress")}
               />
             </Form.Item>
 
@@ -173,11 +189,11 @@ const LectureForm = () => {
             <Form.Item
               label="CEP:"
               name="cep"
-            // rules={[{ required: true, message: 'Por favor, insira um CEP válido!' }]}
+            rules={[{ required: true, message: 'Por favor, insira um CEP válido!' }]}
             >
               <Input
-                onChange={formik.handleChange}
-                value={formik.values.cep}
+                maxLength={11}
+                {...formik.getFieldProps("cellphone")}
               />
             </Form.Item>
 
@@ -189,8 +205,7 @@ const LectureForm = () => {
             >
               <TextArea
                 rows={4}
-                onChange={formik.handleChange}
-                value={formik.values.miniBio}
+                {...formik.getFieldProps("miniBio")}
               />
             </Form.Item>
 
@@ -201,8 +216,7 @@ const LectureForm = () => {
               name="linkedin"
             >
               <Input
-                onChange={formik.handleChange}
-                value={formik.values.linkedin}
+                {...formik.getFieldProps("linkedin")}
               />
             </Form.Item>
 
@@ -213,8 +227,7 @@ const LectureForm = () => {
               name="facebook"
             >
               <Input
-                onChange={formik.handleChange}
-                value={formik.values.facebook}
+                {...formik.getFieldProps("facebook")}
               />
             </Form.Item>
 
@@ -225,8 +238,7 @@ const LectureForm = () => {
               name="twitter"
             >
               <Input
-                onChange={formik.handleChange}
-                value={formik.values.twitter}
+                {...formik.getFieldProps("twitter")}
               />
             </Form.Item>
 
@@ -237,8 +249,7 @@ const LectureForm = () => {
               name="instagram"
             >
               <Input
-                onChange={formik.handleChange}
-                value={formik.values.instagram}
+                {...formik.getFieldProps("instagram")}
               />
             </Form.Item>
 
@@ -249,8 +260,7 @@ const LectureForm = () => {
               name="youtube"
             >
               <Input
-                onChange={formik.handleChange}
-                value={formik.values.youtube}
+                {...formik.getFieldProps("youtube")}
               />
             </Form.Item>
 
@@ -260,14 +270,12 @@ const LectureForm = () => {
               name="portfolio"
             >
               <Input
-                onChange={formik.handleChange}
-                value={formik.values.portfolio}
+                {...formik.getFieldProps("portfolio")}
               />
             </Form.Item>
 
             {/* Já ministrou alguma atividade em eventos?  */}
             <Form.Item name="haveLecturedBefore" label="Já ministrou alguma atividade em eventos?"
-            // rules={[{ required: true, message: 'Por favor, nos conte um pouquinho sobre você!' }]}
             >
               <Select
                 placeholder="Selecione uma opção"
@@ -282,7 +290,7 @@ const LectureForm = () => {
             {/* Tipo de atividade proposta */}
 
             <Form.Item name="activityType" label="Tipo de atividade proposta:"
-            // rules={[{ required: true, message: 'Por favor, informe um tipo de atividade' }]}
+            rules={[{ required: true, message: 'Por favor, informe um tipo de atividade' }]}
             >
               <Radio.Group style={{ textAlign: 'left' }}
                 onChange={onChange}
@@ -296,7 +304,7 @@ const LectureForm = () => {
             {/* Segmento da atividade proposta */}
 
             <Form.Item name="activityCategory" label="Categoria da atividade proposta:"
-            // rules={[{ required: true, message: 'Por favor, informe pelo menos uma categoria!' }]}
+            rules={[{ required: true, message: 'Por favor, informe pelo menos uma categoria!' }]}
             >
               <Checkbox.Group style={{ textAlign: 'left' }}
                 onChange={onChangeCheck}
@@ -316,11 +324,10 @@ const LectureForm = () => {
             <Form.Item
               label="Título da atividade proposta:"
               name="activityTitle"
-            // rules={[{ required: true, message: 'Por favor, insira um título para a atividade!' }]}
+            rules={[{ required: true, message: 'Por favor, insira um título para a atividade!' }]}
             >
               <Input
-                onChange={formik.handleChange}
-                value={formik.values.activityTitle}
+                {...formik.getFieldProps("activityTitle")}
               />
             </Form.Item>
 
@@ -329,22 +336,26 @@ const LectureForm = () => {
             <Form.Item
               label="Descrição da atividade proposta:"
               name="activityDescription"
-            // rules={[{ required: true, message: 'Por favor, insira uma descrição para a atividade!' }]}
+            rules={[{ required: true, message: 'Por favor, insira uma descrição para a atividade!' }]}
             >
               <TextArea
                 rows={4}
-                onChange={formik.handleChange}
-                value={formik.values.activityDescription}
+                {...formik.getFieldProps("activityDescription")}
               />
             </Form.Item>
 
-            {/* Submit button */}
+            {/* Upload de imagem */}
+            <Form.Item
+              label="Upload de identidade visual da sua atividade:"
+            >
+              <input type="file" name="file" onChange={onChangeHandler}/>
+            </Form.Item>
+            {/* Botão de envio do formulário */}
 
             <Form.Item>
               <Button type="primary" htmlType="submit">
                 Enviar
-                </Button>
-
+              </Button>
             </Form.Item>
           </Form>
         </Col>
