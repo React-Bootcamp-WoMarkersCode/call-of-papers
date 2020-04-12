@@ -100,13 +100,13 @@
     {
       "id": 1,
       "lecture": "Lecture Title 22",
-      "status": "approved",
-      "description": "Velit duis minim nulla cillum pariatur voluptate aliqua fugiat quis dolore in culpa magna. Sit id dolor sunt incididunt culpa irure adipisicing officia anim minim aliquip. In commodo minim ullamco veniam cillum ex.\r\n"
+      "status": "rejected",
+      "description": "Nisi fugiat tempor sunt aliquip consequat ut voluptate occaecat incididunt tempor voluptate veniam fugiat. Duis ullamco consequat ipsum esse non labore reprehenderit excepteur reprehenderit adipisicing ullamco. Sit non cupidatat veniam quis eiusmod esse quis pariatur do aliqua ad tempor pariatur. Amet elit cupidatat proident reprehenderit ea magna fugiat proident et eu duis elit reprehenderit adipisicing. Occaecat quis commodo tempor officia excepteur anim ullamco nulla ex ipsum. Aliquip mollit in reprehenderit ex adipisicing id consectetur consequat.\r\n"
     },
     {
       "id": 2,
       "lecture": "Lecture Title 22",
-      "status": "in-analysis",
+      "status": "approved",
       "description": "Fugiat ullamco voluptate eu magna ut dolor culpa quis consequat commodo. Et voluptate aute qui exercitation ipsum anim dolore. Laborum dolor aliquip sint elit fugiat ad duis et.\r\n"
     },
     {
