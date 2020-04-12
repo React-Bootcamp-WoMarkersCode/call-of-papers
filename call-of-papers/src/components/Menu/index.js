@@ -16,6 +16,7 @@ const smallIcon = {
 }
 
 const menuStyle = {
+  height: 'inherit',
   lineHeight: '64px',
   float: 'right'
 }
@@ -35,9 +36,9 @@ function HeaderComponent() {
   return (
     <>
       <Link to='/'>
-        <div className='logo' />
+        <img src={require('../../assets/logo.jpeg')} alt='Call for Papers' className='logo' />
       </Link>
-      <Menu theme='dark' mode='horizontal' style={menuStyle}>
+      <Menu theme='light' mode='horizontal' style={menuStyle}>
         <Menu.Item key='events' onClick={() => history.push('/events')}>
           <CalendarOutlined style={smallIcon} />
           Meus eventos
