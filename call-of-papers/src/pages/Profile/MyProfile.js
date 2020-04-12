@@ -10,9 +10,10 @@ const { Item } = Descriptions;
 const MyProfile = () => {
   let history = useHistory()
   const [profile, setProfile] = useState([])
+  const environment = getEnvironment()
 
   useEffect(() => {
-    fetch(`${getEnvironment()}/profiles`)
+    fetch(`${environment}/profiles`)
       .then(res => res.json())
       .then(data => {
         setProfile(data.find(profile => profile.id === localStorage.getItem('userId')))

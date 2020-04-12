@@ -7,6 +7,7 @@ import { getEnvironment } from './../../utils/environment'
 export default function FBLogin() {
 
     let history = useHistory()
+    const environment = getEnvironment()
     const [fbContent, setFbContent] = useState("");
 
     const responseFacebook = response => {
@@ -21,7 +22,7 @@ export default function FBLogin() {
         history.push("/");
 
         // Verifica se é um novo usuário ou não. Se for, adiciona no json de usuários
-        fetch(`${getEnvironment()}/profiles`)
+        fetch(`${environment}/profiles`)
             .then(res => res.json())
             .then(data => {
                 if (!data.find(profile => profile.id === localStorage.getItem('userId'))) {
@@ -37,7 +38,7 @@ export default function FBLogin() {
                         "mediumLink": "",
                         "interests": []
                     })
-                    fetch(`${getEnvironment()}/profiles`, {
+                    fetch(`${environment}/profiles`, {
                         method: 'post',
                         headers: {
                             'Accept': 'application/json',

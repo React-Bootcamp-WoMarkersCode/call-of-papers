@@ -239,14 +239,9 @@
       "githubLink": "",
       "linkedinLink": "",
       "twitterLink": "",
-      "facebookLink": "",
+      "facebookLink": "https://www.facebook.com/mtafernandes",
       "mediumLink": "",
-      "interests": [
-        "react",
-        " angular",
-        " java",
-        " postgres"
-      ]
+      "interests": ""
     }
   ]
 }

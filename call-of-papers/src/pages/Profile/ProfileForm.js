@@ -6,11 +6,11 @@ import { Form, Input, Row, Col, Button } from 'antd'
 
 const ProfileForm = () => {
     let history = useHistory()
-
+    const environment = getEnvironment()
     const [profile, setProfile] = useState([])
 
     useEffect(() => {
-        fetch(`${getEnvironment()}/profiles`)
+        fetch(`${environment}/profiles`)
             .then(res => res.json())
             .then(data => {
                 setProfile(data.find(profile => profile.id === localStorage.getItem('userId')))
@@ -23,9 +23,9 @@ const ProfileForm = () => {
         enableReinitialize: true,
         onSubmit: values => {
 
-            let interestsArray = values.interests? values.interests.split(',') : values.interests
+            let interestsArray = (values.interests && values.interests.includes(','))? values.interests.split(',') : values.interests
 
-            fetch(`${getEnvironment()}/profiles/` + values.id, {
+            fetch(`${environment}/profiles/` + values.id, {
                 method: 'PATCH',
                 headers: {
                     'Accept': 'application/json',
