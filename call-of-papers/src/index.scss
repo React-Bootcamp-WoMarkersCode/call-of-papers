@@ -1,3 +1,9 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: 'Roboto' !important;
@@ -10,13 +16,26 @@ code {
     monospace;
 }
 
+a {
+  color: white !important;
+}
+
 // ANT DESIGN OVERRIDES
 
+#root,
 .ant-layout {
-  min-height: calc(100vh - 70px) !important;
+  height: 100% !important;
 }
 
 .ant-layout-header {
   background-color: white !important;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.20);
+}
+
+.ant-layout-footer {
+  padding: 15px 50px !important;
+  color: white !important;
+  background: #1A5A79CC !important;
+  display: flex !important;
+  justify-content: space-evenly !important;
 }
