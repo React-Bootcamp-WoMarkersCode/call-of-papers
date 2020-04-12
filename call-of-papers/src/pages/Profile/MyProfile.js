@@ -26,7 +26,6 @@ const MyProfile = () => {
   let userName = localStorage.getItem('userName')
   let userEmail = localStorage.getItem('userEmail')
 
-  const interests = ['ReactJS', 'Javascript', 'CSS', 'Front-end'];
   const communities = [
     {
       title: 'WoMakersCode',
