@@ -35,3 +35,37 @@
 .listed__lecture-status--rejected {
   color: #f5222d;
 }
+
+.row-table {
+  width: 70%;
+  margin: 10px auto !important;
+}
+
+.ant-table-cell a,
+.ant-pagination-item a {
+  color: #1a5a79 !important;
+}
+
+.ant-pagination-item-active {
+  border-color: #1a5a79;
+}
+
+.ant-pagination.mini .ant-pagination-prev .ant-pagination-item-link, .ant-pagination.mini .ant-pagination-next .ant-pagination-item-link {
+  border-color: #d8d8d8;
+}
+
+.ant-pagination-item-link span {
+  color: #d8d8d8;
+}
+
+.ant-table-row > .ant-table-cell:first-child {
+  font-weight: bold;
+}
+
+.status-cell {
+  text-align: center;
+}
+
+.status-cell span {
+  margin: 0;
+}
