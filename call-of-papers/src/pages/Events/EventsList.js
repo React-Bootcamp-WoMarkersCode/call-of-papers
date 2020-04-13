@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Table, Divider } from 'antd'
+import { Row, Divider } from 'antd'
 import { Link } from 'react-router-dom'
+import TableComponent from '../../components/Table'
 import './events-list.scss'
 
 const columnsTable = [
   {
     title: 'Data/Horário',
     dataIndex: 'schedule',
-    key: 'schedule'
+    key: 'schedule',
+    width: '20%'
   },
   {
-    title: 'Eventos',
+    title: 'Evento',
     dataIndex: 'event',
-    key: 'event'
+    key: 'event',
+    width: '40%',
+    className: 'title-cell'
   },
   {
     title: 'Local',
     dataIndex: 'local',
-    key: 'local'
+    key: 'local',
+    width: '25%'
   },
   {
     dataIndex: 'id',
@@ -51,13 +56,8 @@ const EventsList = () => {
           Meus eventos
         </Divider>
       </Row>
-      <Row justify='center' gutter={[16, 24]}>
-        <Table
-          columns={columnsTable}
-          dataSource={api}
-          rowKey='id'
-          size='middle'
-          pagination={{ pageSize: 10 }} />
+      <Row justify='center' gutter={[16, 24]} className='row-table'>
+        <TableComponent columns={columnsTable} dataSource={api} />
       </Row>
     </>
   )

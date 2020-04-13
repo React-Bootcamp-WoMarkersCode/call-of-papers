@@ -1,15 +1,17 @@
 import React from 'react'
-import { Row, Table, Divider, Tag } from 'antd'
+import { Row, Divider, Tag } from 'antd'
 import { Link } from 'react-router-dom'
-import './lectures-list.scss'
+import TableComponent from '../../components/Table'
 import data from './lectures-list-test.json'
+import './lectures-list.scss'
 
 const columnsTable = [
   {
     title: 'Título',
     dataIndex: 'title',
     key: 'title',
-    width: '20%'
+    width: '20%',
+    className: 'title-cell'
   },
   {
     title: 'Descrição',
@@ -60,12 +62,7 @@ const LecturesList = () => {
         </Divider>
       </Row>
       <Row justify="center" className='row-table'>
-        <Table
-          columns={columnsTable}
-          dataSource={data}
-          rowKey='id'
-          size='middle'
-          pagination={{ pageSize: 10 }} />
+        <TableComponent columns={columnsTable} dataSource={data} />
       </Row>
     </>
   )
