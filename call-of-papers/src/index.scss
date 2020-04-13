@@ -13,57 +13,14 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
 
 a {
   color: white !important;
 }
 
-// ANT DESIGN OVERRIDES
-
-#root,
-.ant-layout {
-  background-color: white !important;
-  height: 100% !important;
-}
-
-.ant-layout-header {
-  background-color: white !important;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.20);
-  z-index: 1;
-}
-
-.ant-layout-content {
-  overflow-x: hidden;
-}
-
-.ant-layout-footer {
-  padding: 15px 50px !important;
-  color: white !important;
-  background: #1A5A79CC !important;
-  display: flex !important;
-  justify-content: space-evenly !important;
-}
-
-.ant-divider-inner-text {
-  font-size: 25px;
-  color: #1A5A79 !important;
-}
-
-.ant-divider-horizontal.ant-divider-with-text-center::before,
-.ant-divider-horizontal.ant-divider-with-text-left::before,
-.ant-divider-horizontal.ant-divider-with-text-right::before,
-.ant-divider-horizontal.ant-divider-with-text-center::after,
-.ant-divider-horizontal.ant-divider-with-text-left::after,
-.ant-divider-horizontal.ant-divider-with-text-right::after {
-  border-top: 1px solid #1A5A79 !important;
-}
-
-.ant-row {
-  margin: 10px 70px !important;
-}
-
-.ant-row-center {
-  justify-content: space-evenly !important;
+.row-table {
+  width: 70%;
+  margin: 10px auto !important;
 }

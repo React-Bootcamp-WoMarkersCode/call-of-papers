@@ -12,7 +12,7 @@ const Home = () => {
           Eventos
         </Divider>
       </Row>
-      <Row justify="center" gutter={[16, 24]}>
+      <Row justify="center" gutter={[16, 24]} className='home-cards-container'>
         {events.map((event) => {
           return (
             <CardEvent event={event} />
