@@ -44,3 +44,25 @@ a {
   display: flex !important;
   justify-content: space-evenly !important;
 }
+
+.ant-divider-inner-text {
+  font-size: 25px;
+  color: #1A5A79 !important;
+}
+
+.ant-divider-horizontal.ant-divider-with-text-center::before,
+.ant-divider-horizontal.ant-divider-with-text-left::before,
+.ant-divider-horizontal.ant-divider-with-text-right::before,
+.ant-divider-horizontal.ant-divider-with-text-center::after,
+.ant-divider-horizontal.ant-divider-with-text-left::after,
+.ant-divider-horizontal.ant-divider-with-text-right::after {
+  border-top: 1px solid #1A5A79 !important;
+}
+
+.ant-row {
+  margin: 10px 70px !important;
+}
+
+.ant-row-center {
+  justify-content: space-evenly !important;
+}
