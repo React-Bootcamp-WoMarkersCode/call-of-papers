@@ -26,17 +26,6 @@ const MyProfile = () => {
   let userName = localStorage.getItem('userName')
   let userEmail = localStorage.getItem('userEmail')
 
-  const communities = [
-    {
-      title: 'WoMakersCode',
-      avatar: 'https://pbs.twimg.com/profile_images/954454393558110208/NTw8KDFK.jpg'
-    },
-    {
-      title: 'SorocabaCSS',
-      avatar: 'https://secure.meetupstatic.com/photos/event/5/4/4/9/600_456681577.jpeg'
-    }
-  ];
-
   return (
     <>
       <Row>
@@ -65,20 +54,6 @@ const MyProfile = () => {
                 </Item>
                 <Item label="Interesses" span={3}>
                   {profile.interests? profile.interests && profile.interests.map(item => <Tag style={{ marginBottom: '8px' }}>{item}</Tag>) : "Sem dados"}
-                </Item>
-                <Item label="Comunidades">
-                  <List
-                    itemLayout="horizontal"
-                    dataSource={communities}
-                    renderItem={item => (
-                      <List.Item style={{ borderBottom: '0px', padding: '0 0 8px 0' }}>
-                        <List.Item.Meta
-                          avatar={<Avatar shape="square" src={item.avatar} />}
-                          title={item.title}
-                        />
-                      </List.Item>
-                    )}
-                  />
                 </Item>
                 <Item label="Redes Sociais" style={{ verticalAlign: 'baseline' }}>
                   {profile.githubLink ?
