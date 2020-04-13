@@ -148,12 +148,7 @@
       "id": "500"
     }
   ],
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-  "profile": []
-=======
-=======
->>>>>>> master
+  "profile": [],
   "profiles": [
     {
       "id": "3036218123066022",
@@ -171,7 +166,6 @@
         " java",
         " postgres"
       ]
-<<<<<<< HEAD
     },
     {
       "id": "3154754594535841",
@@ -184,11 +178,8 @@
       "facebookLink": "",
       "mediumLink": "",
       "interests": []
+
     }
   ]
->>>>>>> Stashed changes
-=======
-    }
-  ]
->>>>>>> master
+
 }
