@@ -1,0 +1,36 @@
+h1 {
+  font-size: 25px;
+}
+
+.ant-row {
+  margin: 10px 70px !important;
+}
+
+.ant-row-center {
+  justify-content: space-evenly !important;
+}
+
+.ant-card {
+  width: 270px !important;
+  margin-bottom: 2em;
+  box-shadow: 1px 4px 4px #707070B3;
+  border: 1px solid #707070;
+  border-radius: 8px;
+}
+
+.ant-card-actions {
+  border-radius: 0 0 8px 8px;
+}
+
+.ant-card-actions a {
+  color: #1A5A79 !important;
+  font-weight: bold !important;
+}
+
+.ant-card-actions > li {
+  margin: 8px 0 !important;
+}
+
+.ant-card-cover img {
+  border-radius: 8px 8px 0 0;
+}
