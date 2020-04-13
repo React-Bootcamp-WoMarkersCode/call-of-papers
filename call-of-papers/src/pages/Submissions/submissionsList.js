@@ -5,19 +5,35 @@ import { Link } from 'react-router-dom'
 
 const columnsTable = [
   {
-    title: 'Palestra',
-    dataIndex: 'lecture',
-    key: 'lecture'
+    title: 'Palestrante',
+    dataIndex: 'name',
+    key: 'name',
   },
   {
-    title: 'Descrição',
-    dataIndex: 'description',
-    key: 'event'
+    title: 'Palestra',
+    dataIndex: 'activityTitle',
+    key: 'activityTitle'
   },
   {
     title: 'Status',
     dataIndex: 'status',
-    key: 'status'
+    filters: [
+      {
+        text: 'IN-ANALYSIS',
+        value: 'In-Analysis'
+      },
+      {
+        text: 'APPROVED',
+        value: 'approved'
+      },
+      {
+        text: 'REJECTED',
+        value: 'rejected'
+      }
+    ],
+    filterMultiple: false,
+    onFilter: (value, record) => record.status.indexOf(value) === 0, 
+    render: status => status.toUpperCase()
   },
   {
     dataIndex: 'id',
@@ -47,9 +63,9 @@ const SubmissionsList = () => {
   return (
     <Row style={{ marginBottom: 30 }}>
       <Col span={16} offset={4}>
-        <div style={{marginTop:'30px'}}>
+        <div style={{ marginTop: '30px' }}>
           <h1>Submissões</h1>
-          <Table columns={columnsTable} dataSource={api} rowKey='id' />
+          <Table columns={columnsTable} dataSource={api} rowKey='id' onFilter />
         </div>
       </Col>
     </Row>
