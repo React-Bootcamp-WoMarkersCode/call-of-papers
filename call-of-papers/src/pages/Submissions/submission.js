@@ -22,7 +22,6 @@ const Submission = () => {
             })
             .catch(err => console.error(err, 'Nenhuma palestra por aqui!'))
     }, [])
-    console.log(status)
     const handleChange = () => {
         api.status = status;
         setHabilitado(true)
