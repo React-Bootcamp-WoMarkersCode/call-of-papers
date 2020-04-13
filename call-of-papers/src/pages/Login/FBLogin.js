@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom'
 import FacebookLogin from 'react-facebook-login';
 
-export default function FBLogin() {
+const FBLogin = () => {
 
     let history = useHistory()
     const [fbContent, setFbContent] = useState("");
@@ -46,4 +46,4 @@ export default function FBLogin() {
 
 }
 
-
+export default FBLogin;

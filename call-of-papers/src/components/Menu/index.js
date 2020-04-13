@@ -21,11 +21,11 @@ const menuStyle = {
   float: 'right'
 }
 
-function HeaderComponent() {
+const HeaderComponent = () => {
   let history = useHistory()
   let userPicture = localStorage.getItem('userPicture');
 
-  function logout () {
+  const logout = () => {
     localStorage.removeItem('userId')
     localStorage.removeItem('userPicture')
     localStorage.removeItem('userName')

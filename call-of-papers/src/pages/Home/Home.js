@@ -5,7 +5,7 @@ import CardEvent from './CardEvent'
 import FBLogin from '../Login/FBLogin'
 import './style.scss'
 
-function Home() {
+const Home = () => {
   return (
     <>
       <div style={{float:'right'}}><FBLogin /></div>

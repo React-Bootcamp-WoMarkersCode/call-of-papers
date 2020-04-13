@@ -30,13 +30,13 @@ const EventForm = () => {
         initialValues
     })
 
-    function onChangeCategories(categories) {
+    const onChangeCategories = (categories) => {
         setValuesChecked(categories)
     }
-    function onChangeSpaces(spaces) {
+    const onChangeSpaces = (spaces) => {
         setValuesRadio(spaces.target.value);
     }
-    function onChangePartners(partners) {
+    const onChangePartners = (partners) => {
         setValuesPartner(partners);
     }
 
@@ -53,7 +53,7 @@ const EventForm = () => {
         partners: partner
     }
 
-    function onsubmit() {
+    const onsubmit = () => {
         fetch(`${environment}/events`, {
             method: 'post',
             headers: {
@@ -64,7 +64,7 @@ const EventForm = () => {
             body: JSON.stringify(bodyApi)
         }).then(function (response) {
             alert('Evento cadastrado com sucesso!')
-            return response.json(); 
+            return response.json();
         }).catch(function (error) {
             alert(`Erro ao cadastrar: ${error}`)
         })

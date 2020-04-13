@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const { Meta } = Card;
 
-function CardEvent({ event }) {
+const CardEvent = ({ event }) => {
 	return (
     <Card
       cover={<img alt={event.evento} src={event.img} />}
