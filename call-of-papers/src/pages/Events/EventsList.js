@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Table } from 'antd'
+import { Row, Table, Divider } from 'antd'
 import { Link } from 'react-router-dom'
-
-import "./events-list.scss"
+import './events-list.scss'
 
 const columnsTable = [
   {
@@ -25,7 +24,7 @@ const columnsTable = [
     key: 'id',
     render: (key) => (
       <span>
-        <Link to={`/events/${key}`}>Detalhes</Link>
+        <Link to={`/events/${key}`}>Mais detalhes</Link>
       </span>
     )
   },
@@ -46,14 +45,21 @@ const EventsList = () => {
   }, [])
 
   return (
-    <Row style={{ marginBottom: 30 }}>
-      <Col span={16} offset={4}>
-        <div className="content-events">
-          <h1>Meus eventos</h1>
-          <Table columns={columnsTable} dataSource={api} rowKey='id' />
-        </div>
-      </Col>
-    </Row>
+    <>
+      <Row gutter={[16, 24]}>
+        <Divider orientation='left'>
+          Meus eventos
+        </Divider>
+      </Row>
+      <Row justify='center' gutter={[16, 24]}>
+        <Table
+          columns={columnsTable}
+          dataSource={api}
+          rowKey='id'
+          size='middle'
+          pagination={{ pageSize: 10 }} />
+      </Row>
+    </>
   )
 }
 
