@@ -39,7 +39,7 @@ const FBLogin = () => {
     }, [localStorage.getItem('userId')])
 
     return (
-        <div>
+        <div style={{float:'right'}}>
             {fbContent}
         </div>
     )

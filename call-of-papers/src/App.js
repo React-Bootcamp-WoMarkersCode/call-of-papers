@@ -3,6 +3,7 @@ import Routes from './Routes'
 import { Layout } from 'antd'
 import { Link } from 'react-router-dom'
 import Menu from './components/Menu'
+import FBLogin from './pages/Login/FBLogin'
 import 'antd/dist/antd.css'
 import './index.scss'
 
@@ -16,6 +17,7 @@ const App = () => {
 			</Header>
 
 			<Content>
+        <FBLogin />
 				<Routes />
 			</Content>
 
