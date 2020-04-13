@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row } from 'antd'
+import { Row, Divider} from 'antd'
 import { events } from '../Events/events-list-test'
 import CardEvent from './CardEvent'
 import './style.scss'
@@ -8,7 +8,9 @@ const Home = () => {
   return (
     <>
       <Row gutter={[16, 24]}>
-        <h1>Eventos</h1>
+        <Divider orientation="left">
+          Eventos
+        </Divider>
       </Row>
       <Row justify="center" gutter={[16, 24]}>
         {events.map((event) => {
