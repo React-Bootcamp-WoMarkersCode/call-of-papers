@@ -1,31 +1,35 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Table } from 'antd'
+import { Row, Divider } from 'antd'
 import { Link } from 'react-router-dom'
-
-import "./events-list.scss"
+import TableComponent from '../../components/Table'
+import './events-list.scss'
 
 const columnsTable = [
   {
     title: 'Data/Horário',
     dataIndex: 'schedule',
-    key: 'schedule'
+    key: 'schedule',
+    width: '20%'
   },
   {
-    title: 'Eventos',
+    title: 'Evento',
     dataIndex: 'event',
-    key: 'event'
+    key: 'event',
+    width: '40%',
+    className: 'title-cell'
   },
   {
     title: 'Local',
     dataIndex: 'local',
-    key: 'local'
+    key: 'local',
+    width: '25%'
   },
   {
     dataIndex: 'id',
     key: 'id',
     render: (key) => (
       <span>
-        <Link to={`/events/${key}`}>Detalhes</Link>
+        <Link to={`/events/${key}`}>Mais detalhes</Link>
       </span>
     )
   },
@@ -46,21 +50,16 @@ const EventsList = () => {
   }, [])
 
   return (
-    <Row style={{ marginBottom: 30 }}>
-      <Col span={16} offset={4}>
-        <div className="content-events">
-          <Row style={{ marginBottom: 20 }}>
-            <Col span={20}>
-              <h1>Meus eventos</h1>
-            </Col>
-            <Col span={4}>
-              <Link id="btn-cadastrar" to="/events/form">Cadastre um evento</Link>
-            </Col>
-          </Row>
-          <Table columns={columnsTable} dataSource={api} rowKey='id' />
-        </div>
-      </Col>
-    </Row>
+    <>
+      <Row gutter={[16, 24]}>
+        <Divider orientation='left'>
+          Meus eventos
+        </Divider>
+      </Row>
+      <Row justify='center' gutter={[16, 24]} className='row-table'>
+        <TableComponent columns={columnsTable} dataSource={api} />
+      </Row>
+    </>
   )
 }
 
