@@ -4,7 +4,7 @@ import FacebookLogin from 'react-facebook-login';
 import { getCurrentDate } from './../../utils/currentDate'
 import { getEnvironment } from './../../utils/environment'
 
-export default function FBLogin() {
+const FBLogin = () => {
 
     let history = useHistory()
     const environment = getEnvironment()
@@ -74,11 +74,11 @@ export default function FBLogin() {
     }, [localStorage.getItem('userId')])
 
     return (
-        <div>
+        <div style={{float:'right'}}>
             {fbContent}
         </div>
     )
 
 }
 
-
+export default FBLogin;

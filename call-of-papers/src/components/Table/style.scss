@@ -1,0 +1,26 @@
+.ant-table-thead > tr > th {
+  background-color: #1A5A79CC !important;
+  color: #fff !important;
+  font-size: 16px !important;
+}
+
+.ant-table-cell a,
+.ant-pagination-item a {
+  color: #1a5a79 !important;
+}
+
+.ant-pagination-item-active {
+  border-color: #1a5a79;
+}
+
+.ant-pagination.mini .ant-pagination-prev .ant-pagination-item-link, .ant-pagination.mini .ant-pagination-next .ant-pagination-item-link {
+  border-color: #d8d8d8;
+}
+
+.ant-pagination-item-link span {
+  color: #d8d8d8;
+}
+
+.ant-table-wrapper {
+  width: 100%;
+}

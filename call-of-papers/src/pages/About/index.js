@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, List } from 'antd'
 
-function About(){
+const About = () => {
     return(
         <>
       <Row justify='center'>
@@ -11,7 +11,7 @@ function About(){
           </div>
           <div>
             <p style={{ textAlign: 'justify'}}>
-                Projeto final para conclusão do React Bootcamp da WoMakersCode. 
+                Projeto final para conclusão do React Bootcamp da WoMakersCode.
                 <br></br>
                 Link do projeto no Github: <a href="https://github.com/React-Bootcamp-WoMarkersCode/call-of-papers/tree/master/call-of-papers">Clique Aqui</a>
             </p>

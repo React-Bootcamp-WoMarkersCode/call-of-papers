@@ -16,17 +16,17 @@ const LectureForm = () => {
   const [valuesSelect, setSelectValues] = useState()
   const [imageUpload, setImageUpload] = useState()
 
-  function onChangeSelect(selectValues) {
+  const onChangeSelect = (selectValues) => {
     setSelectValues(selectValues)
   }
-  function onChange(radioValues) {
+  const onChange = (radioValues) => {
     setRadioValues(radioValues.target.value)
   }
-  function onChangeCheck(checkedValues) {
+  const onChangeCheck = (checkedValues) => {
     setCheckValues(checkedValues)
   }
 
-  const onChangeHandler = event => {
+  const onChangeHandler = (event) => {
     const file = event.target.files[0]
     const reader = new FileReader()
     reader.readAsDataURL(file)
@@ -70,7 +70,7 @@ const LectureForm = () => {
         body: JSON.stringify(values)
         }).then(function (response) {
             alert('Atividade cadastrada com sucesso!')
-            return response.json(); 
+            return response.json();
         }).catch(function (error) {
             alert(`Erro ao cadastrar: ${error}`)
         })
@@ -87,14 +87,14 @@ const LectureForm = () => {
     },
     {
       'activityCategory':valuesCheck
-    }, 
+    },
     {
       'haveLecturedBefore': valuesSelect
     }, {
       'id': (Math.floor(Math.random() * 1000)).toString()
     }
   )
-    
+
   return (
     <div className='listed'>
       <Row>

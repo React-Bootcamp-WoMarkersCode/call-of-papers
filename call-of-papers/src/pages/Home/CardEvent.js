@@ -1,19 +1,19 @@
 import React from 'react'
-import { Col, Card } from 'antd'
+import { Card } from 'antd'
+import { Link } from 'react-router-dom'
 
-function CardEvent({ event }) {
-    return (
-        <Col span={8}>
-            <Card
-                hoverable
-                title={event.evento}
-                bordered={true}
-                bodyStyle={{ maxHeight: '150px' }}
-            >
-                <p >{event.data}</p>
-            </Card>
-        </Col>
-    )
+const { Meta } = Card;
+
+const CardEvent = ({ event }) => {
+	return (
+    <Card
+      cover={<img alt={event.evento} src={event.img} />}
+      actions={[<Link to="/about">Saiba mais!</Link>]}
+    >
+      <Meta title={event.evento} description={event.data} />
+    </Card>
+	);
 }
 
-export default CardEvent
+export default CardEvent;
+
