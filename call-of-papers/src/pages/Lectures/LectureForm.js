@@ -56,7 +56,7 @@ const LectureForm = () => {
     }
   }
 
-  const formik = useFormik({
+  let formik = useFormik({
     enableReinitialize: true,
     initialValues: {
       profile,
@@ -75,22 +75,21 @@ const LectureForm = () => {
       uploadedImage: '',
     },
 
-    onSubmit: (values) => {
-      console.log(values)
-      // fetch(`${environment}/lectures`, {
-      //   method: 'post',
-      //   headers: {
-      //       Accept: "application/json",
-      //       "Content-Type": "application/json",
-      //       'Access-Control-Allow-Origin': '*'
-      //   },
-      //   body: JSON.stringify(values)
-      //   }).then(function (response) {
-      //       alert('Atividade cadastrada com sucesso!')
-      //       return response.json();
-      //   }).catch(function (error) {
-      //       alert(`Erro ao cadastrar: ${error}`)
-      //   })
+    onSubmit: values => {
+      fetch(`${environment}/lectures`, {
+        method: 'post',
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(values)
+        }).then(function (response) {
+            alert('Atividade cadastrada com sucesso!')
+            return response.json();
+        }).catch(function (error) {
+            alert(`Erro ao cadastrar: ${error}`)
+        })
     },
   })
 
@@ -210,7 +209,7 @@ const LectureForm = () => {
             <Form.Item
               label="CEP:"
               extra="Informe apenas números*"
-              rules={[{ type: 'number', required: true, message: 'Por favor, insira um CEP válido!' }]}
+              rules={[{ required: true, message: 'Por favor, insira um CEP válido!' }]}
             >
               <Input
                 maxLength={11}
