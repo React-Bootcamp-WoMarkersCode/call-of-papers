@@ -1,29 +1,5 @@
 import React from 'react';
-import { Row, Divider, List, Col, Card, Avatar } from 'antd'
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons'
-
-const { Meta } = Card
-
-const data = [
-  {
-    title: 'Title 1',
-  },
-  {
-    title: 'Title 2',
-  },
-  {
-    title: 'Title 3',
-  },
-  {
-    title: 'Title 4',
-  },
-  {
-    title: 'Title 5',
-  },
-  {
-    title: 'Title 6',
-  },
-];
+import { Row, Divider, List, Col } from 'antd'
 
 const About = () => {
     return(
