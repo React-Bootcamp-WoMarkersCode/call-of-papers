@@ -248,7 +248,7 @@ const LectureForm = () => {
             >
               <Input
                 name="facebook"
-                onChange={formik.handleChange} value={formik.values.profile.linkedinLink}
+                onChange={formik.handleChange} value={formik.values.profile.facebookLink}
               />
             </Form.Item>
 
