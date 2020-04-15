@@ -2,49 +2,58 @@ import React, { useState, useEffect } from 'react'
 import { Row, Col, Form, Input, Checkbox, Radio, Button } from 'antd'
 import { useFormik } from 'formik'
 import { useHistory } from 'react-router-dom'
+import { useParams } from 'react-router'
 
 import { getEnvironment } from './../../utils/environment'
 
 let bodyApi = {}
 
-let idEventLocal;
-
 const { TextArea } = Input;
 
 const EventForm = () => {
+
+    //Carrega o id do evento que é passado pela url
+    let { eventId } = useParams()
+
+    console.log(eventId)
+
     const [values, setValuesChecked] = useState([]);
     const [radio, setValuesRadio] = useState([]);
     const [partner, setValuesPartner] = useState([]);
+
+    // Se já houver evento com o id, ou seja, se for uma edição, os dados será carregados nessa variável
     const [dados, setDados] = useState([]);
 
     const environment = getEnvironment();
 
     useEffect(() => {
-        idEventLocal = JSON.parse(localStorage.getItem("idEvent"));
-
-        fetch(`${environment}/events/`)
+        fetch(`${environment}/events?${eventId}`)
             .then(res => res.json())
             .then(data => {
-                setDados(data.find(formEvent => formEvent.id === idEventLocal))                
+                setDados(data[0])
             })
             .catch(err => console.error(err, 'Nenhum evento por aqui!'))
-        }, [])
+    }, [])
+
+    let valoresIniciais
+
+    // Se tiver o id do evento na url é uma edição e os dados antigos devem ser carregados
+    eventId ? valoresIniciais = dados : valoresIniciais = {
+        event: '',
+        description: '',
+        local: '',
+        schedule: '',
+        organizer: '',
+        categories: [],
+        limited_spaces: '',
+        partners: [],
+        dados,
+    }
 
     let formik = useFormik({
         enableReinitialize: true,
-        initialValues: {
-            event: '',
-            description: '',
-            local: '',
-            schedule: '',
-            organizer: '',
-            categories: [],
-            limited_spaces: '',
-            partners: [],
-            dados,
-        }
+        initialValues: valoresIniciais
     })
-   
 
     const onChangeCategories = (categories) => {
         setValuesChecked(categories)
@@ -70,46 +79,71 @@ const EventForm = () => {
     }
 
     console.log(formik.values);
-    
+
 
     const history = useHistory();
-    
+
     function onsubmit() {
-        fetch(`${environment}/events`, {
-            method: 'post',
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify(bodyApi)
-        }).then(function (response) {
-            alert('Evento cadastrado com sucesso!');
-            history.push("/events");
-            return response.json();
-        }).catch(function (error) {
-            alert(`Erro ao cadastrar: ${error}`)
-        })
+
+        // Se for evento novo, daremos um POST
+        if (!eventId) {
+            fetch(`${environment}/events`, {
+                method: 'post',
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    'Access-Control-Allow-Origin': '*'
+                },
+                body: JSON.stringify(bodyApi)
+            }).then(function (response) {
+                alert('Evento cadastrado com sucesso!');
+                history.push("/events");
+                return response.json();
+            }).catch(function (error) {
+                alert(`Erro ao cadastrar: ${error}`)
+            })
+        }
+        else {
+            // Se for edição de evento, daremos um PUT
+            fetch(`${environment}/events/` + eventId, {
+                method: 'put',
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    'Access-Control-Allow-Origin': '*'
+                },
+                body: JSON.stringify(bodyApi)
+            }).then(function (response) {
+                alert('Evento atualizado com sucesso!');
+                history.push("/events");
+                return response.json();
+            }).catch(function (error) {
+                alert(`Erro ao cadastrar: ${error}`)
+            })
+        }
+
+
+
     }
 
     return (
         <Row style={{ marginTop: 30 }}>
             <Col span={16} offset={4}>
                 {
-                    idEventLocal ?
+                    eventId ?
                         <h1>Edite o evento</h1> :
                         <h1>Crie um evento</h1>
                 }
                 <Form layout="vertical">
-                   
-                   {/* Nome do evento */}
+
+                    {/* Nome do evento */}
                     <Form.Item
                         label="Nome do evento:"
                         htmlFor="event"
                         rules={[{ required: true, message: 'Preencha corretamente o campo de evento!' }]}>
-                        <Input name="event" placeholder="Digite o nome do evento" 
-                            onChange={formik.handleChange} 
-                            value={formik.values.dados? formik.values.dados.event: formik.event}/>
+                        <Input name="event" placeholder="Digite o nome do evento"
+                            onChange={formik.handleChange}
+                            value={formik.values.event} />
                     </Form.Item>
 
                     {/* Descrição do evento */}
@@ -119,7 +153,7 @@ const EventForm = () => {
                         rules={[{ required: true, message: 'Preencha corretamente o campo de descrição do evento.' }]}>
                         <TextArea name="description" placeholder="Digite a descrição do evento (sobre o evento, agenda, regras...)"
                             onChange={formik.handleChange}
-                            value={formik.values.dados? formik.values.dados.description: ''}/>
+                            value={formik.values.description} />
                     </Form.Item>
                     <Row>
                         <Col span={12} style={{ paddingRight: 10 }}>
@@ -129,9 +163,9 @@ const EventForm = () => {
                                 label="Data/Horário do evento:"
                                 htmlFor="schedule"
                                 rules={[{ required: false }]}>
-                                <Input name="schedule" placeholder="Digite a data e horário" 
+                                <Input name="schedule" placeholder="Digite a data e horário"
                                     onChange={formik.handleChange}
-                                    value={formik.values.dados? formik.values.dados.schedule: formik.schedule}/>
+                                    value={formik.values.schedule} />
                                 <small>Exemplo: 18 Abril, 07:30</small>
                             </Form.Item>
                         </Col>
@@ -142,9 +176,9 @@ const EventForm = () => {
                                 label="Local do evento:"
                                 htmlFor="local"
                                 rules={[{ required: false }]}>
-                                <Input name="local" placeholder="Digite o local do evento" 
+                                <Input name="local" placeholder="Digite o local do evento"
                                     onChange={formik.handleChange}
-                                    value={formik.values.dados? formik.values.dados.local: formik.local}/>
+                                    value={formik.values.local} />
                             </Form.Item>
                         </Col>
                     </Row>
@@ -154,9 +188,9 @@ const EventForm = () => {
                         label="Organizador do evento:"
                         htmlFor="organizer"
                         rules={[{ required: true, message: 'Preencha corretamente o campo de organizador!' }]}>
-                        <Input name="organizer" placeholder="Digite o nome do organizador responsável" 
+                        <Input name="organizer" placeholder="Digite o nome do organizador responsável"
                             onChange={formik.handleChange}
-                            value={formik.values.dados? formik.values.dados.organizer: formik.organizer}/>
+                            value={formik.values.organizer} />
                     </Form.Item>
 
                     <Row>
@@ -167,7 +201,7 @@ const EventForm = () => {
                                 rules={[{ required: true, message: 'Preencha corretamente o campo de categoria!' }]}>
                                 <Checkbox.Group
                                     onChange={onChangeCategories}
-                                    >
+                                >
                                     <Row>
                                         <Col span={8}>
                                             <Checkbox
@@ -193,7 +227,7 @@ const EventForm = () => {
                                 rules={[{ required: false }]}>
                                 <Checkbox.Group
                                     onChange={onChangePartners}
-                                    >
+                                >
                                     <Row>
                                         <Col span={10}>
                                             <Checkbox value="sponsors">Sponsors</Checkbox>

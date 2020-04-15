@@ -29,7 +29,15 @@ const columnsTable = [
     key: 'id',
     render: (key) => (
       <span>
-        <Link to={`/events/${key}`} onClick={() => localStorage.setItem("idEvent", key)}>Mais detalhes</Link>
+        <Link to={`/events/${key}`} onClick={() => localStorage.setItem("idEvent", key)}>Detalhes</Link>
+      </span>
+    )
+  },  {
+    dataIndex: 'id',
+    key: 'id',
+    render: (key) => (
+      <span>
+        <Link to={`/events/form/${key}`} onClick={() => localStorage.setItem("idEvent", key)}>Editar</Link>
       </span>
     )
   },
