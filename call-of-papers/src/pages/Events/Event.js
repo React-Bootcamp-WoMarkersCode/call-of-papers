@@ -3,6 +3,8 @@ import { useParams } from 'react-router'
 import { Row, Col, Card } from 'antd'
 import { Link } from 'react-router-dom'
 
+import { getEnvironment } from './../../utils/environment'
+
 import "./event.scss";
 
 const Event = () => {
@@ -12,7 +14,7 @@ const Event = () => {
 
   const { event, schedule, description, organizer, local, partners, tickets } = api
 
-  const environment = 'http://localhost:3001';
+  const environment = getEnvironment();
 
   useEffect(() => {
     fetch(`${environment}/events/${eventId}`)
@@ -63,9 +65,6 @@ const Event = () => {
               </div>
             </Col>
             <Col span={8}>
-              <Card className="mt-15">
-                <Link to="/events/form">Editar evento</Link>
-              </Card>
               {
                 organizer ?
                   <Card className="mt-15">

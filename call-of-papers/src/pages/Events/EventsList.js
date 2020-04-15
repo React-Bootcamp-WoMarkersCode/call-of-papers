@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import TableComponent from '../../components/Table'
 import './events-list.scss'
 
+import { getEnvironment } from './../../utils/environment'
+
 const columnsTable = [
   {
     title: 'Data/Horário',
@@ -45,7 +47,7 @@ const columnsTable = [
 const EventsList = () => {
   const [api, setApi] = useState([])
 
-  const environment = 'http://localhost:3001';
+  const environment = getEnvironment();
 
   useEffect(() => {
     fetch(`${environment}/events?_limit=15&_page=1`)

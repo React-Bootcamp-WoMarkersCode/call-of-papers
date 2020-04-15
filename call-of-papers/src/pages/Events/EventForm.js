@@ -27,7 +27,7 @@ const EventForm = () => {
     const environment = getEnvironment();
 
     useEffect(() => {
-        fetch(`${environment}/events?${eventId}`)
+        fetch(`${environment}/events?id=${eventId}`)
             .then(res => res.json())
             .then(data => {
                 setDados(data[0])
