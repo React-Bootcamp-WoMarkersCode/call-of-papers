@@ -1,4 +1,36 @@
-.social-network{
+.ant-descriptions-item-content .anticon {
     font-size: 25px;
     margin-right: 8px
+}
+
+.ant-card-meta-title,
+.ant-descriptions-item-label {
+  color: #1A5A79;
+  font-weight: bold;
+}
+
+.ant-descriptions-item-content {
+  font-style: italic;
+}
+
+.ant-btn-primary {
+  background-color: #1A5A79;
+  border-color: #1A5A79;
+}
+
+.ant-descriptions-item-content .ant-btn {
+  border-color: transparent;
+}
+
+.ant-descriptions-item-content .ant-btn[disabled],
+.ant-descriptions-item-content .ant-btn[disabled]:hover,
+.ant-descriptions-item-content .ant-btn[disabled]:focus {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.ant-descriptions-item-content .ant-btn:hover, .ant-btn:focus {
+  color: #1A5A79;
+  background-color: transparent;
+  border-color: transparent;
 }
