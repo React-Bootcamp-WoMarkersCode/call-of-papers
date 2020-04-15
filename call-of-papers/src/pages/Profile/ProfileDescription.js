@@ -17,11 +17,11 @@ const ProfileDescription = ({ profile, userEmail }) => {
       <Item label="Apresentação" span={3}>
         <i>{profile.apresentation? `${profile.apresentation}` : 'Sem dados'}</i>
       </Item>
+      <Item label="E-mail" span={3}>
+        {profile.email ? `${(profile.email)}` : 'Sem dados'}
+      </Item>
       <Item label="Interesses" span={3}>
         {profile.interests ? profile.interests && profile.interests.map(item => <Tag style={{ marginBottom: '8px' }}>{item}</Tag>) : "Sem dados"}
-      </Item>
-      <Item label="E-mail" span={1}>
-        {(userEmail !== 'undefined') ? `${userEmail}` : 'Sem dados'}
       </Item>
       <Item label="Data de cadastro" span={1}>
         {profile.registerDate? `${(profile.registerDate)}` : 'Sem dados'}

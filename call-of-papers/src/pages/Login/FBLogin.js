@@ -27,6 +27,7 @@ const FBLogin = () => {
 				if (!data.find((profile) => profile.id === localStorage.getItem('userId'))) {
 					let newProfile = new Object({
 						id: response.userID,
+						email: response.email? response.email : '',
 						localization: '',
 						registerDate: `${getCurrentDate()}`,
 						apresentation: '',

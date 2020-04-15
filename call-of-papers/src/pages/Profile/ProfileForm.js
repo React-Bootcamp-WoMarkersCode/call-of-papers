@@ -34,6 +34,7 @@ const ProfileForm = () => {
 				},
 				body: JSON.stringify({
 					id: values.id,
+					email: values.email,
 					localization: values.localization,
 					registerDate: values.registerDate,
 					apresentation: values.apresentation,
@@ -74,6 +75,10 @@ const ProfileForm = () => {
 								onChange={formik.handleChange}
 								value={formik.values.apresentation}
 							/>
+						</Form.Item>
+
+						<Form.Item label='E-mail'>
+							<Input name='email' onChange={formik.handleChange} value={formik.values.email} />
 						</Form.Item>
 
 						<Form.Item label='Localização'>
