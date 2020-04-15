@@ -9,8 +9,8 @@ import './style.scss'
 const { SubMenu } = Menu
 
 const HeaderComponent = () => {
-  let history = useHistory()
-  let userPicture = localStorage.getItem('userPicture');
+  const history = useHistory()
+  const userPicture = localStorage.getItem('userPicture');
 
   const logout = () => {
     localStorage.removeItem('userId')
@@ -29,17 +29,17 @@ const HeaderComponent = () => {
         !localStorage.getItem('userId') ?
           (<FBLogin />)
             :
-          (<Menu theme='light' mode='horizontal'>
-            <Menu.Item key='events' onClick={() => history.push('/events')}>
+          (<Menu theme='light' mode='horizontal' selectedKeys={[history.location.pathname]}>
+            <Menu.Item key='/events' onClick={() => history.push('/events')}>
               <CalendarOutlined />
               Meus eventos
             </Menu.Item>
-            <Menu.Item key='lectures' onClick={() => history.push('/lectures')}>
+            <Menu.Item key='/lectures' onClick={() => history.push('/lectures')}>
               <BookOutlined />
               Minhas palestras
             </Menu.Item>
             <SubMenu title={<Avatar src={userPicture} />}>
-              <Menu.Item key='my-profile' onClick={() => history.push('/profile')}>
+              <Menu.Item key='/profile' onClick={() => history.push('/profile')}>
                 Meu perfil
               </Menu.Item>
               <Menu.Item key='logout' onClick={() => logout()}>
