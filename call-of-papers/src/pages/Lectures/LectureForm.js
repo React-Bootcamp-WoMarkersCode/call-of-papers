@@ -10,15 +10,22 @@ const { Option } = Select;
 const LectureForm = () => {
 	let [ profile, setProfile ] = useState([]);
 	const environment = getEnvironment();
+  const [ valuesRadio, setRadioValues ] = useState();
+  const [ valuesCheck, setCheckValues ] = useState();
+  const [ valuesSelect, setSelectValues ] = useState();
+  const [ imageUpload, setImageUpload ] = useState();
 
-	useEffect(() => {
-		fetch(`${environment}/profiles`)
-			.then((res) => res.json())
-			.then((data) => {
-				setProfile(data.find((profile) => profile.id === localStorage.getItem('userId')));
-			})
-			.catch((err) => console.error(err, 'Nenhum usuário encontrado'));
-	}, []);
+  useEffect(() => {
+    async function fetchProfile() {
+      const res = await fetch(`${environment}/profiles`)
+      res
+        .json()
+				.then(res => setProfile(res.find((profile) => profile.id === localStorage.getItem('userId'))))
+				.catch((err) => console.error(err, 'Nenhum usuário encontrado'))
+    }
+
+    fetchProfile();
+  }, []);
 
 	let userEmail = localStorage.getItem('userEmail');
 	let userPicture = localStorage.getItem('userPicture');
@@ -27,11 +34,6 @@ const LectureForm = () => {
 	if (!userEmail) {
 		userEmail = '';
 	}
-
-	const [ valuesRadio, setRadioValues ] = useState();
-	const [ valuesCheck, setCheckValues ] = useState();
-	const [ valuesSelect, setSelectValues ] = useState();
-	const [ imageUpload, setImageUpload ] = useState();
 
 	const onChangeSelect = (selectValues) => {
 		setSelectValues(selectValues);
