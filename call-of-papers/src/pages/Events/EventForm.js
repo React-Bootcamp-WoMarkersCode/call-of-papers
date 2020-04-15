@@ -82,6 +82,7 @@ const EventForm = () => {
 
     console.log(formik.values);
     console.log('radio', radio)
+    console.log('check', formik.values.categories)
 
 
     const history = useHistory();
@@ -204,6 +205,7 @@ const EventForm = () => {
                                 rules={[{ required: true, message: 'Preencha corretamente o campo de categoria!' }]}>
                                 <Checkbox.Group
                                     onChange={onChangeCategories}
+                                    defaultValue={formik.values.organizer.categories}
                                 >
                                     <Row>
                                         <Col span={8}>
@@ -268,7 +270,11 @@ const EventForm = () => {
                         </Radio.Group>
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" onClick={onsubmit}>Cadastrar evento</Button>
+                        {
+                            eventId ?
+                            <Button type="primary" onClick={onsubmit}>Atualizar evento</Button>:
+                            <Button type="primary" onClick={onsubmit}>Cadastrar evento</Button>
+                        }
                     </Form.Item>
 
                 </Form>
