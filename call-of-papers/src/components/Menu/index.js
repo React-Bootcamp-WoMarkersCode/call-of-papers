@@ -2,24 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { Menu, Avatar } from 'antd'
-import {
-  CalendarOutlined,
-  BookOutlined,
-  UserOutlined
-} from '@ant-design/icons'
+import { CalendarOutlined, BookOutlined } from '@ant-design/icons'
+import FBLogin from '../../pages/Login/FBLogin'
 import './style.scss'
 
 const { SubMenu } = Menu
-
-const smallIcon = {
-  fontSize: '15px'
-}
-
-const menuStyle = {
-  height: 'inherit',
-  lineHeight: '64px',
-  float: 'right'
-}
 
 const HeaderComponent = () => {
   let history = useHistory()
@@ -38,30 +25,29 @@ const HeaderComponent = () => {
       <Link to='/'>
         <img src={require('../../assets/logo.jpeg')} alt='Call for Papers' className='logo' />
       </Link>
-      <Menu theme='light' mode='horizontal' style={menuStyle}>
-        <Menu.Item key='events' onClick={() => history.push('/events')}>
-          <CalendarOutlined style={smallIcon} />
-          Meus eventos
-        </Menu.Item>
-        <Menu.Item key='lectures' onClick={() => history.push('/lectures')}>
-          <BookOutlined style={smallIcon} />
-          Minhas palestras
-        </Menu.Item>
-        <SubMenu
-          title={
-            <Avatar src={userPicture} />
-          }
-        >
-          <Menu.Item
-            key='my-profile'
-            style={{color: 'black'}}
-            onClick={() => history.push('/profile')}
-          >
-            Meu perfil
-          </Menu.Item>
-          <Menu.Item key='logout' onClick={() => logout()} style={{color: 'black'}}>Sair</Menu.Item>
-        </SubMenu>
-      </Menu>
+      {
+        !localStorage.getItem('userId') ?
+          (<FBLogin />)
+            :
+          (<Menu theme='light' mode='horizontal'>
+            <Menu.Item key='events' onClick={() => history.push('/events')}>
+              <CalendarOutlined />
+              Meus eventos
+            </Menu.Item>
+            <Menu.Item key='lectures' onClick={() => history.push('/lectures')}>
+              <BookOutlined />
+              Minhas palestras
+            </Menu.Item>
+            <SubMenu title={<Avatar src={userPicture} />}>
+              <Menu.Item key='my-profile' onClick={() => history.push('/profile')}>
+                Meu perfil
+              </Menu.Item>
+              <Menu.Item key='logout' onClick={() => logout()}>
+                Sair
+              </Menu.Item>
+            </SubMenu>
+          </Menu>)
+      }
     </>
   )
 }
