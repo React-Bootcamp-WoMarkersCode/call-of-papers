@@ -4,9 +4,20 @@
   float: left;
 }
 
+.anticon {
+  font-size: 15px;
+}
+
 .ant-menu,
 .ant-menu-item {
   font-size: 16px !important;
+  color: #1A5A79 !important;
+}
+
+.ant-menu-horizontal {
+  height: inherit;
+  line-height: 64px;
+  float: right;
 }
 
 .ant-menu-horizontal > .ant-menu-item:hover,
