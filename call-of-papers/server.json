@@ -7,7 +7,7 @@
       "local": "FATEC São Paulo",
       "organizer": "Mariana",
       "categories": [],
-      "limited_spaces": [],
+      "limited_spaces": true,
       "partners": [],
       "id": 1
     },
@@ -18,7 +18,7 @@
       "local": "FIAP, São Paulo",
       "organizer": "Mariana",
       "categories": [],
-      "limited_spaces": [],
+      "limited_spaces": false,
       "partners": [],
       "id": 2
     }

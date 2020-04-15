@@ -18,7 +18,7 @@ const EventForm = () => {
     console.log(eventId)
 
     const [values, setValuesChecked] = useState([]);
-    const [radio, setValuesRadio] = useState([]);
+    const [radio, setValuesRadio] = useState(false);
     const [partner, setValuesPartner] = useState([]);
 
     // Se já houver evento com o id, ou seja, se for uma edição, os dados será carregados nessa variável
@@ -31,6 +31,7 @@ const EventForm = () => {
             .then(res => res.json())
             .then(data => {
                 setDados(data[0])
+                setValuesRadio(data[0].limited_spaces)
             })
             .catch(err => console.error(err, 'Nenhum evento por aqui!'))
     }, [])
@@ -45,7 +46,7 @@ const EventForm = () => {
         schedule: '',
         organizer: '',
         categories: [],
-        limited_spaces: '',
+        limited_spaces: radio,
         partners: [],
         dados,
     }
@@ -60,6 +61,7 @@ const EventForm = () => {
     }
     const onChangeSpaces = (spaces) => {
         setValuesRadio(spaces.target.value);
+        formik.values.limited_spaces = spaces.target.value
     }
     const onChangePartners = (partners) => {
         setValuesPartner(partners);
@@ -79,6 +81,7 @@ const EventForm = () => {
     }
 
     console.log(formik.values);
+    console.log('radio', radio)
 
 
     const history = useHistory();
@@ -259,9 +262,9 @@ const EventForm = () => {
                         label="Vagas limitadas ?"
                         htmlFor="limited_spaces"
                         rules={[{ required: false }]}>
-                        <Radio.Group name="limited_spaces" defaultValue={1} onChange={onChangeSpaces}>
-                            <Radio value={"Sim"}>Sim</Radio>
-                            <Radio value={"Não"}>Não</Radio>
+                        <Radio.Group name="limited_spaces" onChange={onChangeSpaces}>
+                            <Radio value={true} checked={formik.values.limited_spaces}>Sim</Radio>
+                            <Radio value={false} checked={!formik.values.limited_spaces}>Não</Radio>
                         </Radio.Group>
                     </Form.Item>
                     <Form.Item>
