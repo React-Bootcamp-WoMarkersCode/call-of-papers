@@ -22,8 +22,8 @@ const menuStyle = {
 }
 
 const HeaderComponent = () => {
-  let history = useHistory()
-  let userPicture = localStorage.getItem('userPicture');
+  const history = useHistory()
+  const userPicture = localStorage.getItem('userPicture');
 
   const logout = () => {
     localStorage.removeItem('userId')
@@ -38,12 +38,12 @@ const HeaderComponent = () => {
       <Link to='/'>
         <img src={require('../../assets/logo.jpeg')} alt='Call for Papers' className='logo' />
       </Link>
-      <Menu theme='light' mode='horizontal' style={menuStyle}>
-        <Menu.Item key='events' onClick={() => history.push('/events')}>
+      <Menu theme='light' mode='horizontal' style={menuStyle} selectedKeys={[history.location.pathname]}>
+        <Menu.Item key='/events' onClick={() => history.push('/events')}>
           <CalendarOutlined style={smallIcon} />
           Meus eventos
         </Menu.Item>
-        <Menu.Item key='lectures' onClick={() => history.push('/lectures')}>
+        <Menu.Item key='/lectures' onClick={() => history.push('/lectures')}>
           <BookOutlined style={smallIcon} />
           Minhas palestras
         </Menu.Item>
@@ -53,7 +53,7 @@ const HeaderComponent = () => {
           }
         >
           <Menu.Item
-            key='my-profile'
+            key='/profile'
             style={{color: 'black'}}
             onClick={() => history.push('/profile')}
           >
