@@ -1,4 +1,5 @@
 import React from 'react'
+import { List, Col } from 'antd'
 import { Row, Divider, Tag } from 'antd'
 import { Link } from 'react-router-dom'
 import TableComponent from '../../components/Table'
@@ -61,6 +62,11 @@ const LecturesList = () => {
           Minhas palestras
         </Divider>
       </Row>
+      <Col offset={19}>
+        <button>
+          <Link to='/download-lectures'><span style={{color: 'black'}}>Download csv</span></Link>
+        </button>
+      </Col>
       <Row justify="center" className='row-table'>
         <TableComponent columns={columnsTable} dataSource={data} />
       </Row>
