@@ -69,7 +69,7 @@ const EventForm = () => {
         partners: partner
     }
 
-    console.log(formik.values.dados);
+    console.log(formik.values);
     
 
     const history = useHistory();
@@ -109,7 +109,7 @@ const EventForm = () => {
                         rules={[{ required: true, message: 'Preencha corretamente o campo de evento!' }]}>
                         <Input name="event" placeholder="Digite o nome do evento" 
                             onChange={formik.handleChange} 
-                            value={formik.values.dados? formik.values.dados.event: ''}/>
+                            value={formik.values.dados? formik.values.dados.event: formik.event}/>
                     </Form.Item>
 
                     {/* Descrição do evento */}
@@ -119,7 +119,7 @@ const EventForm = () => {
                         rules={[{ required: true, message: 'Preencha corretamente o campo de descrição do evento.' }]}>
                         <TextArea name="description" placeholder="Digite a descrição do evento (sobre o evento, agenda, regras...)"
                             onChange={formik.handleChange}
-                            value={formik.values.dados? formik.values.dados.description:''}/>
+                            value={formik.values.dados? formik.values.dados.description: ''}/>
                     </Form.Item>
                     <Row>
                         <Col span={12} style={{ paddingRight: 10 }}>
@@ -131,7 +131,7 @@ const EventForm = () => {
                                 rules={[{ required: false }]}>
                                 <Input name="schedule" placeholder="Digite a data e horário" 
                                     onChange={formik.handleChange}
-                                    value={formik.values.dados? formik.values.dados.schedule: ''}/>
+                                    value={formik.values.dados? formik.values.dados.schedule: formik.schedule}/>
                                 <small>Exemplo: 18 Abril, 07:30</small>
                             </Form.Item>
                         </Col>
@@ -144,7 +144,7 @@ const EventForm = () => {
                                 rules={[{ required: false }]}>
                                 <Input name="local" placeholder="Digite o local do evento" 
                                     onChange={formik.handleChange}
-                                    value={formik.values.dados? formik.values.dados.local: ''}/>
+                                    value={formik.values.dados? formik.values.dados.local: formik.local}/>
                             </Form.Item>
                         </Col>
                     </Row>
@@ -154,9 +154,9 @@ const EventForm = () => {
                         label="Organizador do evento:"
                         htmlFor="organizer"
                         rules={[{ required: true, message: 'Preencha corretamente o campo de organizador!' }]}>
-                        <Input name={organizer} placeholder="Digite o nome do organizador responsável" 
+                        <Input name="organizer" placeholder="Digite o nome do organizador responsável" 
                             onChange={formik.handleChange}
-                            value={formik.values.dados? formik.values.dados.organizer:''}/>
+                            value={formik.values.dados? formik.values.dados.organizer: formik.organizer}/>
                     </Form.Item>
 
                     <Row>
