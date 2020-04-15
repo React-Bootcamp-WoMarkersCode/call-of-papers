@@ -29,12 +29,11 @@ const columnsTable = [
     key: 'id',
     render: (key) => (
       <span>
-        <Link to={`/events/${key}`}>Mais detalhes</Link>
+        <Link to={`/events/${key}`} onClick={() => localStorage.setItem("idEvent", key)}>Mais detalhes</Link>
       </span>
     )
   },
 ]
-
 const EventsList = () => {
   const [api, setApi] = useState([])
 
@@ -54,6 +53,7 @@ const EventsList = () => {
       <Row gutter={[16, 24]}>
         <Divider orientation='left'>
           Meus eventos
+          <Link id="btn-cadastrar" to="/events/form" onClick={() => localStorage.removeItem('idEvent')}>Cadastre um evento</Link>
         </Divider>
       </Row>
       <Row justify='center' gutter={[16, 24]} className='row-table'>

@@ -63,19 +63,16 @@ const Event = () => {
               </div>
             </Col>
             <Col span={8}>
+              <Card className="mt-15">
+                <Link to="/events/form">Editar evento</Link>
+              </Card>
               {
                 organizer ?
                   <Card className="mt-15">
-                    {/* <span>
-                      <small>Comunidade</small>
-                      <br />
-                      <b>WoMakersCode</b>
-                    </span>
-                    <br /> */}
                     <i style={{ textSize: 10 }}>
                       <div>
                         Organizador(a)
-                      <span> {organizer}</span>
+                        <span> {organizer}</span>
                       </div>
                     </i>
                   </Card> : ''

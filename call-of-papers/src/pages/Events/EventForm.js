@@ -1,39 +1,50 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Col, Form, Input, Checkbox, Radio, Button } from 'antd'
 import { useFormik } from 'formik'
 import { useHistory } from 'react-router-dom'
 
+import { getEnvironment } from './../../utils/environment'
+
 let bodyApi = {}
 
-const formItemLayout = null;
+let idEventLocal;
 
 const { TextArea } = Input;
 
-const initialValues = {
-    event: '',
-    description: '',
-    local: '',
-    schedule: '',
-    organizer: '',
-    categories: [],
-    limited_spaces: '',
-    partners: []
-}
-
 const EventForm = () => {
-    const [form] = Form.useForm();
-    const [formLayout, setFormLayout] = useState('vertical');
     const [values, setValuesChecked] = useState([]);
     const [radio, setValuesRadio] = useState([]);
     const [partner, setValuesPartner] = useState([]);
+    const [dados, setDados] = useState([]);
 
-    const history = useHistory();
+    const environment = getEnvironment();
 
-    const environment = 'http://localhost:3001';
+    useEffect(() => {
+        idEventLocal = JSON.parse(localStorage.getItem("idEvent"));
 
-    const formik = useFormik({
-        initialValues
+        fetch(`${environment}/events/`)
+            .then(res => res.json())
+            .then(data => {
+                setDados(data.find(formEvent => formEvent.id === idEventLocal))                
+            })
+            .catch(err => console.error(err, 'Nenhum evento por aqui!'))
+        }, [])
+
+    let formik = useFormik({
+        enableReinitialize: true,
+        initialValues: {
+            event: '',
+            description: '',
+            local: '',
+            schedule: '',
+            organizer: '',
+            categories: [],
+            limited_spaces: '',
+            partners: [],
+            dados,
+        }
     })
+   
 
     const onChangeCategories = (categories) => {
         setValuesChecked(categories)
@@ -58,7 +69,12 @@ const EventForm = () => {
         partners: partner
     }
 
-    const onsubmit = () => {
+    console.log(formik.values.dados);
+    
+
+    const history = useHistory();
+    
+    function onsubmit() {
         fetch(`${environment}/events`, {
             method: 'post',
             headers: {
@@ -79,58 +95,79 @@ const EventForm = () => {
     return (
         <Row style={{ marginTop: 30 }}>
             <Col span={16} offset={4}>
-                <h1>Crie um evento</h1>
-                <Form
-                    {...formItemLayout}
-                    layout={formLayout}
-                    form={form}
-                    initialValues={{ layout: formLayout }}>
+                {
+                    idEventLocal ?
+                        <h1>Edite o evento</h1> :
+                        <h1>Crie um evento</h1>
+                }
+                <Form layout="vertical">
+                   
+                   {/* Nome do evento */}
                     <Form.Item
                         label="Nome do evento:"
-                        name="event"
+                        htmlFor="event"
                         rules={[{ required: true, message: 'Preencha corretamente o campo de evento!' }]}>
-                        <Input {...formik.getFieldProps("event")} placeholder="Digite o nome do evento" />
+                        <Input name="event" placeholder="Digite o nome do evento" 
+                            onChange={formik.handleChange} 
+                            value={formik.values.dados? formik.values.dados.event: ''}/>
                     </Form.Item>
+
+                    {/* Descrição do evento */}
                     <Form.Item
                         label="Descrição do evento:"
-                        name="description"
+                        htmlFor="description"
                         rules={[{ required: true, message: 'Preencha corretamente o campo de descrição do evento.' }]}>
-                        <TextArea {...formik.getFieldProps("description")} placeholder="Digite a descrição do evento (sobre o evento, agenda, regras...)" />
+                        <TextArea name="description" placeholder="Digite a descrição do evento (sobre o evento, agenda, regras...)"
+                            onChange={formik.handleChange}
+                            value={formik.values.dados? formik.values.dados.description:''}/>
                     </Form.Item>
                     <Row>
                         <Col span={12} style={{ paddingRight: 10 }}>
+
+                            {/* Data-Horário do evento */}
                             <Form.Item
                                 label="Data/Horário do evento:"
-                                name="schedule"
+                                htmlFor="schedule"
                                 rules={[{ required: false }]}>
-                                <Input {...formik.getFieldProps("schedule")} placeholder="Digite a data e horário" />
+                                <Input name="schedule" placeholder="Digite a data e horário" 
+                                    onChange={formik.handleChange}
+                                    value={formik.values.dados? formik.values.dados.schedule: ''}/>
                                 <small>Exemplo: 18 Abril, 07:30</small>
                             </Form.Item>
                         </Col>
                         <Col span={12} style={{ paddingLeft: 10 }}>
+
+                            {/* Local do evento */}
                             <Form.Item
                                 label="Local do evento:"
-                                name="local"
+                                htmlFor="local"
                                 rules={[{ required: false }]}>
-                                <Input {...formik.getFieldProps("local")} placeholder="Digite o local do evento" />
+                                <Input name="local" placeholder="Digite o local do evento" 
+                                    onChange={formik.handleChange}
+                                    value={formik.values.dados? formik.values.dados.local: ''}/>
                             </Form.Item>
                         </Col>
                     </Row>
+
+                    {/* Organizador do evento */}
                     <Form.Item
                         label="Organizador do evento:"
-                        name="organizer"
+                        htmlFor="organizer"
                         rules={[{ required: true, message: 'Preencha corretamente o campo de organizador!' }]}>
-                        <Input {...formik.getFieldProps("organizer")} placeholder="Digite o nome do organizador responsável" />
+                        <Input name={organizer} placeholder="Digite o nome do organizador responsável" 
+                            onChange={formik.handleChange}
+                            value={formik.values.dados? formik.values.dados.organizer:''}/>
                     </Form.Item>
 
                     <Row>
                         <Col span={12}>
                             <Form.Item
                                 label="Categoria do evento: "
-                                name="categories"
+                                htmlFor="categories"
                                 rules={[{ required: true, message: 'Preencha corretamente o campo de categoria!' }]}>
                                 <Checkbox.Group
-                                    onChange={onChangeCategories}>
+                                    onChange={onChangeCategories}
+                                    >
                                     <Row>
                                         <Col span={8}>
                                             <Checkbox
@@ -152,10 +189,11 @@ const EventForm = () => {
                         <Col span={12}>
                             <Form.Item
                                 label="Quais parceiros aceita ?"
-                                name="partners"
+                                htmlFor="partners"
                                 rules={[{ required: false }]}>
                                 <Checkbox.Group
-                                    onChange={onChangePartners}>
+                                    onChange={onChangePartners}
+                                    >
                                     <Row>
                                         <Col span={10}>
                                             <Checkbox value="sponsors">Sponsors</Checkbox>
@@ -185,7 +223,7 @@ const EventForm = () => {
                     </Row>
                     <Form.Item
                         label="Vagas limitadas ?"
-                        name="limited_spaces"
+                        htmlFor="limited_spaces"
                         rules={[{ required: false }]}>
                         <Radio.Group name="limited_spaces" defaultValue={1} onChange={onChangeSpaces}>
                             <Radio value={"Sim"}>Sim</Radio>
