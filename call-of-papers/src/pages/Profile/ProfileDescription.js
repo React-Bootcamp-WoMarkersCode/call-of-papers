@@ -7,7 +7,7 @@ import {
   FacebookOutlined,
   TwitterOutlined
 } from '@ant-design/icons'
-import './MyProfile.css'
+import './style.scss'
 
 const { Item } = Descriptions;
 

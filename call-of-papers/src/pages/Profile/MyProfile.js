@@ -4,7 +4,7 @@ import { EditOutlined } from '@ant-design/icons'
 import { getEnvironment } from './../../utils/environment'
 import { useHistory } from 'react-router-dom'
 import ProfileDescription from './ProfileDescription'
-import './MyProfile.css'
+import './style.scss'
 
 const { Meta } = Card;
 

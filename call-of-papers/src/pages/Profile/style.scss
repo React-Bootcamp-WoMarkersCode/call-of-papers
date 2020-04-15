@@ -4,7 +4,8 @@
 }
 
 .ant-card-meta-title,
-.ant-descriptions-item-label {
+.ant-descriptions-item-label,
+.ant-form-vertical .ant-form-item-label > label {
   color: #1A5A79;
   font-weight: bold;
 }
