@@ -2,6 +2,7 @@ import React, { Suspense } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 import './index.scss'
+import './ant_overrides.scss'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 

@@ -1,0 +1,45 @@
+#root,
+.ant-layout {
+  background-color: white !important;
+  height: 100% !important;
+}
+
+.ant-layout-header {
+  background-color: white !important;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.20);
+  z-index: 1;
+}
+
+.ant-layout-content {
+  overflow-x: hidden;
+}
+
+.ant-layout-footer {
+  padding: 15px 50px !important;
+  color: white !important;
+  background: #1A5A79CC !important;
+  display: flex !important;
+  justify-content: space-evenly !important;
+}
+
+.ant-layout-footer a {
+  color: white;
+}
+
+.ant-divider-inner-text {
+  font-size: 25px;
+  color: #1A5A79;
+}
+
+.ant-divider-horizontal.ant-divider-with-text-center::before,
+.ant-divider-horizontal.ant-divider-with-text-left::before,
+.ant-divider-horizontal.ant-divider-with-text-right::before,
+.ant-divider-horizontal.ant-divider-with-text-center::after,
+.ant-divider-horizontal.ant-divider-with-text-left::after,
+.ant-divider-horizontal.ant-divider-with-text-right::after {
+  border-top: 1px solid #1A5A79 !important;
+}
+
+.ant-divider {
+  padding: 20px 70px 0 !important;
+}
