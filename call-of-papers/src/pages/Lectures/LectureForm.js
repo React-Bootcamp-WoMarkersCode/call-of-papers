@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Button, Divider, Upload } from 'antd'
-import { UploadOutlined } from '@ant-design/icons'
+import { Row, Button, Divider } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import './lectures-list.scss'
 import { Formik } from 'formik'
@@ -18,7 +17,6 @@ const LectureForm = () => {
 	let [ profile, setProfile ] = useState([])
 	const environment = getEnvironment()
 	const [ imageUpload, setImageUpload ] = useState()
- 	let userEmail = localStorage.getItem('userEmail')
 	let userPicture = localStorage.getItem('userPicture')
 
 	const handleUpload = event => {
@@ -34,7 +32,7 @@ const LectureForm = () => {
 	}  
 
   const handleSubmit = (values) => {
-		fetch(`${environment}/lectures`, {
+	fetch(`${environment}/lectures`, {
       method: 'post',
       headers: {
           Accept: "application/json",
@@ -59,15 +57,10 @@ const LectureForm = () => {
       .catch(err => console.error(err, 'Nenhum usuário encontrado'))
   }, [])
 
-	if (!userEmail) {
-		userEmail = ''
-	}
-
 	profile = {
 		...profile,
 		userPicture,
 		name: localStorage.getItem('userName'),
-		email: '',
 		instagram: '',
 		youtube: '',
 		portfolio: '',
