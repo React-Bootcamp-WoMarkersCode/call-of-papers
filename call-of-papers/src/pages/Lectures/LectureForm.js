@@ -233,7 +233,7 @@ const LectureForm = () => {
 									</Form.Item>
 
 									<form>
-										<label>
+										<label className='image-upload'>
 											Upload de identidade visual da sua atividade:
 											<input type="file" name="uploadedImage" onChange={handleUpload} />
 										</label>

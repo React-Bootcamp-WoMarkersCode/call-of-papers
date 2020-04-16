@@ -44,6 +44,7 @@
   padding: 20px 70px 0 !important;
 }
 
+.image-upload,
 .ant-form-item-label > label {
   font-weight: bold;
   color: #1A5A79 !important;
@@ -54,4 +55,9 @@
   border-color: #1A5A79CC !important;
   color: #fff !important;
   padding: 0px 7px !important;
+}
+
+.ant-radio-group,
+.ant-radio-group-outline {
+  display: grid;
 }
