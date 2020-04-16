@@ -21,75 +21,34 @@ const LectureForm = () => {
  	let userEmail = localStorage.getItem('userEmail')
 	let userPicture = localStorage.getItem('userPicture')
 
-	// const handleUpload = event => {
-	// 	const file = event.target.files[0]
-	// 	const reader = new FileReader()
-	// 	reader.readAsDataURL(file)
-	// 	reader.onload = function () {
-	// 	setImageUpload(reader.result)
-	// 	}
-	// 	reader.onerror = function (error) {
-	// 	console.log('Error: ', error)
-	// 	}
-	// }
-
 	const handleUpload = event => {
-		const fileInput = event.target.querySelector('Upload')
-		const imageFile = fileInput.files[0]
-		const formData = new FormData()
-		formData.append('image', imageFile)
-
-		fetch('https://api.imgur.com/3/image', {
-			method: 'POST',
-			headers: {
-			Authorization: 'Client-ID 7404c329ad65695',
-			},
-			body: formData
-		}).then(response => {
-			console.log(response);
-			if (response.ok) {
-			alert('Image uploaded to album');       
-			}
-		}).catch(error => {
-			console.error(error);
-		})
-	}
-
-	// const props = {
-	// 	name: 'file',
-	// 	customRequest: handleUpload,
-	// 	onChange(info) {
-	// 		if (info.file.status !== 'uploading') {
-	// 		  console.log(info.file, info.fileList)
-	// 		}
-	// 		if (info.file.status === 'done') {
-	// 		  message.success(`${info.file.name} file uploaded successfully`)
-	// 		} else if (info.file.status === 'error') {
-	// 		  message.error(`${info.file.name} file upload failed.`)
-	// 		}
-	// 	}
-	// }
-
-  
+		const file = event.target.files[0]
+		const reader = new FileReader()
+		reader.readAsDataURL(file)
+		reader.onload = function () {
+			setImageUpload(reader.result)			
+		}
+		reader.onerror = function (error) {
+		console.log('Error: ', error)
+		}
+	}  
 
   const handleSubmit = (values) => {
-	console.log(values)
-	// fetch(`${environment}/lectures`, {
-    //   method: 'post',
-    //   headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //       'Access-Control-Allow-Origin': '*'
-    //   },
-    //   body: JSON.stringify(values)
-    // }).then(function (response) {
-    //     alert('Atividade cadastrada com sucesso!')
-    //     return response.json()
-    // }).catch(function (error) {
-    //     alert(`Erro ao cadastrar: ${error}`)
-    // })
+		fetch(`${environment}/lectures`, {
+      method: 'post',
+      headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify(values)
+    }).then(function (response) {
+        alert('Atividade cadastrada com sucesso!')
+        return response.json()
+    }).catch(function (error) {
+        alert(`Erro ao cadastrar: ${error}`)
+    })
   }
-
 
   useEffect(() => {
     fetch(`${environment}/profiles`)
@@ -273,15 +232,12 @@ const LectureForm = () => {
 										/>
 									</Form.Item>
 
-                  {/* Upload de imagem */}
-                  <Form.Item label="Upload de identidade visual da sua atividade:" name="uploadedImage">
-				  	<Upload>
-                    	{/* <input type="file" name="uploadedImage" onChange={handleUpload} /> */}
-						<Button onChange={handleUpload}>
-							Click to Upload
-						</Button>
-					</Upload>
-                  </Form.Item>
+									<form>
+										<label>
+											Upload de identidade visual da sua atividade:
+											<input type="file" name="uploadedImage" onChange={handleUpload} />
+										</label>
+									</form>
 
                   <Button type='primary' htmlType='submit'>
                     Enviar
