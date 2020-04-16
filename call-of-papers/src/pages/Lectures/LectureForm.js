@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Button, Divider } from 'antd'
+import { Row, Button, Divider, Upload } from 'antd'
+import { UploadOutlined } from '@ant-design/icons'
 import { getEnvironment } from './../../utils/environment'
 import './lectures-list.scss'
 import { Formik } from 'formik'
@@ -17,36 +18,76 @@ const LectureForm = () => {
 	let [ profile, setProfile ] = useState([])
 	const environment = getEnvironment()
 	const [ imageUpload, setImageUpload ] = useState()
-  let userEmail = localStorage.getItem('userEmail')
+ 	let userEmail = localStorage.getItem('userEmail')
 	let userPicture = localStorage.getItem('userPicture')
 
-  const onChangeHandler = (event) => {
-    const file = event.target.files[0]
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onload = function () {
-      setImageUpload(reader.result)
-    }
-    reader.onerror = function (error) {
-      console.log('Error: ', error)
-    }
-  }
+	// const handleUpload = event => {
+	// 	const file = event.target.files[0]
+	// 	const reader = new FileReader()
+	// 	reader.readAsDataURL(file)
+	// 	reader.onload = function () {
+	// 	setImageUpload(reader.result)
+	// 	}
+	// 	reader.onerror = function (error) {
+	// 	console.log('Error: ', error)
+	// 	}
+	// }
+
+	const handleUpload = event => {
+		const fileInput = event.target.querySelector('Upload')
+		const imageFile = fileInput.files[0]
+		const formData = new FormData()
+		formData.append('image', imageFile)
+
+		fetch('https://api.imgur.com/3/image', {
+			method: 'POST',
+			headers: {
+			Authorization: 'Client-ID 7404c329ad65695',
+			},
+			body: formData
+		}).then(response => {
+			console.log(response);
+			if (response.ok) {
+			alert('Image uploaded to album');       
+			}
+		}).catch(error => {
+			console.error(error);
+		})
+	}
+
+	// const props = {
+	// 	name: 'file',
+	// 	customRequest: handleUpload,
+	// 	onChange(info) {
+	// 		if (info.file.status !== 'uploading') {
+	// 		  console.log(info.file, info.fileList)
+	// 		}
+	// 		if (info.file.status === 'done') {
+	// 		  message.success(`${info.file.name} file uploaded successfully`)
+	// 		} else if (info.file.status === 'error') {
+	// 		  message.error(`${info.file.name} file upload failed.`)
+	// 		}
+	// 	}
+	// }
+
+  
 
   const handleSubmit = (values) => {
-    fetch(`${environment}/lectures`, {
-      method: 'post',
-      headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          'Access-Control-Allow-Origin': '*'
-      },
-      body: JSON.stringify(values)
-    }).then(function (response) {
-        alert('Atividade cadastrada com sucesso!')
-        return response.json()
-    }).catch(function (error) {
-        alert(`Erro ao cadastrar: ${error}`)
-    })
+	console.log(values)
+	// fetch(`${environment}/lectures`, {
+    //   method: 'post',
+    //   headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //       'Access-Control-Allow-Origin': '*'
+    //   },
+    //   body: JSON.stringify(values)
+    // }).then(function (response) {
+    //     alert('Atividade cadastrada com sucesso!')
+    //     return response.json()
+    // }).catch(function (error) {
+    //     alert(`Erro ao cadastrar: ${error}`)
+    // })
   }
 
 
@@ -92,6 +133,7 @@ const LectureForm = () => {
 				<Formik
 					initialValues={profile}
 					onSubmit={handleSubmit}
+					enableReinitialize={true}
 					render={(formik) => (
 						<Form layout="vertical" style={{ width: '70%' }}>
 							<div className="container">
@@ -116,22 +158,22 @@ const LectureForm = () => {
 
 									{/* Minibiografia */}
 									<Form.Item label="Minibiografia:" name="apresentation">
-										<TextArea rows={4} name="miniBio" />
+										<TextArea rows={4} name="apresentation" />
 									</Form.Item>
 
 									{/* Linkedin */}
 									<Form.Item label="Linkedin:" name="linkedinLink">
-										<Input name="linkedin" />
+										<Input name="linkedinLink" />
 									</Form.Item>
 
 									{/* Facebook */}
 									<Form.Item label="Facebook:" name="facebookLink">
-										<Input name="facebook" />
+										<Input name="facebookLink" />
 									</Form.Item>
 
 									{/* Twitter */}
 									<Form.Item label="Twitter:" name="twitterLink">
-										<Input name="twitter" />
+										<Input name="twitterLink" />
 									</Form.Item>
 
 									{/* Instagram */}
@@ -146,7 +188,7 @@ const LectureForm = () => {
 
 									{/* Link de algum trabalho relevante */}
 									<Form.Item label="Github:" name="githubLink">
-										<Input name="github" />
+										<Input name="githubLink" />
 									</Form.Item>
 
 									{/* Já ministrou alguma atividade em eventos?  */}
@@ -233,7 +275,12 @@ const LectureForm = () => {
 
                   {/* Upload de imagem */}
                   <Form.Item label="Upload de identidade visual da sua atividade:" name="uploadedImage">
-                    <input type="file" name="uploadedImage" onChange={onChangeHandler} />
+				  	<Upload>
+                    	{/* <input type="file" name="uploadedImage" onChange={handleUpload} /> */}
+						<Button onChange={handleUpload}>
+							Click to Upload
+						</Button>
+					</Upload>
                   </Form.Item>
 
                   <Button type='primary' htmlType='submit'>
