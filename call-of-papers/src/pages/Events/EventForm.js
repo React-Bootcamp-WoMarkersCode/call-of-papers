@@ -58,6 +58,7 @@ const EventForm = () => {
 
     const onChangeCategories = (categories) => {
         setValuesChecked(categories)
+        formik.values.categories = categories
     }
     const onChangeSpaces = (spaces) => {
         setValuesRadio(spaces.target.value);
@@ -65,6 +66,7 @@ const EventForm = () => {
     }
     const onChangePartners = (partners) => {
         setValuesPartner(partners);
+        formik.values.partners = partners
     }
 
     const { event, description, local, schedule, organizer } = formik.values;
@@ -124,8 +126,6 @@ const EventForm = () => {
                 alert(`Erro ao cadastrar: ${error}`)
             })
         }
-
-
 
     }
 
@@ -231,7 +231,7 @@ const EventForm = () => {
                                 rules={[{ required: false }]}>
                                 <Checkbox.Group
                                     onChange={onChangePartners}
-                                    value={formik.values.partners? formik.values.partners:''}
+                                    value={formik.values.partners}
                                 >
                                     <Row>
                                         <Col span={10}>
