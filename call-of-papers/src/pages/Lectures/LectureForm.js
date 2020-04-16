@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Button, Divider } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import './lectures-list.scss'
@@ -50,15 +50,14 @@ const LectureForm = () => {
   }
 
 
-  const fetchProfile = () => {
-    const res = fetch(`${environment}/profiles`)
-    res
-      .json()
-      .then(res => setProfile(res.find((profile) => profile.id === localStorage.getItem('userId'))))
-      .catch((err) => console.error(err, 'Nenhum usuário encontrado'))
-  }
-
-  fetchProfile()
+  useEffect(() => {
+    fetch(`${environment}/profiles`)
+      .then(res => res.json())
+      .then(data => {
+        setProfile(data.find(profile => profile.id === localStorage.getItem('userId')))
+      })
+      .catch(err => console.error(err, 'Nenhum usuário encontrado'))
+  }, [])
 
 	if (!userEmail) {
 		userEmail = ''
