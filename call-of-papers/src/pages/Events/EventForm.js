@@ -84,7 +84,6 @@ const EventForm = () => {
     console.log('radio', radio)
     console.log('check', formik.values.categories)
 
-
     const history = useHistory();
 
     function onsubmit() {
@@ -205,7 +204,7 @@ const EventForm = () => {
                                 rules={[{ required: true, message: 'Preencha corretamente o campo de categoria!' }]}>
                                 <Checkbox.Group
                                     onChange={onChangeCategories}
-                                    defaultValue={formik.values.organizer.categories}
+                                    value={formik.values.categories}
                                 >
                                     <Row>
                                         <Col span={8}>
@@ -232,6 +231,7 @@ const EventForm = () => {
                                 rules={[{ required: false }]}>
                                 <Checkbox.Group
                                     onChange={onChangePartners}
+                                    value={formik.values.partners? formik.values.partners:''}
                                 >
                                     <Row>
                                         <Col span={10}>
