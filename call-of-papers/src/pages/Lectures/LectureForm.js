@@ -1,61 +1,68 @@
-import React, { useState, useEffect } from 'react';
-import { useFormik } from 'formik';
-import { Form, Input, Row, Button, Select, Radio, Checkbox, Divider } from 'antd';
-import { getEnvironment } from './../../utils/environment';
-import './lectures-list.scss';
+import React, { useState } from 'react'
+import { Row, Button, Divider } from 'antd'
+import { getEnvironment } from './../../utils/environment'
+import './lectures-list.scss'
+import { Formik } from 'formik'
+import {
+	Checkbox,
+	Input,
+	Radio,
+	Select,
+	Form
+} from 'formik-antd'
 
-const { TextArea } = Input;
-const { Option } = Select;
+const { TextArea } = Input
 
 const LectureForm = () => {
-	let [ profile, setProfile ] = useState([]);
-	const environment = getEnvironment();
-  const [ valuesRadio, setRadioValues ] = useState();
-  const [ valuesCheck, setCheckValues ] = useState();
-  const [ valuesSelect, setSelectValues ] = useState();
-  const [ imageUpload, setImageUpload ] = useState();
+	let [ profile, setProfile ] = useState([])
+	const environment = getEnvironment()
+	const [ imageUpload, setImageUpload ] = useState()
+  let userEmail = localStorage.getItem('userEmail')
+	let userPicture = localStorage.getItem('userPicture')
 
-  useEffect(() => {
-    async function fetchProfile() {
-      const res = await fetch(`${environment}/profiles`)
-      res
-        .json()
-				.then(res => setProfile(res.find((profile) => profile.id === localStorage.getItem('userId'))))
-				.catch((err) => console.error(err, 'Nenhum usuário encontrado'))
+  const onChangeHandler = (event) => {
+    const file = event.target.files[0]
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = function () {
+      setImageUpload(reader.result)
     }
+    reader.onerror = function (error) {
+      console.log('Error: ', error)
+    }
+  }
 
-    fetchProfile();
-  }, []);
+  const handleSubmit = (values) => {
+    fetch(`${environment}/lectures`, {
+      method: 'post',
+      headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify(values)
+    }).then(function (response) {
+        alert('Atividade cadastrada com sucesso!')
+        return response.json()
+    }).catch(function (error) {
+        alert(`Erro ao cadastrar: ${error}`)
+    })
+  }
 
-	let userEmail = localStorage.getItem('userEmail');
-	let userPicture = localStorage.getItem('userPicture');
-	// let userName = localStorage.getItem('userName')
+
+  const fetchProfile = () => {
+    const res = fetch(`${environment}/profiles`)
+    res
+      .json()
+      .then(res => setProfile(res.find((profile) => profile.id === localStorage.getItem('userId'))))
+      .catch((err) => console.error(err, 'Nenhum usuário encontrado'))
+  }
+
+  fetchProfile()
 
 	if (!userEmail) {
-		userEmail = '';
+		userEmail = ''
 	}
-
-	const onChangeSelect = (selectValues) => {
-		setSelectValues(selectValues);
-	};
-	const onChangeRadio = (radioValues) => {
-		setRadioValues(radioValues.target.value);
-	};
-	const onChangeCheck = (checkedValues) => {
-		setCheckValues(checkedValues);
-	};
-
-	const onChangeHandler = (event) => {
-		const file = event.target.files[0];
-		const reader = new FileReader();
-		reader.readAsDataURL(file);
-		reader.onload = function() {
-			setImageUpload(reader.result);
-		};
-		reader.onerror = function(error) {
-			console.log('Error: ', error);
-		};
-	};
 
 	profile = {
 		...profile,
@@ -69,59 +76,13 @@ const LectureForm = () => {
 		activityDescription: '',
 		activityId: '',
 		uploadedImage: imageUpload,
-		activityType: valuesRadio,
-		activityCategory: valuesCheck,
-		haveLecturedBefore: valuesSelect
-	};
-
-	let formik = useFormik({
-		initialValues: profile,
-		enableReinitialize: true,
-		onSubmit: (values) => {
-			values.id = Math.floor(Math.random() * 1000).toString();
-			console.log(values);
-			// fetch(`${environment}/lectures`, {
-			//   method: 'post',
-			//   headers: {
-			//       Accept: "application/json",
-			//       "Content-Type": "application/json",
-			//       'Access-Control-Allow-Origin': '*'
-			//   },
-			//   body: JSON.stringify(values)
-			//   }).then(function (response) {
-			//       alert('Atividade cadastrada com sucesso!')
-			//       return response.json();
-			//   }).catch(function (error) {
-			//       alert(`Erro ao cadastrar: ${error}`)
-			//   })
-		},
-		onChangeSelect,
-		onChangeHandler,
-		onChangeCheck,
-		onChangeRadio
-	});
-
-	formik.values = Object.assign(
-		formik.values,
-		{
-			uploadedImage: imageUpload
-		},
-		{
-			activityType: valuesRadio
-		},
-		{
-			activityCategory: valuesCheck
-		},
-		{
-			haveLecturedBefore: valuesSelect
-		},
-		{
-			activityId: Math.floor(Math.random() * 1000).toString()
-		}
-	);
+		activityType: '',
+		activityCategory: [],
+		haveLecturedBefore: ''
+	}
 
 	return (
-		<div>
+		<>
 			<Row gutter={[ 16, 24 ]}>
 				<Divider orientation="left">Submissão de atividades</Divider>
 			</Row>
@@ -129,155 +90,164 @@ const LectureForm = () => {
 				Para participar, basta preencher o formulário e aguardar o contato da equipe organizadora do evento
 			</Row>
 			<Row justify="center" className="row-table">
-				<Form onFinish={formik.handleSubmit} layout="vertical" style={{ width: '70%' }}>
-					{/* Nome completo */}
-					<Form.Item
-						label="Nome completo:"
-						rules={[ { required: true, message: 'Por favor, insira seu nome completo!' } ]}
-					>
-						<Input name="name" onChange={formik.handleChange} value={formik.values.name} />
-					</Form.Item>
+				<Formik
+					initialValues={profile}
+					onSubmit={handleSubmit}
+					render={(formik) => (
+						<Form layout="vertical" style={{ width: '70%' }}>
+							<div className="container">
+								<div className="component-container">
+									{/* Nome completo */}
+									<Form.Item
+										label="Nome completo:"
+										name="name"
+										rules={[ { required: true, message: 'Por favor, insira seu nome completo!' } ]}
+									>
+										<Input name="name" />
+									</Form.Item>
 
-					{/* Email */}
-					<Form.Item
-						label="Email:"
-						rules={[ { type: 'email', required: true, message: 'Por favor, insira um email válido!' } ]}
-					>
-						<Input name="email" onChange={formik.handleChange} value={formik.values.email} />
-					</Form.Item>
+									{/* Email */}
+									<Form.Item
+										label="Email:"
+										name="email"
+										rules={[ { type: 'email', required: true, message: 'Por favor, insira um email válido!' } ]}
+									>
+										<Input name="email" />
+									</Form.Item>
 
-					{/* Minibiografia */}
-					<Form.Item label="Minibiografia:">
-						<TextArea rows={4} name="miniBio" onChange={formik.handleChange} value={formik.values.apresentation} />
-					</Form.Item>
+									{/* Minibiografia */}
+									<Form.Item label="Minibiografia:" name="apresentation">
+										<TextArea rows={4} name="miniBio" />
+									</Form.Item>
 
-					{/* Linkedin */}
-					<Form.Item label="Linkedin:">
-						<Input name="linkedin" onChange={formik.handleChange} value={formik.values.linkedinLink} />
-					</Form.Item>
+									{/* Linkedin */}
+									<Form.Item label="Linkedin:" name="linkedinLink">
+										<Input name="linkedin" />
+									</Form.Item>
 
-					{/* Facebook */}
-					<Form.Item label="Facebook:">
-						<Input name="facebook" onChange={formik.handleChange} value={formik.values.facebookLink} />
-					</Form.Item>
+									{/* Facebook */}
+									<Form.Item label="Facebook:" name="facebookLink">
+										<Input name="facebook" />
+									</Form.Item>
 
-					{/* Twitter */}
-					<Form.Item label="Twitter:">
-						<Input name="twitter" onChange={formik.handleChange} value={formik.values.twitterLink} />
-					</Form.Item>
+									{/* Twitter */}
+									<Form.Item label="Twitter:" name="twitterLink">
+										<Input name="twitter" />
+									</Form.Item>
 
-					{/* Instagram */}
-					<Form.Item label="Instagram:">
-						<Input name="instagram" onChange={formik.handleChange} value={formik.values.instagram} />
-					</Form.Item>
+									{/* Instagram */}
+									<Form.Item label="Instagram:" name="instagram">
+										<Input name="instagram" />
+									</Form.Item>
 
-					{/* Youtube */}
-					<Form.Item label="Youtube:">
-						<Input name="youtube" onChange={formik.handleChange} value={formik.values.youtube} />
-					</Form.Item>
+									{/* Youtube */}
+									<Form.Item label="Youtube:" name="youtube">
+										<Input name="youtube" />
+									</Form.Item>
 
-					{/* Link de algum trabalho relevante */}
-					<Form.Item label="Github:">
-						<Input name="github" onChange={formik.handleChange} value={formik.values.githubLink} />
-					</Form.Item>
+									{/* Link de algum trabalho relevante */}
+									<Form.Item label="Github:" name="githubLink">
+										<Input name="github" />
+									</Form.Item>
 
-					{/* Já ministrou alguma atividade em eventos?  */}
-					<Form.Item label="Já ministrou alguma atividade em eventos?">
-						<Select
-							name="haveLecturedBefore"
-							placeholder="Selecione uma opção"
-							onChange={formik.onChangeSelect}
-							// {...formik.getFieldProps("haveLecturedBefore")}
-						>
-							<Option value={'Sim'}>Sim</Option>
-							<Option value="Não">Não</Option>
-						</Select>
-					</Form.Item>
+									{/* Já ministrou alguma atividade em eventos?  */}
+									<Form.Item label="Já ministrou alguma atividade em eventos?" name="haveLecturedBefore">
+										<Select name="haveLecturedBefore" style={{ width: '30%' }}>
+											<Select.Option value={'Sim'}>Sim</Select.Option>
+											<Select.Option value={'Não'}>Não</Select.Option>
+										</Select>
+									</Form.Item>
 
-					{/* Tipo de atividade proposta */}
-					<Form.Item
-						label="Tipo de atividade proposta:"
-						rules={[ { required: true, message: 'Por favor, informe um tipo de atividade' } ]}
-					>
-						<Radio.Group style={{ textAlign: 'left' }} onChange={formik.onChangeRadio} name="activityType">
-							<Radio style={{ display: 'block' }} value="Palestra">
-								Palestra (1 palestrante)
-							</Radio>
-							<Radio style={{ display: 'block' }} value="Painel">
-								Painel (1 moderador + até 3 painelistas)
-							</Radio>
-							<Radio style={{ display: 'block' }} value="Workshop">
-								Workshop (1 palestrante + até 2 facilitadores)
-							</Radio>
-						</Radio.Group>
-					</Form.Item>
+									{/* Tipo de atividade proposta */}
+									<Form.Item
+										label="Tipo de atividade proposta:"
+										name="activityType"
+										rules={[ { required: true, message: 'Por favor, informe um tipo de atividade' } ]}
+									>
+										<Radio.Group
+											name="activityType"
+											options={[
+												{ label: 'Palestra (1 palestrante)', value: 'Palestra' },
+												{ label: 'Painel (1 moderador + até 3 painelistas)', value: 'Painel' },
+												{ label: 'Workshop (1 palestrante + até 2 facilitadores)', value: 'Workshop' }
+											]}
+										/>
+									</Form.Item>
 
-					{/* Segmento da atividade proposta */}
-					<Form.Item
-						label="Categoria da atividade proposta:"
-						rules={[ { required: true, message: 'Por favor, informe pelo menos uma categoria!' } ]}
-					>
-						<Checkbox.Group style={{ textAlign: 'left' }} onChange={formik.onChangeCheck} name="activityCategory">
-							<Checkbox style={({ display: 'block' }, { marginLeft: '8px' })} value="Segurança">
-								Segurança
-							</Checkbox>
-							<Checkbox style={{ display: 'block' }} value="Criatividade/ Design / Entretenimento/ Marketing Digital">
-								Criatividade/Design/ Entretenimento/Marketing Digital
-							</Checkbox>
-							<Checkbox style={{ display: 'block' }} value="Empreendedorismo">
-								Empreendedorismo
-							</Checkbox>
-							<Checkbox style={{ display: 'block' }} value="IoT">
-								IoT (Internet of Things)
-							</Checkbox>
-							<Checkbox style={{ display: 'block' }} value="Realidade Virtual/Realidade Aumentada">
-								Realidade Virtual/Realidade Aumentada
-							</Checkbox>
-							<Checkbox style={{ display: 'block' }} value="Biohacking/Cyborg">
-								Biohacking/Cyborg
-							</Checkbox>
-							<Checkbox style={{ display: 'block' }} value="Big Data e Machine Learning">
-								Big Data e Machine Learning
-							</Checkbox>
-						</Checkbox.Group>
-					</Form.Item>
+									{/* Segmento da atividade proposta */}
+									<Form.Item
+										label="Categoria da atividade proposta:"
+										name="activityCategory"
+										rules={[ { required: true, message: 'Por favor, informe pelo menos uma categoria!' } ]}
+									>
+										<Checkbox.Group
+											style={{ textAlign: 'left' }}
+											name="activityCategory"
+										>
+											<Checkbox style={({ display: 'block' }, { marginLeft: '8px' })} value="Segurança">
+												Segurança
+											</Checkbox>
+											<Checkbox
+												style={{ display: 'block' }}
+												value="Criatividade/ Design / Entretenimento/ Marketing Digital"
+											>
+												Criatividade/Design/ Entretenimento/Marketing Digital
+											</Checkbox>
+											<Checkbox style={{ display: 'block' }} value="Empreendedorismo">
+												Empreendedorismo
+											</Checkbox>
+											<Checkbox style={{ display: 'block' }} value="IoT">
+												IoT (Internet of Things)
+											</Checkbox>
+											<Checkbox style={{ display: 'block' }} value="Realidade Virtual/Realidade Aumentada">
+												Realidade Virtual/Realidade Aumentada
+											</Checkbox>
+											<Checkbox style={{ display: 'block' }} value="Biohacking/Cyborg">
+												Biohacking/Cyborg
+											</Checkbox>
+											<Checkbox style={{ display: 'block' }} value="Big Data e Machine Learning">
+												Big Data e Machine Learning
+											</Checkbox>
+										</Checkbox.Group>
+									</Form.Item>
 
-					{/* Título da atividade proposta */}
-					<Form.Item
-						label="Título da atividade proposta:"
-						rules={[ { required: true, message: 'Por favor, insira um título para a atividade!' } ]}
-					>
-						<Input name="activityTitle" onChange={formik.handleChange} value={formik.values.activityTitle} />
-					</Form.Item>
+									{/* Título da atividade proposta */}
+									<Form.Item
+										label="Título da atividade proposta:"
+										name="activityTitle"
+										rules={[ { required: true, message: 'Por favor, insira um título para a atividade!' } ]}
+									>
+										<Input name="activityTitle" />
+									</Form.Item>
 
-					{/* Descrição da atividade proposta */}
-					<Form.Item
-						label="Descrição da atividade proposta:"
-						rules={[ { required: true, message: 'Por favor, insira uma descrição para a atividade!' } ]}
-					>
-						<TextArea
-							rows={4}
-							name="activityDescription"
-							onChange={formik.handleChange}
-							value={formik.values.activityDescription}
-						/>
-					</Form.Item>
+									{/* Descrição da atividade proposta */}
+									<Form.Item
+										label="Descrição da atividade proposta:"
+										name="activityDescription"
+										rules={[ { required: true, message: 'Por favor, insira uma descrição para a atividade!' } ]}
+									>
+										<TextArea
+											rows={4}
+											name="activityDescription"
+										/>
+									</Form.Item>
 
-					{/* Upload de imagem */}
-					<Form.Item label="Upload de identidade visual da sua atividade:">
-						<input type="file" name="file" onChange={formik.onChangeHandler} />
-					</Form.Item>
+                  {/* Upload de imagem */}
+                  <Form.Item label="Upload de identidade visual da sua atividade:" name="uploadedImage">
+                    <input type="file" name="uploadedImage" onChange={onChangeHandler} />
+                  </Form.Item>
 
-					{/* Botão de envio do formulário */}
-					<Form.Item>
-						<Button type="primary" htmlType="submit">
-							Enviar
-						</Button>
-					</Form.Item>
-				</Form>
+                  <Button type='primary' htmlType='submit'>
+                    Enviar
+                  </Button>
+								</div>
+							</div>
+						</Form>
+					)}
+				/>
 			</Row>
-		</div>
-	);
-};
+		</>
+	)
+}
 
-export default LectureForm;
+export default LectureForm
