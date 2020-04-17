@@ -66,3 +66,14 @@
 .ant-radio-group-outline {
   display: grid !important;
 }
+
+.ant-card-meta-title,
+.ant-descriptions-item-label,
+.ant-form-vertical .ant-form-item-label > label {
+  color: #1A5A79 !important;
+  font-weight: bold !important;
+}
+
+.ant-descriptions-item-content {
+  font-style: italic !important;
+}
