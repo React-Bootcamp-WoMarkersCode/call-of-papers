@@ -1,41 +1,59 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { Row, Col, Button } from 'antd'
+import { Row, Descriptions, Button, Divider, Spin } from 'antd'
+import { getEnvironment } from './../../utils/environment'
+
+const { Item } = Descriptions
 
 const Lecture = () => {
   let { lectureId } = useParams()
+  const environment = getEnvironment()
+  const [ lecture, setLecture ] = useState([])
+  const [ loadingData, setLoadingData ] = useState(true)
+
+  useEffect(() => {
+    fetch(`${environment}/lectures`)
+      .then(res => res.json())
+      .then(data => {
+        setLecture(data.find(lecture => lecture.id === lectureId))
+        console.log(data.find(lecture => lecture.id === lectureId))
+      })
+      .then(setLoadingData(false))
+      .catch(err => console.error(err, 'Nenhum usuário encontrado'))
+  }, [])
 
   return (
     <>
-      <h2>Lecture Page ID: {lectureId}</h2>
-      <Row justify='center'>
-        <Col span={16}>
-          <div>
-            <h1>Lecture Title 22</h1>
-          </div>
-          <div>
-            <h2 style={{ fontWeight: 300 }}>Descrição da palestra</h2>
-            <p style={{ textAlign: 'justify'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Praesent et vestibulum massa, efficitur malesuada elit.
-            Nullam urna turpis, convallis ut tincidunt non, ultrices sit amet libero.
-            Donec non massa ex. Morbi enim sem, finibus a tristique at, viverra vel urna.
-            Mauris a urna tempor, luctus tellus eget, pulvinar lacus.
-            Donec ex lorem, auctor vitae luctus at, convallis vitae ipsum.
-            Maecenas imperdiet tempor dui eu rhoncus.
-            Integer viverra mauris ut mattis finibus.
-            Proin eget metus euismod, iaculis felis in, mattis risus.
-            Nunc in nunc blandit, blandit elit at, porta orci.
-            Aenean lobortis tincidunt porta.
-            Vivamus vulputate diam quis orci porta ultrices.
-            Phasellus nec sapien turpis. Duis nec eros molestie,
-            tristique massa eu, accumsan nisl.
-                   Vivamus aliquam lorem volutpat, convallis leo hendrerit, malesuada magna.</p>
-          </div>
-          <div>
-            <Button>Editar</Button>
-          </div>
-        </Col>
-      </Row>
+      { loadingData ?
+        (
+          <Row gutter={[16, 24]}>
+            <Spin size='large' />
+          </Row>
+        )
+          :
+        (
+          <>
+          <Row gutter={[16, 24]}>
+            <Divider orientation='left'>
+              {lecture.activityTitle}
+            </Divider>
+          </Row>
+          <Row justify='center' className='row-table'>
+            <Descriptions layout='vertical'>
+              <Item label='Descrição' span={3}>
+                {lecture.activityDescription}
+              </Item>
+              <Item label='Apresentação do Palestrante' span={3}>
+                {lecture.apresentation}
+              </Item>
+            </Descriptions>
+          </Row>
+          <Row justify='center' className='row-table'>
+            <Button type='primary'>Editar</Button>
+          </Row>
+          </>
+        )
+      }
     </>
   )
 }
