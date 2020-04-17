@@ -43,3 +43,37 @@
 .ant-divider {
   padding: 20px 70px 0 !important;
 }
+
+.image-upload,
+.ant-form-item-label > label {
+  font-weight: bold;
+  color: #1A5A79 !important;
+}
+
+.ant-btn-primary {
+  background-color: #1A5A79CC !important;
+  border-color: #1A5A79CC !important;
+  color: #fff !important;
+  padding: 0px 7px !important;
+}
+
+.ant-btn-default {
+  border-color: #1A5A79CC !important;
+  color: #1A5A79 !important;
+}
+
+.ant-radio-group,
+.ant-radio-group-outline {
+  display: grid !important;
+}
+
+.ant-card-meta-title,
+.ant-descriptions-item-label,
+.ant-form-vertical .ant-form-item-label > label {
+  color: #1A5A79 !important;
+  font-weight: bold !important;
+}
+
+.ant-descriptions-item-content {
+  font-style: italic !important;
+}

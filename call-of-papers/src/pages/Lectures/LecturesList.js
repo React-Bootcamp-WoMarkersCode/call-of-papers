@@ -1,24 +1,32 @@
-import React from 'react'
-import { List, Col } from 'antd'
-import { Row, Divider, Tag } from 'antd'
+import React, { useState, useEffect } from 'react'
+import { Row, Divider, Tag, Button, Typography, Spin } from 'antd'
 import { Link } from 'react-router-dom'
+import { getEnvironment } from './../../utils/environment'
 import TableComponent from '../../components/Table'
-import data from './lectures-list-test.json'
 import './lectures-list.scss'
+
+const { Paragraph } = Typography
 
 const columnsTable = [
   {
     title: 'Título',
-    dataIndex: 'title',
+    dataIndex: 'activityTitle',
     key: 'title',
     width: '20%',
     className: 'title-cell'
   },
   {
     title: 'Descrição',
-    dataIndex: 'description',
+    dataIndex: 'activityDescription',
     key: 'description',
-    width: '55%'
+    width: '55%',
+    render: status => {
+      return (
+        <Paragraph ellipsis={{ rows: 2, expandable: false }} >
+          {status}
+        </Paragraph>
+      );
+    }
   },
   {
     title: 'Status',
@@ -48,28 +56,58 @@ const columnsTable = [
     key: 'id',
     render: (key) => (
       <span>
-        <Link to={`/events/${key}`}>Mais detalhes</Link>
+        <Link to={`/lectures/${key}`}>Mais detalhes</Link>
       </span>
     )
   },
 ]
 
 const LecturesList = () => {
+  const [ lectures, setLectures ] = useState([])
+  const [ loadingData, setLoadingData ] = useState(true)
+  const environment = getEnvironment()
+  const userName = localStorage.getItem('userName')
+
+  useEffect(() => {
+    fetch(`${environment}/lectures`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(userName)
+        let filter = data.filter(lecture => lecture.name === userName)
+        console.log(filter)
+        setLectures(filter)
+      })
+      .then(setLoadingData(false))
+      .catch(err => console.error(err, 'Nenhum usuário encontrado'))
+  }, [])
+
   return (
     <>
-      <Row gutter={[16, 24]}>
-        <Divider orientation="left">
-          Minhas palestras
-        </Divider>
-      </Row>
-      <Col offset={19}>
-        <button>
-          <Link to='/download-lectures'><span style={{color: 'black'}}>Download csv</span></Link>
-        </button>
-      </Col>
-      <Row justify="center" className='row-table'>
-        <TableComponent columns={columnsTable} dataSource={data} />
-      </Row>
+      { loadingData ?
+        (
+          <Row gutter={[16, 24]}>
+            <Spin size='large' />
+          </Row>
+        )
+          :
+        (
+          <>
+            <Row gutter={[16, 24]}>
+              <Divider orientation="left">
+                Minhas palestras
+              </Divider>
+            </Row>
+            <Row justify="end" className='row-table'>
+              <Button type='default'>
+                <Link to='/download-lectures'><span>Faça o download de suas palestras!</span></Link>
+              </Button>
+            </Row>
+            <Row justify="center" className='row-table'>
+              <TableComponent columns={columnsTable} dataSource={ loadingData ? [] : lectures } />
+            </Row>
+          </>
+        )
+      }
     </>
   )
 }

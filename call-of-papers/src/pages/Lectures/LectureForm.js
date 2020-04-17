@@ -1,367 +1,256 @@
-import React, { useState } from 'react'
-import { useFormik } from 'formik'
-import { Form, Input, Row, Col, Button, Select, Radio, Checkbox} from 'antd'
-
+import React, { useState, useEffect } from 'react'
+import { Row, Button, Divider, Upload } from 'antd'
+import { UploadOutlined } from '@ant-design/icons'
+import { getEnvironment } from './../../utils/environment'
 import './lectures-list.scss'
+import { Formik } from 'formik'
+import {
+	Checkbox,
+	Input,
+	Radio,
+	Select,
+	Form
+} from 'formik-antd'
 
 const { TextArea } = Input
-const { Option } = Select
 
 const LectureForm = () => {
+	let [ profile, setProfile ] = useState([])
+	const environment = getEnvironment()
+	const [ imageUpload, setImageUpload ] = useState()
+ 	let userEmail = localStorage.getItem('userEmail')
+	let userPicture = localStorage.getItem('userPicture')
 
-  const environment = 'http://localhost:3001'
+	const handleUpload = event => {
+		const file = event.target.files[0]
+		const reader = new FileReader()
+		reader.readAsDataURL(file)
+		reader.onload = function () {
+			setImageUpload(reader.result)
+		}
+		reader.onerror = function (error) {
+		console.log('Error: ', error)
+		}
+	}
 
-  const [valuesRadio, setRadioValues] = useState()
-  const [valuesCheck, setCheckValues] = useState()
-  const [valuesSelect, setSelectValues] = useState()
-  const [imageUpload, setImageUpload] = useState()
-
-  const onChangeSelect = (selectValues) => {
-    setSelectValues(selectValues)
+  const handleSubmit = (values) => {
+		fetch(`${environment}/lectures`, {
+      method: 'post',
+      headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify(values)
+    }).then(function (response) {
+        alert('Atividade cadastrada com sucesso!')
+        return response.json()
+    }).catch(function (error) {
+        alert(`Erro ao cadastrar: ${error}`)
+    })
   }
-  const onChange = (radioValues) => {
-    setRadioValues(radioValues.target.value)
-  }
-  const onChangeCheck = (checkedValues) => {
-    setCheckValues(checkedValues)
-  }
 
-  const onChangeHandler = (event) => {
-    const file = event.target.files[0]
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onload = function () {
-      setImageUpload(reader.result)
-    };
-    reader.onerror = function (error) {
-      console.log('Error: ', error)
-    }
-  }
+  useEffect(() => {
+    fetch(`${environment}/profiles`)
+      .then(res => res.json())
+      .then(data => {
+        setProfile(data.find(profile => profile.id === localStorage.getItem('userId')))
+      })
+      .catch(err => console.error(err, 'Nenhum usuário encontrado'))
+  }, [])
 
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      email: '',
-      rg: '',
-      cpf: '',
-      cellphone: '',
-      adress: '',
-      cep: '',
-      miniBio: '',
-      linkedin: '',
-      facebook: '',
-      twitter: '',
-      instagram: '',
-      youtube: '',
-      portfolio: '',
-      activityTitle: '',
-      activityDescription: '',
-      uploadedImage: '',
-    },
+	if (!userEmail) {
+		userEmail = ''
+	}
 
-    onSubmit: (values) => {
-      fetch(`${environment}/lectures`, {
-        method: 'post',
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            'Access-Control-Allow-Origin': '*'
-        },
-        body: JSON.stringify(values)
-        }).then(function (response) {
-            alert('Atividade cadastrada com sucesso!')
-            return response.json();
-        }).catch(function (error) {
-            alert(`Erro ao cadastrar: ${error}`)
-        })
-    },
-  })
+	profile = {
+		...profile,
+		userPicture,
+		name: localStorage.getItem('userName'),
+		email: '',
+		instagram: '',
+		youtube: '',
+		portfolio: '',
+		activityTitle: '',
+		activityDescription: '',
+		activityId: '',
+		uploadedImage: imageUpload,
+		activityType: '',
+		activityCategory: [],
+    haveLecturedBefore: '',
+    status: 'em análise'
+	}
 
-  formik.values = Object.assign(
-    formik.values,
-    {
-      'uploadedImage': imageUpload
-    },
-    {
-      'activityType': valuesRadio
-    },
-    {
-      'activityCategory':valuesCheck
-    },
-    {
-      'haveLecturedBefore': valuesSelect
-    }, {
-      'id': (Math.floor(Math.random() * 1000)).toString()
-    }
-  )
+	return (
+		<>
+			<Row gutter={[ 16, 24 ]}>
+				<Divider orientation="left">Submissão de atividades</Divider>
+			</Row>
+			<Row justify="center" style={{ marginBottom: 20 }}>
+				Para participar, basta preencher o formulário e aguardar o contato da equipe organizadora do evento
+			</Row>
+			<Row justify="center" className="row-table">
+				<Formik
+					initialValues={profile}
+					onSubmit={handleSubmit}
+					enableReinitialize={true}
+					render={(formik) => (
+						<Form layout="vertical" style={{ width: '70%' }}>
+							<div className="container">
+								<div className="component-container">
+									{/* Nome completo */}
+									<Form.Item
+										label="Nome completo:"
+										name="name"
+										rules={[ { required: true, message: 'Por favor, insira seu nome completo!' } ]}
+									>
+										<Input name="name" />
+									</Form.Item>
 
-  return (
-    <div className='listed'>
-      <Row>
-        <Col span={16} offset={4}>
-          <h2>Submissão de atividades</h2>
-          <p>Para participar, basta preencher o formulário e aguardar o contato da equipe organizadora do evento.</p>
-        </Col>
-      </Row>
-      <Row style={{ marginBottom: 30 }}>
-        <Col span={14} offset={5}>
-          <Form onFinish={formik.handleSubmit}
-            // {...layout}
-            layout="vertical"
-          >
+									{/* Email */}
+									<Form.Item
+										label="Email:"
+										name="email"
+										rules={[ { type: 'email', required: true, message: 'Por favor, insira um email válido!' } ]}
+									>
+										<Input name="email" />
+									</Form.Item>
 
-            {/* Nome completo */}
+									{/* Minibiografia */}
+									<Form.Item label="Minibiografia:" name="apresentation">
+										<TextArea rows={4} name="apresentation" />
+									</Form.Item>
 
-            <Form.Item
-              label="Nome completo:"
-              name="name"
-            rules={[{ required: true, message: 'Por favor, insira seu nome completo!' }]}
-            >
-              <Input
-                {...formik.getFieldProps("name")}
-              />
-            </Form.Item>
+									{/* Linkedin */}
+									<Form.Item label="Linkedin:" name="linkedinLink">
+										<Input name="linkedinLink" />
+									</Form.Item>
 
-            {/* Email */}
+									{/* Facebook */}
+									<Form.Item label="Facebook:" name="facebookLink">
+										<Input name="facebookLink" />
+									</Form.Item>
 
-            <Form.Item
-              label="Email:"
-              name="email"
-            rules={[{ type: 'email', required: true, message: 'Por favor, insira um email válido!' }]}
-            >
-              <Input
-                {...formik.getFieldProps("email")}
-              />
-            </Form.Item>
+									{/* Twitter */}
+									<Form.Item label="Twitter:" name="twitterLink">
+										<Input name="twitterLink" />
+									</Form.Item>
 
-            {/* RG */}
+									{/* Instagram */}
+									<Form.Item label="Instagram:" name="instagram">
+										<Input name="instagram" />
+									</Form.Item>
 
-            <Form.Item
-              label="RG:"
-              name="rg"
-            rules={[{ required: true, message: 'Por favor, insira um RG válido!' }]}
-            >
-              <Input
-                maxLength={9}
-                {...formik.getFieldProps("rg")}
-              />
-            </Form.Item>
+									{/* Youtube */}
+									<Form.Item label="Youtube:" name="youtube">
+										<Input name="youtube" />
+									</Form.Item>
 
-            {/* Cpf */}
-            <Form.Item
-              label="CPF:"
-              name="cpf"
-            rules={[{ required: true, message: 'Por favor, insira um CPF válido!' }]}
-            >
-              <Input
-                maxLength={11}
-                {...formik.getFieldProps("cpf")}
-              />
-            </Form.Item>
+									{/* Link de algum trabalho relevante */}
+									<Form.Item label="Github:" name="githubLink">
+										<Input name="githubLink" />
+									</Form.Item>
 
-            {/* Telefone celular */}
+									{/* Já ministrou alguma atividade em eventos?  */}
+									<Form.Item label="Já ministrou alguma atividade em eventos?" name="haveLecturedBefore">
+										<Select name="haveLecturedBefore" style={{ width: '30%' }}>
+											<Select.Option value={'Sim'}>Sim</Select.Option>
+											<Select.Option value={'Não'}>Não</Select.Option>
+										</Select>
+									</Form.Item>
 
-            <Form.Item
-              label="Telefone celular:"
-              name="cellphone"
-            rules={[{ required: true, message: 'Por favor, insira um número de celular válido!' }]}
-            >
-              <Input
-                maxLength={11}
-                {...formik.getFieldProps("cellphone")}
-              />
-            </Form.Item>
+									{/* Tipo de atividade proposta */}
+									<Form.Item
+										label="Tipo de atividade proposta:"
+										name="activityType"
+										rules={[ { required: true, message: 'Por favor, informe um tipo de atividade' } ]}
+									>
+										<Radio.Group
+											name="activityType"
+											options={[
+												{ label: 'Palestra (1 palestrante)', value: 'Palestra' },
+												{ label: 'Painel (1 moderador + até 3 painelistas)', value: 'Painel' },
+												{ label: 'Workshop (1 palestrante + até 2 facilitadores)', value: 'Workshop' }
+											]}
+										/>
+									</Form.Item>
 
-            {/* Endereço */}
+									{/* Segmento da atividade proposta */}
+									<Form.Item
+										label="Categoria da atividade proposta:"
+										name="activityCategory"
+										rules={[ { required: true, message: 'Por favor, informe pelo menos uma categoria!' } ]}
+									>
+										<Checkbox.Group
+											style={{ textAlign: 'left' }}
+											name="activityCategory"
+										>
+											<Checkbox style={({ display: 'block' }, { marginLeft: '8px' })} value="Segurança">
+												Segurança
+											</Checkbox>
+											<Checkbox
+												style={{ display: 'block' }}
+												value="Criatividade/ Design / Entretenimento/ Marketing Digital"
+											>
+												Criatividade/Design/ Entretenimento/Marketing Digital
+											</Checkbox>
+											<Checkbox style={{ display: 'block' }} value="Empreendedorismo">
+												Empreendedorismo
+											</Checkbox>
+											<Checkbox style={{ display: 'block' }} value="IoT">
+												IoT (Internet of Things)
+											</Checkbox>
+											<Checkbox style={{ display: 'block' }} value="Realidade Virtual/Realidade Aumentada">
+												Realidade Virtual/Realidade Aumentada
+											</Checkbox>
+											<Checkbox style={{ display: 'block' }} value="Biohacking/Cyborg">
+												Biohacking/Cyborg
+											</Checkbox>
+											<Checkbox style={{ display: 'block' }} value="Big Data e Machine Learning">
+												Big Data e Machine Learning
+											</Checkbox>
+										</Checkbox.Group>
+									</Form.Item>
 
-            <Form.Item
-              label="Endereço:"
-              name="adress"
-            rules={[{ required: true, message: 'Por favor, insira um endereço válido!' }]}
-            >
-              <Input
-                {...formik.getFieldProps("adress")}
-              />
-            </Form.Item>
+									{/* Título da atividade proposta */}
+									<Form.Item
+										label="Título da atividade proposta:"
+										name="activityTitle"
+										rules={[ { required: true, message: 'Por favor, insira um título para a atividade!' } ]}
+									>
+										<Input name="activityTitle" />
+									</Form.Item>
 
-            {/* CEP */}
+									{/* Descrição da atividade proposta */}
+									<Form.Item
+										label="Descrição da atividade proposta:"
+										name="activityDescription"
+										rules={[ { required: true, message: 'Por favor, insira uma descrição para a atividade!' } ]}
+									>
+										<TextArea
+											rows={4}
+											name="activityDescription"
+										/>
+									</Form.Item>
 
-            <Form.Item
-              label="CEP:"
-              name="cep"
-            rules={[{ required: true, message: 'Por favor, insira um CEP válido!' }]}
-            >
-              <Input
-                maxLength={11}
-                {...formik.getFieldProps("cellphone")}
-              />
-            </Form.Item>
+									<form>
+										<label className='image-upload'>
+											Upload de identidade visual da sua atividade:
+											<input type="file" name="uploadedImage" onChange={handleUpload} />
+										</label>
+									</form>
 
-            {/* Minibiografia */}
-
-            <Form.Item
-              label="Minibiografia:"
-              name="miniBio"
-            >
-              <TextArea
-                rows={4}
-                {...formik.getFieldProps("miniBio")}
-              />
-            </Form.Item>
-
-            {/* Linkedin */}
-
-            <Form.Item
-              label="Linkedin:"
-              name="linkedin"
-            >
-              <Input
-                {...formik.getFieldProps("linkedin")}
-              />
-            </Form.Item>
-
-            {/* Facebook */}
-
-            <Form.Item
-              label="Facebook:"
-              name="facebook"
-            >
-              <Input
-                {...formik.getFieldProps("facebook")}
-              />
-            </Form.Item>
-
-            {/* Twitter */}
-
-            <Form.Item
-              label="Twitter:"
-              name="twitter"
-            >
-              <Input
-                {...formik.getFieldProps("twitter")}
-              />
-            </Form.Item>
-
-            {/* Instagram */}
-
-            <Form.Item
-              label="Instagram:"
-              name="instagram"
-            >
-              <Input
-                {...formik.getFieldProps("instagram")}
-              />
-            </Form.Item>
-
-            {/* Youtube */}
-
-            <Form.Item
-              label="Youtube:"
-              name="youtube"
-            >
-              <Input
-                {...formik.getFieldProps("youtube")}
-              />
-            </Form.Item>
-
-            {/* Link de algum trabalho relevante */}
-            <Form.Item
-              label="Link de algum trabalho relevante:"
-              name="portfolio"
-            >
-              <Input
-                {...formik.getFieldProps("portfolio")}
-              />
-            </Form.Item>
-
-            {/* Já ministrou alguma atividade em eventos?  */}
-            <Form.Item name="haveLecturedBefore" label="Já ministrou alguma atividade em eventos?"
-            >
-              <Select
-                placeholder="Selecione uma opção"
-                onChange={onChangeSelect}
-              // {...formik.getFieldProps("haveLecturedBefore")}
-              >
-                <Option value={"Sim"} >Sim</Option>
-                <Option value="Não" >Não</Option>
-              </Select>
-            </Form.Item>
-
-            {/* Tipo de atividade proposta */}
-
-            <Form.Item name="activityType" label="Tipo de atividade proposta:"
-            rules={[{ required: true, message: 'Por favor, informe um tipo de atividade' }]}
-            >
-              <Radio.Group style={{ textAlign: 'left' }}
-                onChange={onChange}
-              >
-                <Radio style={{ display: 'block' }} value="Palestra" >Palestra (1 palestrante)</Radio>
-                <Radio style={{ display: 'block' }} value="Painel" >Painel (1 moderador + até 3 painelistas)</Radio>
-                <Radio style={{ display: 'block' }} value="Workshop" >Workshop (1 palestrante + até 2 facilitadores)</Radio>
-              </Radio.Group>
-            </Form.Item>
-
-            {/* Segmento da atividade proposta */}
-
-            <Form.Item name="activityCategory" label="Categoria da atividade proposta:"
-            rules={[{ required: true, message: 'Por favor, informe pelo menos uma categoria!' }]}
-            >
-              <Checkbox.Group style={{ textAlign: 'left' }}
-                onChange={onChangeCheck}
-              >
-                <Checkbox style={{ display: 'block' }, { marginLeft: '8px' }} value="Segurança" >Segurança</Checkbox>
-                <Checkbox style={{ display: 'block' }} value="Criatividade/ Design / Entretenimento/ Marketing Digital" >Criatividade/Design/ Entretenimento/Marketing Digital</Checkbox>
-                <Checkbox style={{ display: 'block' }} value="Empreendedorismo" >Empreendedorismo</Checkbox>
-                <Checkbox style={{ display: 'block' }} value="IoT" >IoT (Internet of Things)</Checkbox>
-                <Checkbox style={{ display: 'block' }} value="Realidade Virtual/Realidade Aumentada" >Realidade Virtual/Realidade Aumentada</Checkbox>
-                <Checkbox style={{ display: 'block' }} value="Biohacking/Cyborg" >Biohacking/Cyborg</Checkbox>
-                <Checkbox style={{ display: 'block' }} value="Big Data e Machine Learning" >Big Data e Machine Learning</Checkbox>
-              </Checkbox.Group>
-            </Form.Item>
-
-            {/* Título da atividade proposta */}
-
-            <Form.Item
-              label="Título da atividade proposta:"
-              name="activityTitle"
-            rules={[{ required: true, message: 'Por favor, insira um título para a atividade!' }]}
-            >
-              <Input
-                {...formik.getFieldProps("activityTitle")}
-              />
-            </Form.Item>
-
-            {/* Descrição da atividade proposta */}
-
-            <Form.Item
-              label="Descrição da atividade proposta:"
-              name="activityDescription"
-            rules={[{ required: true, message: 'Por favor, insira uma descrição para a atividade!' }]}
-            >
-              <TextArea
-                rows={4}
-                {...formik.getFieldProps("activityDescription")}
-              />
-            </Form.Item>
-
-            {/* Upload de imagem */}
-            <Form.Item
-              label="Upload de identidade visual da sua atividade:"
-            >
-              <input type="file" name="file" onChange={onChangeHandler}/>
-            </Form.Item>
-            {/* Botão de envio do formulário */}
-
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-                Enviar
-              </Button>
-            </Form.Item>
-          </Form>
-        </Col>
-      </Row>
-    </div>
-  )
+                  <Button type='primary' htmlType='submit'>
+                    Enviar
+                  </Button>
+								</div>
+							</div>
+						</Form>
+					)}
+				/>
+			</Row>
+		</>
+	)
 }
 
 export default LectureForm
