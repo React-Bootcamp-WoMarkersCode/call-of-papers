@@ -1,10 +1,11 @@
 import React from 'react'
-import { List, Col } from 'antd'
-import { Row, Divider, Tag } from 'antd'
+import { Row, Divider, Tag, Button, Typography } from 'antd'
 import { Link } from 'react-router-dom'
 import TableComponent from '../../components/Table'
 import data from './lectures-list-test.json'
 import './lectures-list.scss'
+
+const { Paragraph } = Typography
 
 const columnsTable = [
   {
@@ -18,7 +19,14 @@ const columnsTable = [
     title: 'Descrição',
     dataIndex: 'description',
     key: 'description',
-    width: '55%'
+    width: '55%',
+    render: status => {
+      return (
+        <Paragraph ellipsis={{ rows: 2, expandable: false }} >
+          {status}
+        </Paragraph>
+      );
+    }
   },
   {
     title: 'Status',
@@ -48,7 +56,7 @@ const columnsTable = [
     key: 'id',
     render: (key) => (
       <span>
-        <Link to={`/events/${key}`}>Mais detalhes</Link>
+        <Link to={`/lectures/${key}`}>Mais detalhes</Link>
       </span>
     )
   },
@@ -62,11 +70,11 @@ const LecturesList = () => {
           Minhas palestras
         </Divider>
       </Row>
-      <Col offset={19}>
-        <button>
-          <Link to='/download-lectures'><span style={{color: 'black'}}>Download csv</span></Link>
-        </button>
-      </Col>
+      <Row justify="end" className='row-table'>
+        <Button type='default'>
+          <Link to='/download-lectures'><span>Faça o download de suas palestras!</span></Link>
+        </Button>
+      </Row>
       <Row justify="center" className='row-table'>
         <TableComponent columns={columnsTable} dataSource={data} />
       </Row>
