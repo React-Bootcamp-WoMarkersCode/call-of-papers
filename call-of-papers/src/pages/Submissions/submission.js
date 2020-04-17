@@ -1,30 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { Row, Col, Select, Avatar, Button } from 'antd'
-import { FolderOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined, InstagramOutlined, YoutubeOutlined } from '@ant-design/icons';
+import { Row, Col, Select, Avatar, Button, Divider, Descriptions, Spin } from 'antd'
+import { FolderOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined, InstagramOutlined, YoutubeOutlined } from '@ant-design/icons'
 import './style.scss'
 
-const { Option } = Select;
+const { Option } = Select
+const { Item } = Descriptions
 
 const Submission = () => {
 	let { submissionId } = useParams()
 	const [api, setApi] = useState([])
 	const [status, setStatus] = useState('')
-	const [habilitado, setHabilitado] = useState(false)
 	let userPicture = localStorage.getItem('userPicture')
-	const environment = 'http://localhost:3001';
+	const environment = 'http://localhost:3001'
 
 	useEffect(() => {
 		fetch(`${environment}/lectures/${submissionId}`)
 			.then(res => res.json())
 			.then(data => {
-				setApi(data)
-			})
+        setApi(data)
+        setStatus(data.status)
+      })
 			.catch(err => console.error(err, 'Nenhuma palestra por aqui!'))
-	}, [])
-	const handleChange = () => {
-		api.status = status;
-		setHabilitado(true)
+  }, [])
+
+  function handleChange(value) {
+    setStatus(value)
+  }
+
+	const submitEvaluation = () => {
+    api.status = status
+
 		fetch(`${environment}/lectures/${submissionId}`, {
 			method: 'put',
 			headers: {
@@ -38,6 +44,11 @@ const Submission = () => {
 
 	return (
 		<>
+      <Row gutter={[16, 24]}>
+        <Divider orientation="left">
+          Avaliação de Atividade
+        </Divider>
+      </Row>
 			<Row justify='center'>
 				<Col span={4} style={{ textAlign: 'center', paddingRight: '10px' }}>
 					<br />
@@ -71,45 +82,38 @@ const Submission = () => {
 
 				</Col>
 				<Col span={12}>
-					<div>
-						<h1>{api.activityTitle}</h1>
-					</div>
-					<div style={{ textAlign: 'justify' }}>
-						<h3 className="palestra-infos">Descrição:</h3>
-						<p>{api.activityDescription}</p>
-						<h3 className="palestra-infos">Tipo:</h3>
-						<p>{api.activityType}</p>
-						<h3 className="palestra-infos">Categoria:</h3>
-						<p>{api.activityCategory}</p>
-						<h3 className="palestra-infos">Já palestrou?</h3>
-						<p>{api.haveLecturedBefore}</p>
-					</div>
-					<div>
-						<h3 className="palestra-infos">Status:</h3>
-						{
-							api.status === "in-analysis" ?
-								<Select
-									style={{ width: 150, textTransform: 'uppercase' }}
-									value={api.status}
-									onChange={setStatus}
-									defaultValue={api.status}
-									disabled={habilitado}
-								>
-									<Option value="in-analysis">in-analysis</Option>
-									<Option value="approved">approved</Option>
-									<Option value="rejected">rejected</Option>
-								</Select>
-								:
-								<Select
-									style={{ width: 150, textTransform: 'uppercase' }}
-									value={api.status}
-									defaultValue={api.status}
-									disabled='true'
-								/>
-						}
-
-						<Button onClick={handleChange}>Enviar avaliação</Button>
-					</div>
+        <Descriptions layout="vertical" title={api.activityTitle}>
+          <Item label="Descrição" span={3}>
+            {api.activityDescription? `${api.activityDescription}` : 'Sem dados'}
+          </Item>
+          <Item label="Tipo" span={1}>
+            {api.activityType ? `${(api.activityType)}` : 'Sem dados'}
+          </Item>
+          <Item label="Já palestrou?" span={2}>
+            {api.haveLecturedBefore ? `${(api.haveLecturedBefore)}` : 'Sem dados'}
+          </Item>
+          <Item label="Categorias" span={3}>
+            {api.activityCategory ? `${(api.activityCategory)} e ${(api.activityCategory)}` : 'Sem dados'}
+          </Item>
+          <Item label="Avaliação" span={3}>
+            { api.length !== 0 ?
+              <Select
+                style={{ width: 150, textTransform: 'uppercase' }}
+                value={status}
+                onChange={handleChange}
+              >
+                <Option value="em análise">Em Análise</Option>
+                <Option value="aprovado">Aprovado</Option>
+                <Option value="reprovado">Reprovado</Option>
+              </Select>
+                :
+              <Spin size='large' />
+            }
+          </Item>
+          <Item span={3}>
+            <Button type='primary' onClick={submitEvaluation}>Enviar avaliação</Button>
+          </Item>
+        </Descriptions>
 				</Col>
 			</Row>
 		</>
