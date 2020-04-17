@@ -1,0 +1,1 @@
+{"version":3,"sources":["lectures-list.scss"],"names":[],"mappings":"AAAA,YACE,eAAiB,CAClB,aAGC,iBAAkB,CACnB,kBAGC,QAAS","file":"10.a2049f82.chunk.css","sourcesContent":[".title-cell {\r\n  font-weight: bold;\r\n}\r\n\r\n.status-cell {\r\n  text-align: center;\r\n}\r\n\r\n.status-cell span {\r\n  margin: 0;\r\n}\r\n"]}
