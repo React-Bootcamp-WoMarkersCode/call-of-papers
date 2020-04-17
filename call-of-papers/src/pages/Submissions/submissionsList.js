@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Table, Tag } from 'antd'
+import { Row, Divider, Table, Tag } from 'antd'
 import { Link } from 'react-router-dom'
 
 const columnsTable = [
@@ -28,8 +28,8 @@ const columnsTable = [
         value: 'aprovado'
       },
       {
-        text: 'Rejeitado',
-        value: 'rejeitado'
+        text: 'Reprovado',
+        value: 'reprovado'
       }
     ],
     filterMultiple: false,
@@ -78,14 +78,16 @@ const SubmissionsList = () => {
   }, [])
 
   return (
-    <Row style={{ marginBottom: 30 }}>
-      <Col span={16} offset={4}>
-        <div style={{ marginTop: '30px' }}>
-          <h1>Submissões</h1>
-          <Table columns={columnsTable} dataSource={api} rowKey='id' onFilter />
-        </div>
-      </Col>
-    </Row>
+    <>
+      <Row gutter={[16, 24]}>
+        <Divider orientation="left">
+          Propostas de Atividades
+        </Divider>
+      </Row>
+      <Row justify="center" className='row-table'>
+        <Table columns={columnsTable} dataSource={api} rowKey='id' onFilter />
+      </Row>
+    </>
   )
 }
 
