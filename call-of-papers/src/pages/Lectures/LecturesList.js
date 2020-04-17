@@ -36,9 +36,9 @@ const columnsTable = [
     render: status => {
       let color = '';
 
-      if (status === 'aprovado') {
+      if (status === 'APROVADO') {
         color = 'green';
-      } else if (status === 'em análise') {
+      } else if (status === 'EM ANÁLISE') {
         color = 'geekblue';
       } else {
         color = 'volcano';
@@ -66,15 +66,13 @@ const LecturesList = () => {
   const [ lectures, setLectures ] = useState([])
   const [ loadingData, setLoadingData ] = useState(true)
   const environment = getEnvironment()
-  const userName = localStorage.getItem('userName')
+  const userId = localStorage.getItem('userId')
 
   useEffect(() => {
     fetch(`${environment}/lectures`)
       .then(res => res.json())
       .then(data => {
-        console.log(userName)
-        let filter = data.filter(lecture => lecture.name === userName)
-        console.log(filter)
+        let filter = data.filter(lecture => lecture.userId === userId)
         setLectures(filter)
       })
       .then(setLoadingData(false))
