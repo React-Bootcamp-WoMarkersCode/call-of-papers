@@ -26,12 +26,12 @@ const LectureForm = () => {
 		const reader = new FileReader()
 		reader.readAsDataURL(file)
 		reader.onload = function () {
-			setImageUpload(reader.result)			
+			setImageUpload(reader.result)
 		}
 		reader.onerror = function (error) {
 		console.log('Error: ', error)
 		}
-	}  
+	}
 
   const handleSubmit = (values) => {
 		fetch(`${environment}/lectures`, {
@@ -77,7 +77,8 @@ const LectureForm = () => {
 		uploadedImage: imageUpload,
 		activityType: '',
 		activityCategory: [],
-		haveLecturedBefore: ''
+    haveLecturedBefore: '',
+    status: 'em análise'
 	}
 
 	return (
