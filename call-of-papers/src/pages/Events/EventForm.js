@@ -73,6 +73,7 @@ const EventForm = () => {
 
     bodyApi = {
         event,
+        userId: parseInt(localStorage.getItem('userId')),
         description,
         schedule,
         local,

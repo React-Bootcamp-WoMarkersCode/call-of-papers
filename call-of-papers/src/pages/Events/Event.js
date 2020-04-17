@@ -27,25 +27,6 @@ const Event = () => {
 
   return (
     <>
-      {/* <Row>
-        <Col span={24}>
-          <div className="content-banner">
-            <Col span={17} offset={3}>
-              <Card bordered={false}
-                hoverable
-                style={{ width: '100%' }}
-                cover={
-                  <img alt="banner-event"
-                    src="https://secure.meetupstatic.com/photos/event/7/5/f/3/highres_489930195.jpeg"
-                  />
-                }
-              >
-              </Card>
-            </Col>
-          </div>
-        </Col>
-      </Row> */}
-
       {/* Descrição  */}
       <Row className="content-detalhe">
         <Col span={16} offset={4}>
