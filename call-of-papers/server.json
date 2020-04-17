@@ -2,6 +2,7 @@
   "events": [
     {
       "event": "Carnacodes",
+      "userId": 3036218123066022,
       "description": "Maratona de programação no carnaval de 2021!",
       "schedule": "20 Fevereiro, 08:00",
       "local": "FATEC São Paulo",
@@ -13,6 +14,7 @@
     },
     {
       "event": "C# Bootcamp",
+      "userId": 3036218123066022,
       "description": "Aulas de C#",
       "schedule": "20 Abril, 9:00",
       "local": "FIAP, São Paulo",
@@ -21,6 +23,22 @@
       "limited_spaces": false,
       "partners": [],
       "id": 2
+    },
+    {
+      "event": "Um evento muito legal",
+      "userId": 3036218123066022,
+      "description": "Todos vão querer ir ",
+      "schedule": "30 Fevereiro, 8:00",
+      "local": "Aquário de São Paulo",
+      "organizer": "Mariana",
+      "categories": [
+        "bootcamp"
+      ],
+      "limited_spaces": false,
+      "partners": [
+        "sponsors"
+      ],
+      "id": 3
     }
   ],
   "lectures": [
