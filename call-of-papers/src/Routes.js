@@ -26,7 +26,7 @@ const Routes = props => (
       <Route exact path="/events/form" component={routerProps => <EventForm {...routerProps} />} />
       <Route exact path="/events/form/:eventId" component={routerProps => <EventForm {...routerProps} />} />
       <Route path="/events/:eventId" component={routerProps => <Event {...routerProps} />} />
-      <Route path="/events/partners/:eventId" component={routerProps => <PartnersForm {...routerProps} />} />
+      <Route path="/partners/:eventId" component={routerProps => <PartnersForm {...routerProps} />} />
       <Route exact path="/submissions" component={routerProps => <SubmissionsList {...routerProps} />} />
       <Route exact path="/submissions/:submissionId" component={routerProps => <Submission {...routerProps} />} />
 

@@ -42,7 +42,7 @@ const PartnersForm = () => {
 			</Row>
 			<Row justify="center" className="row-table">
 				<Formik
-					onSubmit={handleSubmit}
+					//onSubmit={handleSubmit}
 					enableReinitialize={true}
 					render={(formik) => (
 						<Form layout="vertical" style={{ width: '70%' }}>
