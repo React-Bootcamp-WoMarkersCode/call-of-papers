@@ -57,7 +57,7 @@ const columnsTable = [
     key: 'id',
     render: (key) => (
       <span>
-        <Link to={`/lectures/${key}`}>Mais detalhes</Link>
+        <Link to={`/submissions/${key}`}>Mais detalhes</Link>
       </span>
     )
   },
