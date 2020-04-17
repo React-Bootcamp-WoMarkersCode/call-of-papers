@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import TableComponent from '../../components/Table'
 import './events-list.scss'
 
+import { getEnvironment } from './../../utils/environment'
+
 const columnsTable = [
   {
     title: 'Data/Horário',
@@ -29,19 +31,26 @@ const columnsTable = [
     key: 'id',
     render: (key) => (
       <span>
-        <Link to={`/events/${key}`}>Mais detalhes</Link>
+        <Link to={`/events/${key}`} onClick={() => localStorage.setItem("idEvent", key)}>Detalhes</Link>
+      </span>
+    )
+  },  {
+    dataIndex: 'id',
+    key: 'id',
+    render: (key) => (
+      <span>
+        <Link to={`/events/form/${key}`} onClick={() => localStorage.setItem("idEvent", key)}>Editar</Link>
       </span>
     )
   },
 ]
-
 const EventsList = () => {
   const [api, setApi] = useState([])
 
-  const environment = 'http://localhost:3001';
+  const environment = getEnvironment();
 
   useEffect(() => {
-    fetch(`${environment}/events`)
+    fetch(`${environment}/events?_limit=15&_page=1`)
       .then(res => res.json())
       .then(data => {
         setApi(data)
@@ -54,6 +63,7 @@ const EventsList = () => {
       <Row gutter={[16, 24]}>
         <Divider orientation='left'>
           Meus eventos
+          <Link id="btn-cadastrar" to="/events/form" onClick={() => localStorage.removeItem('idEvent')}>Cadastre um evento</Link>
         </Divider>
       </Row>
       <Row justify='center' gutter={[16, 24]} className='row-table'>
