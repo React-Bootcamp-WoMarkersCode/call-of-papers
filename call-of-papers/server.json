@@ -7,9 +7,9 @@
       "schedule": "20 Fevereiro, 08:00",
       "local": "FATEC São Paulo",
       "organizer": "Mariana",
-      "categories": ["bootcamp"],
-      "limited_spaces": false,
-      "partners": ["sponsors", "comunidades", "universidade", "startup"],
+      "categories": [],
+      "limited_spaces": true,
+      "partners": [],
       "id": 1
     },
     {

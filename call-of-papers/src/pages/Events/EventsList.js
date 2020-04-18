@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Divider, Button } from 'antd'
+import { Row, Divider } from 'antd'
 import { Link } from 'react-router-dom'
 import TableComponent from '../../components/Table'
 import './events-list.scss'
@@ -50,7 +50,7 @@ const EventsList = () => {
   const environment = getEnvironment();
 
   useEffect(() => {
-    fetch(`${environment}/events?_limit=15&_page=1&userId=${localStorage.getItem("userId")}`)
+    fetch(`${environment}/events?_limit=15&_page=1`)
       .then(res => res.json())
       .then(data => {
         setApi(data)
@@ -63,12 +63,8 @@ const EventsList = () => {
       <Row gutter={[16, 24]}>
         <Divider orientation='left'>
           Meus eventos
+          <Link id="btn-cadastrar" to="/events/form" onClick={() => localStorage.removeItem('idEvent')}>Cadastre um evento</Link>
         </Divider>
-      </Row>
-      <Row justify="end" className='row-table'>
-        <Button type='default'>
-          <Link id="btn-cadastrar" to="/events/form" onClick={() => localStorage.removeItem('idEvent')}><span>Cadastre um evento!</span></Link>
-        </Button>
       </Row>
       <Row justify='center' gutter={[16, 24]} className='row-table'>
         <TableComponent columns={columnsTable} dataSource={api} />

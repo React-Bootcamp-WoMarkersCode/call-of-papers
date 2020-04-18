@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Form, Input, Checkbox, Radio, Button, Divider } from 'antd'
+import { Row, Col, Form, Input, Checkbox, Radio, Button } from 'antd'
 import { useFormik } from 'formik'
 import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router'
@@ -15,8 +15,10 @@ const EventForm = () => {
     //Carrega o id do evento que é passado pela url
     let { eventId } = useParams()
 
+    console.log(eventId)
+
     const [values, setValuesChecked] = useState([]);
-    const [radio, setValuesRadio] = useState(true);
+    const [radio, setValuesRadio] = useState(false);
     const [partner, setValuesPartner] = useState([]);
 
     // Se já houver evento com o id, ou seja, se for uma edição, os dados será carregados nessa variável
@@ -34,7 +36,7 @@ const EventForm = () => {
             .catch(err => console.error(err, 'Nenhum evento por aqui!'))
     }, [])
 
-    let valoresIniciais   
+    let valoresIniciais
 
     // Se tiver o id do evento na url é uma edição e os dados antigos devem ser carregados
     eventId ? valoresIniciais = dados : valoresIniciais = {
@@ -44,7 +46,7 @@ const EventForm = () => {
         schedule: '',
         organizer: '',
         categories: [],
-        limited_spaces: true,
+        limited_spaces: radio,
         partners: [],
         dados,
     }
@@ -58,8 +60,8 @@ const EventForm = () => {
         setValuesChecked(categories)
         formik.values.categories = categories
     }
-    const onChangeSpaces = (spaces) => {       
-        setValuesRadio(spaces.target.value);        
+    const onChangeSpaces = (spaces) => {
+        setValuesRadio(spaces.target.value);
         formik.values.limited_spaces = spaces.target.value
     }
     const onChangePartners = (partners) => {
@@ -79,7 +81,11 @@ const EventForm = () => {
         categories: values,
         limited_spaces: radio,
         partners: partner
-    }   
+    }
+
+    console.log(formik.values);
+    console.log('radio', radio)
+    console.log('check', formik.values.categories)
 
     const history = useHistory();
 
@@ -125,19 +131,13 @@ const EventForm = () => {
     }
 
     return (
-      <>
-        <Row gutter={[16, 24]}>
-          <Divider orientation='left'>
-            {
-              eventId ?
-                  `Edite o evento - ${formik.values.event}` :
-                  `Crie um evento`
-            }
-          </Divider>
-        </Row>
         <Row style={{ marginTop: 30 }}>
             <Col span={16} offset={4}>
-
+                {
+                    eventId ?
+                        <h1>Edite o evento</h1> :
+                        <h1>Crie um evento</h1>
+                }
                 <Form layout="vertical">
 
                     {/* Nome do evento */}
@@ -264,7 +264,7 @@ const EventForm = () => {
                     <Form.Item
                         label="Vagas limitadas ?"
                         htmlFor="limited_spaces"
-                        rules={[{ required: true }]}>
+                        rules={[{ required: false }]}>
                         <Radio.Group name="limited_spaces" onChange={onChangeSpaces}>
                             <Radio value={true} checked={formik.values.limited_spaces}>Sim</Radio>
                             <Radio value={false} checked={!formik.values.limited_spaces}>Não</Radio>
@@ -281,7 +281,6 @@ const EventForm = () => {
                 </Form>
             </Col>
         </Row>
-      </>
     );
 };
 
