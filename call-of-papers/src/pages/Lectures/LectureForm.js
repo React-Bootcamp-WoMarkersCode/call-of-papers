@@ -1,6 +1,9 @@
 
 import React, { useState, useEffect } from 'react'
+<<<<<<< HEAD
 import { useParams } from 'react-router'
+=======
+>>>>>>> master
 import { Row, Button, Divider } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import './lectures-list.scss'
