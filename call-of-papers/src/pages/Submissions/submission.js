@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import { Row, Col, Select, Avatar, Button, Divider, Descriptions, Spin } from 'antd'
 import { FolderOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined, InstagramOutlined, YoutubeOutlined } from '@ant-design/icons'
 import './style.scss'
+import Email from '../../utils/Email/Email'
 
 const { Option } = Select
 const { Item } = Descriptions
@@ -11,7 +12,6 @@ const Submission = () => {
 	let { submissionId } = useParams()
 	const [api, setApi] = useState([])
 	const [status, setStatus] = useState('')
-	let userPicture = localStorage.getItem('userPicture')
 	const environment = 'http://localhost:3001'
 
 	useEffect(() => {
@@ -39,7 +39,23 @@ const Submission = () => {
 				'Access-Control-Allow-Origin': '*'
 			},
 			body: JSON.stringify(api)
-		})
+    })
+
+    let message = ''
+
+    if (api.status === 'APROVADO') {
+      message =
+        `<p>Olá ${api.name}, tudo bem?</p>
+        <p>Parabéns! A palestra "${api.activityTitle}" foi aprovada. Consulte mais informações no site.</p>
+        <p><i>Call for Papers</i></p>`
+    } else {
+      message =
+        `<p>Olá ${api.name}, tudo bem?</p>
+        <p>Infelizmente a palestra "${api.activityTitle}" foi reprovada. Consulte mais informações no site.</p>
+        <p><i>Call for Papers</i></p>`
+    }
+
+    Email(api.name, api.email, message)
 	}
 
 	return (
@@ -51,11 +67,8 @@ const Submission = () => {
       </Row>
 			<Row justify='center' style={{ marginBottom: '2em' }}>
 				<Col span={4}>
-					<br />
-					<Avatar shape="square" size={50} src={userPicture} />
-					<br />
           <Descriptions layout="vertical">
-            <Item label="Nome" span={3}>
+            <Item label="Palestrante" span={3}>
               {api.name? `${api.name}` : 'Sem dados'}
             </Item>
             <Item label="Telefone" span={3}>

@@ -90,7 +90,11 @@
         "Big Data e Machine Learning"
       ],
       "haveLecturedBefore": "Não",
+<<<<<<< HEAD
       "status": "em análise",
+=======
+      "status": "EM ANÁLISE",
+>>>>>>> master
       "id": "500"
     },
     {
@@ -118,7 +122,7 @@
         "Criatividade/ Design / Entretenimento/ Marketing Digital"
       ],
       "haveLecturedBefore": "Sim",
-      "status": "em análise",
+      "status": "EM ANÁLISE",
       "undefined": true
     }
   ],
