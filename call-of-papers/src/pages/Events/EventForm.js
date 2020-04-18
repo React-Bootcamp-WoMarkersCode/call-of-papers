@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Form, Input, Checkbox, Radio, Button } from 'antd'
+import { Row, Col, Form, Input, Checkbox, Radio, Button, Divider } from 'antd'
 import { useFormik } from 'formik'
 import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router'
@@ -83,10 +83,6 @@ const EventForm = () => {
         partners: partner
     }
 
-    console.log(formik.values);
-    console.log('radio', radio)
-    console.log('check', formik.values.categories)
-
     const history = useHistory();
 
     function onsubmit() {
@@ -131,13 +127,19 @@ const EventForm = () => {
     }
 
     return (
+      <>
+        <Row gutter={[16, 24]}>
+          <Divider orientation='left'>
+            {
+              eventId ?
+                  `Edite o evento - ${formik.values.event}` :
+                  `Crie um evento`
+            }
+          </Divider>
+        </Row>
         <Row style={{ marginTop: 30 }}>
             <Col span={16} offset={4}>
-                {
-                    eventId ?
-                        <h1>Edite o evento</h1> :
-                        <h1>Crie um evento</h1>
-                }
+
                 <Form layout="vertical">
 
                     {/* Nome do evento */}
@@ -281,6 +283,7 @@ const EventForm = () => {
                 </Form>
             </Col>
         </Row>
+      </>
     );
 };
 

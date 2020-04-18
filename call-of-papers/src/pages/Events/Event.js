@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { Row, Col, Card } from 'antd'
+import { Row, Col, Card, Divider } from 'antd'
 import { Link } from 'react-router-dom'
 
 import { getEnvironment } from './../../utils/environment'
@@ -27,6 +27,11 @@ const Event = () => {
 
   return (
     <>
+      <Row gutter={[16, 24]}>
+        <Divider orientation='left'>
+          {event}
+        </Divider>
+      </Row>
       {/* Descrição  */}
       <Row className="content-detalhe">
         <Col span={16} offset={4}>
