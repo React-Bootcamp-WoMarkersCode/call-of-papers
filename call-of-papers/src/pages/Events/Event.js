@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { Row, Col, Card, Divider, Tag } from 'antd'
+import { Row, Col, Card, Divider, Tag, Button } from 'antd'
 import { Link } from 'react-router-dom'
 
 import { getEnvironment } from './../../utils/environment'
@@ -89,6 +89,10 @@ const Event = () => {
                         return(<Tag style={{ marginBottom: '8px' }}>Imprensa</Tag>)
                       })}
                       </p>
+                      <p style={{fontSize: "0.9em"}}>Entre em contato com a organização do evento!</p>
+                      <Link to={`/partners/${eventId}`} >
+                        <Button type="secundary">Seja um parceiro</Button>
+                      </Link>
                       </div>
                     }
               </div>        
@@ -100,7 +104,7 @@ const Event = () => {
                   <Card className="mt-15">
                     <i style={{ textSize: 10 }}>
                       <div>
-                        Organizador(a)
+                        <b>Organizador(a):</b>
                         <span> {organizer}</span>
                       </div>
                     </i>
@@ -140,6 +144,14 @@ const Event = () => {
                     <b>Grátis</b>
                   </Card> : ''
               }
+              <Card className="mt-15">
+                <p><b>Seja um palestrante</b></p>
+                <p>Para participar, inscreva-se através do formulário clicando no link abaixo. Defina o tipo de atividade (palestra, painel ou workshop) e a temática.</p>
+                <div style={{textAlign: "center"}}>
+                  <Link to={`/lectures/form/${eventId}`} >
+                    <Button type="primary">Cadastre uma atividade</Button>
+                  </Link></div>
+              </Card>
             </Col>
           </Row>
         </Col>
