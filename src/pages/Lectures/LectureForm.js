@@ -10,12 +10,14 @@ import {
 	Select,
 	Form
 } from 'formik-antd'
+import { useParams } from 'react-router'
 
 const { TextArea } = Input
 
 const LectureForm = () => {
 	let [ profile, setProfile ] = useState([])
-	const environment = getEnvironment()
+  const environment = getEnvironment()
+  const { eventId } = useParams()
 	let userPicture = localStorage.getItem('userPicture')
 
 	const handleSubmit = (values) => {
@@ -58,7 +60,8 @@ const LectureForm = () => {
 		activityType: '',
 		activityCategory: [],
 		haveLecturedBefore: '',
-		status: 'APROVADO'
+    status: 'APROVADO',
+    eventId: {eventId}
 	}
 
 	return (
