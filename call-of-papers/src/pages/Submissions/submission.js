@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import { Row, Col, Select, Avatar, Button } from 'antd'
 import { FolderOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined, InstagramOutlined, YoutubeOutlined } from '@ant-design/icons';
 import './style.scss'
+import Email from '../../utils/Email/Email'
 
 const { Option } = Select;
 
@@ -11,7 +12,6 @@ const Submission = () => {
     const [api, setApi] = useState([])
     const [status, setStatus] = useState('')
     const [habilitado, setHabilitado] = useState(false)
-    let userPicture = localStorage.getItem('userPicture')
     const environment = 'http://localhost:3001';
 
     useEffect(() => {
@@ -24,6 +24,7 @@ const Submission = () => {
     }, [])
     const handleChange = () => {
         api.status = status;
+        let message = '';
         setHabilitado(true)
         fetch(`${environment}/lectures/${submissionId}`, {
             method: 'put',
@@ -34,15 +35,28 @@ const Submission = () => {
             },
             body: JSON.stringify(api)
         })
+        if(api.status === 'APROVADO'){
+            message = 
+                `<p>Olá ${api.name}, tudo bem?</p>
+                <p>Parabéns! A palestra "${api.activityTitle}" foi aprovada. Consulte mais informações no site.</p>
+                <p><i>Call for Papers</i></p>`
+
+        }
+        else {
+            message = 
+                `<p>Olá ${api.name}, tudo bem?</p>
+                <p>Infelizmente a palestra "${api.activityTitle}" foi reprovada. Consulte mais informações no site.</p>
+                <p><i>Call for Papers</i></p>`
+        }
+        
+        Email(api.name, api.email, message)
+
     }
 
     return (
         <>
             <Row justify='center'>
                 <Col span={4} style={{ textAlign: 'center', paddingRight: '10px' }}>
-                    <br />
-                    <Avatar shape="square" size={50} src={userPicture} />
-                    <br />
                     <p className="palestrante-infos">Nome: {api.name}</p>
                     <p className="palestrante-infos">Telefone: {api.cellphone}</p>
                     <p className="palestrante-infos">Email: {api.email}</p>
@@ -87,7 +101,7 @@ const Submission = () => {
                     <div>
                         <h3 className="palestra-infos">Status:</h3>
                         {
-                            api.status === "in-analysis" ?
+                            api.status === "EM ANÁLISE" ?
                                 <Select
                                     style={{ width: 150, textTransform:'uppercase' }}
                                     value={api.status}
@@ -95,9 +109,9 @@ const Submission = () => {
                                     defaultValue={api.status}
                                     disabled={habilitado}
                                 >
-                                    <Option value="in-analysis">in-analysis</Option>
-                                    <Option value="approved">approved</Option>
-                                    <Option value="rejected">rejected</Option>
+                                    <Option value="EM ANÁLISE">EM ANÁLISE</Option>
+                                    <Option value="APROVADO">APROVADO</Option>
+                                    <Option value="REPROVADO">REPROVADO</Option>
                                 </Select>
                                 :
                                 <Select
