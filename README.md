@@ -49,19 +49,13 @@ Para ver as definições das **páginas**, clique em [aqui]()
   git clone https://github.com/React-Bootcamp-WoMarkersCode/call-of-papers.git
 ```
 
-3. Após clonar, entrar na pasta **call-for-papers**, utilizando o comando abaixo no terminal:
-
-```
-  cd call-for-papers
-```
-
-4. Agora basta **instalar as dependências** do seu projeto, digitando no terminal:
+3. Agora basta **instalar as dependências** do seu projeto, digitando no terminal:
 
 ```
   npm install
 ```
 
-5. E por ultimo dar o comando para **rodar** seu projeto:
+4. E por ultimo dar o comando para **rodar** seu projeto:
 
 ```
   npm start
