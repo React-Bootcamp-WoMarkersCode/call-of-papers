@@ -3,9 +3,9 @@ Plataforma que conecta eventos da comunidade a voluntários(as).
 
 Desenvolvedoras:
 [Alessandra](https://github.com/Alessandra-Nastassja),
-[Fernanda](https://github.com/arfernanda),
-[Isa](https://github.com/IsabellaSoares),
-[Kathleen](https://github.com/kathleenpallotta) e
+[Isabella](https://github.com/IsabellaSoares),
+[Kathleen](https://github.com/kathleenpallotta), 
+[Mariana](https://github.com/matancredi) e
 [Olívia](https://github.com/oliviaresende).
 
 Orientadoras:
