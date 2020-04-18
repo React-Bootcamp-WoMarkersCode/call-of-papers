@@ -61,7 +61,9 @@ const LectureForm = () => {
 		activityCategory: [],
 		haveLecturedBefore: '',
     status: 'APROVADO',
-    eventId: {eventId}
+	eventId: {eventId},
+	id: Math.ceil(Math.random() * Math.pow(10,5)),
+	userId: profile.id
 	}
 
 	return (
