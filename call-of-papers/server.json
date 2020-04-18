@@ -1,101 +1,47 @@
 {
   "events": [
     {
-      "id": 1,
-      "event": "Women Dev Summit",
-      "description": "Workshop/ Bootcamp de tecnologia",
-      "schedule": "21 Mar,07: 30",
-      "local": "Secretaria",
-      "organizer": "",
+      "event": "Carnacodes",
+      "userId": 3036218123066022,
+      "description": "Maratona de programação no carnaval de 2021!",
+      "schedule": "20 Fevereiro, 08:00",
+      "local": "FATEC São Paulo",
+      "organizer": "Mariana",
+      "categories": [],
+      "limited_spaces": true,
+      "partners": [],
+      "id": 1
+    },
+    {
+      "event": "C# Bootcamp",
+      "userId": 3036218123066022,
+      "description": "Aulas de C#",
+      "schedule": "20 Abril, 9:00",
+      "local": "FIAP, São Paulo",
+      "organizer": "Mariana",
+      "categories": [],
+      "limited_spaces": false,
+      "partners": [],
+      "id": 2
+    },
+    {
+      "event": "Um evento muito legal",
+      "userId": 3036218123066022,
+      "description": "Todos vão querer ir ",
+      "schedule": "30 Fevereiro, 8:00",
+      "local": "Aquário de São Paulo",
+      "organizer": "Mariana",
       "categories": [
-        {
-          "id": 1,
-          "category": "Workshop"
-        },
-        {
-          "id": 2,
-          "category": "Bootcamp"
-        },
-        {
-          "id": 3,
-          "category": "Front-end"
-        },
-        {
-          "id": 4,
-          "category": "Back-end"
-        }
+        "bootcamp"
       ],
-      "limited-spaces": "Sim",
+      "limited_spaces": false,
       "partners": [
-        {
-          "id": 1,
-          "partner": "Patrocinador",
-          "avatar": "https://www.avantis.co.in/static/images/categories/homepage/Secretarial/1.png"
-        },
-        {
-          "id": 2,
-          "partner": "Universidade",
-          "avatar": "https://d1ung6i9j8i9xc.cloudfront.net/wp-content/blogs.dir/123/files/2011/05/assets1105040009-256x256.jpg"
-        },
-        {
-          "id": 3,
-          "partner": "Comunidade",
-          "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSe7Sdy65bFzRJEPNMtDLkT5muf0H4Kboq3_Wmpp8cqNBTsDnka"
-        },
-        {
-          "id": 4,
-          "partner": "Startup",
-          "avatar": "https://startup-mannheim.de/wp-content/uploads/2017/11/MG_6323-256x256.jpg"
-        },
-        {
-          "id": 5,
-          "partner": "Palestrante",
-          "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTXhJKK5idHDcO0T0oYbDs6wUpzMfGDe3tr4w4yv4d2gr7l5XuH"
-        },
-        {
-          "id": 6,
-          "partner": "Imprensa",
-          "avatar": "https://d26oc3sg82pgk3.cloudfront.net/files/media/edit/image/4440/square_thumb%402x.jpg"
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "event": "React Bootcamp",
-      "description": "Bootcamp voltado ao Front-end usando a tecnologia React",
-      "schedule": "18 Abril,07: 30",
-      "local": "Online",
-      "organizer": "Laís Lima",
-      "categories": [
-        {
-          "id": 1,
-          "category": "Bootcamp"
-        },
-        {
-          "id": 2,
-          "category": "Front-end"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "event": "Data science Bootcamp",
-      "description": "Bootcamp voltado ao Ciência de Dados.",
-      "schedule": "",
-      "local": "",
-      "organizer": "Cynthia",
-      "categories": [
-        {
-          "id": 1,
-          "category": "Bootcamp"
-        },
-        {
-          "id": 2,
-          "category": "Front-end"
-        }
-      ]
+        "sponsors"
+      ],
+      "id": 3
     }
   ],
+  "candidates": [],
   "lectures": [
     {
       "name": "Olívia Silva Resende",
@@ -119,8 +65,9 @@
         "Big Data e Machine Learning"
       ],
       "haveLecturedBefore": "Não",
-      "status": "rejected",
-      "id": "396"
+      "status": "EM ANÁLISE",
+      "id": "396",
+      "userId": "3154754594535841"
     },
     {
       "name": "Amanda Silva Resende",
@@ -144,457 +91,36 @@
         "Big Data e Machine Learning"
       ],
       "haveLecturedBefore": "Não",
-      "status": "in-analysis",
+      "status": "em análise",
       "id": "500"
     },
     {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
+      "id": "1613191052178209",
+      "email": "email da Isa",
+      "localization": "",
+      "registerDate": "2020-04-13",
+      "apresentation": "Bio da Isa",
+      "githubLink": "Git da Isa",
+      "linkedinLink": "Linkedin da Isa",
+      "twitterLink": "Twitter da Isa",
+      "facebookLink": "Face da Isa",
+      "mediumLink": "",
+      "interests": [],
+      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589672114&hash=AeRlXQLb81cDcWI1",
       "name": "Isabella Soares",
-      "email": "aaaa",
-      "instagram": "aaaaa",
-      "youtube": "aaaaa",
+      "instagram": "Insta da Isa",
+      "youtube": "Canal da Isa",
       "portfolio": "",
-      "activityTitle": "aaaa",
-      "activityDescription": "aaaaa",
+      "activityTitle": "Palestra da Isa",
+      "activityDescription": "Essa é a palestra da Isa",
       "activityId": "",
       "activityType": "Palestra",
       "activityCategory": [
-        "Segurança",
-        "Empreendedorismo",
-        "Realidade Virtual/Realidade Aumentada",
-        "Biohacking/Cyborg"
+        "Criatividade/ Design / Entretenimento/ Marketing Digital"
       ],
       "haveLecturedBefore": "Sim",
-      "miniBio": "aaaaa",
-      "linkedin": "aaaa",
-      "facebook": "aaaa",
-      "twitter": "aaaa",
-      "github": "aaaaa",
-      "undefined": true,
-      "id": "mLZvqcN"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "fSVC7WK"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "aaaaaaaa",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "s8NOIR1"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "Kv-FAj-"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "9uMrmu0"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "Quahewy"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "czUSji8"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "uploadedImage": {},
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "Qjw-BWU"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "uEis3Vr"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "4mkFdZ_"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "s_rclX7"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [
-        "Big Data e Machine Learning",
-        "Biohacking/Cyborg"
-      ],
-      "haveLecturedBefore": "",
-      "undefined": true,
-      "id": "lEaib1w"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "uploadedImage": null,
-      "activityType": "",
-      "activityCategory": [
-        "Biohacking/Cyborg",
-        "Big Data e Machine Learning"
-      ],
-      "haveLecturedBefore": "",
-      "undefined": true,
-      "id": "wbgCOKL"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "uploadedImage": {},
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "ftsE4Bi"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "uploadedImage": {},
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "gGBvp-i"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "uploadedImage": {},
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "tg2lwqz"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "uploadedImage": "teste",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "H8ptnwP"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "uploadedImage": "{}",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "F8x96tT"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "aaaaa",
-      "activityId": "",
-      "uploadedImage": [],
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "XO2Bo9h"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "FI3qjBE"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "uploadedImage": {},
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "YdHa9EB"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "uploadedImage": null,
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "Wtzw-M6"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "8q0zEid"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "mevTesH"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "aaaaaaaa",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "0QcjzFA"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "eMxRrHt"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "3IIjcL2"
-    },
-    {
-      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589511588&hash=AeTahDNfnuXG5HOs",
-      "name": "Isabella Soares",
-      "email": "",
-      "instagram": "",
-      "youtube": "",
-      "portfolio": "",
-      "activityTitle": "",
-      "activityDescription": "",
-      "activityId": "",
-      "activityType": "",
-      "activityCategory": [],
-      "haveLecturedBefore": "",
-      "id": "R_M9K1b"
+      "status": "EM ANÁLISE",
+      "undefined": true
     }
   ],
   "profile": [],

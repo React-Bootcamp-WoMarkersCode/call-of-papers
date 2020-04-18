@@ -1,15 +1,14 @@
 .social-network {
     padding: 5px;
-    
+
 }
 
-.palestrante-infos {
-    font-weight: 300;
-    font-size: 12px;
-    margin: 10px;
-    text-align: justify;
+.ant-col-4 {
+  margin-right: 1em;
+  padding: 1em;
+  background-color: #f3f3f3;
 }
 
-.palestra-infos {
-    font-weight: 300;
+.ant-col-4 .ant-descriptions-row > th {
+  padding-bottom: 0 !important;
 }

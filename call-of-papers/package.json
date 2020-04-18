@@ -9,10 +9,13 @@
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.0.3",
     "concurrently": "^5.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "formik": "^2.1.4",
     "formik-antd": "^2.0.1",
     "json-server": "^0.16.1",
     "node-sass": "^4.13.1",
+    "nodemailer": "^6.4.6",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-facebook-login": "^4.1.1",
@@ -22,7 +25,7 @@
     "react-scripts": "3.4.0"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"json-server --port 3001 --watch server.json\"",
+    "start": "concurrently \"react-scripts start\" \"json-server --port 3001 --watch server.json\" \"node src/utils/Email/server.js\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -57,7 +57,23 @@
   padding: 0px 7px !important;
 }
 
+.ant-btn-default {
+  border-color: #1A5A79CC !important;
+  color: #1A5A79 !important;
+}
+
 .ant-radio-group,
 .ant-radio-group-outline {
-  display: grid;
+  display: grid !important;
+}
+
+.ant-card-meta-title,
+.ant-descriptions-item-label,
+.ant-form-vertical .ant-form-item-label > label {
+  color: #1A5A79 !important;
+  font-weight: bold !important;
+}
+
+.ant-descriptions-item-content {
+  font-style: italic !important;
 }

@@ -5,6 +5,7 @@ const Home = React.lazy(() => import('pages/Home/Home'))
 const Event = React.lazy(() => import('pages/Events/Event'))
 const EventsList = React.lazy(() => import('pages/Events/EventsList'))
 const EventForm = React.lazy(() => import('pages/Events/EventForm'))
+const PartnersForm = React.lazy(() => import('pages/Events/PartnersForm'))
 const Lecture = React.lazy(() => import('pages/Lectures/Lecture'))
 const LecturesList = React.lazy(() => import('pages/Lectures/LecturesList'))
 const LectureForm = React.lazy(() => import('pages/Lectures/LectureForm'))
@@ -24,8 +25,9 @@ const Routes = props => (
 
       <Route exact path="/events" component={routerProps => <EventsList {...routerProps} />} />
       <Route exact path="/events/form" component={routerProps => <EventForm {...routerProps} />} />
+      <Route exact path="/events/form/:eventId" component={routerProps => <EventForm {...routerProps} />} />
       <Route path="/events/:eventId" component={routerProps => <Event {...routerProps} />} />
-
+      <Route path="/partners/:eventId" component={routerProps => <PartnersForm {...routerProps} />} />
       <Route exact path="/submissions" component={routerProps => <SubmissionsList {...routerProps} />} />
       <Route exact path="/submissions/:submissionId" component={routerProps => <Submission {...routerProps} />} />
 

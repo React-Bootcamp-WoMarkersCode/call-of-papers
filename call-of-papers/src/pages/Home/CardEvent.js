@@ -8,9 +8,9 @@ const CardEvent = ({ event }) => {
 	return (
     <Card
       cover={<img alt={event.evento} src={event.img} />}
-      actions={[<Link to="/about">Saiba mais!</Link>]}
+      actions={[<Link to={`/events/${event.id}`}>Saiba mais!</Link>]}
     >
-      <Meta title={event.evento} description={event.data} />
+      <Meta title={event.event} description={[event.schedule, <br/>, event.local]} />
     </Card>
 	);
 }
