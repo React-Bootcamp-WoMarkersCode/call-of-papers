@@ -6,7 +6,7 @@ const requestPayload = {
   description: 'Desvende os segredos do Jest!',
   schedule: '18 Abril, 07:30',
   local: 'FATEC',
-  organizer: 'Call for Papers',
+  organizer: 'Sharing Talks',
   categories: ['frontend'],
   limited_spaces: false,
   partners: ['palestrantes']
@@ -18,7 +18,7 @@ const responsePayload = {
   "description": "Desvende os segredos do Jest!",
   "schedule": "18 Abril, 07:30",
   "local": "FATEC",
-  "organizer": "Call for Papers",
+  "organizer": "Sharing Talks",
   "categories": [
     "frontend"
   ],

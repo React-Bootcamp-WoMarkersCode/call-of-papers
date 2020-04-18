@@ -6,16 +6,16 @@ const About = () => {
       <>
         <Row gutter={[16, 24]}>
           <Divider orientation="left">
-            Sobre <i>Call for Papers</i>
+            Sobre <i>Sharing Talks</i>
           </Divider>
         </Row>
         <Row gutter={[16, 24]} className='home-cards-container'>
           <Col span={16} offset={4} style={{ textAlign: 'justify' }}>
-            <p><i>Call for Papers</i> é uma plataforma para conectar eventos a palestrantes.
+            <p><i>Sharing Talks</i> é uma plataforma para conectar eventos a palestrantes.
               Possibilitando que organizadores criem eventos e encontrem palestrantes que tenham interesse em participar desse evento.
               Os palestrantes podem cadastrar na plataforma as suas propostas de atividades e enviá-las aos organizadores dos eventos.
               Os organizadores também podem divulgar o interesse por patrocinadores e voluntários.</p>
-            <p>A plataforma <i>Call for Papers</i> é o projeto final desenvolvido no <a href='https://womakerscode.org/'><strong>React Bootcamp da WoMakersCode</strong></a> como forma de aplicar os conhecimentos adquiridos ao longo do curso.
+            <p>A plataforma <i>Sharing Talks</i> é o projeto final desenvolvido no <a href='https://womakerscode.org/'><strong>React Bootcamp da WoMakersCode</strong></a> como forma de aplicar os conhecimentos adquiridos ao longo do curso.
               O projeto está disponível no <a href="https://github.com/React-Bootcamp-WoMarkersCode/call-of-papers/tree/master/call-of-papers">GitHub <GithubOutlined />.</a>
             </p>
             <List>

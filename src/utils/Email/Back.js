@@ -24,15 +24,15 @@ router.post('/send', (req, res, next) => {
     var email = req.body.email
     var message = req.body.message
     var content = `${message} `
-  
+
     var mail = {
-      from: 'Call For Papers <callforpapers@hotmail.com>',
-      to: email,  
+      from: 'Sharing Talks <sharingtalks@hotmail.com>',
+      to: email,
       subject: 'Resultado da palestra submetida',
       text: `Olá ${name}, tudo bem?`,
       html: content
     }
-  
+
     transporter.sendMail(mail, (err, data) => {
       if (err) {
         res.json({
@@ -45,5 +45,5 @@ router.post('/send', (req, res, next) => {
       }
     })
   })
-  
+
   module.exports = router;

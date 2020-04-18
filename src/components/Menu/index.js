@@ -23,7 +23,7 @@ const HeaderComponent = () => {
   return (
     <>
       <Link to='/'>
-        <img src={require('../../assets/logo.jpeg')} alt='Call for Papers' className='logo' />
+        <img src={require('../../assets/logo.png')} alt='Sharing Talks' className='logo' />
       </Link>
       {
         !localStorage.getItem('userId') ?

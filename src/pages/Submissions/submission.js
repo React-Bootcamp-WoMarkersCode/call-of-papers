@@ -47,12 +47,12 @@ const Submission = () => {
       message =
         `<p>Olá ${api.name}, tudo bem?</p>
         <p>Parabéns! A palestra "${api.activityTitle}" foi aprovada. Consulte mais informações no site.</p>
-        <p><i>Call for Papers</i></p>`
+        <p><i>Sharing Talks</i></p>`
     } else {
       message =
         `<p>Olá ${api.name}, tudo bem?</p>
         <p>Infelizmente a palestra "${api.activityTitle}" foi reprovada. Consulte mais informações no site.</p>
-        <p><i>Call for Papers</i></p>`
+        <p><i>Sharing Talks</i></p>`
     }
 
     Email(api.name, api.email, message)
