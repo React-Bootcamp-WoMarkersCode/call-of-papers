@@ -5,9 +5,7 @@ Desenvolvedoras:
 [Alessandra](https://github.com/Alessandra-Nastassja),
 [Fernanda](https://github.com/arfernanda),
 [Isa](https://github.com/IsabellaSoares),
-[Kathleen](https://github.com/kathleenpallotta),
-[Lia](),
-[Mariana]() e
+[Kathleen](https://github.com/kathleenpallotta) e
 [Olívia](https://github.com/oliviaresende).
 
 Orientadoras:
@@ -28,7 +26,7 @@ Orientadoras:
 
 ### *Wireframe:*
 
-Para ver as definições das **páginas**, clique em [aqui]()
+Para ver as definições das **páginas**, clique em [aqui](https://www.dropbox.com/s/oatbftoz3ezqgbv/excalidraw-2020321212841.png?dl=0) e [aqui](https://www.dropbox.com/s/j8v504qmhamkups/Untitled-2020-04-14-2108.png?dl=0).
 
 ### *Tecnologias usadas:*
 
@@ -37,8 +35,11 @@ Para ver as definições das **páginas**, clique em [aqui]()
 - [Ant Design](https://ant.design/docs/react/introduce);
 - [Formik](https://jaredpalmer.com/formik/docs/api/formik);
 - [Node](https://nodejs.org/en/);
+- [Nodemailer](https://nodemailer.com/usage/);
 - [Express](https://expressjs.com/pt-br/);
 - [Jest](https://jestjs.io/en/);
+- [Export Excel];
+- [React Login Facebook](https://github.com/keppelen/react-facebook-login);
 
 ****
 ## *Como instalar e rodar ?* 🚀
