@@ -36,9 +36,9 @@ const columnsTable = [
     render: status => {
       let color = '';
 
-      if (status === 'APROVADO') {
+      if (status.toLowerCase() === 'aprovado') {
         color = 'green';
-      } else if (status === 'EM ANÁLISE') {
+      } else if (status.toLowerCase() === 'em análise') {
         color = 'geekblue';
       } else {
         color = 'volcano';
