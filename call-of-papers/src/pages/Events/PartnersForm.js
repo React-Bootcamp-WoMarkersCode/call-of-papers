@@ -53,7 +53,6 @@ const PartnersForm = () => {
 		message: '',
 		id: (Math.floor(Math.random() * 1000)).toString()
 	}
-
 	return (
 		<>
 			<Row gutter={[ 16, 24 ]}>
