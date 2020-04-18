@@ -30,8 +30,9 @@ Para ver as definições das **páginas**, clique em [aqui](https://www.dropbox.
 
 ### *Tecnologias usadas:*
 
-- [React](https://pt-br.reactjs.org/docs/getting-started.html) e [Redux](https://redux.js.org/introduction/getting-started);
+- [React](https://pt-br.reactjs.org/docs/getting-started.html);
 - [React Router](https://reacttraining.com/react-router/web/guides/quick-start);
+- [React Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html);
 - [Ant Design](https://ant.design/docs/react/introduce);
 - [Formik](https://jaredpalmer.com/formik/docs/api/formik);
 - [Node](https://nodejs.org/en/);
