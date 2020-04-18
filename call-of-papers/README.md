@@ -1,12 +1,12 @@
-# Projeto: Call of papers 
+# Projeto: Call of papers
 Plataforma que conecta eventos da comunidade a voluntários(as).
 
 Desenvolvedoras:
 [Alessandra](https://github.com/Alessandra-Nastassja),
 [Fernanda](https://github.com/arfernanda),
 [Isa](https://github.com/IsabellaSoares),
-[Kathleen](https://github.com/kathleenpallotta), 
-[Lia](), 
+[Kathleen](https://github.com/kathleenpallotta),
+[Lia](),
 [Mariana]() e
 [Olívia](https://github.com/oliviaresende).
 
@@ -18,7 +18,7 @@ Orientadoras:
 
 #### React bootcamp @WoMakersCode 🦄
 
-**** 
+****
 ## *Sobre o projeto* ⭐️
 ### *Principais funcionalidades:*
 
@@ -26,7 +26,7 @@ Orientadoras:
 - Visualização e submissão de palestras;
 - Criação de grupos.
 
-### *Wireframe:* 
+### *Wireframe:*
 
 Para ver as definições das **páginas**, clique em [aqui]()
 
@@ -53,7 +53,7 @@ Para ver as definições das **páginas**, clique em [aqui]()
 
 ```
   cd call-of-papers
-``` 
+```
 
 4. Agora basta **instalar as dependências** do seu projeto, digitando no terminal:
 
@@ -68,15 +68,15 @@ Para ver as definições das **páginas**, clique em [aqui]()
 ```
 
  > *Obs: O projeto irá abrir em seu navegador, rodando no http://localhost:3000*
- 
+
  ****
- 
+
  ### Como funciona Json-server ? 🚀
 
-Baseado em um único json que contém **events, lectures e profile**. Pode-se efetuar o GET,POST, PUT e DELETE. Basta apenas escrever **http://localhost:3001/events**, como por exemplo. 
+Baseado em um único json que contém **events, lectures e profile**. Pode-se efetuar o GET,POST, PUT e DELETE. Basta apenas escrever **http://localhost:3001/events**, como por exemplo.
 
 > *Obs.: Ao rodar o projeto, ele irá criar uma API fake em **http://localhost:3001/** e o front **http://localhost:3000/***
- 
+
 *Exemplo:*
 
 Request | URL | Detalhes
@@ -99,12 +99,20 @@ DELETE | /events/1 | Remove o evento
 
 > *Obs.:  Realiza filtro nas palestras aprovadas, trazendo apenas 10 por página*
 
+  ### Como executar os testes usando o Jest ? 🚀
+
+A aplicação possui um exemplo de teste utilizando [Jest](https://jestjs.io/en/)! O teste simula o cadastro de um novo evento. Para vê-lo em ação, basta executar o seguinte comando:
+
+```
+  npm run test
+```
+
  ****
  ## Referências:
  [Meetup](https://www.meetup.com/apps/)
  [Sympla](https://www.sympla.com.br/)
  [Eventbrite](https://www.eventbrite.com.br/)
  [Ticket360](https://www.ticket360.com.br/)
- 
+
  [Tutorial - Json server](https://code.tutsplus.com/pt/tutorials/fake-rest-api-up-and-running-using-json-server--cms-27871)
  [Filtros - Json server](https://code.tutsplus.com/pt/tutorials/fake-rest-api-up-and-running-using-json-server--cms-27871)
