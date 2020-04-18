@@ -1,4 +1,4 @@
-# Projeto: Call of papers
+# Projeto: Call for papers
 Plataforma que conecta eventos da comunidade a voluntários(as).
 
 Desenvolvedoras:
@@ -49,10 +49,10 @@ Para ver as definições das **páginas**, clique em [aqui]()
   git clone https://github.com/React-Bootcamp-WoMarkersCode/call-of-papers.git
 ```
 
-3. Após clonar, entrar na pasta **call-of-papers**, utilizando o comando abaixo no terminal:
+3. Após clonar, entrar na pasta **call-for-papers**, utilizando o comando abaixo no terminal:
 
 ```
-  cd call-of-papers
+  cd call-for-papers
 ```
 
 4. Agora basta **instalar as dependências** do seu projeto, digitando no terminal:
