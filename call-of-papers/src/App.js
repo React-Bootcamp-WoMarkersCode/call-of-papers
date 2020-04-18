@@ -20,8 +20,8 @@ const App = () => {
 			</Content>
 
 			<Footer>
-        <Link to="/about">About <i>Call for Papers</i></Link>
-        © Copyright Call For Papers 2020
+        <Link to="/about">About Call for Papers</Link>
+        © Call For Papers 2020
 			</Footer>
 		</Layout>
 	)
