@@ -50,7 +50,7 @@ const EventsList = () => {
   const environment = getEnvironment();
 
   useEffect(() => {
-    fetch(`${environment}/events?_limit=15&_page=1`)
+    fetch(`${environment}/events?_limit=15&_page=1&userId=${localStorage.getItem("userId")}`)
       .then(res => res.json())
       .then(data => {
         setApi(data)
