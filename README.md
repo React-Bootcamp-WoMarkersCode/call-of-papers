@@ -5,9 +5,7 @@ Desenvolvedoras:
 [Alessandra](https://github.com/Alessandra-Nastassja),
 [Fernanda](https://github.com/arfernanda),
 [Isa](https://github.com/IsabellaSoares),
-[Kathleen](https://github.com/kathleenpallotta),
-[Lia](),
-[Mariana]() e
+[Kathleen](https://github.com/kathleenpallotta) e
 [Olívia](https://github.com/oliviaresende).
 
 Orientadoras:
@@ -28,15 +26,20 @@ Orientadoras:
 
 ### *Wireframe:*
 
-Para ver as definições das **páginas**, clique em [aqui]()
+Para ver as definições das **páginas**, clique em [aqui](https://www.dropbox.com/s/oatbftoz3ezqgbv/excalidraw-2020321212841.png?dl=0) e [aqui](https://www.dropbox.com/s/j8v504qmhamkups/Untitled-2020-04-14-2108.png?dl=0).
 
 ### *Tecnologias usadas:*
 
 - [React](https://pt-br.reactjs.org/docs/getting-started.html) e [Redux](https://redux.js.org/introduction/getting-started);
-- React router;
-- React PDF;
+- [React Router](https://reacttraining.com/react-router/web/guides/quick-start);
 - [Ant Design](https://ant.design/docs/react/introduce);
-- [Formik](https://jaredpalmer.com/formik/docs/api/formik).
+- [Formik](https://jaredpalmer.com/formik/docs/api/formik);
+- [Node](https://nodejs.org/en/);
+- [Nodemailer](https://nodemailer.com/usage/);
+- [Express](https://expressjs.com/pt-br/);
+- [Jest](https://jestjs.io/en/);
+- [Export Excel];
+- [React Login Facebook](https://github.com/keppelen/react-facebook-login);
 
 ****
 ## *Como instalar e rodar ?* 🚀
@@ -49,19 +52,13 @@ Para ver as definições das **páginas**, clique em [aqui]()
   git clone https://github.com/React-Bootcamp-WoMarkersCode/call-of-papers.git
 ```
 
-3. Após clonar, entrar na pasta **call-for-papers**, utilizando o comando abaixo no terminal:
-
-```
-  cd call-for-papers
-```
-
-4. Agora basta **instalar as dependências** do seu projeto, digitando no terminal:
+3. Agora basta **instalar as dependências** do seu projeto, digitando no terminal:
 
 ```
   npm install
 ```
 
-5. E por ultimo dar o comando para **rodar** seu projeto:
+4. E por ultimo dar o comando para **rodar** seu projeto:
 
 ```
   npm start
