@@ -15,10 +15,8 @@ const EventForm = () => {
     //Carrega o id do evento que é passado pela url
     let { eventId } = useParams()
 
-    console.log(eventId)
-
     const [values, setValuesChecked] = useState([]);
-    const [radio, setValuesRadio] = useState(false);
+    const [radio, setValuesRadio] = useState(true);
     const [partner, setValuesPartner] = useState([]);
 
     // Se já houver evento com o id, ou seja, se for uma edição, os dados será carregados nessa variável
@@ -36,7 +34,7 @@ const EventForm = () => {
             .catch(err => console.error(err, 'Nenhum evento por aqui!'))
     }, [])
 
-    let valoresIniciais
+    let valoresIniciais   
 
     // Se tiver o id do evento na url é uma edição e os dados antigos devem ser carregados
     eventId ? valoresIniciais = dados : valoresIniciais = {
@@ -46,7 +44,7 @@ const EventForm = () => {
         schedule: '',
         organizer: '',
         categories: [],
-        limited_spaces: radio,
+        limited_spaces: true,
         partners: [],
         dados,
     }
@@ -60,8 +58,8 @@ const EventForm = () => {
         setValuesChecked(categories)
         formik.values.categories = categories
     }
-    const onChangeSpaces = (spaces) => {
-        setValuesRadio(spaces.target.value);
+    const onChangeSpaces = (spaces) => {       
+        setValuesRadio(spaces.target.value);        
         formik.values.limited_spaces = spaces.target.value
     }
     const onChangePartners = (partners) => {
@@ -81,7 +79,7 @@ const EventForm = () => {
         categories: values,
         limited_spaces: radio,
         partners: partner
-    }
+    }   
 
     const history = useHistory();
 
@@ -266,7 +264,7 @@ const EventForm = () => {
                     <Form.Item
                         label="Vagas limitadas ?"
                         htmlFor="limited_spaces"
-                        rules={[{ required: false }]}>
+                        rules={[{ required: true }]}>
                         <Radio.Group name="limited_spaces" onChange={onChangeSpaces}>
                             <Radio value={true} checked={formik.values.limited_spaces}>Sim</Radio>
                             <Radio value={false} checked={!formik.values.limited_spaces}>Não</Radio>
