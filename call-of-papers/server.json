@@ -2,6 +2,7 @@
   "events": [
     {
       "event": "Carnacodes",
+      "userId": 3036218123066022,
       "description": "Maratona de programação no carnaval de 2021!",
       "schedule": "20 Fevereiro, 08:00",
       "local": "FATEC São Paulo",
@@ -13,6 +14,7 @@
     },
     {
       "event": "C# Bootcamp",
+      "userId": 3036218123066022,
       "description": "Aulas de C#",
       "schedule": "20 Abril, 9:00",
       "local": "FIAP, São Paulo",
@@ -21,8 +23,25 @@
       "limited_spaces": false,
       "partners": [],
       "id": 2
+    },
+    {
+      "event": "Um evento muito legal",
+      "userId": 3036218123066022,
+      "description": "Todos vão querer ir ",
+      "schedule": "30 Fevereiro, 8:00",
+      "local": "Aquário de São Paulo",
+      "organizer": "Mariana",
+      "categories": [
+        "bootcamp"
+      ],
+      "limited_spaces": false,
+      "partners": [
+        "sponsors"
+      ],
+      "id": 3
     }
   ],
+  "candidates": [],
   "lectures": [
     {
       "name": "Olívia Silva Resende",
@@ -46,8 +65,9 @@
         "Big Data e Machine Learning"
       ],
       "haveLecturedBefore": "Não",
-      "status": "rejected",
-      "id": "396"
+      "status": "EM ANÁLISE",
+      "id": "396",
+      "userId": "3154754594535841"
     },
     {
       "name": "Amanda Silva Resende",
@@ -71,31 +91,43 @@
         "Big Data e Machine Learning"
       ],
       "haveLecturedBefore": "Não",
-      "status": "in-analysis",
+      "status": "em análise",
       "id": "500"
+    },
+    {
+      "id": "1613191052178209",
+      "email": "email da Isa",
+      "localization": "",
+      "registerDate": "2020-04-13",
+      "apresentation": "Bio da Isa",
+      "githubLink": "Git da Isa",
+      "linkedinLink": "Linkedin da Isa",
+      "twitterLink": "Twitter da Isa",
+      "facebookLink": "Face da Isa",
+      "mediumLink": "",
+      "interests": [],
+      "userPicture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1613191052178209&height=50&width=50&ext=1589672114&hash=AeRlXQLb81cDcWI1",
+      "name": "Isabella Soares",
+      "instagram": "Insta da Isa",
+      "youtube": "Canal da Isa",
+      "portfolio": "",
+      "activityTitle": "Palestra da Isa",
+      "activityDescription": "Essa é a palestra da Isa",
+      "activityId": "",
+      "activityType": "Palestra",
+      "activityCategory": [
+        "Criatividade/ Design / Entretenimento/ Marketing Digital"
+      ],
+      "haveLecturedBefore": "Sim",
+      "status": "EM ANÁLISE",
+      "undefined": true
     }
   ],
   "profile": [],
   "profiles": [
     {
-      "id": "3036218123066022",
-      "localization": "Mogi das Cruzes",
-      "registerDate": "2020-04-10",
-      "apresentation": "Oi",
-      "githubLink": "",
-      "linkedinLink": "",
-      "twitterLink": "",
-      "facebookLink": "https://www.facebook.com/mtafernandes",
-      "mediumLink": "",
-      "interests": [
-        "react",
-        " angular",
-        " java",
-        " postgres"
-      ]
-    },
-    {
       "id": "3154754594535841",
+      "email": "",
       "localization": "",
       "registerDate": "2020-04-12",
       "apresentation": "",
@@ -108,6 +140,7 @@
     },
     {
       "id": "1613191052178209",
+      "email": "",
       "localization": "",
       "registerDate": "2020-04-13",
       "apresentation": "",
@@ -117,6 +150,25 @@
       "facebookLink": "",
       "mediumLink": "",
       "interests": []
+    },
+    {
+      "id": "3036218123066022",
+      "email": "matancredi@hotmail.com",
+      "localization": "Mogi das Cruzes, SP",
+      "registerDate": "2020-04-15",
+      "apresentation": "Olá, sou estudante de React e meu objetivo nessa plataforma é conhecer eventos em que eu possa palestrar",
+      "githubLink": "http://github.com/matancredi",
+      "linkedinLink": "",
+      "twitterLink": "",
+      "facebookLink": "",
+      "mediumLink": "",
+      "interests": [
+        "react",
+        " angular",
+        " vue",
+        " postgres",
+        " c#"
+      ]
     }
   ]
 }
