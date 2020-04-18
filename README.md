@@ -38,7 +38,7 @@ Para ver as definições das **páginas**, clique em [aqui](https://www.dropbox.
 - [Nodemailer](https://nodemailer.com/usage/);
 - [Express](https://expressjs.com/pt-br/);
 - [Jest](https://jestjs.io/en/);
-- [Export Excel];
+- [Export Excel](https://www.npmjs.com/package/react-export-excel);
 - [React Login Facebook](https://github.com/keppelen/react-facebook-login);
 
 ****
