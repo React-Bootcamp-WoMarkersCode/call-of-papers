@@ -1,4 +1,4 @@
-# Projeto: Call for papers
+# Projeto:  Sharing Talks
 Plataforma que conecta eventos da comunidade a voluntários(as).
 
 Desenvolvedoras:
