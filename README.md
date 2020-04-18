@@ -33,10 +33,12 @@ Para ver as definições das **páginas**, clique em [aqui]()
 ### *Tecnologias usadas:*
 
 - [React](https://pt-br.reactjs.org/docs/getting-started.html) e [Redux](https://redux.js.org/introduction/getting-started);
-- React router;
-- React PDF;
+- [React Router](https://reacttraining.com/react-router/web/guides/quick-start);
 - [Ant Design](https://ant.design/docs/react/introduce);
-- [Formik](https://jaredpalmer.com/formik/docs/api/formik).
+- [Formik](https://jaredpalmer.com/formik/docs/api/formik);
+- [Node](https://nodejs.org/en/);
+- [Express](https://expressjs.com/pt-br/);
+- [Jest](https://jestjs.io/en/);
 
 ****
 ## *Como instalar e rodar ?* 🚀
