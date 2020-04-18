@@ -67,7 +67,7 @@ const Event = () => {
                       </p>
                       </div>
                     }
-              </div>        
+              </div>
               </div>
               <div className="mt-10">
                     <div>
@@ -95,10 +95,13 @@ const Event = () => {
                       </Link>
                       </div>
                     }
-              </div>        
+              </div>
               </div>
             </Col>
-            <Col span={8}>
+            <Col span={8} style={{textAlign: 'center'}}>
+              <Button type='primary'>
+                <Link id="btn-cadastrar" to={`/lectures/form/${eventId}`}><span>Submeta uma atividade para este evento!</span></Link>
+              </Button>
               {
                 organizer ?
                   <Card className="mt-15">
@@ -132,7 +135,7 @@ const Event = () => {
                   <br />
                   {
                     limited_spaces == true ? <strong>Sim</strong> : <strong>Não</strong>
-                      
+
                   }
                 </p>
               </Card>
@@ -144,14 +147,6 @@ const Event = () => {
                     <b>Grátis</b>
                   </Card> : ''
               }
-              <Card className="mt-15">
-                <p><b>Seja um palestrante</b></p>
-                <p>Para participar, inscreva-se através do formulário clicando no link abaixo. Defina o tipo de atividade (palestra, painel ou workshop) e a temática.</p>
-                <div style={{textAlign: "center"}}>
-                  <Link to={`/lectures/form/${eventId}`} >
-                    <Button type="primary">Cadastre uma atividade</Button>
-                  </Link></div>
-              </Card>
             </Col>
           </Row>
         </Col>
