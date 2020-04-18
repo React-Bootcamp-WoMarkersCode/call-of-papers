@@ -1,9 +1,4 @@
-
 import React, { useState, useEffect } from 'react'
-<<<<<<< HEAD
-import { useParams } from 'react-router'
-=======
->>>>>>> master
 import { Row, Button, Divider } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import './lectures-list.scss'
@@ -22,7 +17,7 @@ const LectureForm = () => {
 	let [ profile, setProfile ] = useState([])
 	const environment = getEnvironment()
 	let userPicture = localStorage.getItem('userPicture')
-	let { eventId } = useParams()
+
 	const handleSubmit = (values) => {
 		fetch(`${environment}/lectures`, {
 		method: 'post',
@@ -63,8 +58,7 @@ const LectureForm = () => {
 		activityType: '',
 		activityCategory: [],
 		haveLecturedBefore: '',
-		status: 'APROVADO',
-		eventId: {eventId}
+		status: 'APROVADO'
 	}
 
 	return (
