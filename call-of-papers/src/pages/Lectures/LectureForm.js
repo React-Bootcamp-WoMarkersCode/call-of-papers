@@ -16,46 +16,33 @@ const { TextArea } = Input
 const LectureForm = () => {
 	let [ profile, setProfile ] = useState([])
 	const environment = getEnvironment()
-	const [ imageUpload, setImageUpload ] = useState()
 	let userPicture = localStorage.getItem('userPicture')
 
-	const handleUpload = event => {
-		const file = event.target.files[0]
-		const reader = new FileReader()
-		reader.readAsDataURL(file)
-		reader.onload = function () {
-			setImageUpload(reader.result)			
-		}
-		reader.onerror = function (error) {
-		console.log('Error: ', error)
-		}
-	}  
+	const handleSubmit = (values) => {
+		fetch(`${environment}/lectures`, {
+		method: 'post',
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+			'Access-Control-Allow-Origin': '*'
+		},
+		body: JSON.stringify(values)
+		}).then(function (response) {
+			alert('Atividade cadastrada com sucesso!')
+			return response.json()
+		}).catch(function (error) {
+			alert(`Erro ao cadastrar: ${error}`)
+		})
+	}
 
-  const handleSubmit = (values) => {
-	fetch(`${environment}/lectures`, {
-      method: 'post',
-      headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          'Access-Control-Allow-Origin': '*'
-      },
-      body: JSON.stringify(values)
-    }).then(function (response) {
-        alert('Atividade cadastrada com sucesso!')
-        return response.json()
-    }).catch(function (error) {
-        alert(`Erro ao cadastrar: ${error}`)
-    })
-  }
-
-  useEffect(() => {
-    fetch(`${environment}/profiles`)
-      .then(res => res.json())
-      .then(data => {
-        setProfile(data.find(profile => profile.id === localStorage.getItem('userId')))
-      })
-      .catch(err => console.error(err, 'Nenhum usuário encontrado'))
-  }, [])
+	useEffect(() => {
+		fetch(`${environment}/profiles`)
+		.then(res => res.json())
+		.then(data => {
+			setProfile(data.find(profile => profile.id === localStorage.getItem('userId')))
+		})
+		.catch(err => console.error(err, 'Nenhum usuário encontrado'))
+	}, [])
 
 	profile = {
 		...profile,
@@ -67,10 +54,11 @@ const LectureForm = () => {
 		activityTitle: '',
 		activityDescription: '',
 		activityId: '',
-		uploadedImage: imageUpload,
+		uploadedImage: '',
 		activityType: '',
 		activityCategory: [],
-		haveLecturedBefore: ''
+		haveLecturedBefore: '',
+		status: 'APROVADO'
 	}
 
 	return (
@@ -226,10 +214,10 @@ const LectureForm = () => {
 									</Form.Item>
 
 									<form>
-										<label className='image-upload'>
-											Upload de identidade visual da sua atividade:
-											<input type="file" name="uploadedImage" onChange={handleUpload} />
-										</label>
+									<Form.Item label="Identidade visual:" name="uploadedImage">
+										Já tem uma imagem que seja a cara da sua atividade? Insira o link no campo abaixo:
+										<Input name="uploadedImage" />
+									</Form.Item>
 									</form>
 
                   <Button type='primary' htmlType='submit'>
