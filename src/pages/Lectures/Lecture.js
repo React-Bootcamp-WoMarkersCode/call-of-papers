@@ -13,11 +13,10 @@ const Lecture = () => {
   const [loadingData, setLoadingData] = useState(true)
 
   useEffect(() => {
-    fetch(`${environment}/lectures`)
+    fetch(`${environment}/lectures/${lectureId}`)
       .then(res => res.json())
       .then(data => {
-        setLecture(data.find(lecture => lecture.id === lectureId))
-        console.log(data.find(lecture => lecture.id === lectureId))
+        setLecture(data)
       })
       .then(setLoadingData(false))
       .catch(err => console.error(err, 'Nenhum palestra encontrada'))
@@ -48,38 +47,38 @@ const Lecture = () => {
           <>
             <Row gutter={[16, 24]}>
               <Divider orientation='left'>
-                {lecture.activityTitle}
+                {lecture && lecture.activityTitle}
               </Divider>
             </Row>
             <Row justify='center' className='row-table'>
               <Descriptions layout='vertical' style={{ textAlign: 'justify' }}>
                 <Item label='Descrição' span={3}>
-                  {lecture.activityDescription}
+                  {lecture && lecture.activityDescription}
                 </Item>
                 <Item label='Apresentação do Palestrante' span={3}>
-                  {lecture.miniBio}
+                  {lecture && lecture.apresentation}
                 </Item>
                 <Item label='Tipo' span={3}>
-                  {lecture.activityType}
+                  {lecture && lecture.activityType}
                 </Item>
                 <Item label='Categoria' span={3}>
-                  {lecture.activityCategory}
+                  {lecture && lecture.activityCategory}
                 </Item>
                 <Item label='Status' span={3}>
-                  <Tag color={StatusColor(lecture.status)} key={lecture.status}>
-                    {lecture.status}
+                  <Tag color={StatusColor(lecture && lecture.status)} key={lecture && lecture.status}>
+                    {lecture && lecture.status}
                   </Tag>
                 </Item>
               </Descriptions>
             </Row>
             <Row justify='center' className='row-table'>
               {
-                lecture.status === 'EM ANÁLISE' ?
+                lecture && lecture.status === 'EM ANÁLISE' ?
                   <Button type='primary'>
                     <Link to="/lectures/form">Editar</Link>
                   </Button>
                   :
-                  <Button type='primary' disabled='true'>
+                  <Button type='primary' disabled={true}>
                     Editar
                   </Button>
               }
