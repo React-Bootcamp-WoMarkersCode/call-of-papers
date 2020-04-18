@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { Row, Col, Card, Divider, Tag, Button } from 'antd'
+import { Row, Col, Card, Divider, Tag, Button, Descriptions } from 'antd'
 import { Link } from 'react-router-dom'
-
 import { getEnvironment } from './../../utils/environment'
-
 import "./event.scss";
+
+const { Item } = Descriptions
 
 const Event = () => {
   const [api, setApi] = useState([])
@@ -37,66 +37,57 @@ const Event = () => {
         <Col span={16} offset={4}>
           <Row>
             <Col span={16} className="pr-50">
-              <div className="title">
-                {/* {
-                  schedule ?
-                    <span>{schedule}</span> : 'Nenhuma data ou horário informado'
-                }
-                <h1>{event}</h1> */}
-                {/* <small>Código do evento: {eventId}</small> */}
-              </div>
-              <div className="mt-15">
-                <h2 style={{ fontWeight: 300 }}>Descrição</h2>
-                <p>{description}</p>
-              </div>
-              <div className="mt-10">
-                    <div>
-                      <h2 style={{ fontWeight: 300 }}>Categorias</h2>
-                      {categories && categories.length == 0? <p>Sem informações</p> : <div>
-                        <p>
+
+              <Descriptions layout='vertical' style={{ textAlign: 'justify' }}>
+                <Item label='Descrição' span={3}>
+                  {description}
+                </Item>
+                <Item label='Categorias' span={3}>
+                  {categories && categories.length === 0 ? 'Sem informações' :
+                    <>
                       {categories && categories.map((category) => {
-                        if (category == 'workshop')
+                        if (category === 'workshop')
                         return(<Tag style={{ marginBottom: '8px' }}>Workshop</Tag>)
-                        if (category == 'backend')
+                        if (category === 'backend')
                         return(<Tag style={{ marginBottom: '8px' }}>Backend</Tag>)
-                        if (category == 'frontend')
+                        if (category === 'frontend')
                         return(<Tag style={{ marginBottom: '8px' }}>Frontend</Tag>)
-                        if (category == 'bootcamp')
+                        if (category === 'bootcamp')
                         return(<Tag style={{ marginBottom: '8px' }}>Bootcamp</Tag>)
                       })}
-                      </p>
-                      </div>
-                    }
-              </div>
-              </div>
-              <div className="mt-10">
-                    <div>
-                      <h2 style={{ fontWeight: 300 }}>Parceiros aceitos</h2>
-                      {partners && partners.length == 0 || (partners && partners.includes("Nao"))? <p>Não aceita parceiros</p> : <div>
-                        <p>
+                    </>
+                  }
+                </Item>
+                <Item label='Parceiros aceitos' span={3}>
+                  {(partners && partners.length === 0) || ((partners && partners.includes("Nao"))) ?
+                    'Não aceita parceiros'
+                      :
+                    <>
                       {partners && partners.map((partner) => {
-                        if (partner == 'sponsors')
+                        if (partner === 'sponsors')
                         return(<Tag style={{ marginBottom: '8px' }}>Sponsors</Tag>)
-                        if (partner == 'universidade')
+                        if (partner === 'universidade')
                         return(<Tag style={{ marginBottom: '8px' }}>Universidades</Tag>)
-                        if (partner == 'comunidades')
+                        if (partner === 'comunidades')
                         return(<Tag style={{ marginBottom: '8px' }}>Comunidades</Tag>)
-                        if (partner == 'startups')
+                        if (partner === 'startups')
                         return(<Tag style={{ marginBottom: '8px' }}>Startups</Tag>)
-                        if (partner == 'palestrantes')
+                        if (partner === 'palestrantes')
                         return(<Tag style={{ marginBottom: '8px' }}>Palestrantes</Tag>)
-                        if (partner == 'impresa')
+                        if (partner === 'impresa')
                         return(<Tag style={{ marginBottom: '8px' }}>Imprensa</Tag>)
                       })}
-                      </p>
-                      <p style={{fontSize: "0.9em"}}>Entre em contato com a organização do evento!</p>
-                      <Link to={`/partners/${eventId}`} >
-                        <Button type="secundary">Seja um parceiro</Button>
-                      </Link>
-                      </div>
-                    }
-              </div>
-              </div>
+                    </>
+                  }
+                </Item>
+                {(partners && partners.includes("Nao")) ? <></> :
+                  (<Item span={3}>
+                    <Button type='primary'>
+                      <Link to={`/partners/${eventId}`}><span>Seja um parceiro</span></Link>
+                    </Button>
+                  </Item>)
+                }
+              </Descriptions>
             </Col>
             <Col span={8} style={{textAlign: 'center'}}>
               <Button type='primary'>
@@ -134,7 +125,7 @@ const Event = () => {
                   <small>Espaço limitado?</small>
                   <br />
                   {
-                    limited_spaces == true ? <strong>Sim</strong> : <strong>Não</strong>
+                    limited_spaces === true ? <strong>Sim</strong> : <strong>Não</strong>
 
                   }
                 </p>
