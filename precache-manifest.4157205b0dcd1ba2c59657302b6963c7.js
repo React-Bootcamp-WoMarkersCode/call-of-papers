@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "66e81f9761ba1aec398451335af4a9cd",
+    "revision": "9ffd0b9add805bdd584ea913febeb228",
     "url": "/call-of-papers/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/call-of-papers/static/css/10.a2049f82.chunk.css"
   },
   {
-    "revision": "3336b7854f3aa8253ce0",
+    "revision": "7da384975af9c417626f",
     "url": "/call-of-papers/static/css/12.1230892a.chunk.css"
   },
   {
@@ -16,11 +16,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/call-of-papers/static/css/14.9ae03674.chunk.css"
   },
   {
-    "revision": "df272ffdbd099ef2ea83",
+    "revision": "eb7139ac8798f1e76b82",
     "url": "/call-of-papers/static/css/15.f2d1079b.chunk.css"
   },
   {
-    "revision": "67e987e4242b9324b943",
+    "revision": "f9d04421c981c303ecc9",
     "url": "/call-of-papers/static/css/16.99b963da.chunk.css"
   },
   {
@@ -32,15 +32,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/call-of-papers/static/css/22.9ae03674.chunk.css"
   },
   {
-    "revision": "c22e7932900867368c87",
+    "revision": "1090c780ec0f447f9128",
     "url": "/call-of-papers/static/css/8.4af70dfe.chunk.css"
   },
   {
-    "revision": "60d92836111ae9212bab",
+    "revision": "0688a70ea2175989c2a7",
     "url": "/call-of-papers/static/css/9.cdb298ac.chunk.css"
   },
   {
-    "revision": "6d2c751c07a56c34d97d",
+    "revision": "a1f6f8b10d982af37bf8",
     "url": "/call-of-papers/static/css/main.622303d6.chunk.css"
   },
   {
@@ -64,32 +64,32 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/call-of-papers/static/js/11.1f48fa2d.chunk.js"
   },
   {
-    "revision": "3336b7854f3aa8253ce0",
-    "url": "/call-of-papers/static/js/12.6ddfd50a.chunk.js"
+    "revision": "7da384975af9c417626f",
+    "url": "/call-of-papers/static/js/12.7dde05a0.chunk.js"
   },
   {
-    "revision": "97be0c2f7933bc394c6b",
-    "url": "/call-of-papers/static/js/13.f19af55c.chunk.js"
+    "revision": "b4dac706deeeaad05daa",
+    "url": "/call-of-papers/static/js/13.71f8aa26.chunk.js"
   },
   {
     "revision": "a9b8926ce0f156e24313",
     "url": "/call-of-papers/static/js/14.57bd90f6.chunk.js"
   },
   {
-    "revision": "df272ffdbd099ef2ea83",
-    "url": "/call-of-papers/static/js/15.34b47d5f.chunk.js"
+    "revision": "eb7139ac8798f1e76b82",
+    "url": "/call-of-papers/static/js/15.03563b55.chunk.js"
   },
   {
-    "revision": "67e987e4242b9324b943",
-    "url": "/call-of-papers/static/js/16.74967d86.chunk.js"
+    "revision": "f9d04421c981c303ecc9",
+    "url": "/call-of-papers/static/js/16.119d2288.chunk.js"
   },
   {
     "revision": "6a7dcd7d1c04495633fb",
     "url": "/call-of-papers/static/js/17.327bb468.chunk.js"
   },
   {
-    "revision": "8c8566c49d108676e24d",
-    "url": "/call-of-papers/static/js/18.e4ac8a3e.chunk.js"
+    "revision": "3eecfc66255ded298fb9",
+    "url": "/call-of-papers/static/js/18.16c4a3e0.chunk.js"
   },
   {
     "revision": "95f911f61ecdc19da407",
@@ -132,24 +132,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/call-of-papers/static/js/5.2991e69b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c22e7932900867368c87",
-    "url": "/call-of-papers/static/js/8.18b9b93e.chunk.js"
+    "revision": "1090c780ec0f447f9128",
+    "url": "/call-of-papers/static/js/8.32e9c90e.chunk.js"
   },
   {
     "revision": "3453b8997016469371284a28c0e873e2",
-    "url": "/call-of-papers/static/js/8.18b9b93e.chunk.js.LICENSE.txt"
+    "url": "/call-of-papers/static/js/8.32e9c90e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "60d92836111ae9212bab",
-    "url": "/call-of-papers/static/js/9.38a5c429.chunk.js"
+    "revision": "0688a70ea2175989c2a7",
+    "url": "/call-of-papers/static/js/9.bb4da33d.chunk.js"
   },
   {
-    "revision": "6d2c751c07a56c34d97d",
-    "url": "/call-of-papers/static/js/main.a82840fd.chunk.js"
+    "revision": "a1f6f8b10d982af37bf8",
+    "url": "/call-of-papers/static/js/main.2260ea89.chunk.js"
   },
   {
-    "revision": "08791e00fc0f4f06d654",
-    "url": "/call-of-papers/static/js/runtime-main.bbbc0775.js"
+    "revision": "b60945bdc6394765a612",
+    "url": "/call-of-papers/static/js/runtime-main.870956f8.js"
   },
   {
     "revision": "942afd57e36c342898fa965a14def8c0",

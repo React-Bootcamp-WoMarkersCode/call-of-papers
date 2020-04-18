@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/call-of-papers/precache-manifest.1d60f360292bcf17deb86f12a4f45d63.js"
+  "/call-of-papers/precache-manifest.4157205b0dcd1ba2c59657302b6963c7.js"
 );
 
 self.addEventListener('message', (event) => {
