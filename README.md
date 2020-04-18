@@ -4,7 +4,7 @@ Plataforma que conecta eventos da comunidade a voluntários(as).
 Desenvolvedoras:
 [Alessandra](https://github.com/Alessandra-Nastassja),
 [Isabella](https://github.com/IsabellaSoares),
-[Kathleen](https://github.com/kathleenpallotta), 
+[Kathleen](https://github.com/kathleenpallotta),
 [Mariana](https://github.com/matancredi) e
 [Olívia](https://github.com/oliviaresende).
 
@@ -38,7 +38,7 @@ Para ver as definições das **páginas**, clique em [aqui](https://www.dropbox.
 - [Nodemailer](https://nodemailer.com/usage/);
 - [Express](https://expressjs.com/pt-br/);
 - [Jest](https://jestjs.io/en/);
-- [Export Excel];
+- Export Excel;
 - [React Login Facebook](https://github.com/keppelen/react-facebook-login);
 
 ****
