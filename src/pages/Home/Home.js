@@ -41,8 +41,6 @@ const callSpeaker = [
 
 const Home = () => {
   const [events, setEvents] = useState([])
-  const userLogged = false; // TO DO adicionar uma validaçāo real
-
   const environment = getEnvironment();
 
   useEffect(() => {
@@ -56,14 +54,14 @@ const Home = () => {
 
   return (
     <>
-      {!userLogged && (
+      {!localStorage.getItem('userId') && (
         <>
           <div style={{ position: 'relative',height: '85%', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div style={{ position: 'absolute', zIndex: 1, display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
               <img src={require('../../assets/logo-mobile.png')} alt='Sharing Talks' />
               <Title style={{ color: '#E752C1' }}>Encontre eventos e palestrantes em um só lugar</Title>
             </div>
-            <img style={{ width: '100vw', opacity: 0.4 }} src={require('../../assets/banner.png')} alt='Produtor de evento' />
+            <img style={{ opacity: 0.4 }} src={require('../../assets/banner.png')} alt='Produtor de evento' />
           </div>
           <Row gutter={[16, 24]}>
             <Divider orientation="left" style={{ marginTop: '3rem'}}>
