@@ -53,7 +53,7 @@ const Home = () => {
   }, [])
 
   return (
-    <>
+    <div className="home-container">
       {!localStorage.getItem('userId') && (
         <>
           <div style={{ position: 'relative', height: '85%', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -163,7 +163,7 @@ const Home = () => {
           )
         })}
       </Row>
-    </>
+    </div>
   )
 }
 
