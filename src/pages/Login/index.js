@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Row, Divider, Card } from 'antd'
+import { Row, Divider, Card, Button } from 'antd'
 import './style.scss'
 
 const Login = () => {
@@ -25,7 +25,7 @@ const Login = () => {
               style={{ width: 400, maxWidth: '100%' }}
               src={require('../../assets/events-producer.png')}
               alt='Produtor de evento' />
-            <span>Sou produtor de eventos</span>
+            <span className='card-span'>Sou produtor de eventos</span>
           </Row>
         </Card>
         <Card
@@ -38,7 +38,7 @@ const Login = () => {
               style={{ width: 400, maxWidth: '100%' }}
               src={require('../../assets/speaker.png')}
               alt='Palestrante' />
-            <span>Sou palestrante</span>
+            <span className='card-span'>Sou palestrante</span>
           </Row>
         </Card>
         <Card
@@ -51,12 +51,20 @@ const Login = () => {
               style={{ width: 400, maxWidth: '100%' }}
               src={require('../../assets/both.png')}
               alt='Produtor e palestrante' />
-            <span>Sou ambos</span>
+            <span className='card-span'>Sou ambos</span>
           </Row>
         </Card>
+      </Row>
+      <Row gutter={[16, 24]} className='content-padding' justify='center'>
+        <Button type='primary' className='facebook-button'>
+          Continuar com o Facebook
+        </Button>
+        <Button type='primary' htmlType='google-button'>
+          Continuar com o Google
+        </Button>
       </Row>
     </>
   )
 }
 
-export default Login;
+export default Login
