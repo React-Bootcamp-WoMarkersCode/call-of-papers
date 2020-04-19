@@ -105,10 +105,10 @@ const Home = () => {
           </Row>
         </>
       )}
+      <Divider orientation="left">
+        EVENTOS EM DESTAQUE
+      </Divider>
       <Row gutter={[16, 24]} className="content-padding">
-        <Divider orientation="left">
-          EVENTOS EM DESTAQUE
-        </Divider>
         {events.map((event) => {
           return (
             <Col key={event.id} xs={24}  sm={12} lg={6}>
