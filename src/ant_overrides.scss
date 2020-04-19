@@ -6,8 +6,17 @@
 
 .ant-layout-header {
   background-color: white !important;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.20);
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.20);
   z-index: 1;
+  padding: 0 1rem 0 1rem !important;
+
+  @media (orientation: landscape) {
+    padding: 0 2rem 0 2rem !important;
+  }
+}
+
+.ant-menu-submenu-title {
+  padding: 0;
 }
 
 .ant-layout-content {
@@ -40,10 +49,6 @@
   border-top: 1px solid #6597EB !important;
 }
 
-.ant-divider {
-  padding: 20px 70px 0 !important;
-}
-
 .image-upload,
 .ant-form-item-label > label {
   font-weight: bold;
@@ -70,7 +75,7 @@
 .ant-card-meta-title,
 .ant-descriptions-item-label,
 .ant-form-vertical .ant-form-item-label > label {
-  color: #6597EB !important;
+  color: #666666 !important;
   font-weight: bold !important;
 }
 

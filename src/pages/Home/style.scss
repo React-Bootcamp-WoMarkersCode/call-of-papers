@@ -1,9 +1,10 @@
 .ant-card {
-  width: 270px !important;
   margin-bottom: 2em;
-  box-shadow: 1px 4px 4px #707070B3;
-  border: 1px solid #707070;
   border-radius: 8px;
+
+  &:hover {
+    box-shadow: 1px 2px 2px #707070B3;
+  }
 }
 
 .ant-card-actions {
@@ -23,9 +24,8 @@
   border-radius: 8px 8px 0 0;
 }
 
-.home-cards-container {
-  justify-content: space-evenly !important;
-  margin: 10px 70px !important;
+.check-icon {
+  color: #009500;
 }
 
 .events-content{
