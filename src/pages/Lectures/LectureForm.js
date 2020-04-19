@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router'
 import { Row, Button, Divider } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import './lectures-list.scss'
@@ -16,8 +17,9 @@ const { TextArea } = Input
 
 const LectureForm = () => {
 	let [ profile, setProfile ] = useState([])
-  const environment = getEnvironment()
-  const { eventId } = useParams()
+	let [ goHome, setGoHome ] = useState(false)
+	const environment = getEnvironment()
+	const { eventId } = useParams()
 	let userPicture = localStorage.getItem('userPicture')
 
 	const handleSubmit = (values) => {
@@ -35,6 +37,7 @@ const LectureForm = () => {
 		}).catch(function (error) {
 			alert(`Erro ao cadastrar: ${error}`)
 		})
+		setGoHome(true)
 	}
 
 	useEffect(() => {
@@ -60,14 +63,15 @@ const LectureForm = () => {
 		activityType: '',
 		activityCategory: [],
 		haveLecturedBefore: '',
-    status: 'EM ANÁLISE',
-	eventId: {eventId},
-	id: Math.ceil(Math.random() * Math.pow(10,5)),
-	userId: profile.id
+		status: 'EM ANÁLISE',
+		eventId: parseInt(eventId),
+		id: Math.ceil(Math.random() * Math.pow(10,5)),
+		userId: parseInt(profile.id)
 	}
 
-	return (
-		<>
+	if (goHome === false) {
+		return (
+			<>
 			<Row gutter={[ 16, 24 ]}>
 				<Divider orientation="left">Submissão de atividades</Divider>
 			</Row>
@@ -217,25 +221,25 @@ const LectureForm = () => {
 											name="activityDescription"
 										/>
 									</Form.Item>
-
-									<form>
+									{/* Identidade visual */}			
 									<Form.Item label="Identidade visual:" name="uploadedImage">
 										Já tem uma imagem que seja a cara da sua atividade? Insira o link no campo abaixo:
 										<Input name="uploadedImage" />
 									</Form.Item>
-									</form>
 
-                  <Button type='primary' htmlType='submit'>
-                    Enviar
-                  </Button>
+									<Button type='primary' htmlType='submit'>
+										Enviar
+									</Button>
 								</div>
 							</div>
 						</Form>
 					)}
 				/>
 			</Row>
-		</>
-	)
+			</>)
+		} else {
+			return <Redirect to='/' />
+		}
 }
 
 export default LectureForm
