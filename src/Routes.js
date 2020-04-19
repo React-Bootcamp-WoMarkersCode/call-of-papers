@@ -26,10 +26,10 @@ const Routes = props => (
       <Route exact path="/events" component={routerProps => <EventsList {...routerProps} />} />
       <Route exact path="/events/form" component={routerProps => <EventForm {...routerProps} />} />
       <Route exact path="/events/form/:eventId" component={routerProps => <EventForm {...routerProps} />} />
-      <Route path="/events/:eventId" component={routerProps => <Event {...routerProps} />} />
+      <Route exact path="/events/:eventId" component={routerProps => <Event {...routerProps} />} />
       <Route path="/partners/:eventId" component={routerProps => <PartnersForm {...routerProps} />} />
-      <Route exact path="/submissions" component={routerProps => <SubmissionsList {...routerProps} />} />
-      <Route exact path="/submissions/:submissionId" component={routerProps => <Submission {...routerProps} />} />
+      <Route exact path="/events/:eventId/submissions/" component={routerProps => <SubmissionsList {...routerProps} />} />
+      <Route exact path="/events/:eventId/submissions/:submissionId" component={routerProps => <Submission {...routerProps} />} />
 
       <Route exact path="/lectures" component={routerProps => <LecturesList {...routerProps} />} />
       <Route exact path="/download-lectures" component={routerProps => <DownloadLectures {...routerProps} />} />
