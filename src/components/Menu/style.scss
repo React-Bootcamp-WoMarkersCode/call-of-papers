@@ -2,7 +2,22 @@
   width: 270px;
   float: left;
   padding-top: 5px;
+
+  @media (orientation: portrait) {
+    display: none;
+  }
 }
+
+.logo-mobile {
+  width: 50px;
+  float: left;
+  padding-top: 5px;
+
+  @media (orientation: landscape) {
+    display: none;
+  }
+}
+
 
 .anticon {
   font-size: 15px;
@@ -20,16 +35,13 @@
   float: right;
 }
 
-.ant-menu-horizontal > .ant-menu-item:hover,
-.ant-menu-horizontal > .ant-menu-submenu:hover,
-.ant-menu-horizontal > .ant-menu-item-active,
-.ant-menu-horizontal > .ant-menu-submenu-active,
-.ant-menu-horizontal > .ant-menu-item-open,
-.ant-menu-horizontal > .ant-menu-submenu-open,
-.ant-menu-horizontal > .ant-menu-item-selected,
-.ant-menu-horizontal > .ant-menu-submenu-selected {
-  color: #6597EB !important;
-  border-bottom: 2px solid #6597EB !important;
+.ant-menu-horizontal {
+  .ant-menu-item:hover, .ant-menu-submenu:hover, .ant-menu-item-active,
+  .ant-menu-submenu-active, .ant-menu-item-open, .ant-menu-submenu-open,
+  .ant-menu-item-selected, .ant-menu-submenu-selected {
+    color: #6597EB !important;
+    border-bottom: 2px solid #6597EB !important;
+  }
 }
 
 .svg-inline--fa {
