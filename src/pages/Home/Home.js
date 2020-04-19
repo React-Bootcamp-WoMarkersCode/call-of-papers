@@ -7,8 +7,6 @@ import CardEvent from './CardEvent'
 import { getEnvironment } from './../../utils/environment'
 import './style.scss'
 
-import woman from "../../assets/home/woman.jpg";
-
 const { Text, Title } = Typography;
 
 const callProducer = [
@@ -111,7 +109,7 @@ const Home = () => {
               <p>Sharing Talks para produtores de eventos</p>
             </Divider>
             <Card style={{ width: '100%', border: 'none', boxShadow: 'none', backgroundColor: '#f8f8f8' }} className="content-padding">
-              <Row justify="space-between" style={{display: 'flex', justifyContent: 'space-evenly', alignContent: 'center'}}>
+              <Row justify="space-between" style={{ display: 'flex', justifyContent: 'space-evenly', alignContent: 'center' }}>
                 <img style={{ width: 400, maxWidth: '100%' }} src={require('../../assets/events-producer.png')} alt='Produtor de evento' />
                 <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
                   {callProducer.map(item => {
@@ -126,13 +124,17 @@ const Home = () => {
               </Row>
             </Card>
           </Row>
-
-          <Row gutter={[16, 24]}>
-            <Divider orientation="left" style={{ marginTop: '3rem' }}>
-              SHARING TALKS PARA PALESTRANTES
+          <Row gutter={[16, 24]} style={{ backgroundColor: '#6597EB' }}>
+            <p style={{ color: '#fff', fontSize: '30px', width: '100%', textAlign: 'center', padding: '50px 10px' }}>
+              Ainda sem <b>palestrantes</b> para o seu evento ou <b>gerenciar seus eventos</b><br />com o Sharing Talks?
+            </p>
+          </Row>
+          <Row gutter={[16, 24]} style={{ backgroundColor: '#fff', paddingBottom: '3rem' }}>
+            <Divider orientation="center" style={{ marginTop: '3rem' }}>
+              Sharing Talks para palestrantes
             </Divider>
-            <Card style={{ width: '100%' }} className="content-padding">
-              <Row justify="space-between">
+            <Card style={{ width: '100%', border: 'none', boxShadow: 'none', }} className="content-padding">
+              <Row justify="space-between" style={{ display: 'flex', justifyContent: 'space-evenly', alignContent: 'center' }}>
                 <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
                   {callSpeaker.map(item => {
                     return (
@@ -150,7 +152,7 @@ const Home = () => {
         </>
       )}
       <Divider orientation="left">
-        EVENTOS EM DESTAQUE
+        Eventos em destaque
       </Divider>
       <Row gutter={[16, 24]} className="content-padding">
         {events.map((event) => {
