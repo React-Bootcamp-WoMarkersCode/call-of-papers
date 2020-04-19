@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import { Menu, Avatar } from 'antd'
+import { Menu, Avatar, Button } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faCalendarAlt, faBookmark, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import FBLogin from '../../pages/Login/FBLogin'
@@ -29,18 +29,21 @@ const HeaderComponent = () => {
       </Link>
       {
         !localStorage.getItem('userId') ?
-          (<FBLogin />)
+          // (<FBLogin />)
+          (<div class='menu'>
+          <Menu theme='light' mode='horizontal'>
+            <Menu.Item key='/events' onClick={() => history.push('/events')}>
+              Produtores de eventos
+            </Menu.Item>
+            <Menu.Item key='/lectures' onClick={() => history.push('/lectures')}>
+              Palestrantes
+            </Menu.Item>
+          </Menu>
+          <Button type='default'>Login</Button>
+          </div>)
             :
           (<Menu theme='light' mode='horizontal'>
             <SubMenu title={<Avatar src={userPicture} />}>
-              <Menu.Item key='/events' onClick={() => history.push('/events')}>
-                <FontAwesomeIcon icon={faCalendarAlt} />
-                Meus eventos
-              </Menu.Item>
-              <Menu.Item key='/lectures' onClick={() => history.push('/lectures')}>
-                <FontAwesomeIcon icon={faBookmark} />
-                Minhas palestras
-              </Menu.Item>
               <Menu.Item key='/profile' onClick={() => history.push('/profile')}>
                 <FontAwesomeIcon icon={faUser} />
                 Meu perfil
