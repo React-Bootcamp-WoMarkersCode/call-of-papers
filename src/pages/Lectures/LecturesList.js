@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Divider, Tag, Button, Typography, Spin } from 'antd'
+import { Row, Divider, Tag, Button, Typography, Spin, Card } from 'antd'
 import { Link } from 'react-router-dom'
 import { getEnvironment } from './../../utils/environment'
 import TableComponent from '../../components/Table'
@@ -81,20 +81,20 @@ const LecturesList = () => {
 
   return (
     <>
+    <Row gutter={[16, 24]}>
+              <Divider orientation="left">
+                Minhas palestras
+              </Divider>
+            </Row>
       { loadingData ?
         (
           <Row gutter={[16, 24]}>
             <Spin size='large' />
           </Row>
         )
-          :
+          : lectures.length > 0 ? 
         (
           <>
-            <Row gutter={[16, 24]}>
-              <Divider orientation="left">
-                Minhas palestras
-              </Divider>
-            </Row>
             <Row justify="end" className='row-table'>
               <Button type='default'>
                 <Link to='/download-lectures'><span>Faça o download de suas palestras!</span></Link>
@@ -105,6 +105,9 @@ const LecturesList = () => {
             </Row>
           </>
         )
+        : (<Row justify="center" className='row-table'>
+        <Card style={{ width: '90%' }}><p>Você ainda não cadastrou nenhuma palestra</p></Card>
+      </Row>)
       }
     </>
   )
