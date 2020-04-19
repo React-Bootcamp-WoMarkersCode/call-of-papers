@@ -7,9 +7,16 @@
       "schedule": "20 Fevereiro, 08:00",
       "local": "FATEC São Paulo",
       "organizer": "Mariana",
-      "categories": ["bootcamp"],
+      "categories": [
+        "bootcamp"
+      ],
       "limited_spaces": false,
-      "partners": ["sponsors", "comunidades", "universidade", "startup"],
+      "partners": [
+        "sponsors",
+        "comunidades",
+        "universidade",
+        "startup"
+      ],
       "id": 1
     },
     {
@@ -39,6 +46,23 @@
         "sponsors"
       ],
       "id": 3
+    },
+    {
+      "event": "Bootcamp",
+      "userId": 3154754594535841,
+      "description": "Bootcamp react online",
+      "schedule": "18 Abril, 07:30",
+      "local": "online",
+      "organizer": "Olívia",
+      "categories": [
+        "bootcamp"
+      ],
+      "limited_spaces": true,
+      "partners": [
+        "startups",
+        "palestrantes"
+      ],
+      "id": 4
     }
   ],
   "candidates": [],
@@ -65,9 +89,10 @@
         "Big Data e Machine Learning"
       ],
       "haveLecturedBefore": "Não",
-      "status": "EM ANÁLISE",
+      "status": "APROVADA",
       "id": "396",
-      "userId": "3154754594535841"
+      "userId": "3154754594535841",
+      "eventId": "1"
     },
     {
       "name": "Amanda Silva Resende",
@@ -91,8 +116,10 @@
         "Big Data e Machine Learning"
       ],
       "haveLecturedBefore": "Não",
-      "status": "em análise",
-      "id": "500"
+      "status": "EM ANÁLISE",
+      "id": "500",
+      "userId": "3154754594535841",
+      "eventId": "4"
     },
     {
       "id": "1613191052178209",
