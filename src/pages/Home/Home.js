@@ -7,7 +7,7 @@ import CardEvent from './CardEvent'
 import { getEnvironment } from './../../utils/environment'
 import './style.scss'
 
-const { Text } = Typography;
+const { Text, Title } = Typography;
 
 const callProducer = [
   {
@@ -41,6 +41,7 @@ const callSpeaker = [
 
 const Home = () => {
   const [events, setEvents] = useState([])
+  const userLogged = false; // TO DO adicionar uma validaçāo real
 
   const environment = getEnvironment();
 
@@ -55,57 +56,62 @@ const Home = () => {
 
   return (
     <>
-      <div style={{ height: '85%', overflow: 'hidden', opacity: 0.8 }}>
-        <img style={{ width: '100vw' }} src={require('../../assets/banner.png')} alt='Produtor de evento' />
-      </div>
-      <div>
-
-      </div>
-      <Row gutter={[16, 24]}>
-        <Divider orientation="left" style={{ marginTop: '3rem'}}>
-          SHARING TALKS PARA PRODUTORES DE EVENTO
-        </Divider>
-        <Card style={{ width: '100%' }} className="content-padding">
-          <Row justify="space-between">
-            <img style={{ width: 400, maxWidth: '100%' }} src={require('../../assets/events-producer.png')} alt='Produtor de evento' />
-            <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
-              {callProducer.map(item => {
-                return (
-                  <div key={item.description}>
-                    <FontAwesomeIcon style={{ fontSize: 24 }} icon={faCheck} className="check-icon" />
-                    <Text style={{ fontSize: 24 }}>{item.description}</Text>
-                  </div>
-                )
-              })}
-            </Space>
+      {!userLogged && (
+        <>
+          <div style={{ position: 'relative',height: '85%', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ position: 'absolute', zIndex: 1, display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+              <img src={require('../../assets/logo-mobile.png')} alt='Sharing Talks' />
+              <Title style={{ color: '#E752C1' }}>Encontre eventos e palestrantes em um só lugar</Title>
+            </div>
+            <img style={{ width: '100vw', opacity: 0.4 }} src={require('../../assets/banner.png')} alt='Produtor de evento' />
+          </div>
+          <Row gutter={[16, 24]}>
+            <Divider orientation="left" style={{ marginTop: '3rem'}}>
+              SHARING TALKS PARA PRODUTORES DE EVENTO
+            </Divider>
+            <Card style={{ width: '100%' }} className="content-padding">
+              <Row justify="space-between">
+                <img style={{ width: 400, maxWidth: '100%' }} src={require('../../assets/events-producer.png')} alt='Produtor de evento' />
+                <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
+                  {callProducer.map(item => {
+                    return (
+                      <div key={item.description}>
+                        <FontAwesomeIcon style={{ fontSize: 24 }} icon={faCheck} className="check-icon" />
+                        <Text style={{ fontSize: 24 }}>{item.description}</Text>
+                      </div>
+                    )
+                  })}
+                </Space>
+              </Row>
+            </Card>
+            <Divider orientation="left" style={{ marginTop: '3rem'}}>
+              SHARING TALKS PARA PALESTRANTES
+            </Divider>
+            <Card style={{ width: '100%' }} className="content-padding">
+              <Row justify="space-between">
+                <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
+                  {callSpeaker.map(item => {
+                    return (
+                      <div key={item.description}>
+                        <FontAwesomeIcon style={{ fontSize: 24 }} icon={faCheck} className="check-icon" />
+                        <Text style={{ fontSize: 24 }}>{item.description}</Text>
+                      </div>
+                    )
+                  })}
+                </Space>
+                <img style={{ width: 400, maxWidth: '100%' }} src={require('../../assets/speaker.png')} alt='Produtor de evento' />
+              </Row>
+            </Card>
           </Row>
-        </Card>
-        <Divider orientation="left" style={{ marginTop: '3rem'}}>
-          SHARING TALKS PARA PALESTRANTES
-        </Divider>
-        <Card style={{ width: '100%' }} className="content-padding">
-          <Row justify="space-between">
-            <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
-              {callSpeaker.map(item => {
-                return (
-                  <div key={item.description}>
-                    <FontAwesomeIcon style={{ fontSize: 24 }} icon={faCheck} className="check-icon" />
-                    <Text style={{ fontSize: 24 }}>{item.description}</Text>
-                  </div>
-                )
-              })}
-            </Space>
-            <img style={{ width: 400, maxWidth: '100%' }} src={require('../../assets/speaker.png')} alt='Produtor de evento' />
-          </Row>
-        </Card>
+        </>
+      )}
+      <Row gutter={[16, 24]} className="content-padding">
         <Divider orientation="left">
           EVENTOS EM DESTAQUE
         </Divider>
-      </Row>
-      <Row gutter={[16, 24]} className="content-padding">
         {events.map((event) => {
           return (
-            <Col key={event.id} xs={24} xl={6}>
+            <Col key={event.id} xs={24}  sm={12} lg={6}>
               <CardEvent event={event} />
             </Col>
           )
