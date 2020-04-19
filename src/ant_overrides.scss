@@ -12,18 +12,14 @@
 
 .ant-layout-content {
   overflow-x: hidden;
+  background-color: #eeeeee;
 }
 
 .ant-layout-footer {
+  background-color: white !important;
   padding: 15px 50px !important;
-  color: white !important;
-  background: #6597EB !important;
   display: flex !important;
   justify-content: space-evenly !important;
-}
-
-.ant-layout-footer a {
-  color: white;
 }
 
 .ant-divider-inner-text {
