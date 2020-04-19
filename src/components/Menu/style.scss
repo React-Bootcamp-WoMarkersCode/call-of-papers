@@ -1,65 +1,67 @@
-.logo {
-  width: 270px;
-  float: left;
-  padding-top: 5px;
+.menu-container {
+  .logo {
+    width: 270px;
+    float: left;
+    padding-top: 5px;
 
-  @media (orientation: portrait) {
-    display: none;
+    @media (orientation: portrait) {
+      display: none;
+    }
   }
-}
 
-.logo-mobile {
-  width: 50px;
-  float: left;
-  padding-top: 5px;
+  .logo-mobile {
+    width: 50px;
+    float: left;
+    padding-top: 5px;
 
-  @media (orientation: landscape) {
-    display: none;
+    @media (orientation: landscape) {
+      display: none;
+    }
   }
-}
 
 
-.anticon {
-  font-size: 15px;
-}
-
-.logo-mobile {
-  width: 50px;
-  float: left;
-  padding-top: 5px;
-
-  @media (orientation: landscape) {
-    display: none;
+  .anticon {
+    font-size: 15px;
   }
-}
 
-.menu {
-  display: flex;
-  align-items: center;
-  float: right;
-  height: inherit;
-}
+  .logo-mobile {
+    width: 50px;
+    float: left;
+    padding-top: 5px;
 
-.menu button {
-  margin-left: 2em;
-}
+    @media (orientation: landscape) {
+      display: none;
+    }
+  }
 
-.ant-menu,
-.ant-menu-item {
-  color: #6597EB !important;
-}
+  .menu {
+    display: flex;
+    align-items: center;
+    float: right;
+    height: inherit;
+  }
 
-.ant-menu-horizontal {
-  border-bottom: 2px solid rgba(0, 0, 0, 0.2) !important;
+  .menu button {
+    margin-left: 2em;
+  }
 
-  .ant-menu-item:hover, .ant-menu-submenu:hover, .ant-menu-item-active,
-  .ant-menu-submenu-active, .ant-menu-item-open, .ant-menu-submenu-open,
-  .ant-menu-item-selected, .ant-menu-submenu-selected {
+  .ant-menu,
+  .ant-menu-item {
     color: #6597EB !important;
-    border-bottom: 2px solid #6597EB !important;
   }
-}
 
-.svg-inline--fa {
-  margin-right: 0.5em;
+  .ant-menu-horizontal {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2) !important;
+
+    .ant-menu-item:hover, .ant-menu-submenu:hover, .ant-menu-item-active,
+    .ant-menu-submenu-active, .ant-menu-item-open, .ant-menu-submenu-open,
+    .ant-menu-item-selected, .ant-menu-submenu-selected {
+      color: #6597EB !important;
+      border-bottom: 2px solid #6597EB !important;
+    }
+  }
+
+  .svg-inline--fa {
+    margin-right: 0.5em;
+  }
 }
