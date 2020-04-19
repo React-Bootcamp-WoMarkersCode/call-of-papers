@@ -27,6 +27,13 @@ h3 {
   color: #6597EB !important;
 }
 
+.content-padding {
+  margin: 0 1rem 0 1rem !important;
+
+  @media (orientation: landscape) {
+    margin: 0 3rem 0 3rem !important;
+  }
+
 .heart-icon {
   color: red;
   margin: 0 5px 0 5px;
