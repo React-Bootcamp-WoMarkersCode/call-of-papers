@@ -24,9 +24,10 @@ const HeaderComponent = () => {
         <img src={require('../../assets/logo.png')} alt='Sharing Talks' className='logo' />
         <img src={require('../../assets/logo-mobile.png')} alt='Sharing Talks' className='logo-mobile' />
       </Link>
+      <div class='menu'>
       {
         !localStorage.getItem('userId') ?
-          (<div class='menu'>
+          (<>
             <Menu theme='light' mode='horizontal'>
               <Menu.Item key='/events' onClick={() => history.push('/events')}>
                 Produtores de eventos
@@ -36,9 +37,15 @@ const HeaderComponent = () => {
               </Menu.Item>
             </Menu>
             <Button type='default' onClick={() => history.push('/login')}>Login</Button>
-          </div>)
+          </>)
             :
           (<Menu theme='light' mode='horizontal'>
+            <Menu.Item key='/events' onClick={() => history.push('/events')}>
+              Sou produtor de eventos
+            </Menu.Item>
+            <Menu.Item key='/lectures' onClick={() => history.push('/lectures')}>
+              Sou palestrante
+            </Menu.Item>
             <SubMenu title={<Avatar src={userPicture} />}>
               <Menu.Item key='/profile' onClick={() => history.push('/profile')}>
                 <FontAwesomeIcon icon={faUser} />
@@ -51,6 +58,7 @@ const HeaderComponent = () => {
             </SubMenu>
           </Menu>)
       }
+      </div>
     </>
   )
 }
