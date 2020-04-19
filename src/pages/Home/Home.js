@@ -59,50 +59,30 @@ const Home = () => {
           <div style={{ position: 'relative', height: '85%', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <img style={{ opacity: 0.6, width: '100%' }} src={require('../../assets/home/banner-1.jpg')} alt='Produtor de evento' />
           </div>
-          {/* Melhores eventos */}
-          <Row gutter={[16, 24]} className="events-content">
-            <Divider orientation="left">
-              Encontre os melhores eventos
-        </Divider>
-            <div className="home-card">
-              <div className="card-content">
-                <div class="card-img">
-                  <img src={require('../../assets/home/student-1.jpg')} alt="" />
-                </div>
-                <span>Aprender</span>
-              </div>
-              <div className="card-content">
-                <div class="card-img">
-                  <img src={require("../../assets/home/people-1.jpg")} alt="" />
-                </div>
-                <span>Workshops</span>
-              </div>
-              <div className="card-content">
-                <div class="card-img">
-                  <img src={require("../../assets/home/bootcamps-2.jpg")} alt="" />
-                </div>
-                <span>Bootcamps</span>
-              </div>
-              <div className="card-content">
-                <div class="card-img">
-                  <img src={require("../../assets/home/young.jpg")} alt="" />
-                </div>
-                <span>Meetups</span>
-              </div>
-              <div className="card-content">
-                <div class="card-img">
-                  <img src={require("../../assets/home/online.jpg")} alt="" />
-                </div>
-                <span>Eventos Online</span>
-              </div>
-              <div className="card-content">
-                <div class="card-img">
-                  <img src={require("../../assets/home/events.jpg")} alt="" />
-                </div>
-                <span>Eventos Tecnologia</span>
-              </div>
-
-            </div>
+          <Row gutter={[16, 24]} style={{ backgroundColor: '#fff', paddingBottom: '3rem' }}>
+            <Divider orientation="center" style={{ marginTop: '3rem' }}>
+              Sharing Talks para palestrantes
+            </Divider>
+            <Card style={{ width: '100%', border: 'none', boxShadow: 'none', }} className="content-padding">
+              <Row justify="space-between" style={{ display: 'flex', justifyContent: 'space-evenly', alignContent: 'center' }}>
+                <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
+                  {callSpeaker.map(item => {
+                    return (
+                      <div key={item.description}>
+                        <FontAwesomeIcon style={{ fontSize: 24 }} icon={faCheck} className="check-icon" />
+                        <Text style={{ fontSize: 24 }}>{item.description}</Text>
+                      </div>
+                    )
+                  })}
+                </Space>
+                <img style={{ width: 400, maxWidth: '100%' }} src={require('../../assets/speaker.png')} alt='Produtor de evento' />
+              </Row>
+            </Card>
+          </Row>
+          <Row gutter={[16, 24]} style={{ backgroundColor: '#6597EB' }}>
+            <p style={{ color: '#fff', fontSize: '30px', width: '100%', textAlign: 'center', padding: '50px 10px' }}>
+              Ainda sem <b>palestrantes</b> para o seu evento? <br/> Veja abaixo 😉
+            </p>
           </Row>
           <Row gutter={[16, 24]} style={{ backgroundColor: '#f8f8f8', paddingBottom: '3rem' }}>
             <Divider orientation="center" style={{ marginTop: '3rem' }}>
@@ -124,33 +104,53 @@ const Home = () => {
               </Row>
             </Card>
           </Row>
-          <Row gutter={[16, 24]} style={{ backgroundColor: '#6597EB' }}>
-            <p style={{ color: '#fff', fontSize: '30px', width: '100%', textAlign: 'center', padding: '50px 10px' }}>
-              Ainda sem <b>palestrantes</b> para o seu evento ou <b>gerenciar seus eventos</b><br />com o Sharing Talks?
-            </p>
-          </Row>
-          <Row gutter={[16, 24]} style={{ backgroundColor: '#fff', paddingBottom: '3rem' }}>
-            <Divider orientation="center" style={{ marginTop: '3rem' }}>
-              Sharing Talks para palestrantes
-            </Divider>
-            <Card style={{ width: '100%', border: 'none', boxShadow: 'none', }} className="content-padding">
-              <Row justify="space-between" style={{ display: 'flex', justifyContent: 'space-evenly', alignContent: 'center' }}>
-                <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
-                  {callSpeaker.map(item => {
-                    return (
-                      <div key={item.description}>
-                        <FontAwesomeIcon style={{ fontSize: 24 }} icon={faCheck} className="check-icon" />
-                        <Text style={{ fontSize: 24 }}>{item.description}</Text>
-                      </div>
-                    )
-                  })}
-                </Space>
-                <img style={{ width: 400, maxWidth: '100%' }} src={require('../../assets/speaker.png')} alt='Produtor de evento' />
-              </Row>
-            </Card>
-          </Row>
         </>
       )}
+      {/* Melhores eventos */}
+      <Row gutter={[16, 24]}>
+        <Divider orientation="left">
+          Encontre os melhores eventos
+        </Divider>
+        <div className="home-card">
+          <div className="card-content">
+            <div class="card-img">
+              <img src={require('../../assets/home/student-1.jpg')} alt="" />
+            </div>
+            <span>Aprender</span>
+          </div>
+          <div className="card-content">
+            <div class="card-img">
+              <img src={require("../../assets/home/people-1.jpg")} alt="" />
+            </div>
+            <span>Workshops</span>
+          </div>
+          <div className="card-content">
+            <div class="card-img">
+              <img src={require("../../assets/home/bootcamps-2.jpg")} alt="" />
+            </div>
+            <span>Bootcamps</span>
+          </div>
+          <div className="card-content">
+            <div class="card-img">
+              <img src={require("../../assets/home/young.jpg")} alt="" />
+            </div>
+            <span>Meetups</span>
+          </div>
+          <div className="card-content">
+            <div class="card-img">
+              <img src={require("../../assets/home/online.jpg")} alt="" />
+            </div>
+            <span>Eventos Online</span>
+          </div>
+          <div className="card-content">
+            <div class="card-img">
+              <img src={require("../../assets/home/events.jpg")} alt="" />
+            </div>
+            <span>Eventos Tecnologia</span>
+          </div>
+
+        </div>
+      </Row>
       <Divider orientation="left">
         Eventos em destaque
       </Divider>
