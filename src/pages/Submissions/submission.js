@@ -4,12 +4,12 @@ import { Row, Col, Select, Button, Divider, Descriptions, Spin, Carousel } from 
 import { FolderOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined, InstagramOutlined, YoutubeOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons'
 import './style.scss'
 import Email from '../../utils/Email/Email'
+import { FALSE } from 'node-sass'
 
 const { Option } = Select
 const { Item } = Descriptions
 
 const Submission = () => {
-  let { submissionId } = useParams()
   let { eventId } = useParams()
   const [lecturesPending, setLecturesPending] = useState([])
   const [status, setStatus] = useState('')
@@ -95,62 +95,62 @@ const Submission = () => {
           slider.current = ref
         }}
       >
-        {lecturesPending.map((lecturePending) => {
+        {lecturesPending.map((item) => {
           return (
-            <div key={lecturePending.id}>
+            <div key={item.id}>
               <Row justify='center' style={{ marginBottom: '2em' }}>
                 <Col span={4}>
-                  <Descriptions layout="vertical" style={{ textAlign: 'justify' }}>
+                  <Descriptions layout="vertical" style={{textAlign:'justify'}}>
                     <Item label="Palestrante" span={3}>
-                      {lecturePending.name ? `${lecturePending.name}` : 'Sem dados'}
+                      {item.name? `${item.name}` : 'Sem dados'}
                     </Item>
                     <Item label="Telefone" span={3}>
-                      {lecturePending.cellphone ? `${lecturePending.cellphone}` : 'Sem dados'}
+                      {item.cellphone? `${item.cellphone}` : 'Sem dados'}
                     </Item>
-                    <Item label="E-mail" span={3} style={{ wordBreak: 'break-word' }}>
-                      {lecturePending.email ? `${lecturePending.email}` : 'Sem dados'}
+                    <Item label="E-mail" span={3} style={{wordBreak: 'break-word'}}>
+                      {item.email? `${item.email}` : 'Sem dados'}
                     </Item>
                     <Item label="Mini biografia" span={3}>
-                      {lecturePending.miniBio ? `${lecturePending.miniBio}` : 'Sem dados'}
+                      {item.miniBio? `${item.miniBio}` : 'Sem dados'}
                     </Item>
                     <Item>
-                      {lecturePending.linkedin ?
-                        <a href={`${lecturePending.linkedin}`}><LinkedinOutlined className="social-network" /></a>
+                      {item.linkedin ?
+                        <a href={`${item.linkedin}`}><LinkedinOutlined className="social-network" /></a>
                         : <LinkedinOutlined className="social-network" />}
-                      {lecturePending.facebook ?
-                        <a href={`${lecturePending.facebook}`}><FacebookOutlined className="social-network" /></a>
+                      {item.facebook ?
+                        <a href={`${item.facebook}`}><FacebookOutlined className="social-network" /></a>
                         : <FacebookOutlined className="social-network" />}
-                      {lecturePending.twitter ?
-                        <a href={`${lecturePending.twitter}`}><TwitterOutlined className="social-network" /></a>
+                      {item.twitter ?
+                        <a href={`${item.twitter}`}><TwitterOutlined className="social-network" /></a>
                         : <TwitterOutlined className="social-network" />}
-                      {lecturePending.instagram ?
-                        <a href={`${lecturePending.instagram}`}><InstagramOutlined className="social-network" /></a>
+                      {item.instagram ?
+                        <a href={`${item.instagram}`}><InstagramOutlined className="social-network" /></a>
                         : <InstagramOutlined className="social-network" />}
-                      {lecturePending.youtube ?
-                        <a href={`${lecturePending.youtube}`}><YoutubeOutlined className="social-network" /></a>
+                      {item.youtube ?
+                        <a href={`${item.youtube}`}><YoutubeOutlined className="social-network" /></a>
                         : <YoutubeOutlined className="social-network" />}
-                      {lecturePending.portfolio ?
-                        <a href={`${lecturePending.portfolio}`}><FolderOutlined className="social-network" /></a>
+                      {item.portfolio ?
+                        <a href={`${item.portfolio}`}><FolderOutlined className="social-network" /></a>
                         : <FolderOutlined className="social-network" />}
                     </Item>
                   </Descriptions>
                 </Col>
                 <Col span={12}>
-                  <Descriptions layout="vertical" title={lecturePending.activityTitle} style={{ textAlign: 'justify' }}>
+                  <Descriptions layout="vertical" title={item.activityTitle} style={{textAlign:'justify'}}>
                     <Item label="Descrição" span={3}>
-                      {lecturePending.activityDescription ? `${lecturePending.activityDescription}` : 'Sem dados'}
+                      {item.activityDescription? `${item.activityDescription}` : 'Sem dados'}
                     </Item>
                     <Item label="Tipo" span={1}>
-                      {lecturePending.activityType ? `${(lecturePending.activityType)}` : 'Sem dados'}
+                      {item.activityType ? `${(item.activityType)}` : 'Sem dados'}
                     </Item>
                     <Item label="Já palestrou?" span={2}>
-                      {lecturePending.haveLecturedBefore ? `${(lecturePending.haveLecturedBefore)}` : 'Sem dados'}
+                      {item.haveLecturedBefore ? `${(item.haveLecturedBefore)}` : 'Sem dados'}
                     </Item>
                     <Item label="Categorias" span={3}>
-                      {lecturePending.activityCategory ? `${(lecturePending.activityCategory)} e ${(lecturePending.activityCategory)}` : 'Sem dados'}
+                      {item.activityCategory ? `${(item.activityCategory)} e ${(item.activityCategory)}` : 'Sem dados'}
                     </Item>
                     <Item label="Avaliação" span={3}>
-                      {lecturePending.length !== 0 ?
+                      { item.length !== 0 ?
                         <Select
                           style={{ width: 150, textTransform: 'uppercase' }}
                           value={status}
@@ -159,12 +159,12 @@ const Submission = () => {
                           <Option value="APROVADA">APROVADA</Option>
                           <Option value="REPROVADA">REPROVADA</Option>
                         </Select>
-                        :
+                          :
                         <Spin size='large' />
                       }
                     </Item>
                     <Item span={3}>
-                      <Button type='primary' onClick={() => submitEvaluation(lecturePending)} disabled={desabilitado}>Enviar avaliação</Button>
+                        <Button type='primary' onClick={submitEvaluation} disabled={desabilitado}>Enviar avaliação</Button>
                     </Item>
                   </Descriptions>
                 </Col>
@@ -172,10 +172,8 @@ const Submission = () => {
             </div>
           )
         })
-
         }
       </Carousel>
-
     </>
   )
 }
