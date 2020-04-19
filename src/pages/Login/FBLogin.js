@@ -64,7 +64,7 @@ const FBLogin = () => {
 				setFbContent(
 					<FacebookLogin
 						appId="675476209915681"
-						autoLoad={true}
+						autoLoad={false}
 						fields="name,email,picture"
 						callback={responseFacebook}
 					/>
