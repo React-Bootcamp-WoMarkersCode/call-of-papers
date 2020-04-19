@@ -4,7 +4,6 @@ import { Row, Col, Select, Button, Divider, Descriptions, Spin, Carousel } from 
 import { FolderOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined, InstagramOutlined, YoutubeOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons'
 import './style.scss'
 import Email from '../../utils/Email/Email'
-import { FALSE } from 'node-sass'
 
 const { Option } = Select
 const { Item } = Descriptions
