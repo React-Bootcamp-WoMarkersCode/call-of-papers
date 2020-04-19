@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router'
 import { Row, Button, Divider } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import './lectures-list.scss'
@@ -16,8 +17,9 @@ const { TextArea } = Input
 
 const LectureForm = () => {
 	let [ profile, setProfile ] = useState([])
-  const environment = getEnvironment()
-  const { eventId } = useParams()
+	let [ goHome, setGoHome ] = useState(false)
+	const environment = getEnvironment()
+	const { eventId } = useParams()
 	let userPicture = localStorage.getItem('userPicture')
 
 	const handleSubmit = (values) => {
@@ -31,6 +33,7 @@ const LectureForm = () => {
 		body: JSON.stringify(values)
 		}).then(function (response) {
 			alert('Atividade cadastrada com sucesso!')
+			setGoHome(true)
 			return response.json()
 		}).catch(function (error) {
 			alert(`Erro ao cadastrar: ${error}`)
@@ -66,8 +69,9 @@ const LectureForm = () => {
 		userId: parseInt(profile.id)
 	}
 
-	return (
-		<>
+	if (goHome === false) {
+		return (
+			<>
 			<Row gutter={[ 16, 24 ]}>
 				<Divider orientation="left">Submissão de atividades</Divider>
 			</Row>
@@ -223,17 +227,19 @@ const LectureForm = () => {
 										<Input name="uploadedImage" />
 									</Form.Item>
 
-                  <Button type='primary' htmlType='submit'>
-                    Enviar
-                  </Button>
+									<Button type='primary' htmlType='submit'>
+										Enviar
+									</Button>
 								</div>
 							</div>
 						</Form>
 					)}
 				/>
 			</Row>
-		</>
-	)
+			</>)
+		} else {
+			return <Redirect to='/' />
+		}
 }
 
 export default LectureForm
