@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router'
-import { Row, Col, Select, Avatar, Button, Divider, Descriptions, Spin } from 'antd'
+import { useParams, useHistory } from 'react-router'
+import { Row, Col, Select, Button, Divider, Descriptions, Spin } from 'antd'
 import { FolderOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined, InstagramOutlined, YoutubeOutlined } from '@ant-design/icons'
 import './style.scss'
 import Email from '../../utils/Email/Email'
@@ -9,9 +9,12 @@ const { Option } = Select
 const { Item } = Descriptions
 
 const Submission = () => {
-	let { submissionId } = useParams()
+  let { submissionId } = useParams()
+  let history = useHistory()
+  console.log(history)
 	const [api, setApi] = useState([])
-	const [status, setStatus] = useState('')
+  const [status, setStatus] = useState('')
+  const [desabilitado, setDesabilitado] = useState(false)
 	const environment = 'http://localhost:3001'
 
 	useEffect(() => {
@@ -30,6 +33,7 @@ const Submission = () => {
 
 	const submitEvaluation = () => {
     api.status = status
+    setDesabilitado(true)
 
 		fetch(`${environment}/lectures/${submissionId}`, {
 			method: 'put',
@@ -43,7 +47,7 @@ const Submission = () => {
 
     let message = ''
 
-    if (api.status === 'APROVADO') {
+    if (api.status === 'APROVADA') {
       message =
         `<p>Olá ${api.name}, tudo bem?</p>
         <p>Parabéns! A palestra "${api.activityTitle}" foi aprovada. Consulte mais informações no site.</p>
@@ -56,6 +60,8 @@ const Submission = () => {
     }
 
     Email(api.name, api.email, message)
+    alert(`Palestra ${api.status.toLowerCase()}!`)
+    history.goBack()
 	}
 
 	return (
@@ -67,7 +73,7 @@ const Submission = () => {
       </Row>
 			<Row justify='center' style={{ marginBottom: '2em' }}>
 				<Col span={4}>
-          <Descriptions layout="vertical">
+          <Descriptions layout="vertical" style={{textAlign:'justify'}}>
             <Item label="Palestrante" span={3}>
               {api.name? `${api.name}` : 'Sem dados'}
             </Item>
@@ -103,7 +109,7 @@ const Submission = () => {
           </Descriptions>
 				</Col>
 				<Col span={12}>
-          <Descriptions layout="vertical" title={api.activityTitle}>
+          <Descriptions layout="vertical" title={api.activityTitle} style={{textAlign:'justify'}}>
             <Item label="Descrição" span={3}>
               {api.activityDescription? `${api.activityDescription}` : 'Sem dados'}
             </Item>
@@ -123,16 +129,20 @@ const Submission = () => {
                   value={status}
                   onChange={handleChange}
                 >
-                  <Option value="em análise">Em Análise</Option>
-                  <Option value="aprovado">Aprovado</Option>
-                  <Option value="reprovado">Reprovado</Option>
+                  <Option value="APROVADA">APROVADA</Option>
+                  <Option value="REPROVADA">REPROVADA</Option>
                 </Select>
                   :
                 <Spin size='large' />
               }
             </Item>
             <Item span={3}>
-              <Button type='primary' onClick={submitEvaluation}>Enviar avaliação</Button>
+              {
+                api.status ==='EM ANÁLISE'?
+                <Button type='primary' onClick={submitEvaluation} disabled={desabilitado}>Enviar avaliação</Button>
+                :
+                <Button type='primary' onClick={submitEvaluation} disabled='true'>Enviar avaliação</Button>
+              }
             </Item>
           </Descriptions>
 				</Col>
