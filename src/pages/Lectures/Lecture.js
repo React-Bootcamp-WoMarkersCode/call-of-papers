@@ -24,7 +24,7 @@ const Lecture = () => {
 
   const StatusColor = (status) => {
 
-    if (status === 'APROVADO') {
+    if (status === 'APROVADA') {
       return 'green';
     } else if (status === 'EM ANÁLISE') {
       return 'geekblue';
