@@ -29,17 +29,16 @@ const HeaderComponent = () => {
       </Link>
       {
         !localStorage.getItem('userId') ?
-          // (<FBLogin />)
           (<div class='menu'>
-          <Menu theme='light' mode='horizontal'>
-            <Menu.Item key='/events' onClick={() => history.push('/events')}>
-              Produtores de eventos
-            </Menu.Item>
-            <Menu.Item key='/lectures' onClick={() => history.push('/lectures')}>
-              Palestrantes
-            </Menu.Item>
-          </Menu>
-          <Button type='default'>Login</Button>
+            <Menu theme='light' mode='horizontal'>
+              <Menu.Item key='/events' onClick={() => history.push('/events')}>
+                Produtores de eventos
+              </Menu.Item>
+              <Menu.Item key='/lectures' onClick={() => history.push('/lectures')}>
+                Palestrantes
+              </Menu.Item>
+            </Menu>
+            <Button type='default' onClick={() => history.push('/login')}>Login</Button>
           </div>)
             :
           (<Menu theme='light' mode='horizontal'>
