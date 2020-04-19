@@ -14,11 +14,8 @@ const HeaderComponent = () => {
   const userPicture = localStorage.getItem('userPicture');
 
   const logout = () => {
-    localStorage.removeItem('userId')
-    localStorage.removeItem('userPicture')
-    localStorage.removeItem('userName')
-    localStorage.removeItem('userEmail')
-    history.push("/");
+    localStorage.clear()
+    history.push('/');
   }
 
   return (
