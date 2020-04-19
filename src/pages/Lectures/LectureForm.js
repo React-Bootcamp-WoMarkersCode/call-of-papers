@@ -60,10 +60,10 @@ const LectureForm = () => {
 		activityType: '',
 		activityCategory: [],
 		haveLecturedBefore: '',
-    status: 'EM ANÁLISE',
-	eventId: {eventId},
-	id: Math.ceil(Math.random() * Math.pow(10,5)),
-	userId: profile.id
+		status: 'EM ANÁLISE',
+		eventId: parseInt(eventId),
+		id: Math.ceil(Math.random() * Math.pow(10,5)),
+		userId: parseInt(profile.id)
 	}
 
 	return (
@@ -217,13 +217,11 @@ const LectureForm = () => {
 											name="activityDescription"
 										/>
 									</Form.Item>
-
-									<form>
+									{/* Identidade visual */}			
 									<Form.Item label="Identidade visual:" name="uploadedImage">
 										Já tem uma imagem que seja a cara da sua atividade? Insira o link no campo abaixo:
 										<Input name="uploadedImage" />
 									</Form.Item>
-									</form>
 
                   <Button type='primary' htmlType='submit'>
                     Enviar
