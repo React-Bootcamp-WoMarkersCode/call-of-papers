@@ -109,7 +109,7 @@ const Home = () => {
       {/* Melhores eventos */}
       <Row gutter={[16, 24]}>
         <Divider orientation="left">
-          Encontre os melhores eventos
+          Categorias em destaque
         </Divider>
         <div className="home-card">
           <div className="card-content">
