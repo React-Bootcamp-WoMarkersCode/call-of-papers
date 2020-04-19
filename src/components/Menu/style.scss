@@ -23,19 +23,35 @@
   font-size: 15px;
 }
 
+.logo-mobile {
+  width: 50px;
+  float: left;
+  padding-top: 5px;
+
+  @media (orientation: landscape) {
+    display: none;
+  }
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  float: right;
+  height: inherit;
+}
+
+.menu button {
+  margin-left: 2em;
+}
+
 .ant-menu,
 .ant-menu-item {
-  font-size: 16px !important;
   color: #6597EB !important;
 }
 
 .ant-menu-horizontal {
-  height: inherit;
-  line-height: 64px;
-  float: right;
-}
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2) !important;
 
-.ant-menu-horizontal {
   .ant-menu-item:hover, .ant-menu-submenu:hover, .ant-menu-item-active,
   .ant-menu-submenu-active, .ant-menu-item-open, .ant-menu-submenu-open,
   .ant-menu-item-selected, .ant-menu-submenu-selected {
