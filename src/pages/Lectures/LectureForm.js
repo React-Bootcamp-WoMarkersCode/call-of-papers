@@ -33,11 +33,11 @@ const LectureForm = () => {
 		body: JSON.stringify(values)
 		}).then(function (response) {
 			alert('Atividade cadastrada com sucesso!')
-			setGoHome(true)
 			return response.json()
 		}).catch(function (error) {
 			alert(`Erro ao cadastrar: ${error}`)
 		})
+		setGoHome(true)
 	}
 
 	useEffect(() => {
