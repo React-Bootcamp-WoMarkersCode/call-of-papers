@@ -3,12 +3,11 @@ import { useHistory } from 'react-router-dom'
 import FacebookLogin from 'react-facebook-login'
 import { getCurrentDate } from './../../utils/currentDate'
 import { getEnvironment } from './../../utils/environment'
-import './fb_style.scss'
 
-const FBLogin = () => {
+const FBLogin = ({ isDisabled }) => {
 	let history = useHistory()
 	const environment = getEnvironment()
-	const [ fbContent, setFbContent ] = useState('')
+  const [ fbContent, setFbContent ] = useState('')
 
 	const responseFacebook = (response) => {
 		// Armazena os dados do usuário no navegador. Quando houver logout eles serão apagados
@@ -66,17 +65,22 @@ const FBLogin = () => {
 						appId="675476209915681"
 						autoLoad={false}
 						fields="name,email,picture"
-						callback={responseFacebook}
+            callback={responseFacebook}
+            icon="fa-facebook"
+            language="pt"
+            textButton="Continuar com o facebook"
+            size="small"
+            isDisabled={isDisabled}
 					/>
 				)
 			} else {
 				setFbContent('')
 			}
 		},
-		[ localStorage.getItem('userId') ]
+		[ localStorage.getItem('userId'), isDisabled ]
 	)
 
-	return <div style={{ float: 'right' }}>{fbContent}</div>
+	return fbContent
 }
 
 export default FBLogin
