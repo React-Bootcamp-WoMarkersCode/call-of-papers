@@ -8,7 +8,7 @@ import Email from '../../utils/Email/Email'
 const { Option } = Select
 const { Item } = Descriptions
 
-const Submission = () => {
+const SubmissionInAnalysis = () => {
   let { eventId } = useParams()
   const [lecturesPending, setLecturesPending] = useState([])
   const [status, setStatus] = useState('')
@@ -59,8 +59,8 @@ const Submission = () => {
     }
     Email(payload.name, payload.email, message)
     alert(`Palestra ${payload.status.toLowerCase()}!`)
-    slider.current.next()
-    setStatus('')
+
+    window.location.reload();
   }
   const settings = {
     dots: false,
@@ -77,7 +77,7 @@ const Submission = () => {
     <>
       <Row gutter={[16, 24]}>
         <Divider orientation="left">
-          Avaliação de Atividade
+          Palestras pendentes de aprovação
         </Divider>
       </Row>
       <Row justify='end'>
@@ -175,4 +175,4 @@ const Submission = () => {
   )
 }
 
-export default Submission
+export default SubmissionInAnalysis
