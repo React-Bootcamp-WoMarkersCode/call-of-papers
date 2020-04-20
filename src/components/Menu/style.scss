@@ -1,3 +1,10 @@
+.login-btn {
+  &:hover {
+    background-color: #6999EB;
+    color: white !important;
+  }
+}
+
 .logo {
   width: 270px;
   float: left;

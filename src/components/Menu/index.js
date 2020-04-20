@@ -36,7 +36,7 @@ const HeaderComponent = () => {
                 Palestrantes
               </Menu.Item>
             </Menu>
-            <Button type='default' onClick={() => history.push('/login')}>Login</Button>
+            <Button type='default' className='login-btn' onClick={() => history.push('/login')}>Login</Button>
           </>)
             :
           (<Menu theme='light' mode='horizontal'>
