@@ -14,6 +14,7 @@ const FBLogin = ({ isDisabled, role }) => {
     localStorage.setItem('userPicture', response.picture.data.url)
     localStorage.setItem('userName', response.name)
     localStorage.setItem('userEmail', response.email)
+    localStorage.setItem('userRole', role)
 
     // Redireciona para a página inicial
     history.push('/')

@@ -78,3 +78,25 @@
 .ant-descriptions-item-content {
   font-style: italic !important;
 }
+
+.ant-menu,
+.ant-menu-item {
+  color: #6597EB !important;
+}
+
+.ant-menu-horizontal {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2) !important;
+
+  .ant-menu-item:hover, .ant-menu-submenu:hover, .ant-menu-item-active,
+  .ant-menu-submenu-active, .ant-menu-item-open, .ant-menu-submenu-open,
+  .ant-menu-item-selected, .ant-menu-submenu-selected {
+    color: #6597EB !important;
+    border-bottom: 2px solid #6597EB !important;
+  }
+
+
+  .ant-menu-item-disabled:hover {
+    color: rgba(0, 0, 0, 0.25) !important;
+    border-bottom: 2px solid transparent !important;
+  }
+}
