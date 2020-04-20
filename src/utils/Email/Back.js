@@ -1,16 +1,19 @@
 var nodemailer = require('nodemailer');
 var express = require('express');
 var router = express.Router();
+require('dotenv').config();
+
+
 
 
 var transporter = nodemailer.createTransport({
-    host: 'smtp.office365.com',
-    port: 587,
-    secure: false,
-    auth: {
-        user: 'callforpapers@hotmail.com',
-        pass: 'Womakerscode'
-   }
+  host: 'smtp.office365.com',
+  port: 587,
+  secure: false,
+  auth: {
+    user: 'sharingtalks@hotmail.com',
+    pass: process.env.PASSWORD_EMAIL
+  }
 });
 
 transporter.verify((error, success) => {
@@ -20,30 +23,28 @@ transporter.verify((error, success) => {
 });
 
 router.post('/send', (req, res, next) => {
-    var name = req.body.name
-    var email = req.body.email
-    var message = req.body.message
-    var content = `${message} `
+  var email = req.body.email
+  var message = req.body.message
+  var content = `${message} `
 
-    var mail = {
-      from: 'Sharing Talks <sharingtalks@hotmail.com>',
-      to: email,
-      subject: 'Resultado da palestra submetida',
-      text: `Olá ${name}, tudo bem?`,
-      html: content
+  var mail = {
+    from: 'Sharing Talks <sharingtalks@hotmail.com>',
+    to: email,
+    subject: 'Resultado da palestra submetida',
+    html: content
+  }
+
+  transporter.sendMail(mail, (err, data) => {
+    if (err) {
+      res.json({
+        msg: 'fail'
+      })
+    } else {
+      res.json({
+        msg: 'success'
+      })
     }
-
-    transporter.sendMail(mail, (err, data) => {
-      if (err) {
-        res.json({
-          msg: 'fail'
-        })
-      } else {
-        res.json({
-          msg: 'success'
-        })
-      }
-    })
   })
+})
 
-  module.exports = router;
+module.exports = router;
