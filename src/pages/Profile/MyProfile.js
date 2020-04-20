@@ -20,7 +20,7 @@ const MyProfile = () => {
         setProfile(data.find(profile => profile.id === localStorage.getItem('userId')))
       })
       .catch(err => console.error(err, 'Nenhum usuário encontrado'))
-  }, [])
+  }, [environment])
 
   const userPicture = localStorage.getItem('userPicture')
   const userName = localStorage.getItem('userName')

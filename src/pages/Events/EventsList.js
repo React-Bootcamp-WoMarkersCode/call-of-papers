@@ -56,7 +56,7 @@ const EventsList = () => {
         setApi(data)
       })
       .catch(err => console.error(err, 'Nenhum evento por aqui!'))
-  }, [])
+  }, [environment])
 
   return (
     <>

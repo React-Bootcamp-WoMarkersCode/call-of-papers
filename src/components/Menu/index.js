@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { Menu, Avatar, Button } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faCalendarAlt, faBookmark, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-import FBLogin from '../../pages/Login/FBLogin'
+import { faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import './style.scss'
 
 const { SubMenu } = Menu
@@ -24,7 +23,7 @@ const HeaderComponent = () => {
         <img src={require('../../assets/logo.png')} alt='Sharing Talks' className='logo' />
         <img src={require('../../assets/logo-mobile.png')} alt='Sharing Talks' className='logo-mobile' />
       </Link>
-      <div class='menu'>
+      <div className='menu'>
       {
         !localStorage.getItem('userId') ?
           (<>

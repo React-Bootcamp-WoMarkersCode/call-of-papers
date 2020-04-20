@@ -15,7 +15,7 @@ const PartnersForm = () => {
 
 	let { eventId } = useParams()
 
-	let { event, schedule, description, organizer, local, partners, tickets } = api
+	let { event } = api
 	const environment = getEnvironment();
 
 	useEffect(() => {
@@ -25,7 +25,7 @@ const PartnersForm = () => {
 			setApi(data)
 		})
 		.catch(err => console.error(err, 'Nenhum evento por aqui!'))
-	}, [])
+	}, [environment, eventId])
 
 	const handleSubmit = values => {
 		fetch(`${environment}/candidates`, {
@@ -42,8 +42,8 @@ const PartnersForm = () => {
 			}).catch(function (error) {
 				alert(`Erro ao cadastrar: ${error}`)
 			})
-	  }
-	  
+	}
+
 	let call_for_partners = {
 		event_id: eventId,
 		name: '',
@@ -57,7 +57,7 @@ const PartnersForm = () => {
 	return (
 		<>
 			<Row gutter={[ 16, 24 ]}>
-        		<Divider orientation="left">Call For Partners: {event}</Divider>
+        <Divider orientation="left">Call For Partners: {event}</Divider>
 			</Row>
 			<Row justify="center" style={{ marginBottom: 20 }}>
 				Quer formar uma parceria e fazer o {event} acontecer? É só preencher o formulário abaixo. O time responsável entrará em contato assim que possível.

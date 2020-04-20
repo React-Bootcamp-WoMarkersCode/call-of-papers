@@ -17,7 +17,7 @@ const ProfileForm = () => {
 				setProfile(data.find((profile) => profile.id === localStorage.getItem('userId')))
 			})
 			.catch((err) => console.error(err, 'Nenhum usuário encontrado'))
-	}, [])
+	}, [environment])
 
 	let formik = useFormik({
 		initialValues: profile,
