@@ -4,7 +4,7 @@ import FacebookLogin from 'react-facebook-login'
 import { getCurrentDate } from './../../utils/currentDate'
 import { getEnvironment } from './../../utils/environment'
 
-const FBLogin = ({ isDisabled }) => {
+const FBLogin = ({ isDisabled, role }) => {
   let history = useHistory()
   const environment = getEnvironment()
 
@@ -14,6 +14,7 @@ const FBLogin = ({ isDisabled }) => {
     localStorage.setItem('userPicture', response.picture.data.url)
     localStorage.setItem('userName', response.name)
     localStorage.setItem('userEmail', response.email)
+    localStorage.setItem('userRole', role)
 
     // Redireciona para a página inicial
     history.push('/')
@@ -25,6 +26,7 @@ const FBLogin = ({ isDisabled }) => {
         if (!data.find((profile) => profile.email === response.email)) {
           let newProfile = {
             id: response.userID,
+            role: role,
             email: response.email? response.email : '',
             localization: '',
             registerDate: `${getCurrentDate()}`,

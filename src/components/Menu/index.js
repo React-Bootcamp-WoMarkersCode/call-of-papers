@@ -11,6 +11,7 @@ const { SubMenu } = Menu
 const HeaderComponent = () => {
   const history = useHistory()
   const userPicture = localStorage.getItem('userPicture');
+  const userRole = localStorage.getItem('userId') ? localStorage.getItem('userRole') : ''
 
   const logout = () => {
     localStorage.clear()
@@ -42,10 +43,16 @@ const HeaderComponent = () => {
           </>)
             :
           (<Menu theme='light' mode='horizontal'>
-            <Menu.Item key='/events' onClick={() => history.push('/events')}>
+            <Menu.Item
+              key='/events'
+              disabled={userRole === 'Speaker'}
+              onClick={() => history.push('/events')}>
               Sou produtor de eventos
             </Menu.Item>
-            <Menu.Item key='/lectures' onClick={() => history.push('/lectures')}>
+            <Menu.Item
+              key='/lectures'
+              disabled={userRole === 'Producer'}
+              onClick={() => history.push('/lectures')}>
               Sou palestrante
             </Menu.Item>
             <SubMenu title={<Avatar src={userPicture} />}>
