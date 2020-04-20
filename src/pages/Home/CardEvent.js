@@ -1,13 +1,20 @@
 import React from 'react'
-import { Card } from 'antd'
+import { Card, Typography, Space } from 'antd'
 import { Link } from 'react-router-dom'
 
-const { Meta } = Card;
+const { Text } = Typography;
 
 const CardEvent = ({ event }) => {
+
 	return (
     <Card actions={[<Link to={`/events/${event.id}`} >Submeta sua palestra</Link>]} >
-      <Meta title={event.event} description={[event.schedule, <br/>, event.local]} />
+      <Space direction="vertical">
+        <Text strong>{event.event}</Text>
+        <Space direction="vertical" size={0}>
+          <Text type="secondary">{event.schedule}</Text>
+          <Text type="secondary">{event.local}</Text>
+        </Space>
+      </Space>
     </Card>
 	);
 }

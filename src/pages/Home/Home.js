@@ -7,7 +7,7 @@ import CardEvent from './CardEvent'
 import { getEnvironment } from './../../utils/environment'
 import './style.scss'
 
-const { Text, Title } = Typography;
+const { Text } = Typography;
 
 const callProducer = [
   {
@@ -50,17 +50,17 @@ const Home = () => {
         setEvents(data)
       })
       .catch(err => console.error(err, 'Nenhum evento por aqui!'))
-  }, [])
+  }, [environment])
 
   return (
-    <>
+    <div className="home-container">
       {!localStorage.getItem('userId') && (
         <>
           <div style={{ position: 'relative', height: '85%', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <img style={{ opacity: 0.6, width: '100%' }} src={require('../../assets/home/banner-1.jpg')} alt='Produtor de evento' />
           </div>
           <Row gutter={[16, 24]} style={{ backgroundColor: '#fff', paddingBottom: '3rem' }}>
-            <Divider orientation="center" style={{ marginTop: '3rem' }}>
+            <Divider orientation="center" style={{ marginTop: '3rem' }} id="lectures">
               Sharing Talks para palestrantes
             </Divider>
             <Card style={{ width: '100%', border: 'none', boxShadow: 'none', }} className="content-padding">
@@ -84,7 +84,7 @@ const Home = () => {
               Ainda sem <b>palestrantes</b> para o seu evento? <br/> Veja abaixo 😉
             </p>
           </Row>
-          <Row gutter={[16, 24]} style={{ backgroundColor: '#f8f8f8', paddingBottom: '3rem' }}>
+          <Row gutter={[16, 24]} style={{ backgroundColor: '#f8f8f8', paddingBottom: '3rem' }} id="events">
             <Divider orientation="center" style={{ marginTop: '3rem' }}>
               <p>Sharing Talks para produtores de eventos</p>
             </Divider>
@@ -107,43 +107,43 @@ const Home = () => {
         </>
       )}
       {/* Melhores eventos */}
-      <Row gutter={[16, 24]}>
+      <Row gutter={[16, 24]} id="highlights">
         <Divider orientation="left">
           Categorias em destaque
         </Divider>
         <div className="home-card">
           <div className="card-content">
-            <div class="card-img">
+            <div className="card-img">
               <img src={require('../../assets/home/student-1.jpg')} alt="" />
             </div>
             <span>Aprender</span>
           </div>
           <div className="card-content">
-            <div class="card-img">
+            <div className="card-img">
               <img src={require("../../assets/home/people-1.jpg")} alt="" />
             </div>
             <span>Workshops</span>
           </div>
           <div className="card-content">
-            <div class="card-img">
+            <div className="card-img">
               <img src={require("../../assets/home/bootcamps-2.jpg")} alt="" />
             </div>
             <span>Bootcamps</span>
           </div>
           <div className="card-content">
-            <div class="card-img">
+            <div className="card-img">
               <img src={require("../../assets/home/young.jpg")} alt="" />
             </div>
             <span>Meetups</span>
           </div>
           <div className="card-content">
-            <div class="card-img">
+            <div className="card-img">
               <img src={require("../../assets/home/online.jpg")} alt="" />
             </div>
             <span>Eventos Online</span>
           </div>
           <div className="card-content">
-            <div class="card-img">
+            <div className="card-img">
               <img src={require("../../assets/home/events.jpg")} alt="" />
             </div>
             <span>Eventos Tecnologia</span>
@@ -163,7 +163,7 @@ const Home = () => {
           )
         })}
       </Row>
-    </>
+    </div>
   )
 }
 

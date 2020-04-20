@@ -1,49 +1,73 @@
+.login-btn {
+  &:hover {
+    background-color: #6999EB;
+    color: white !important;
+  }
+}
+
 .logo {
   width: 270px;
   float: left;
   padding-top: 5px;
 
-  @media (orientation: portrait) {
-    display: none;
+    @media (orientation: portrait) {
+      display: none;
+    }
   }
-}
 
-.logo-mobile {
-  width: 50px;
-  float: left;
-  padding-top: 5px;
+  .logo-mobile {
+    width: 50px;
+    float: left;
+    padding-top: 5px;
 
-  @media (orientation: landscape) {
-    display: none;
+    @media (orientation: landscape) {
+      display: none;
+    }
   }
-}
 
 
-.anticon {
-  font-size: 15px;
-}
+  .anticon {
+    font-size: 15px;
+  }
 
-.ant-menu,
-.ant-menu-item {
-  font-size: 16px !important;
-  color: #6597EB !important;
-}
+  .logo-mobile {
+    width: 50px;
+    float: left;
+    padding-top: 5px;
 
-.ant-menu-horizontal {
-  height: inherit;
-  line-height: 64px;
-  float: right;
-}
+    @media (orientation: landscape) {
+      display: none;
+    }
+  }
 
-.ant-menu-horizontal {
-  .ant-menu-item:hover, .ant-menu-submenu:hover, .ant-menu-item-active,
-  .ant-menu-submenu-active, .ant-menu-item-open, .ant-menu-submenu-open,
-  .ant-menu-item-selected, .ant-menu-submenu-selected {
+  .menu {
+    display: flex;
+    align-items: center;
+    float: right;
+    height: inherit;
+  }
+
+  .menu button {
+    margin-left: 2em;
+  }
+
+  .ant-menu,
+  .ant-menu-item {
     color: #6597EB !important;
-    border-bottom: 2px solid #6597EB !important;
   }
-}
 
-.svg-inline--fa {
-  margin-right: 0.5em;
-}
+  .ant-menu-horizontal {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2) !important;
+
+    .ant-menu-item:hover, .ant-menu-submenu:hover, .ant-menu-item-active,
+    .ant-menu-submenu-active, .ant-menu-item-open, .ant-menu-submenu-open,
+    .ant-menu-item-selected, .ant-menu-submenu-selected {
+      color: #6597EB !important;
+      border-bottom: 2px solid #6597EB !important;
+    }
+  }
+
+  .svg-inline--fa {
+    margin-right: 0.5em;
+  }
+

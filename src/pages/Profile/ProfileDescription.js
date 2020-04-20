@@ -21,7 +21,7 @@ const ProfileDescription = ({ profile, userEmail }) => {
         {profile.email ? `${(profile.email)}` : 'Sem dados'}
       </Item>
       <Item label="Interesses" span={3}>
-        {profile.interests ? profile.interests && profile.interests.map(item => <Tag style={{ marginBottom: '8px' }}>{item}</Tag>) : "Sem dados"}
+        {profile.interests ? profile.interests && profile.interests.map(item => <Tag style={{ marginBottom: '8px' }} key={item}>{item}</Tag>) : "Sem dados"}
       </Item>
       <Item label="Data de cadastro" span={1}>
         {profile.registerDate? `${(profile.registerDate)}` : 'Sem dados'}

@@ -1,10 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import { Menu, Avatar } from 'antd'
+import { Menu, Avatar, Button } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faCalendarAlt, faBookmark, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-import FBLogin from '../../pages/Login/FBLogin'
+import { faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import './style.scss'
 
 const { SubMenu } = Menu
@@ -14,33 +13,42 @@ const HeaderComponent = () => {
   const userPicture = localStorage.getItem('userPicture');
 
   const logout = () => {
-    localStorage.removeItem('userId')
-    localStorage.removeItem('userPicture')
-    localStorage.removeItem('userName')
-    localStorage.removeItem('userEmail')
-    history.push("/");
+    localStorage.clear()
+    history.push('/');
   }
 
   return (
-    <>
+    <div className="menu-container">
       <Link to='/'>
         <img src={require('../../assets/logo.png')} alt='Sharing Talks' className='logo' />
         <img src={require('../../assets/logo-mobile.png')} alt='Sharing Talks' className='logo-mobile' />
       </Link>
+      <div className='menu'>
       {
         !localStorage.getItem('userId') ?
-          (<FBLogin />)
+          (<>
+            <Menu theme='light' mode='horizontal'>
+              <Menu.Item key='/events' onClick={() => window.location.href='#events'}>
+                Produtores de eventos
+              </Menu.Item>
+              <Menu.Item key='/lectures' onClick={() => window.location.href='#lectures'}>
+                Palestrantes
+              </Menu.Item>
+              <Menu.Item key='/highlights' onClick={() => window.location.href='#highlights'}>
+                Destaques
+              </Menu.Item>
+            </Menu>
+            <Button type='default' className='login-btn' onClick={() => history.push('/login')}>Login</Button>
+          </>)
             :
           (<Menu theme='light' mode='horizontal'>
+            <Menu.Item key='/events' onClick={() => history.push('/events')}>
+              Sou produtor de eventos
+            </Menu.Item>
+            <Menu.Item key='/lectures' onClick={() => history.push('/lectures')}>
+              Sou palestrante
+            </Menu.Item>
             <SubMenu title={<Avatar src={userPicture} />}>
-              <Menu.Item key='/events' onClick={() => history.push('/events')}>
-                <FontAwesomeIcon icon={faCalendarAlt} />
-                Meus eventos
-              </Menu.Item>
-              <Menu.Item key='/lectures' onClick={() => history.push('/lectures')}>
-                <FontAwesomeIcon icon={faBookmark} />
-                Minhas palestras
-              </Menu.Item>
               <Menu.Item key='/profile' onClick={() => history.push('/profile')}>
                 <FontAwesomeIcon icon={faUser} />
                 Meu perfil
@@ -52,7 +60,8 @@ const HeaderComponent = () => {
             </SubMenu>
           </Menu>)
       }
-    </>
+      </div>
+    </div>
   )
 }
 

@@ -20,11 +20,11 @@ const Lecture = () => {
       })
       .then(setLoadingData(false))
       .catch(err => console.error(err, 'Nenhum palestra encontrada'))
-  }, [])
+  }, [environment, lectureId])
 
   const StatusColor = (status) => {
 
-    if (status === 'APROVADO') {
+    if (status === 'APROVADA') {
       return 'green';
     } else if (status === 'EM ANÁLISE') {
       return 'geekblue';

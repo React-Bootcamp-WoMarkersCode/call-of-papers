@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Divider, Button } from 'antd'
+import { Row, Divider, Button, Card } from 'antd'
 import { Link } from 'react-router-dom'
 import TableComponent from '../../components/Table'
 import './events-list.scss'
@@ -34,7 +34,7 @@ const columnsTable = [
         <Link to={`/events/${key}`} onClick={() => localStorage.setItem("idEvent", key)}>Detalhes</Link>
       </span>
     )
-  },  {
+  }, {
     dataIndex: 'id',
     key: 'id',
     render: (key) => (
@@ -56,23 +56,30 @@ const EventsList = () => {
         setApi(data)
       })
       .catch(err => console.error(err, 'Nenhum evento por aqui!'))
-  }, [])
+  }, [environment])
 
   return (
     <>
       <Row gutter={[16, 24]}>
         <Divider orientation='left'>
           Meus eventos
-        </Divider>
+  </Divider>
       </Row>
-      <Row justify="end" className='row-table'>
-        <Button type='default'>
-          <Link id="btn-cadastrar" to="/events/form" onClick={() => localStorage.removeItem('idEvent')}><span>Cadastre um evento!</span></Link>
-        </Button>
-      </Row>
-      <Row justify='center' gutter={[16, 24]} className='row-table'>
-        <TableComponent columns={columnsTable} dataSource={api} />
-      </Row>
+      {api.length > 0 ? (
+        <>
+          <Row justify="end" className='row-table'>
+            <Button type='default'>
+              <Link id="btn-cadastrar" to="/events/form" onClick={() => localStorage.removeItem('idEvent')}><span>Cadastre um evento!</span></Link>
+            </Button>
+          </Row>
+          <Row justify='center' gutter={[16, 24]} className='row-table'>
+            <TableComponent columns={columnsTable} dataSource={api} />
+          </Row></>)
+        : (
+          <Row justify="center" className='row-table'>
+            <Card style={{ width: '90%' }}><p>Você ainda não cadastrou nenhum evento</p></Card>
+          </Row>)
+      }
     </>
   )
 }
