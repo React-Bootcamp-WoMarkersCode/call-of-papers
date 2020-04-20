@@ -12,6 +12,7 @@ const HeaderComponent = () => {
   const history = useHistory()
   const location = useLocation()
   const userPicture = localStorage.getItem('userPicture')
+  const userRole = localStorage.getItem('userId') ? localStorage.getItem('userRole') : ''
 
   const logout = () => {
     localStorage.clear()

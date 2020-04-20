@@ -53,7 +53,7 @@ const Login = () => {
         </Card>
       </Row>
       <Row gutter={[16, 24]} className='btn-group' justify='center'>
-        <FBLogin isDisabled={role === ''} />
+        <FBLogin isDisabled={role === ''} role={role} />
         <Button type='primary' className='google-button' disabled>
           <FontAwesomeIcon icon={faGoogle} />
           Continuar com o Google
