@@ -7,7 +7,7 @@ import CardEvent from './CardEvent'
 import { getEnvironment } from './../../utils/environment'
 import './style.scss'
 
-const { Text, Title } = Typography;
+const { Text } = Typography;
 
 const callProducer = [
   {
@@ -50,7 +50,7 @@ const Home = () => {
         setEvents(data)
       })
       .catch(err => console.error(err, 'Nenhum evento por aqui!'))
-  }, [])
+  }, [environment])
 
   return (
     <div className="home-container">
@@ -113,37 +113,37 @@ const Home = () => {
         </Divider>
         <div className="home-card">
           <div className="card-content">
-            <div class="card-img">
+            <div className="card-img">
               <img src={require('../../assets/home/student-1.jpg')} alt="" />
             </div>
             <span>Aprender</span>
           </div>
           <div className="card-content">
-            <div class="card-img">
+            <div className="card-img">
               <img src={require("../../assets/home/people-1.jpg")} alt="" />
             </div>
             <span>Workshops</span>
           </div>
           <div className="card-content">
-            <div class="card-img">
+            <div className="card-img">
               <img src={require("../../assets/home/bootcamps-2.jpg")} alt="" />
             </div>
             <span>Bootcamps</span>
           </div>
           <div className="card-content">
-            <div class="card-img">
+            <div className="card-img">
               <img src={require("../../assets/home/young.jpg")} alt="" />
             </div>
             <span>Meetups</span>
           </div>
           <div className="card-content">
-            <div class="card-img">
+            <div className="card-img">
               <img src={require("../../assets/home/online.jpg")} alt="" />
             </div>
             <span>Eventos Online</span>
           </div>
           <div className="card-content">
-            <div class="card-img">
+            <div className="card-img">
               <img src={require("../../assets/home/events.jpg")} alt="" />
             </div>
             <span>Eventos Tecnologia</span>

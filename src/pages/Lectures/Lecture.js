@@ -20,7 +20,7 @@ const Lecture = () => {
       })
       .then(setLoadingData(false))
       .catch(err => console.error(err, 'Nenhum palestra encontrada'))
-  }, [])
+  }, [environment, lectureId])
 
   const StatusColor = (status) => {
 

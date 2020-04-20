@@ -77,7 +77,7 @@ const LecturesList = () => {
       })
       .then(setLoadingData(false))
       .catch(err => console.error(err, 'Nenhum usuário encontrado'))
-  }, [])
+  }, [environment, userId])
 
   return (
     <>
@@ -92,7 +92,7 @@ const LecturesList = () => {
             <Spin size='large' />
           </Row>
         )
-          : lectures.length > 0 ? 
+          : lectures.length > 0 ?
         (
           <>
             <Row justify="end" className='row-table'>

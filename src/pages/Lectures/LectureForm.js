@@ -47,7 +47,7 @@ const LectureForm = () => {
 			setProfile(data.find(profile => profile.id === localStorage.getItem('userId')))
 		})
 		.catch(err => console.error(err, 'Nenhum usuário encontrado'))
-	}, [])
+	}, [environment])
 
 	profile = {
 		...profile,
@@ -221,7 +221,7 @@ const LectureForm = () => {
 											name="activityDescription"
 										/>
 									</Form.Item>
-									{/* Identidade visual */}			
+									{/* Identidade visual */}
 									<Form.Item label="Identidade visual:" name="uploadedImage">
 										Já tem uma imagem que seja a cara da sua atividade? Insira o link no campo abaixo:
 										<Input name="uploadedImage" />

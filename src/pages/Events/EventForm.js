@@ -32,9 +32,9 @@ const EventForm = () => {
                 setValuesRadio(data[0].limited_spaces)
             })
             .catch(err => console.error(err, 'Nenhum evento por aqui!'))
-    }, [])
+    }, [environment, eventId])
 
-    let valoresIniciais   
+    let valoresIniciais
 
     // Se tiver o id do evento na url é uma edição e os dados antigos devem ser carregados
     eventId ? valoresIniciais = dados : valoresIniciais = {
@@ -58,8 +58,8 @@ const EventForm = () => {
         setValuesChecked(categories)
         formik.values.categories = categories
     }
-    const onChangeSpaces = (spaces) => {       
-        setValuesRadio(spaces.target.value);        
+    const onChangeSpaces = (spaces) => {
+        setValuesRadio(spaces.target.value);
         formik.values.limited_spaces = spaces.target.value
     }
     const onChangePartners = (partners) => {
@@ -79,7 +79,7 @@ const EventForm = () => {
         categories: values,
         limited_spaces: radio,
         partners: partner
-    }   
+    }
 
     const history = useHistory();
 
@@ -251,7 +251,7 @@ const EventForm = () => {
                                             <Checkbox value="palestrantes">Palestrantes</Checkbox>
                                         </Col>
                                         <Col span={10}>
-                                            <Checkbox value="impresa">Impresa</Checkbox>
+                                            <Checkbox value="imprensa">Imprensa</Checkbox>
                                         </Col>
                                         <Col span={24}>
                                             <Checkbox value="Nao">Não aceito parceiros</Checkbox>
