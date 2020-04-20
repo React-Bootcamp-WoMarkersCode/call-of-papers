@@ -23,7 +23,7 @@ const Event = () => {
         setApi(data)
       })
       .catch(err => console.error(err, 'Nenhum evento por aqui!'))
-  }, [])
+  }, [environment, eventId])
 
   return (
     <>
@@ -46,14 +46,7 @@ const Event = () => {
                   {categories && categories.length === 0 ? 'Sem informações' :
                     <>
                       {categories && categories.map((category) => {
-                        if (category === 'workshop')
-                        return(<Tag style={{ marginBottom: '8px' }}>Workshop</Tag>)
-                        if (category === 'backend')
-                        return(<Tag style={{ marginBottom: '8px' }}>Backend</Tag>)
-                        if (category === 'frontend')
-                        return(<Tag style={{ marginBottom: '8px' }}>Frontend</Tag>)
-                        if (category === 'bootcamp')
-                        return(<Tag style={{ marginBottom: '8px' }}>Bootcamp</Tag>)
+                        return(<Tag style={{ marginBottom: '8px' }} key={category}>{category}</Tag>)
                       })}
                     </>
                   }
@@ -64,18 +57,7 @@ const Event = () => {
                       :
                     <>
                       {partners && partners.map((partner) => {
-                        if (partner === 'sponsors')
-                        return(<Tag style={{ marginBottom: '8px' }}>Sponsors</Tag>)
-                        if (partner === 'universidade')
-                        return(<Tag style={{ marginBottom: '8px' }}>Universidades</Tag>)
-                        if (partner === 'comunidades')
-                        return(<Tag style={{ marginBottom: '8px' }}>Comunidades</Tag>)
-                        if (partner === 'startups')
-                        return(<Tag style={{ marginBottom: '8px' }}>Startups</Tag>)
-                        if (partner === 'palestrantes')
-                        return(<Tag style={{ marginBottom: '8px' }}>Palestrantes</Tag>)
-                        if (partner === 'impresa')
-                        return(<Tag style={{ marginBottom: '8px' }}>Imprensa</Tag>)
+                        return(<Tag style={{ marginBottom: '8px' }} key={partner}>{partner}</Tag>)
                       })}
                     </>
                   }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useLocation } from 'react-router'
-import { Row, Divider, Table, Tag, Spin } from 'antd'
+import { Row, Divider, Table, Tag } from 'antd'
 import { Link } from 'react-router-dom'
 
 const SubmissionsList = () => {
@@ -80,7 +80,7 @@ const SubmissionsList = () => {
         setApi(filter)
       })
       .catch(err => console.error(err, 'Nenhuma palestra por aqui!'))
-  }, [])
+  }, [eventId])
 
   return (
     <>

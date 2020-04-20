@@ -24,7 +24,7 @@ const Submission = () => {
         setLecturesPending(filter)
       })
       .catch(err => console.error(err, 'Nenhuma palestra por aqui!'))
-  }, [])
+  }, [environment, eventId])
 
   function handleChange(value) {
     setStatus(value)
@@ -34,14 +34,14 @@ const Submission = () => {
     payload.status = status
     setDesabilitado(true)
 
-  	fetch(`${environment}/lectures/${payload.id}`, {
-  		method: 'put',
-  		headers: {
-  			Accept: "application/json",
-  			"Content-Type": "application/json",
-  			'Access-Control-Allow-Origin': '*'
-  		},
-  		body: JSON.stringify(payload)
+    fetch(`${environment}/lectures/${payload.id}`, {
+      method: 'put',
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify(payload)
     })
 
     let message = ''
