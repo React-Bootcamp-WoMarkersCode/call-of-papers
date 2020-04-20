@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
 import { useHistory } from 'react-router-dom'
 import { getEnvironment } from './../../utils/environment'
-import { Form, Input, Row, Col, Button, Divider } from 'antd'
+import { Form, Input, Row, Col, Button, Divider, Radio } from 'antd'
+// import {  } from 'formik-antd'
 import './style.scss'
 
 const ProfileForm = () => {
 	let history = useHistory()
 	const environment = getEnvironment()
-	const [ profile, setProfile ] = useState([])
+  const [ profile, setProfile ] = useState([])
+  const [radio, setValuesRadio] = useState('')
 
 	useEffect(() => {
 		fetch(`${environment}/profiles`)
@@ -17,7 +19,12 @@ const ProfileForm = () => {
 				setProfile(data.find((profile) => profile.id === localStorage.getItem('userId')))
 			})
 			.catch((err) => console.error(err, 'Nenhum usuário encontrado'))
-	}, [environment])
+  }, [environment])
+
+  const onChangeRole = (role) => {
+    setValuesRadio(role.target.value)
+    formik.values.role = role.target.value
+  }
 
 	let formik = useFormik({
 		initialValues: profile,
@@ -33,7 +40,8 @@ const ProfileForm = () => {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
-					id: values.id,
+          id: values.id,
+          role: values.role,
 					email: values.email,
 					localization: values.localization,
 					registerDate: values.registerDate,
@@ -68,6 +76,17 @@ const ProfileForm = () => {
 			<Row gutter={[16, 24]}>
 				<Col span={14} offset={5}>
 					<Form onFinish={formik.handleSubmit} layout='vertical'>
+            <Form.Item
+              label="Quem é você ?"
+              htmlFor="role"
+              rules={[{ required: true }]}>
+              <Radio.Group name="role" onChange={onChangeRole}>
+                <Radio value={'Producer'} checked={formik.values.role === 'Producer'}>Produtor de eventos</Radio>
+                <Radio value={'Speaker'} checked={formik.values.role === 'Speaker'}>Palestrante</Radio>
+                <Radio value={'Both'} checked={formik.values.role === 'Both'}>Ambos</Radio>
+              </Radio.Group>
+            </Form.Item>
+
 						<Form.Item label='Apresentação'>
 							<Input.TextArea
 								rows={4}
