@@ -3,7 +3,6 @@ import { useFormik } from 'formik'
 import { useHistory } from 'react-router-dom'
 import { getEnvironment } from './../../utils/environment'
 import { Form, Input, Row, Col, Button, Divider, Radio } from 'antd'
-// import {  } from 'formik-antd'
 import './style.scss'
 
 const ProfileForm = () => {
