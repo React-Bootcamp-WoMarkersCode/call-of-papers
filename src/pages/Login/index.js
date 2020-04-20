@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Row, Divider, Card, Button } from 'antd'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons"
 import './style.scss'
 
 const Login = () => {
@@ -18,7 +20,7 @@ const Login = () => {
         <Card
           hoverable
           style={{ width: '20%' }}
-          className={['content-padding', (role === 'Producer' ? 'card-selected' : '')]}
+          className={['content-padding', 'login-card', (role === 'Producer' ? 'card-selected' : '')]}
           onClick={() => setRole('Producer')}>
           <Row justify='center'>
             <img
@@ -31,7 +33,7 @@ const Login = () => {
         <Card
           hoverable
           style={{ width: '20%' }}
-          className={['content-padding', (role === 'Speaker' ? 'card-selected' : '')]}
+          className={['content-padding', 'login-card', (role === 'Speaker' ? 'card-selected' : '')]}
           onClick={() => setRole('Speaker')}>
           <Row justify='center'>
             <img
@@ -44,7 +46,7 @@ const Login = () => {
         <Card
           hoverable
           style={{ width: '20%' }}
-          className={['content-padding', (role === 'Both' ? 'card-selected' : '')]}
+          className={['content-padding', 'login-card', (role === 'Both' ? 'card-selected' : '')]}
           onClick={() => setRole('Both')}>
           <Row justify='center'>
             <img
@@ -55,11 +57,13 @@ const Login = () => {
           </Row>
         </Card>
       </Row>
-      <Row gutter={[16, 24]} className='content-padding' justify='center'>
+      <Row gutter={[16, 24]} className='btn-group' justify='center'>
         <Button type='primary' className='facebook-button'>
+          <FontAwesomeIcon icon={faFacebookF} />
           Continuar com o Facebook
         </Button>
-        <Button type='primary' htmlType='google-button'>
+        <Button type='primary' className='google-button'>
+          <FontAwesomeIcon icon={faGoogle} />
           Continuar com o Google
         </Button>
       </Row>
