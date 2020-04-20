@@ -32,7 +32,6 @@ const Submission = () => {
 
   function submitEvaluation(payload) {
     payload.status = status
-
     setDesabilitado(true)
 
     fetch(`${environment}/lectures/${payload.id}`, {
@@ -58,7 +57,6 @@ const Submission = () => {
         <p>Infelizmente a palestra "${payload.activityTitle}" foi reprovada. Consulte mais informações no site.</p>
         <p><i>Sharing Talks</i></p>`
     }
-    console.log(payload.email)
     Email(payload.name, payload.email, message)
     alert(`Palestra ${payload.status.toLowerCase()}!`)
     slider.current.next()
@@ -163,7 +161,7 @@ const Submission = () => {
                       }
                     </Item>
                     <Item span={3}>
-                        <Button type='primary' onClick={submitEvaluation} disabled={desabilitado}>Enviar avaliação</Button>
+                        <Button type='primary' onClick={() => submitEvaluation(item)} disabled={desabilitado}>Enviar avaliação</Button>
                     </Item>
                   </Descriptions>
                 </Col>
