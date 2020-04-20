@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 import FacebookLogin from 'react-facebook-login'
 import { getCurrentDate } from './../../utils/currentDate'
@@ -6,8 +6,7 @@ import { getEnvironment } from './../../utils/environment'
 
 const FBLogin = ({ isDisabled }) => {
 	let history = useHistory()
-	const environment = getEnvironment()
-  const [ fbContent, setFbContent ] = useState('')
+  const environment = getEnvironment()
 
 	const responseFacebook = (response) => {
 		// Armazena os dados do usuário no navegador. Quando houver logout eles serão apagados
@@ -23,8 +22,8 @@ const FBLogin = ({ isDisabled }) => {
 		fetch(`${environment}/profiles`)
 			.then((res) => res.json())
 			.then((data) => {
-				if (!data.find((profile) => profile.id === localStorage.getItem('userId'))) {
-					let newProfile = new Object({
+				if (!data.find((profile) => profile.email === response.email)) {
+					let newProfile = {
 						id: response.userID,
 						email: response.email? response.email : '',
 						localization: '',
@@ -36,7 +35,7 @@ const FBLogin = ({ isDisabled }) => {
 						facebookLink: '',
 						mediumLink: '',
 						interests: []
-					})
+					}
 					fetch(`${environment}/profiles`, {
 						method: 'post',
 						headers: {
@@ -54,33 +53,18 @@ const FBLogin = ({ isDisabled }) => {
 			.catch((err) => console.error(err, 'Nenhum usuário encontrado'))
 	}
 
-	useEffect(
-		() => {
-			// Lógica para o botão de login do facebook aparecer ou não na tela
-			// Toda vez que o id de usuário armazenado na sessão mudar, ele vai executar isso
 
-			if (!localStorage.getItem('userId')) {
-				setFbContent(
-					<FacebookLogin
-						appId="675476209915681"
-						autoLoad={false}
-						fields="name,email,picture"
-            callback={responseFacebook}
-            icon="fa-facebook"
-            language="pt"
-            textButton="Continuar com o facebook"
-            size="small"
-            isDisabled={isDisabled}
-					/>
-				)
-			} else {
-				setFbContent('')
-			}
-		},
-		[ localStorage.getItem('userId'), isDisabled ]
-	)
-
-	return fbContent
+	return <FacebookLogin
+    appId="675476209915681"
+    autoLoad={false}
+    fields="name,email,picture"
+    callback={responseFacebook}
+    icon="fa-facebook"
+    language="pt"
+    textButton="Continuar com o facebook"
+    size="small"
+    isDisabled={isDisabled}
+  />
 }
 
 export default FBLogin
