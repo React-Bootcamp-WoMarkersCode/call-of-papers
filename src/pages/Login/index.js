@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Row, Divider, Card, Button } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons"
+import { faGoogle } from "@fortawesome/free-brands-svg-icons"
 import './style.scss'
+import FBLogin from './FBLogin'
 
 const Login = () => {
 
@@ -52,10 +53,7 @@ const Login = () => {
         </Card>
       </Row>
       <Row gutter={[16, 24]} className='btn-group' justify='center'>
-        <Button type='primary' className='facebook-button' disabled={role === ''}>
-          <FontAwesomeIcon icon={faFacebookF} />
-          Continuar com o Facebook
-        </Button>
+        <FBLogin isDisabled={role === ''} />
         <Button type='primary' className='google-button' disabled>
           <FontAwesomeIcon icon={faGoogle} />
           Continuar com o Google
