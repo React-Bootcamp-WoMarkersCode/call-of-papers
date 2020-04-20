@@ -4,7 +4,7 @@ import FacebookLogin from 'react-facebook-login'
 import { getCurrentDate } from './../../utils/currentDate'
 import { getEnvironment } from './../../utils/environment'
 
-const FBLogin = ({ isDisabled }) => {
+const FBLogin = ({ isDisabled, role }) => {
   let history = useHistory()
   const environment = getEnvironment()
 
@@ -25,6 +25,7 @@ const FBLogin = ({ isDisabled }) => {
         if (!data.find((profile) => profile.email === response.email)) {
           let newProfile = {
             id: response.userID,
+            role: role,
             email: response.email? response.email : '',
             localization: '',
             registerDate: `${getCurrentDate()}`,
