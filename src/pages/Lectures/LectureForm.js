@@ -3,6 +3,7 @@ import { Redirect } from 'react-router'
 import { Row, Button, Divider } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import './lectures-list.scss'
+import { Link } from 'react-router-dom'
 import { Formik } from 'formik'
 import {
 	Checkbox,
@@ -17,6 +18,7 @@ const { TextArea } = Input
 
 const LectureForm = () => {
 	let [ profile, setProfile ] = useState([])
+	let [ event, setEvent ] = useState([])
 	let [ goHome, setGoHome ] = useState(false)
 	const environment = getEnvironment()
 	const { eventId } = useParams()
@@ -49,6 +51,15 @@ const LectureForm = () => {
 		.catch(err => console.error(err, 'Nenhum usuário encontrado'))
 	}, [environment])
 
+	useEffect(() => {
+        fetch(`${environment}/events?id=${eventId}`)
+            .then(res => res.json())
+            .then(data => {
+                setEvent(data[0])
+            })
+            .catch(err => console.error(err, 'Nenhum evento encontrado'))
+    }, [environment])
+
 	profile = {
 		...profile,
 		userPicture,
@@ -76,7 +87,10 @@ const LectureForm = () => {
 				<Divider orientation="left">Submissão de atividades</Divider>
 			</Row>
 			<Row justify="center" style={{ marginBottom: 20 }}>
-				Para participar, basta preencher o formulário e aguardar o contato da equipe organizadora do evento
+				Para participar, preencha o formulário e aguarde o contato da equipe organizadora do evento&nbsp;<strong> {`${event.event}`} </strong>
+			</Row>
+			<Row justify="center" style={{ marginBottom: 20 }}>
+				Clique&nbsp;<Link to={`/lectures/copylecture/${eventId}`}>aqui</Link>&nbsp;para reaproveitar uma palestra já submetida em outro evento
 			</Row>
 			<Row justify="center" className="row-table">
 				<Formik
