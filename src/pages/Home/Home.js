@@ -60,7 +60,7 @@ const Home = () => {
             <img style={{ opacity: 0.6, width: '100%' }} src={require('../../assets/home/banner-1.jpg')} alt='Produtor de evento' />
           </div>
           <Row gutter={[16, 24]} style={{ backgroundColor: '#fff', paddingBottom: '3rem' }}>
-            <Divider orientation="center" style={{ marginTop: '3rem' }}>
+            <Divider orientation="center" style={{ marginTop: '3rem' }} id="lectures">
               Sharing Talks para palestrantes
             </Divider>
             <Card style={{ width: '100%', border: 'none', boxShadow: 'none', }} className="content-padding">
@@ -84,7 +84,7 @@ const Home = () => {
               Ainda sem <b>palestrantes</b> para o seu evento? <br/> Veja abaixo 😉
             </p>
           </Row>
-          <Row gutter={[16, 24]} style={{ backgroundColor: '#f8f8f8', paddingBottom: '3rem' }}>
+          <Row gutter={[16, 24]} style={{ backgroundColor: '#f8f8f8', paddingBottom: '3rem' }} id="events">
             <Divider orientation="center" style={{ marginTop: '3rem' }}>
               <p>Sharing Talks para produtores de eventos</p>
             </Divider>
@@ -107,7 +107,7 @@ const Home = () => {
         </>
       )}
       {/* Melhores eventos */}
-      <Row gutter={[16, 24]}>
+      <Row gutter={[16, 24]} id="highlights">
         <Divider orientation="left">
           Categorias em destaque
         </Divider>
