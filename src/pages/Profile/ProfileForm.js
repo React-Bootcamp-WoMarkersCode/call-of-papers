@@ -56,7 +56,8 @@ const ProfileForm = () => {
 			})
 				.then((response) => {
 					response.json().then((response) => {
-						console.log('Perfil atualizado com sucesso')
+            console.log('Perfil atualizado com sucesso')
+            localStorage.setItem('userRole', values.role)
 						history.push('/profile')
 					})
 				})
