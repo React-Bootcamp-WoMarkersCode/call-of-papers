@@ -1,39 +1,45 @@
 import React from 'react';
-import { Row, Col, Divider } from 'antd';
+import { Row, Col, Divider, Card } from 'antd';
 import { downloadCSVFromJson } from './../../utils/convertToCSV';
 import { getEnvironment } from './../../utils/environment';
 import { Link } from 'react-router-dom';
 
 const LecturesCSV = () => {
 	const environment = getEnvironment();
+	const userId = localStorage.getItem('userId')
 
-	fetch(`${environment}/lectures`)
+	fetch(`${environment}/lectures?userId=${userId}`)
 		.then((res) => res.json())
 		.then((data) => {
+			// Convertendo arrays em string para não dar problema na hora de converter para csv
+			data.map(lecture => lecture.interests = lecture.interests.toString())
+			data.map(lecture => lecture.activityCategory = lecture.activityCategory.toString())
 			downloadCSVFromJson('palestras.csv', data);
 		})
 		.catch((err) => console.error(err, 'Nenhuma palestra encontrada'));
 
 	return (
 		<div>
-			<Row gutter={[ 16, 24 ]}>
+			<Row gutter={[16, 24]}>
 				<Divider orientation="left">Minhas palestras</Divider>
 			</Row>
 			<Row style={{ marginBottom: 30 }}>
 				<Col span={16} offset={4}>
-					<div className="content-events">
-						<span>O download deverá iniciar automaticamente.</span>
-						<br />
-						<span>Se isso não acontecer, verifique se o navegador não está bloqueando downloads.</span>
-						<br />
-						<span>
-              {' '}Clique{' '}
-              <Link to="/lectures">
-								<span style={{ color: 'black' }}>aqui</span>
-							</Link>
-              {' '}para voltar
+					<Card>
+						<div className="content-events">
+							<span>O download deverá iniciar automaticamente.</span>
+							<br />
+							<span>Se isso não acontecer, verifique se o navegador não está bloqueando downloads.</span>
+							<br />
+							<span>
+								{' '}Clique{' '}
+								<Link to="/lectures">
+									<span style={{ color: 'black' }}>aqui</span>
+								</Link>
+								{' '}para voltar
 						</span>
-					</div>
+						</div>
+					</Card>
 				</Col>
 			</Row>
 		</div>

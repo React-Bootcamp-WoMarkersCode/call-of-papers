@@ -19,7 +19,7 @@ const HeaderComponent = () => {
   }
 
   return (
-    <>
+    <div className="menu-container">
       <Link to='/'>
         <img src={require('../../assets/logo.png')} alt='Sharing Talks' className='logo' />
         <img src={require('../../assets/logo-mobile.png')} alt='Sharing Talks' className='logo-mobile' />
@@ -29,11 +29,14 @@ const HeaderComponent = () => {
         !localStorage.getItem('userId') ?
           (<>
             <Menu theme='light' mode='horizontal'>
-              <Menu.Item key='/events' onClick={() => history.push('/events')}>
+              <Menu.Item key='/events' onClick={() => window.location.href='#events'}>
                 Produtores de eventos
               </Menu.Item>
-              <Menu.Item key='/lectures' onClick={() => history.push('/lectures')}>
+              <Menu.Item key='/lectures' onClick={() => window.location.href='#lectures'}>
                 Palestrantes
+              </Menu.Item>
+              <Menu.Item key='/highlights' onClick={() => window.location.href='#highlights'}>
+                Destaques
               </Menu.Item>
             </Menu>
             <Button type='default' className='login-btn' onClick={() => history.push('/login')}>Login</Button>
@@ -59,7 +62,7 @@ const HeaderComponent = () => {
           </Menu>)
       }
       </div>
-    </>
+    </div>
   )
 }
 

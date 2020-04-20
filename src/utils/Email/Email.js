@@ -1,9 +1,8 @@
 function Email (name, email, message) {
-    console.log("entrou aqui")
     const data = {
-        name: name,
-        email: email,
-        message: message
+        name,
+        email,
+        message
     }
     fetch('http://localhost:3333/send', {
         method: 'POST',

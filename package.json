@@ -15,6 +15,7 @@
     "axios": "^0.19.2",
     "concurrently": "^5.1.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "formik": "^2.1.4",
     "formik-antd": "^2.0.1",
