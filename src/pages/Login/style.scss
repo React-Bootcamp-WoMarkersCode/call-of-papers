@@ -9,8 +9,12 @@
     margin-bottom: 1em;
     text-transform: uppercase;
 
-    &:hover {
+    &:hover, {
       opacity: 0.8;
+    }
+
+    &:disabled {
+      opacity: 0.5;
     }
   }
 

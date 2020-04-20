@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import FacebookLogin from 'react-facebook-login'
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import { getCurrentDate } from './../../utils/currentDate'
 import { getEnvironment } from './../../utils/environment'
-import './fb_style.scss'
+import { Button } from 'antd'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebookF } from "@fortawesome/free-brands-svg-icons"
+import './style.scss'
 
-const FBLogin = () => {
+const FBLogin = ({role}) => {
 	let history = useHistory()
 	const environment = getEnvironment()
 	const [ fbContent, setFbContent ] = useState('')
@@ -66,14 +69,24 @@ const FBLogin = () => {
 						appId="675476209915681"
 						autoLoad={false}
 						fields="name,email,picture"
-						callback={responseFacebook}
-					/>
+            callback={responseFacebook}
+            render={renderProps => (
+              <Button
+                type='primary'
+                className='facebook-button'
+                disabled={role === ''}
+                onClick={renderProps.onClick}>
+                  <FontAwesomeIcon icon={faFacebookF} />
+                  Continuar com o Facebook
+              </Button>
+            )}
+          />
 				)
 			} else {
 				setFbContent('')
 			}
 		},
-		[ localStorage.getItem('userId') ]
+		[ localStorage.getItem('userId'), role ]
 	)
 
 	return <div style={{ float: 'right' }}>{fbContent}</div>
