@@ -9,7 +9,7 @@ const ProfileForm = () => {
 	let history = useHistory()
 	const environment = getEnvironment()
   const [ profile, setProfile ] = useState([])
-  const [radio, setValuesRadio] = useState('')
+  const [radio, setRadio] = useState('')
 
 	useEffect(() => {
 		fetch(`${environment}/profiles`)
@@ -21,7 +21,7 @@ const ProfileForm = () => {
   }, [environment])
 
   const onChangeRole = (role) => {
-    setValuesRadio(role.target.value)
+    setRadio(role.target.value)
     formik.values.role = role.target.value
   }
 
