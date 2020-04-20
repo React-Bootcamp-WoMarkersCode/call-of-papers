@@ -1,0 +1,54 @@
+.btn-group {
+  display: grid;
+  margin: 0 !important;
+  margin-top: 2em !important;
+
+  button {
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 1em;
+    text-transform: uppercase;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .facebook-button {
+    background-color: #2C88D9 !important;
+    border-color: #2C88D9 !important;
+  }
+
+  .google-button {
+    background-color: #EB4632 !important;
+    border-color: #EB4632 !important;
+  }
+}
+
+.content-login-padding {
+  margin: 0 6em 2em !important;
+}
+
+.card-selected {
+  border: 2.5px solid #8F74DD;
+}
+
+.login-card {
+  background-color: transparent;
+  width: 20%;
+
+  .ant-card-body {
+    padding: 24px 24px 0 24px;
+  }
+
+  .card-span {
+    font-weight: bold;
+    margin-top: 1.5em;
+    margin-bottom: 24px;
+  }
+
+  img {
+    width: 400;
+    max-width: 100%;
+  }
+}

@@ -1,8 +1,14 @@
-.menu-container {
-  .logo {
-    width: 270px;
-    float: left;
-    padding-top: 5px;
+.login-btn {
+  &:hover {
+    background-color: #6999EB;
+    color: white !important;
+  }
+}
+
+.logo {
+  width: 270px;
+  float: left;
+  padding-top: 5px;
 
     @media (orientation: portrait) {
       display: none;
