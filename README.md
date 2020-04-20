@@ -59,7 +59,14 @@ Para ver as definições das **páginas**, clique em [aqui](https://www.dropbox.
   npm install
 ```
 
-4. E por ultimo dar o comando para **rodar** seu projeto:
+4. Adcione um arquivo .env na raiz do projeto com as seguintes configurações:
+```
+NODE_PATH=src/
+SKIP_PREFLIGHT_CHECK=true
+PASSWORD_EMAIL=**********
+```
+
+5. E por ultimo dar o comando para **rodar** seu projeto:
 
 ```
   npm start
