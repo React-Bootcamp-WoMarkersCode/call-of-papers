@@ -63,7 +63,6 @@ Para ver as definições das **páginas**, clique em [aqui](https://www.dropbox.
 ```
 NODE_PATH=src/
 SKIP_PREFLIGHT_CHECK=true
-PASSWORD_EMAIL=8fee7ccb-4a53-431e-9546-0f6230fccbb9
 ```
 
 5. E por ultimo dar o comando para **rodar** seu projeto:
