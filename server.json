@@ -106,7 +106,8 @@
       "status": "APROVADA",
       "id": "396",
       "userId": "3154754594535841",
-      "eventId": "1"
+      "eventId": "1",
+      "uploadedImage": "https://scontent.fplu13-1.fna.fbcdn.net/v/t31.0-8/p960x960/23116902_1727937017217613_4292991786787237207_o.jpg?_nc_cat=101&_nc_sid=09cbfe&_nc_oc=AQkfnx2UPmvBDBmZDvoMGcqFQE-p6Qi5BM7lggkAs852gz_M-0mxuokjYadH6Kuxw3c&_nc_ht=scontent.fplu13-1.fna&_nc_tp=6&oh=21bcb75076cff8f99b79870ddd5d4683&oe=5EC57C13"
     },
     {
       "name": "Amanda Silva Resende",
@@ -211,7 +212,7 @@
         "Big Data e Machine Learning"
       ],
       "haveLecturedBefore": "Não",
-      "status": "APROVADA",
+      "status": "EM ANÁLISE",
       "id": "800",
       "userId": "3154754594535841",
       "eventId": "1"
