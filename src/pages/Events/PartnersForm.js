@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Button, Divider } from 'antd'
+import { Row, Button } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import { Formik } from 'formik'
 import { useParams } from 'react-router'
@@ -7,6 +7,7 @@ import {
 	Input,
 	Form
 } from 'formik-antd'
+import Header from './../../components/Header'
 
 const { TextArea } = Input
 
@@ -56,9 +57,7 @@ const PartnersForm = () => {
 
 	return (
 		<>
-			<Row gutter={[ 16, 24 ]}>
-        <Divider orientation="left">Call For Partners: {event}</Divider>
-			</Row>
+			<Header text={`Call For Partners: ${event}`} />
 			<Row justify="center" style={{ marginBottom: 20 }}>
 				Quer formar uma parceria e fazer o {event} acontecer? É só preencher o formulário abaixo. O time responsável entrará em contato assim que possível.
 			</Row>

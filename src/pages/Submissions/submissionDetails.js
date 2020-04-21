@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { Row, Col, Divider, Descriptions, Typography, Tag, Avatar, Space } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Row, Col, Divider, Descriptions, Typography, Tag, Avatar, Space } from 'antd'
 import { faEnvelope, faPhoneAlt, faUser } from "@fortawesome/free-solid-svg-icons"
 import { faFacebook, faLinkedin, faTwitter, faInstagram, faYoutube, faGithub } from "@fortawesome/free-brands-svg-icons"
+import Header from '../../components/Header'
 import './style.scss'
-
 
 const { Item } = Descriptions
 const { Title } = Typography
@@ -25,11 +25,7 @@ const SubmissionInAnalysis = () => {
 
     return (
         <>
-            <Row gutter={[16, 24]}>
-                <Divider orientation="left">
-                    Palestra
-                </Divider>
-            </Row>
+            <Header text="Palestra" />
             <Row justify='start' style={{ marginLeft: '350px' }}>
                 <Title level={4}>
                     Palestrante
@@ -43,7 +39,7 @@ const SubmissionInAnalysis = () => {
                                 lecture.uploadedImage ?
                                     <Avatar size={50} src={lecture.uploadedImage} />
                                 :
-                                    <Avatar size={50}> <FontAwesomeIcon icon={faUser} /></Avatar> 
+                                    <Avatar size={50}> <FontAwesomeIcon icon={faUser} /></Avatar>
                             }
 
                             <Item>

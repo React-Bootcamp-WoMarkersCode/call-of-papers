@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useLocation } from 'react-router'
-import { Row, Divider, Table, Typography } from 'antd'
+import { Row, Table, Typography } from 'antd'
 import { Link } from 'react-router-dom'
+import Header from './../../components/Header'
 
 const { Paragraph } = Typography
 
@@ -64,11 +65,7 @@ const SubmissionsApproved = () => {
 
   return (
     <>
-      <Row gutter={[16, 24]}>
-        <Divider orientation="left">
-          Palestras aprovadas
-        </Divider>
-      </Row>
+      <Header text="Palestras aprovadas" />
       <Row justify="center" className='row-table'>
         <Table columns={columnsTable} dataSource={aprovadas} rowKey='id' />
       </Row>

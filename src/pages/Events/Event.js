@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { Row, Col, Card, Divider, Tag, Button, Descriptions } from 'antd'
+import { Row, Col, Card, Tag, Button, Descriptions } from 'antd'
 import { Link } from 'react-router-dom'
 import { getEnvironment } from './../../utils/environment'
 import "./event.scss";
+import Header from '../../components/Header'
 
 const { Item } = Descriptions
 
@@ -27,11 +28,8 @@ const Event = () => {
 
   return (
     <>
-      <Row gutter={[16, 24]}>
-        <Divider orientation='left'>
-          {event}
-        </Divider>
-      </Row>
+      <Header text={event} />
+
       {/* Descrição  */}
       <Row className="content-detalhe">
         <Col span={16} offset={4}>
