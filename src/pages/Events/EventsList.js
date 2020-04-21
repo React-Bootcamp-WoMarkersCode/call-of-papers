@@ -78,7 +78,12 @@ const EventsList = () => {
         (<Row justify="center" className='empty-box'>
           <Card>
             <p>Você ainda não possui eventos!</p>
-            <Button type='default' className='login-btn' onClick={() => history.push('/events/form')}>Cadastrar um novo evento</Button>
+            <Button
+              type='default'
+              className='login-btn'
+              onClick={() => history.push('/events/form')}>
+                Cadastrar um novo evento
+            </Button>
           </Card>
         </Row>)
       }
