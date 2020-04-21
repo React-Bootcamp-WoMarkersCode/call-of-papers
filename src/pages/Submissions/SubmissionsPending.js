@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { useParams } from 'react-router'
-import { Row, Col, Button, Divider, Descriptions, Carousel, Space, Typography, Avatar, Tag } from 'antd'
+import { Row, Col, Button, Descriptions, Carousel, Space } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import Email from '../../utils/Email/Email'
 import Header from './../../components/Header'
