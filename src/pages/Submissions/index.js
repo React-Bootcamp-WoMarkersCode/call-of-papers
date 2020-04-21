@@ -10,7 +10,7 @@ const Submissions = () => {
   const { eventId } = useParams()
   const [ lectures, setLectures ] = useState()
 
-  useEffect(() => {
+  const getLectures = () => {
     fetch(`${environment}/lectures`)
       .then(res => res.json())
       .then(response => {
@@ -18,13 +18,21 @@ const Submissions = () => {
         setLectures(lecturesById)
       })
       .catch(err => console.error(err, 'Nenhuma palestra por aqui!'))
-  }, [eventId])
+  }
+
+  const handleUpdateLecture = () => {
+    getLectures()
+  }
+
+  useEffect(() => {
+    eventId && getLectures()
+  })
 
   return (
     <div>
       <Event />
-      <SubmissionsTable lectures={lectures} />
-      <SubmissionsPending lectures={lectures} />
+      <SubmissionsTable lectures={lectures}  />
+      <SubmissionsPending lectures={lectures} handleUpdateLecture={handleUpdateLecture}/>
     </div>
   )
 }
