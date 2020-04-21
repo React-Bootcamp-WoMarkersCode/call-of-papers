@@ -305,6 +305,7 @@
   "profiles": [
     {
       "id": "3154754594535841",
+      "role": "Both",
       "email": "",
       "localization": "",
       "registerDate": "2020-04-12",
@@ -317,20 +318,8 @@
       "interests": []
     },
     {
-      "id": "1613191052178209",
-      "email": "",
-      "localization": "",
-      "registerDate": "2020-04-13",
-      "apresentation": "",
-      "githubLink": "",
-      "linkedinLink": "",
-      "twitterLink": "",
-      "facebookLink": "",
-      "mediumLink": "",
-      "interests": []
-    },
-    {
       "id": "3036218123066022",
+      "role": "Both",
       "email": "matancredi@hotmail.com",
       "localization": "Mogi das Cruzes, SP",
       "registerDate": "2020-04-15",
@@ -350,7 +339,22 @@
     },
     {
       "id": "2665688483678067",
+      "role": "Both",
       "email": "gabrielesuzart@gmail.com",
+      "localization": "",
+      "registerDate": "2020-04-20",
+      "apresentation": "",
+      "githubLink": "",
+      "linkedinLink": "",
+      "twitterLink": "",
+      "facebookLink": "",
+      "mediumLink": "",
+      "interests": []
+    },
+    {
+      "id": "1613191052178209",
+      "role": "Both",
+      "email": "isabellasoares.contato@hotmail.com",
       "localization": "",
       "registerDate": "2020-04-20",
       "apresentation": "",

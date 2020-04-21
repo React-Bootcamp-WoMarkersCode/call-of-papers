@@ -11,7 +11,18 @@ import './style.scss'
 
 const { Item } = Descriptions;
 
-const ProfileDescription = ({ profile, userEmail }) => {
+const ProfileDescription = ({ profile }) => {
+
+  const getUserRole = (role) => {
+    if (role === 'Producer') {
+      return 'Produtor de eventos'
+    } else if (role === 'Speaker') {
+      return 'Palestrante'
+    }
+
+    return 'Produtor de eventos e palestrante'
+  }
+
   return (
     <Descriptions layout="vertical">
       <Item label="Apresentação" span={3}>
@@ -22,6 +33,9 @@ const ProfileDescription = ({ profile, userEmail }) => {
       </Item>
       <Item label="Interesses" span={3}>
         {profile.interests ? profile.interests && profile.interests.map(item => <Tag style={{ marginBottom: '8px' }} key={item}>{item}</Tag>) : "Sem dados"}
+      </Item>
+      <Item label="Quem sou eu" span={1}>
+        { getUserRole(profile.role) }
       </Item>
       <Item label="Data de cadastro" span={1}>
         {profile.registerDate? `${(profile.registerDate)}` : 'Sem dados'}
