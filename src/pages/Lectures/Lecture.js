@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
-import { Row, Descriptions, Button, Divider, Spin, Tag } from 'antd'
+import { Row, Descriptions, Button, Spin, Tag } from 'antd'
 import { getEnvironment } from './../../utils/environment'
+import Header from './../../components/Header'
 
 const { Item } = Descriptions
 
@@ -45,11 +46,7 @@ const Lecture = () => {
         :
         (
           <>
-            <Row gutter={[16, 24]}>
-              <Divider orientation='left'>
-                {lecture && lecture.activityTitle}
-              </Divider>
-            </Row>
+            <Header text={lecture && lecture.activityTitle} />
             <Row justify='center' className='row-table'>
               <Descriptions layout='vertical' style={{ textAlign: 'justify' }}>
                 <Item label='Descrição' span={3}>

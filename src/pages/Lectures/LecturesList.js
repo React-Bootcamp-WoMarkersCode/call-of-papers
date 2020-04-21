@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Divider, Tag, Button, Typography, Spin, Card } from 'antd'
+import { Row, Tag, Button, Typography, Spin, Card } from 'antd'
 import { Link } from 'react-router-dom'
 import { getEnvironment } from './../../utils/environment'
 import TableComponent from '../../components/Table'
 import './lectures-list.scss'
+import Header from '../../components/Header'
 
 const { Paragraph } = Typography
 
@@ -81,11 +82,7 @@ const LecturesList = () => {
 
   return (
     <>
-    <Row gutter={[16, 24]}>
-              <Divider orientation="left">
-                Minhas palestras
-              </Divider>
-            </Row>
+      <Header text="Minhas palestras" />
       { loadingData ?
         (
           <Row gutter={[16, 24]}>

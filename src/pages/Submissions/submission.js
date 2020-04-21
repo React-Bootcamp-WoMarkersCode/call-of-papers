@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router'
-import { Row, Col, Button, Divider, Descriptions, Carousel, Space, Typography, Avatar, Tag, Spin } from 'antd'
+import { Row, Col, Button, Divider, Descriptions, Carousel, Space, Typography, Avatar, Tag } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faPhoneAlt, faUser } from "@fortawesome/free-solid-svg-icons"
 import { faFacebook, faLinkedin, faTwitter, faInstagram, faYoutube, faGithub } from "@fortawesome/free-brands-svg-icons"
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
-import './style.scss'
+
 import Email from '../../utils/Email/Email'
+import Header from './../../components/Header'
+import './style.scss'
 
 const { Item } = Descriptions
 const { Title } = Typography
@@ -27,7 +29,7 @@ const SubmissionInAnalysis = () => {
       })
       .catch(err => console.error(err, 'Nenhuma palestra por aqui!'))
   }, [environment, eventId])
-  
+
   const aproved = (item) => {
     item.status = 'APROVADA'
     setDesabilitado(true)
@@ -76,11 +78,7 @@ const SubmissionInAnalysis = () => {
 
   return (
     <>
-      <Row gutter={[16, 24]}>
-        <Divider orientation="left">
-          Palestras pendentes de aprovação
-        </Divider>
-      </Row>
+      <Header text="Palestras pendentes de aprovação" />
       <Row justify='end'>
         <Col span={8}>
           <Space>
@@ -210,7 +208,7 @@ const SubmissionInAnalysis = () => {
         <Descriptions title='Não existe palestras pendendes de aprovação!' style={{padding:'50px', fontSize:'20px', fontWeight:'bold', textAlign:'center'}}>
         </Descriptions>
       </Row>
-        
+
     }
     </>
   )

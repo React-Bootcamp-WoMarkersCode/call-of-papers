@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Form, Input, Checkbox, Radio, Button, Divider } from 'antd'
+import { Row, Col, Form, Input, Checkbox, Radio, Button } from 'antd'
 import { useFormik } from 'formik'
 import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router'
 
 import { getEnvironment } from './../../utils/environment'
+import Header from '../../components/Header'
 
 let bodyApi = {}
 
@@ -126,15 +127,8 @@ const EventForm = () => {
 
     return (
       <>
-        <Row gutter={[16, 24]}>
-          <Divider orientation='left'>
-            {
-              eventId ?
-                  `Edite o evento - ${formik.values.event}` :
-                  `Crie um evento`
-            }
-          </Divider>
-        </Row>
+        <Header text={eventId ? `Edite o evento - ${formik.values.event}` : `Crie um evento`} />
+
         <Row style={{ marginTop: 30 }}>
             <Col span={16} offset={4}>
 
