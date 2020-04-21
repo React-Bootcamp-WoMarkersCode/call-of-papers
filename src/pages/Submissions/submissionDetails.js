@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import { Row, Col, Divider, Descriptions, Typography, Tag, Avatar, Space } from 'antd'
-import { FolderOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined, InstagramOutlined, YoutubeOutlined, UserOutlined } from '@ant-design/icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope, faPhoneAlt, faUser } from "@fortawesome/free-solid-svg-icons"
+import { faFacebook, faLinkedin, faTwitter, faInstagram, faYoutube, faGithub } from "@fortawesome/free-brands-svg-icons"
 import './style.scss'
-import { auto } from 'async'
+
 
 const { Item } = Descriptions
-const { Title } = Typography
+const { Title, Paragraph } = Typography
 
 const SubmissionInAnalysis = () => {
     let { submissionId } = useParams()
@@ -33,50 +35,71 @@ const SubmissionInAnalysis = () => {
                     Palestrante
                 </Title>
             </Row>
-            <Row justify='center' style={{ marginBottom: '2em' }}>
-                <Col span={4}>
-                    <Space>
-                        <Avatar size={50} src={lecture.uploadedImage} />
-                        <Descriptions layout="vertical" style={{ textAlign: 'justify' }}>
+            <Row gutter={16} justify='center' style={{ marginBottom: '2em' }}>
+                <Col span={5}>
+                    <Space direction='vertical'>
+                        <Space>
+                            {
+                                lecture.uploadedImage ?
+                                    <Avatar size={50} src={lecture.uploadedImage} />
+                                :
+                                    <Avatar size={50}> <FontAwesomeIcon icon={faUser} /></Avatar> 
+                            }
+
                             <Item>
                                 {lecture.name ? `${lecture.name}` : 'Sem dados'}
                             </Item>
-                        </Descriptions>
+                        </Space>
+                        <Space direction='horizontal'>
+                            <FontAwesomeIcon icon={faPhoneAlt} />
+                            <Item label="Telefone" span={3}>
+                                {lecture.cellphone ? `${lecture.cellphone}` : 'Sem dados'}
+                            </Item>
+                        </Space>
+                        <Space direction='horizontal'>
+                            <FontAwesomeIcon icon={faEnvelope} />
+                            <Item label="E-mail" span={3} style={{ wordBreak: 'break-word' }}>
+                                {lecture.email ? `${lecture.email}` : 'Sem dados'}
+                            </Item>
+                        </Space>
+                        <Item justify='center'>
+                            {
+                                lecture.haveLecturedBefore === "Não"
+                                    ?
+                                    <Tag style={{ marginBottom: '8px' }} key='nao'>Primeira palestra</Tag>
+                                    :
+                                    <Tag style={{ marginBottom: '8px' }} key='sim'>Já palestrou</Tag>
+                            }
+                        </Item>
                     </Space>
-                    <Descriptions layout="vertical" style={{ textAlign: 'justify' }}>
-
-                        <Item label="Telefone" span={3}>
-                            {lecture.cellphone ? `${lecture.cellphone}` : 'Sem dados'}
-                        </Item>
-                        <Item label="E-mail" span={3} style={{ wordBreak: 'break-word' }}>
-                            {lecture.email ? `${lecture.email}` : 'Sem dados'}
-                        </Item>
-                    </Descriptions>
                 </Col>
-                <Col span={8}>
+                <Divider className='teste' type='vertical' style={{ height: 'auto', border: '1px solid' }} />
+                <Col span={7}>
                     <Descriptions>
-                        <Item label="Mini biografia" span={3}>
+                        <Item span={3} style={{ textAlign: 'justify' }}>
                             {lecture.miniBio ? `${lecture.miniBio}` : 'Sem dados'}
                         </Item>
-                        <Item>
-                            {lecture.linkedin ?
-                                <a href={`${lecture.linkedin}`}><LinkedinOutlined className="social-network" /></a>
-                                : <LinkedinOutlined className="social-network" />}
-                            {lecture.facebook ?
-                                <a href={`${lecture.facebook}`}><FacebookOutlined className="social-network" /></a>
-                                : <FacebookOutlined className="social-network" />}
-                            {lecture.twitter ?
-                                <a href={`${lecture.twitter}`}><TwitterOutlined className="social-network" /></a>
-                                : <TwitterOutlined className="social-network" />}
-                            {lecture.instagram ?
-                                <a href={`${lecture.instagram}`}><InstagramOutlined className="social-network" /></a>
-                                : <InstagramOutlined className="social-network" />}
-                            {lecture.youtube ?
-                                <a href={`${lecture.youtube}`}><YoutubeOutlined className="social-network" /></a>
-                                : <YoutubeOutlined className="social-network" />}
-                            {lecture.portfolio ?
-                                <a href={`${lecture.portfolio}`}><FolderOutlined className="social-network" /></a>
-                                : <FolderOutlined className="social-network" />}
+                        <Item >
+                            <Space direction='horizontal' style={{ fontSize: '1.75em' }}>
+                                {lecture.facebookLink ?
+                                    <a href={`${lecture.facebookLink}`}><FontAwesomeIcon icon={faFacebook} /> </a>
+                                    : <FontAwesomeIcon icon={faFacebook} />}
+                                {lecture.linkedinLink ?
+                                    <a href={`${lecture.linkedinLink}`}><FontAwesomeIcon icon={faLinkedin} /></a>
+                                    : <FontAwesomeIcon icon={faLinkedin} />}
+                                {lecture.githubLink ?
+                                    <a href={`${lecture.githubLink}`}><FontAwesomeIcon icon={faGithub} /></a>
+                                    : <FontAwesomeIcon icon={faGithub} />}
+                                {lecture.twitter ?
+                                    <a href={`${lecture.twitter}`}><FontAwesomeIcon icon={faTwitter} /></a>
+                                    : <FontAwesomeIcon icon={faTwitter} />}
+                                {lecture.instagram ?
+                                    <a href={`${lecture.instagram}`}><FontAwesomeIcon icon={faInstagram} /></a>
+                                    : <FontAwesomeIcon icon={faInstagram} />}
+                                {lecture.youtube ?
+                                    <a href={`${lecture.youtube}`}><FontAwesomeIcon icon={faYoutube} /></a>
+                                    : <FontAwesomeIcon icon={faYoutube} />}
+                            </Space>
                         </Item>
                     </Descriptions>
                 </Col>
@@ -86,24 +109,19 @@ const SubmissionInAnalysis = () => {
                     Atividade
                 </Title>
             </Row>
-            <Row justify='center' style={{ marginBottom: '2em' }}>
+            <Row justify='center' >
                 <Col span={12}>
-                    <Descriptions layout="vertical" title={lecture.activityTitle} style={{ textAlign: 'justify' }}>
-                        <Item label="Descrição" span={3}>
+                    <Descriptions layout="vertical" title={lecture.activityTitle} type='secundary' style={{ textAlign: 'justify' }}>
+                        <Item span={3}>
                             {lecture.activityDescription ? `${lecture.activityDescription}` : 'Sem dados'}
                         </Item>
-                        <Tag>{lecture.activityType}</Tag>
-                        <Item label="Já palestrou?" span={2}>
-                            {lecture.haveLecturedBefore ? `${(lecture.haveLecturedBefore)}` : 'Sem dados'}
-                        </Item>
-                        <Item label="Categorias" span={3}>
-                            {lecture.activityCategory ? `${(lecture.activityCategory)} e ${(lecture.activityCategory)}` : 'Sem dados'}
+                        <Item>
+                            <Tag style={{ marginBottom: '8px' }} key='tipo-atividade'>{lecture.activityType}</Tag>
+                            {lecture.activityCategory ? lecture.activityCategory.map(category => <Tag style={{ marginBottom: '8px' }} key={category}>{category}</Tag>) : ''}
                         </Item>
                     </Descriptions>
                 </Col>
             </Row>
-
-
         </>
     )
 }
