@@ -8,7 +8,7 @@ import './style.scss'
 
 
 const { Item } = Descriptions
-const { Title, Paragraph } = Typography
+const { Title } = Typography
 
 const SubmissionInAnalysis = () => {
     let { submissionId } = useParams()
@@ -73,7 +73,7 @@ const SubmissionInAnalysis = () => {
                         </Item>
                     </Space>
                 </Col>
-                <Divider className='teste' type='vertical' style={{ height: 'auto', border: '1px solid' }} />
+                <Divider type='vertical' style={{ height: 'auto', border: '1px solid' }} orientation='center' />
                 <Col span={7}>
                     <Descriptions>
                         <Item span={3} style={{ textAlign: 'justify' }}>
