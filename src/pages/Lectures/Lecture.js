@@ -83,7 +83,7 @@ const Lecture = () => {
               <Button
                 type='primary'
                 onClick={() => history.push('/lectures/form')}
-                disabled={lecture && lecture.status === 'EM ANÁLISE'}
+                disabled={lecture && lecture.status !== 'EM ANÁLISE'}
               >
                 Editar
               </Button>
