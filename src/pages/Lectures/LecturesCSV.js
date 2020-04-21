@@ -3,7 +3,7 @@ import { Row, Col, Card } from 'antd'
 import { downloadCSVFromJson } from './../../utils/convertToCSV'
 import { getEnvironment } from './../../utils/environment'
 import { Link } from 'react-router-dom'
-import { Header } from './../../components/Header'
+import Header from './../../components/Header'
 
 const LecturesCSV = () => {
 	const environment = getEnvironment()

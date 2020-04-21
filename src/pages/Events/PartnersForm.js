@@ -7,7 +7,7 @@ import {
 	Input,
 	Form
 } from 'formik-antd'
-import { Header } from './../../components/Header'
+import Header from './../../components/Header'
 
 const { TextArea } = Input
 

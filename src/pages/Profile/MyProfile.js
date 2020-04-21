@@ -5,7 +5,7 @@ import { getEnvironment } from './../../utils/environment'
 import { useHistory } from 'react-router-dom'
 import ProfileDescription from './ProfileDescription'
 import './style.scss'
-import { Header } from './../../components/Header'
+import Header from './../../components/Header'
 
 const { Meta } = Card;
 

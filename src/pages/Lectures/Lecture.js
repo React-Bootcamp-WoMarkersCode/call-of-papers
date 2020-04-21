@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { Row, Descriptions, Button, Spin, Tag } from 'antd'
 import { getEnvironment } from './../../utils/environment'
-import { Header } from './../../components/Header'
+import Header from './../../components/Header'
 
 const { Item } = Descriptions
 

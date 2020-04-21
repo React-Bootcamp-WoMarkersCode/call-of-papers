@@ -4,7 +4,7 @@ import { Row, Col, Select, Button, Descriptions, Spin, Carousel } from 'antd'
 import { FolderOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined, InstagramOutlined, YoutubeOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons'
 import './style.scss'
 import Email from '../../utils/Email/Email'
-import { Header } from './../../components/Header'
+import Header from './../../components/Header'
 
 const { Option } = Select
 const { Item } = Descriptions

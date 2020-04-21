@@ -12,7 +12,7 @@ import {
 	Form
 } from 'formik-antd'
 import { useParams } from 'react-router'
-import { Header } from './../../components/Header'
+import Header from './../../components/Header'
 
 const { TextArea } = Input
 

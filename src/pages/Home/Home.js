@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Divider, Card, Space, Typography, Col } from 'antd'
+import { Row, Card, Space, Typography, Col } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 import CardEvent from './CardEvent'
 import { getEnvironment } from './../../utils/environment'
-import { Header } from './../../components/Header'
+import Header from './../../components/Header'
 import './style.scss'
 
 const { Text } = Typography;
@@ -61,8 +61,8 @@ const Home = () => {
             <img style={{ opacity: 0.6, width: '100%' }} src={require('../../assets/home/banner-1.jpg')} alt='Produtor de evento' />
           </div>
 
-          <Row gutter={[16, 24]} style={{ backgroundColor: '#fff', paddingBottom: '3rem' }}>
           <Header text="Sharing Talks para palestrantes" />
+          <Row gutter={[16, 24]} style={{ backgroundColor: '#fff', paddingBottom: '3rem' }}>
             <Card style={{ width: '100%', border: 'none', boxShadow: 'none', }} className="content-padding">
               <Row justify="space-between" style={{ display: 'flex', justifyContent: 'space-evenly', alignContent: 'center' }}>
                 <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
@@ -84,8 +84,8 @@ const Home = () => {
               Ainda sem <b>palestrantes</b> para o seu evento? <br/> Veja abaixo 😉
             </p>
           </Row>
+          <Header text="Sharing Talks para produtores de eventos" />
           <Row gutter={[16, 24]} style={{ backgroundColor: '#f8f8f8', paddingBottom: '3rem' }} id="events">
-            <Header text="Sharing Talks para produtores de eventos" />
             <Card style={{ width: '100%', border: 'none', boxShadow: 'none', backgroundColor: '#f8f8f8' }} className="content-padding">
               <Row justify="space-between" style={{ display: 'flex', justifyContent: 'space-evenly', alignContent: 'center' }}>
                 <img style={{ width: 400, maxWidth: '100%' }} src={require('../../assets/events-producer.png')} alt='Produtor de evento' />
@@ -105,8 +105,8 @@ const Home = () => {
         </>
       )}
       {/* Melhores eventos */}
+      <Header text="Categorias em destaque" />
       <Row gutter={[16, 24]} id="highlights">
-        <Header text="Categorias em destaque" />
         <div className="home-card">
           <div className="card-content">
             <div className="card-img">

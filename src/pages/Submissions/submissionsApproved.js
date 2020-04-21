@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useLocation } from 'react-router'
 import { Row, Table, Typography } from 'antd'
 import { Link } from 'react-router-dom'
-import { Header } from './../../components/Header'
+import Header from './../../components/Header'
 
 const { Paragraph } = Typography
 

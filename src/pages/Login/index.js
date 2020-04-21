@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle } from "@fortawesome/free-brands-svg-icons"
 import './style.scss'
 import FBLogin from './FBLogin'
-import { Header } from './../../components/Header'
+import Header from './../../components/Header'
 
 const Login = () => {
 
