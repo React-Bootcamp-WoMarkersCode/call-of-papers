@@ -15,6 +15,7 @@ const MyProfile = React.lazy(() => import('pages/Profile/MyProfile'))
 const PartnersForm = React.lazy(() => import('pages/Events/PartnersForm'))
 const ProfileForm = React.lazy(() => import('pages/Profile/ProfileForm'))
 const SubmissionDetails = React.lazy(() => import('pages/Submissions/submissionDetails'))
+const CopyLecture = React.lazy(() => import('pages/Lectures/CopyLecture'))
 
 const Routes = props => (
   <Suspense fallback="Loading..." >
@@ -35,6 +36,7 @@ const Routes = props => (
       <Route exact path="/lectures" component={routerProps => <LecturesList {...routerProps} />} />
       <Route exact path="/download-lectures" component={routerProps => <DownloadLectures {...routerProps} />} />
       <Route exact path="/lectures/form/:eventId" component={routerProps => <LectureForm {...routerProps} />} />
+      <Route exact path="/lectures/copylecture/:eventId" component={routerProps => <CopyLecture {...routerProps} />} />
       <Route path="/lectures/:lectureId" component={routerProps => <Lecture {...routerProps} />} />
 
       <Route path="/profile/" component={routerProps => <MyProfile {...routerProps} />} />
