@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router'
-import { Row, Button, Divider } from 'antd'
+import { Row, Button } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import './lectures-list.scss'
 import { Link } from 'react-router-dom'
@@ -13,6 +13,7 @@ import {
 	Form
 } from 'formik-antd'
 import { useParams } from 'react-router'
+import Header from './../../components/Header'
 
 const { TextArea } = Input
 
@@ -83,9 +84,7 @@ const LectureForm = () => {
 	if (goHome === false) {
 		return (
 			<>
-			<Row gutter={[ 16, 24 ]}>
-				<Divider orientation="left">Submissão de atividades</Divider>
-			</Row>
+			<Header text="Submissão de atividades" />
 			<Row justify="center" style={{ marginBottom: 20 }}>
 				Para participar, preencha o formulário e aguarde o contato da equipe organizadora do evento&nbsp;<strong> {`${event.event}`} </strong>
 			</Row>

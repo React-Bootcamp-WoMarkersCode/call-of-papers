@@ -1,14 +1,13 @@
 import React from 'react';
-import { Row, Divider, List, Col } from 'antd'
+import { Row, List, Col } from 'antd'
 import { LinkedinOutlined, GithubOutlined} from '@ant-design/icons'
+import Header from '../../components/Header'
+
 const About = () => {
     return(
       <>
-        <Row gutter={[16, 24]}>
-          <Divider orientation="left">
-            Sobre <i>Sharing Talks</i>
-          </Divider>
-        </Row>
+        <Header text="Sobre <i>Sharing Talks</i>" />
+
         <Row gutter={[16, 24]} className='home-cards-container'>
           <Col span={16} offset={4} style={{ textAlign: 'justify' }}>
             <p><i>Sharing Talks</i> é uma plataforma para conectar eventos a palestrantes.

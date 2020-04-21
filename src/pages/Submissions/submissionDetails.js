@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { Row, Col, Divider, Descriptions } from 'antd'
-import { FolderOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined, InstagramOutlined, YoutubeOutlined } from '@ant-design/icons'
+import { Row, Col, Descriptions, Typography, Tag, Avatar, Space } from 'antd'
+import { FolderOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined, InstagramOutlined, YoutubeOutlined, UserOutlined } from '@ant-design/icons'
 import './style.scss'
+import Header from '../../components/Header'
 
 const { Item } = Descriptions
+const { Title } = Typography
 
 const SubmissionInAnalysis = () => {
     let { submissionId } = useParams()
@@ -21,23 +23,34 @@ const SubmissionInAnalysis = () => {
 
     return (
         <>
-            <Row gutter={[16, 24]}>
-                <Divider orientation="left">
-                    Palestra
-                </Divider>
+            <Header text="Palestra" />
+            <Row justify='start' style={{ marginLeft: '350px' }}>
+                <Title level={4}>
+                    Palestrante
+                </Title>
             </Row>
             <Row justify='center' style={{ marginBottom: '2em' }}>
                 <Col span={4}>
+                    <Space>
+                        <Avatar size={50} src={lecture.uploadedImage} />
+                        <Descriptions layout="vertical" style={{ textAlign: 'justify' }}>
+                            <Item>
+                                {lecture.name ? `${lecture.name}` : 'Sem dados'}
+                            </Item>
+                        </Descriptions>
+                    </Space>
                     <Descriptions layout="vertical" style={{ textAlign: 'justify' }}>
-                        <Item label="Palestrante" span={3}>
-                            {lecture.name ? `${lecture.name}` : 'Sem dados'}
-                        </Item>
+
                         <Item label="Telefone" span={3}>
                             {lecture.cellphone ? `${lecture.cellphone}` : 'Sem dados'}
                         </Item>
                         <Item label="E-mail" span={3} style={{ wordBreak: 'break-word' }}>
                             {lecture.email ? `${lecture.email}` : 'Sem dados'}
                         </Item>
+                    </Descriptions>
+                </Col>
+                <Col span={8}>
+                    <Descriptions>
                         <Item label="Mini biografia" span={3}>
                             {lecture.miniBio ? `${lecture.miniBio}` : 'Sem dados'}
                         </Item>
@@ -63,14 +76,19 @@ const SubmissionInAnalysis = () => {
                         </Item>
                     </Descriptions>
                 </Col>
+            </Row>
+            <Row justify='start' style={{ marginLeft: '350px' }}>
+                <Title level={4}>
+                    Atividade
+                </Title>
+            </Row>
+            <Row justify='center' style={{ marginBottom: '2em' }}>
                 <Col span={12}>
                     <Descriptions layout="vertical" title={lecture.activityTitle} style={{ textAlign: 'justify' }}>
                         <Item label="Descrição" span={3}>
                             {lecture.activityDescription ? `${lecture.activityDescription}` : 'Sem dados'}
                         </Item>
-                        <Item label="Tipo" span={1}>
-                            {lecture.activityType ? `${(lecture.activityType)}` : 'Sem dados'}
-                        </Item>
+                        <Tag>{lecture.activityType}</Tag>
                         <Item label="Já palestrou?" span={2}>
                             {lecture.haveLecturedBefore ? `${(lecture.haveLecturedBefore)}` : 'Sem dados'}
                         </Item>
@@ -80,6 +98,7 @@ const SubmissionInAnalysis = () => {
                     </Descriptions>
                 </Col>
             </Row>
+
 
         </>
     )

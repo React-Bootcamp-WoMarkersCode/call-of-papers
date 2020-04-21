@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Row, Divider, Card, Button } from 'antd'
+import { Row, Card, Button } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle } from "@fortawesome/free-brands-svg-icons"
 import './style.scss'
 import FBLogin from './FBLogin'
+import Header from './../../components/Header'
 
 const Login = () => {
 
@@ -11,9 +12,7 @@ const Login = () => {
 
   return(
     <>
-      <Divider orientation='left'>
-        QUEM É VOCÊ ?
-      </Divider>
+      <Header text="QUEM É VOCÊ ?" />
       <Row gutter={[16, 24]} className='content-login-padding'>
         Depois é possível mudar essa opção no seu perfil.
       </Row>

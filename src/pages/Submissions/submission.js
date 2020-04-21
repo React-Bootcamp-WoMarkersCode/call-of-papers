@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router'
-import { Row, Col, Select, Button, Divider, Descriptions, Spin, Carousel } from 'antd'
+import { Row, Col, Select, Button, Descriptions, Spin, Carousel } from 'antd'
 import { FolderOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined, InstagramOutlined, YoutubeOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons'
 import './style.scss'
 import Email from '../../utils/Email/Email'
+import Header from './../../components/Header'
 
 const { Option } = Select
 const { Item } = Descriptions
@@ -75,11 +76,7 @@ const SubmissionInAnalysis = () => {
 
   return (
     <>
-      <Row gutter={[16, 24]}>
-        <Divider orientation="left">
-          Palestras pendentes de aprovação
-        </Divider>
-      </Row>
+      <Header text="Palestras pendentes de aprovação" />
       <Row justify='end'>
         <Col span={5}>
           <Button onClick={() => slider.current.prev()}><LeftOutlined /></Button>
