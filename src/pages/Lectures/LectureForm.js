@@ -53,13 +53,13 @@ const LectureForm = () => {
 	}, [environment])
 
 	useEffect(() => {
-        fetch(`${environment}/events?id=${eventId}`)
-            .then(res => res.json())
-            .then(data => {
-                setEvent(data[0])
-            })
-            .catch(err => console.error(err, 'Nenhum evento encontrado'))
-    }, [environment])
+    fetch(`${environment}/events?id=${eventId}`)
+      .then(res => res.json())
+      .then(data => {
+        setEvent(data[0])
+      })
+      .catch(err => console.error(err, 'Nenhum evento encontrado'))
+  }, [environment, eventId])
 
 	profile = {
 		...profile,
