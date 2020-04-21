@@ -11,6 +11,7 @@ const Lecture = () => {
   let { lectureId } = useParams()
   const environment = getEnvironment()
   const [lecture, setLecture] = useState([])
+  const [event, setEvent] = useState([])
   const [loadingData, setLoadingData] = useState(true)
 
   useEffect(() => {
@@ -18,6 +19,12 @@ const Lecture = () => {
       .then(res => res.json())
       .then(data => {
         setLecture(data)
+        fetch(`${environment}/events/${data.eventId}`)
+          .then(res => res.json())
+          .then(data => {
+            setEvent(data)
+          })
+          .catch(err => console.error(err, 'Nenhum evento encontrado'))
       })
       .then(setLoadingData(false))
       .catch(err => console.error(err, 'Nenhum palestra encontrada'))
@@ -49,6 +56,9 @@ const Lecture = () => {
             <Header text={lecture && lecture.activityTitle} />
             <Row justify='center' className='row-table'>
               <Descriptions layout='vertical' style={{ textAlign: 'justify' }}>
+              <Item label='Evento' span={3}>
+                  {event.event}
+                </Item>
                 <Item label='Descrição' span={3}>
                   {lecture && lecture.activityDescription}
                 </Item>
