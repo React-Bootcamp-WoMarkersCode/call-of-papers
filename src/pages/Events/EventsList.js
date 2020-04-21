@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Button, Card } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import TableComponent from '../../components/Table'
 import './events-list.scss'
 
@@ -47,6 +47,7 @@ const columnsTable = [
 ]
 const EventsList = () => {
   const [api, setApi] = useState([])
+  const history = useHistory()
 
   const environment = getEnvironment();
 
@@ -61,10 +62,9 @@ const EventsList = () => {
 
   return (
     <>
-      <Header text="Meus eventos" />
-
       {api.length > 0 ? (
         <>
+          <Header text="Meus eventos" />
           <Row justify="end" className='row-table'>
             <Button type='default'>
               <Link id="btn-cadastrar" to="/events/form" onClick={() => localStorage.removeItem('idEvent')}><span>Cadastre um evento!</span></Link>
@@ -72,11 +72,15 @@ const EventsList = () => {
           </Row>
           <Row justify='center' gutter={[16, 24]} className='row-table'>
             <TableComponent columns={columnsTable} dataSource={api} />
-          </Row></>)
-        : (
-          <Row justify="center" className='row-table'>
-            <Card style={{ width: '90%' }}><p>Você ainda não cadastrou nenhum evento</p></Card>
-          </Row>)
+          </Row>
+        </>)
+          :
+        (<Row justify="center" className='empty-box'>
+          <Card>
+            <p>Você ainda não possui eventos!</p>
+            <Button type='default' className='login-btn' onClick={() => history.push('/events/form')}>Cadastrar um novo evento</Button>
+          </Card>
+        </Row>)
       }
     </>
   )

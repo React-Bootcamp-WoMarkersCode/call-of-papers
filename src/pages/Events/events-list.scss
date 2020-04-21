@@ -1,3 +1,26 @@
 .ant-table-middle .ant-table-thead > tr > th {
   padding-right: 35px;
 }
+
+.empty-box {
+  margin: 5em auto !important;
+  width: 50%;
+
+  .ant-card {
+    width: 100%;
+  }
+
+  .ant-card-body {
+    padding: 75px;
+    text-align: center;
+  }
+
+  button, p {
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 2em;
+  }
+}
