@@ -34,6 +34,7 @@ const Routes = props => (
 
       <Route exact path="/lectures" component={routerProps => <LecturesList {...routerProps} />} />
       <Route exact path="/download-lectures" component={routerProps => <DownloadLectures {...routerProps} />} />
+      <Route exact path="/lectures/form" component={routerProps => <LectureForm {...routerProps} />} />
       <Route exact path="/lectures/form/:eventId" component={routerProps => <LectureForm {...routerProps} />} />
       <Route path="/lectures/:lectureId" component={routerProps => <Lecture {...routerProps} />} />
 
