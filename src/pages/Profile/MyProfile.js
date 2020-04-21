@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Avatar, Divider, Button, Card } from 'antd'
+import { Row, Avatar, Button, Card } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
 import { getEnvironment } from './../../utils/environment'
 import { useHistory } from 'react-router-dom'
 import ProfileDescription from './ProfileDescription'
 import './style.scss'
+import Header from './../../components/Header'
 
 const { Meta } = Card;
 
@@ -28,11 +29,7 @@ const MyProfile = () => {
 
   return (
     <>
-      <Row gutter={[16, 24]}>
-        <Divider orientation='left'>
-          Meu Perfil
-        </Divider>
-      </Row>
+      <Header text="Meu Perfil" />
       <Row justify='center' gutter={[16, 24]}>
         <Card
           style={{ width: '70%' }}

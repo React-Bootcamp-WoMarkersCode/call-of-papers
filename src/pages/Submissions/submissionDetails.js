@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { Row, Col, Divider, Descriptions, Typography, Tag, Avatar, Space } from 'antd'
+import { Row, Col, Descriptions, Typography, Tag, Avatar, Space } from 'antd'
 import { FolderOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined, InstagramOutlined, YoutubeOutlined, UserOutlined } from '@ant-design/icons'
 import './style.scss'
-import { auto } from 'async'
+import Header from '../../components/Header'
 
 const { Item } = Descriptions
 const { Title } = Typography
@@ -23,11 +23,7 @@ const SubmissionInAnalysis = () => {
 
     return (
         <>
-            <Row gutter={[16, 24]}>
-                <Divider orientation="left">
-                    Palestra
-                </Divider>
-            </Row>
+            <Header text="Palestra" />
             <Row justify='start' style={{ marginLeft: '350px' }}>
                 <Title level={4}>
                     Palestrante
