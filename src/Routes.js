@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 
 const About = React.lazy(() => import('pages/About'))
 const DownloadLectures = React.lazy(() => import('pages/Lectures/LecturesCSV'))
-const Event = React.lazy(() => import('pages/Submissions/telaProdutor'))
+const Event = React.lazy(() => import('pages/Submissions'))
 const EventsList = React.lazy(() => import('pages/Events/EventsList'))
 const EventForm = React.lazy(() => import('pages/Events/EventForm'))
 const Home = React.lazy(() => import('pages/Home/Home'))
