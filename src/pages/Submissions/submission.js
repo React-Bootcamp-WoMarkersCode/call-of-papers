@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router'
-import { Row, Col, Button, Divider, Descriptions, Carousel, Space, Typography, Avatar, Tag } from 'antd'
+import { Row, Col, Button, Divider, Descriptions, Carousel, Space, Typography, Avatar, Tag, Spin } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faPhoneAlt, faUser } from "@fortawesome/free-solid-svg-icons"
 import { faFacebook, faLinkedin, faTwitter, faInstagram, faYoutube, faGithub } from "@fortawesome/free-brands-svg-icons"
@@ -57,11 +57,11 @@ const SubmissionInAnalysis = () => {
       },
       body: JSON.stringify(payload)
     })
-
+    let filter = lecturesPending.filter(lecture => lecture.id !== payload.id)
+    setLecturesPending(filter)
+    setDesabilitado(false)
+    //window.location.reload();
     Email(payload.name, payload.email, message)
-    alert(`Palestra ${payload.status.toLowerCase()}!`)
-
-    window.location.reload();
   }
   const settings = {
     dots: false,
@@ -89,6 +89,8 @@ const SubmissionInAnalysis = () => {
           </Space>
         </Col>
       </Row>
+      {
+        lecturesPending.length > 0 ?
       <Carousel
         style={{marginBottom:'20px'}}
         {...settings}
@@ -203,6 +205,13 @@ const SubmissionInAnalysis = () => {
         })
         }
       </Carousel>
+      :
+      <Row>
+        <Descriptions title='Não existe palestras pendendes de aprovação!' style={{padding:'50px', fontSize:'20px', fontWeight:'bold', textAlign:'center'}}>
+        </Descriptions>
+      </Row>
+        
+    }
     </>
   )
 }
