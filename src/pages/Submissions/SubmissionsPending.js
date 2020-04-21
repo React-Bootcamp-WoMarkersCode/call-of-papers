@@ -19,7 +19,7 @@ const settings = {
 
 const environment = 'http://localhost:3001'
 
-const SubmissionsPending = ({ lectures }) => {
+const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
   const [lecturesPending, setLecturesPending] = useState([])
   const slider = useRef()
   const [desabilitado, setDesabilitado] = useState(false)
@@ -37,6 +37,7 @@ const SubmissionsPending = ({ lectures }) => {
       <p><i>Sharing Talks</i></p>
     `
     submitEvaluation(item, message)
+    handleUpdateLecture()
   }
 
   function submitEvaluation(payload, message) {
