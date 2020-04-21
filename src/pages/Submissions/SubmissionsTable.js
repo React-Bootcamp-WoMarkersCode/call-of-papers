@@ -6,10 +6,10 @@ import Header from './../../components/Header'
 
 const { Paragraph } = Typography
 
-const SubmissionsApproved = () => {
-  let { eventId } = useParams()
+const useColumnsTable = () => {
   let location = useLocation()
-  const columnsTable = [
+
+  return [
     {
       title: 'Palestrante',
       dataIndex: 'name',
@@ -49,19 +49,15 @@ const SubmissionsApproved = () => {
       )
     },
   ]
+}
 
+const SubmissionsTable = ({ lectures }) => {
+  const columnsTable = useColumnsTable()
   const [aprovadas, setAprovadas] = useState([])
-  const environment = 'http://localhost:3001';
 
   useEffect(() => {
-    fetch(`${environment}/lectures`)
-      .then(res => res.json())
-      .then(data => {
-        let filter = data.filter(lecture => lecture.eventId === eventId && lecture.status === 'APROVADA')
-        setAprovadas(filter)
-      })
-      .catch(err => console.error(err, 'Nenhuma palestra por aqui!'))
-  }, [eventId])
+    lectures && setAprovadas(lectures.filter(lecture => lecture.status === 'APROVADA'))
+  }, [lectures])
 
   return (
     <>
@@ -73,4 +69,4 @@ const SubmissionsApproved = () => {
   )
 }
 
-export default SubmissionsApproved
+export default SubmissionsTable
