@@ -15,3 +15,14 @@
   margin-bottom: 0 !important;
   font-weight: normal;
 }
+
+.button-reprovado {
+  border-color: #FA8072;
+  color: #FA8072	;
+}
+
+.button-reprovado:hover {
+  color: white;
+  background: #FA8072;
+  border-color: #FA8072
+}

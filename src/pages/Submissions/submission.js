@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router'
-import { Row, Col, Select, Button, Divider, Descriptions, Spin, Carousel, Space, Typography, Avatar, Tag, Card } from 'antd'
+import { Row, Col, Button, Divider, Descriptions, Carousel, Space, Typography, Avatar, Tag } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faPhoneAlt, faUser } from "@fortawesome/free-solid-svg-icons"
 import { faFacebook, faLinkedin, faTwitter, faInstagram, faYoutube, faGithub } from "@fortawesome/free-brands-svg-icons"
@@ -8,14 +8,12 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import './style.scss'
 import Email from '../../utils/Email/Email'
 
-const { Option } = Select
 const { Item } = Descriptions
 const { Title } = Typography
 
 const SubmissionInAnalysis = () => {
   let { eventId } = useParams()
   const [lecturesPending, setLecturesPending] = useState([])
-  const [status, setStatus] = useState('')
   const slider = useRef()
   const [desabilitado, setDesabilitado] = useState(false)
   const environment = 'http://localhost:3001'
@@ -195,8 +193,8 @@ const SubmissionInAnalysis = () => {
               <Row justify='end'>
                 <Col span={10}>
                   <Space>
-                    <Button value="APROVADA"  type='primary' onClick={() => aproved(item)} disabled={desabilitado}>APROVAR</Button>
-                    <Button value="REPROVADA"  type='primary' onClick={() => reproved(item)} disabled={desabilitado}>REPROVAR</Button>
+                    <Button value="REPROVADA" className='button-reprovado' onClick={() => reproved(item)} disabled={desabilitado}>REPROVAR</Button>
+                    <Button value="APROVADA"  type='primary' onClick={() => aproved(item)} disabled={desabilitado} >APROVAR</Button>
                   </Space>
                 </Col>
               </Row>
