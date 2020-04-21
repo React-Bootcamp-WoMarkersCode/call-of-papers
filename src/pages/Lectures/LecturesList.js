@@ -102,7 +102,7 @@ const LecturesList = () => {
               <TableComponent columns={columnsTable} dataSource={ loadingData ? [] : lectures } />
             </Row>
           </>
-        )
+        ) : (
           :
         (<Row justify="center" className='empty-box'>
           <Card>
