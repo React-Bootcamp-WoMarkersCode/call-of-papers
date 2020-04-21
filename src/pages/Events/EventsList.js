@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Divider, Button, Card } from 'antd'
+import { Row, Button, Card } from 'antd'
 import { Link } from 'react-router-dom'
 import TableComponent from '../../components/Table'
 import './events-list.scss'
 
 import { getEnvironment } from './../../utils/environment'
+import Header from '../../components/Header'
 
 const columnsTable = [
   {
@@ -60,11 +61,8 @@ const EventsList = () => {
 
   return (
     <>
-      <Row gutter={[16, 24]}>
-        <Divider orientation='left'>
-          Meus eventos
-  </Divider>
-      </Row>
+      <Header text="Meus eventos" />
+
       {api.length > 0 ? (
         <>
           <Row justify="end" className='row-table'>

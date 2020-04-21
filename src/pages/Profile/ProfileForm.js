@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
 import { useHistory } from 'react-router-dom'
 import { getEnvironment } from './../../utils/environment'
-import { Form, Input, Row, Col, Button, Divider, Radio } from 'antd'
+import { Form, Input, Row, Col, Button, Radio } from 'antd'
+import { Header } from './../../components/Header'
 import './style.scss'
 
 const ProfileForm = () => {
@@ -68,11 +69,7 @@ const ProfileForm = () => {
 
 	return (
 		<>
-			<Row gutter={[16, 24]}>
-        <Divider orientation='left'>
-          Edição de Perfil
-        </Divider>
-      </Row>
+			<Header text="Edição de Perfil" />
 			<Row gutter={[16, 24]}>
 				<Col span={14} offset={5}>
 					<Form onFinish={formik.handleSubmit} layout='vertical'>
