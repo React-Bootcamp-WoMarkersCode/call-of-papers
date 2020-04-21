@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Card, Space, Typography, Col } from 'antd'
+import { Row, Space, Typography, Col } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
@@ -60,48 +60,43 @@ const Home = () => {
           <div style={{ position: 'relative', height: '85%', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <img style={{ opacity: 0.6, width: '100%' }} src={require('../../assets/home/banner-1.jpg')} alt='Produtor de evento' />
           </div>
-
-          <Header text="Sharing Talks para palestrantes" />
-          <Row gutter={[16, 24]} style={{ backgroundColor: '#fff', paddingBottom: '3rem' }}>
-            <Card style={{ width: '100%', border: 'none', boxShadow: 'none', }} className="content-padding">
-              <Row justify="space-between" style={{ display: 'flex', justifyContent: 'space-evenly', alignContent: 'center' }}>
-                <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
-                  {callSpeaker.map(item => {
-                    return (
-                      <div key={item.description}>
-                        <FontAwesomeIcon style={{ fontSize: 24 }} icon={faCheck} className="check-icon" />
-                        <Text style={{ fontSize: 24 }}>{item.description}</Text>
-                      </div>
-                    )
-                  })}
-                </Space>
-                <img style={{ width: 400, maxWidth: '100%' }} src={require('../../assets/speaker.png')} alt='Produtor de evento' />
-              </Row>
-            </Card>
-          </Row>
+          <div style={{ paddingBottom: '3rem', backgroundColor: '#f8f8f8' }}>
+            <Header text="Sharing Talks para palestrantes" />
+            <Row gutter={[16, 24]} justify="space-between" style={{ display: 'flex', justifyContent: 'space-evenly', alignContent: 'center' }}>
+              <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
+                {callSpeaker.map(item => {
+                  return (
+                    <div key={item.description}>
+                      <FontAwesomeIcon style={{ fontSize: 24 }} icon={faCheck} className="check-icon" />
+                      <Text style={{ fontSize: 24 }}>{item.description}</Text>
+                    </div>
+                  )
+                })}
+              </Space>
+              <img style={{ width: 400, maxWidth: '100%' }} src={require('../../assets/speaker.png')} alt='Produtor de evento' />
+            </Row>
+          </div>
           <Row gutter={[16, 24]} style={{ backgroundColor: '#6597EB' }}>
             <p style={{ color: '#fff', fontSize: '30px', width: '100%', textAlign: 'center', padding: '50px 10px' }}>
               Ainda sem <b>palestrantes</b> para o seu evento? <br/> Veja abaixo 😉
             </p>
           </Row>
-          <Header text="Sharing Talks para produtores de eventos" />
-          <Row gutter={[16, 24]} style={{ backgroundColor: '#f8f8f8', paddingBottom: '3rem' }} id="events">
-            <Card style={{ width: '100%', border: 'none', boxShadow: 'none', backgroundColor: '#f8f8f8' }} className="content-padding">
-              <Row justify="space-between" style={{ display: 'flex', justifyContent: 'space-evenly', alignContent: 'center' }}>
-                <img style={{ width: 400, maxWidth: '100%' }} src={require('../../assets/events-producer.png')} alt='Produtor de evento' />
-                <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
-                  {callProducer.map(item => {
-                    return (
-                      <div key={item.description}>
-                        <FontAwesomeIcon style={{ fontSize: 24 }} icon={faCheck} className="check-icon" />
-                        <Text style={{ fontSize: 24 }}>{item.description}</Text>
-                      </div>
-                    )
-                  })}
-                </Space>
-              </Row>
-            </Card>
-          </Row>
+          <div style={{ paddingBottom: '3rem', backgroundColor: '#f8f8f8' }}>
+            <Header text="Sharing Talks para produtores de eventos" />
+            <Row gutter={[16, 24]} id="events" justify="space-between" style={{ display: 'flex', justifyContent: 'space-evenly', alignContent: 'center' }}>
+              <img style={{ width: 400, maxWidth: '100%' }} src={require('../../assets/events-producer.png')} alt='Produtor de evento' />
+              <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
+                {callProducer.map(item => {
+                  return (
+                    <div key={item.description}>
+                      <FontAwesomeIcon style={{ fontSize: 24 }} icon={faCheck} className="check-icon" />
+                      <Text style={{ fontSize: 24 }}>{item.description}</Text>
+                    </div>
+                  )
+                })}
+              </Space>
+            </Row>
+          </div>
         </>
       )}
       {/* Melhores eventos */}
