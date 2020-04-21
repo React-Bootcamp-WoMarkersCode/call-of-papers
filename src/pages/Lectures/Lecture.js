@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router'
+import { useParams, useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 import { Row, Descriptions, Button, Spin, Tag } from 'antd'
 import { getEnvironment } from './../../utils/environment'
@@ -11,13 +11,21 @@ const Lecture = () => {
   let { lectureId } = useParams()
   const environment = getEnvironment()
   const [lecture, setLecture] = useState([])
+  const [event, setEvent] = useState([])
   const [loadingData, setLoadingData] = useState(true)
+  const history = useHistory()
 
   useEffect(() => {
     fetch(`${environment}/lectures/${lectureId}`)
       .then(res => res.json())
       .then(data => {
         setLecture(data)
+        fetch(`${environment}/events/${data.eventId}`)
+          .then(res => res.json())
+          .then(data => {
+            setEvent(data)
+          })
+          .catch(err => console.error(err, 'Nenhum evento encontrado'))
       })
       .then(setLoadingData(false))
       .catch(err => console.error(err, 'Nenhum palestra encontrada'))
@@ -49,6 +57,9 @@ const Lecture = () => {
             <Header text={lecture && lecture.activityTitle} />
             <Row justify='center' className='row-table'>
               <Descriptions layout='vertical' style={{ textAlign: 'justify' }}>
+                <Item label='Evento' span={3}>
+                  {event.event}
+                </Item>
                 <Item label='Descrição' span={3}>
                   {lecture && lecture.activityDescription}
                 </Item>
@@ -69,16 +80,13 @@ const Lecture = () => {
               </Descriptions>
             </Row>
             <Row justify='center' className='row-table'>
-              {
-                lecture && lecture.status === 'EM ANÁLISE' ?
-                  <Button type='primary'>
-                    <Link to="/lectures/form">Editar</Link>
-                  </Button>
-                  :
-                  <Button type='primary' disabled={true}>
-                    Editar
-                  </Button>
-              }
+              <Button
+                type='primary'
+                onClick={() => history.push('/lectures/form')}
+                disabled={lecture && lecture.status !== 'EM ANÁLISE'}
+              >
+                Editar
+              </Button>
             </Row>
           </>
         )
