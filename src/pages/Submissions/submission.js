@@ -1,18 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router'
-import { Row, Col, Select, Button, Descriptions, Spin, Carousel } from 'antd'
-import { FolderOutlined, LinkedinOutlined, FacebookOutlined, TwitterOutlined, InstagramOutlined, YoutubeOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons'
-import './style.scss'
+import { Row, Col, Button, Divider, Descriptions, Carousel, Space, Typography, Avatar, Tag } from 'antd'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope, faPhoneAlt, faUser } from "@fortawesome/free-solid-svg-icons"
+import { faFacebook, faLinkedin, faTwitter, faInstagram, faYoutube, faGithub } from "@fortawesome/free-brands-svg-icons"
+import { LeftOutlined, RightOutlined } from '@ant-design/icons'
+
 import Email from '../../utils/Email/Email'
 import Header from './../../components/Header'
+import './style.scss'
 
-const { Option } = Select
 const { Item } = Descriptions
+const { Title } = Typography
 
 const SubmissionInAnalysis = () => {
   let { eventId } = useParams()
   const [lecturesPending, setLecturesPending] = useState([])
-  const [status, setStatus] = useState('')
   const slider = useRef()
   const [desabilitado, setDesabilitado] = useState(false)
   const environment = 'http://localhost:3001'
@@ -27,13 +30,25 @@ const SubmissionInAnalysis = () => {
       .catch(err => console.error(err, 'Nenhuma palestra por aqui!'))
   }, [environment, eventId])
 
-  function handleChange(value) {
-    setStatus(value)
-  }
-
-  function submitEvaluation(payload) {
-    payload.status = status
+  const aproved = (item) => {
+    item.status = 'APROVADA'
     setDesabilitado(true)
+    let message =
+        `<p>Olá ${item.name}, tudo bem?</p>
+        <p>Parabéns! A palestra "${item.activityTitle}" foi aprovada. Consulte mais informações no site.</p>
+        <p><i>Sharing Talks</i></p>`
+    submitEvaluation(item, message)
+  }
+  const reproved = (item) => {
+    item.status = 'REPROVADA'
+    setDesabilitado(true)
+    let message =
+        `<p>Olá ${item.name}, tudo bem?</p>
+        <p>Parabéns! A palestra "${item.activityTitle}" foi reprovada. Consulte mais informações no site.</p>
+        <p><i>Sharing Talks</i></p>`
+    submitEvaluation(item, message)
+  }
+  function submitEvaluation(payload, message) {
 
     fetch(`${environment}/lectures/${payload.id}`, {
       method: 'put',
@@ -44,24 +59,11 @@ const SubmissionInAnalysis = () => {
       },
       body: JSON.stringify(payload)
     })
-
-    let message = ''
-
-    if (payload.status === 'APROVADA') {
-      message =
-        `<p>Olá ${payload.name}, tudo bem?</p>
-        <p>Parabéns! A palestra "${payload.activityTitle}" foi aprovada. Consulte mais informações no site.</p>
-        <p><i>Sharing Talks</i></p>`
-    } else {
-      message =
-        `<p>Olá ${payload.name}, tudo bem?</p>
-        <p>Infelizmente a palestra "${payload.activityTitle}" foi reprovada. Consulte mais informações no site.</p>
-        <p><i>Sharing Talks</i></p>`
-    }
+    let filter = lecturesPending.filter(lecture => lecture.id !== payload.id)
+    setLecturesPending(filter)
+    setDesabilitado(false)
+    //window.location.reload();
     Email(payload.name, payload.email, message)
-    alert(`Palestra ${payload.status.toLowerCase()}!`)
-
-    window.location.reload();
   }
   const settings = {
     dots: false,
@@ -78,12 +80,17 @@ const SubmissionInAnalysis = () => {
     <>
       <Header text="Palestras pendentes de aprovação" />
       <Row justify='end'>
-        <Col span={5}>
-          <Button onClick={() => slider.current.prev()}><LeftOutlined /></Button>
-          <Button onClick={() => slider.current.next()}><RightOutlined /></Button>
+        <Col span={8}>
+          <Space>
+            <Button onClick={() => slider.current.prev()}><LeftOutlined /></Button>
+            <Button onClick={() => slider.current.next()}><RightOutlined /></Button>
+          </Space>
         </Col>
       </Row>
+      {
+        lecturesPending.length > 0 ?
       <Carousel
+        style={{marginBottom:'20px'}}
         {...settings}
         ref={ref => {
           slider.current = ref
@@ -92,75 +99,103 @@ const SubmissionInAnalysis = () => {
         {lecturesPending.map((item) => {
           return (
             <div key={item.id}>
+              <Row justify='start' style={{ marginLeft: '350px' }}>
+                <Title level={4}>
+                  Palestrante
+                </Title>
+              </Row>
               <Row justify='center' style={{ marginBottom: '2em' }}>
-                <Col span={4}>
-                  <Descriptions layout="vertical" style={{textAlign:'justify'}}>
-                    <Item label="Palestrante" span={3}>
-                      {item.name? `${item.name}` : 'Sem dados'}
+                <Col span={5}>
+                  <Space direction='vertical'>
+                    <Space>
+                      {
+                        item.uploadedImage ?
+                          <Avatar size={50} src={item.uploadedImage} />
+                          :
+                          <Avatar size={50}> <FontAwesomeIcon icon={faUser} /></Avatar>
+                      }
+                      <Item>
+                        {item.name ? `${item.name}` : 'Sem dados'}
+                      </Item>
+                    </Space>
+                    <Space direction='horizontal'>
+                      <FontAwesomeIcon icon={faPhoneAlt} />
+                      <Item label="Telefone" span={3}>
+                        {item.cellphone ? `${item.cellphone}` : 'Sem dados'}
+                      </Item>
+                    </Space>
+                    <Space direction='horizontal'>
+                      <FontAwesomeIcon icon={faEnvelope} />
+                      <Item label="E-mail" span={3} style={{ wordBreak: 'break-word' }}>
+                        {item.email ? `${item.email}` : 'Sem dados'}
+                      </Item>
+                    </Space>
+                    <Item justify='center'>
+                      {
+                        item.haveLecturedBefore === "Não"
+                          ?
+                          <Tag style={{ marginBottom: '8px' }} key='nao'>Primeira palestra</Tag>
+                          :
+                          <Tag style={{ marginBottom: '8px' }} key='sim'>Já palestrou</Tag>
+                      }
                     </Item>
-                    <Item label="Telefone" span={3}>
-                      {item.cellphone? `${item.cellphone}` : 'Sem dados'}
+                  </Space>
+                </Col>
+                <Divider type='vertical' style={{ height: 'auto', border: '1px solid' }} orientation='center'/>
+                <Col span={7}>
+                  <Descriptions>
+                    <Item span={3} style={{ textAlign: 'justify' }}>
+                      {item.miniBio ? `${item.miniBio}` : 'Sem dados'}
                     </Item>
-                    <Item label="E-mail" span={3} style={{wordBreak: 'break-word'}}>
-                      {item.email? `${item.email}` : 'Sem dados'}
-                    </Item>
-                    <Item label="Mini biografia" span={3}>
-                      {item.miniBio? `${item.miniBio}` : 'Sem dados'}
-                    </Item>
-                    <Item>
-                      {item.linkedin ?
-                        <a href={`${item.linkedin}`}><LinkedinOutlined className="social-network" /></a>
-                        : <LinkedinOutlined className="social-network" />}
-                      {item.facebook ?
-                        <a href={`${item.facebook}`}><FacebookOutlined className="social-network" /></a>
-                        : <FacebookOutlined className="social-network" />}
-                      {item.twitter ?
-                        <a href={`${item.twitter}`}><TwitterOutlined className="social-network" /></a>
-                        : <TwitterOutlined className="social-network" />}
-                      {item.instagram ?
-                        <a href={`${item.instagram}`}><InstagramOutlined className="social-network" /></a>
-                        : <InstagramOutlined className="social-network" />}
-                      {item.youtube ?
-                        <a href={`${item.youtube}`}><YoutubeOutlined className="social-network" /></a>
-                        : <YoutubeOutlined className="social-network" />}
-                      {item.portfolio ?
-                        <a href={`${item.portfolio}`}><FolderOutlined className="social-network" /></a>
-                        : <FolderOutlined className="social-network" />}
+                    <Item >
+                      <Space direction='horizontal' style={{ fontSize: '1.75em' }}>
+                        {item.facebookLink ?
+                          <a href={`${item.facebookLink}`}><FontAwesomeIcon icon={faFacebook} /> </a>
+                          : <FontAwesomeIcon icon={faFacebook} />}
+                        {item.linkedinLink ?
+                          <a href={`${item.linkedinLink}`}><FontAwesomeIcon icon={faLinkedin} /></a>
+                          : <FontAwesomeIcon icon={faLinkedin} />}
+                        {item.githubLink ?
+                          <a href={`${item.githubLink}`}><FontAwesomeIcon icon={faGithub} /></a>
+                          : <FontAwesomeIcon icon={faGithub} />}
+                        {item.twitter ?
+                          <a href={`${item.twitter}`}><FontAwesomeIcon icon={faTwitter} /></a>
+                          : <FontAwesomeIcon icon={faTwitter} />}
+                        {item.instagram ?
+                          <a href={`${item.instagram}`}><FontAwesomeIcon icon={faInstagram} /></a>
+                          : <FontAwesomeIcon icon={faInstagram} />}
+                        {item.youtube ?
+                          <a href={`${item.youtube}`}><FontAwesomeIcon icon={faYoutube} /></a>
+                          : <FontAwesomeIcon icon={faYoutube} />}
+                      </Space>
                     </Item>
                   </Descriptions>
                 </Col>
+              </Row>
+              <Row justify='start' style={{ marginLeft: '350px' }}>
+                <Title level={4}>
+                  Atividade
+                </Title>
+              </Row>
+              <Row justify='center' >
                 <Col span={12}>
-                  <Descriptions layout="vertical" title={item.activityTitle} style={{textAlign:'justify'}}>
-                    <Item label="Descrição" span={3}>
-                      {item.activityDescription? `${item.activityDescription}` : 'Sem dados'}
-                    </Item>
-                    <Item label="Tipo" span={1}>
-                      {item.activityType ? `${(item.activityType)}` : 'Sem dados'}
-                    </Item>
-                    <Item label="Já palestrou?" span={2}>
-                      {item.haveLecturedBefore ? `${(item.haveLecturedBefore)}` : 'Sem dados'}
-                    </Item>
-                    <Item label="Categorias" span={3}>
-                      {item.activityCategory ? `${(item.activityCategory)} e ${(item.activityCategory)}` : 'Sem dados'}
-                    </Item>
-                    <Item label="Avaliação" span={3}>
-                      { item.length !== 0 ?
-                        <Select
-                          style={{ width: 150, textTransform: 'uppercase' }}
-                          value={status}
-                          onChange={handleChange}
-                        >
-                          <Option value="APROVADA">APROVADA</Option>
-                          <Option value="REPROVADA">REPROVADA</Option>
-                        </Select>
-                          :
-                        <Spin size='large' />
-                      }
-                    </Item>
+                  <Descriptions layout="vertical" title={item.activityTitle} type='secundary' style={{ textAlign: 'justify' }}>
                     <Item span={3}>
-                        <Button type='primary' onClick={() => submitEvaluation(item)} disabled={desabilitado}>Enviar avaliação</Button>
+                      {item.activityDescription ? `${item.activityDescription}` : 'Sem dados'}
+                    </Item>
+                    <Item>
+                      <Tag style={{ marginBottom: '8px' }} key='tipo-atividade'>{item.activityType}</Tag>
+                      {item.activityCategory ? item.activityCategory.map(category => <Tag style={{ marginBottom: '8px' }} key={category}>{category}</Tag>) : ''}
                     </Item>
                   </Descriptions>
+                </Col>
+              </Row>
+              <Row justify='end'>
+                <Col span={10}>
+                  <Space>
+                    <Button value="REPROVADA" className='button-reprovado' onClick={() => reproved(item)} disabled={desabilitado}>REPROVAR</Button>
+                    <Button value="APROVADA"  type='primary' onClick={() => aproved(item)} disabled={desabilitado} >APROVAR</Button>
+                  </Space>
                 </Col>
               </Row>
             </div>
@@ -168,6 +203,13 @@ const SubmissionInAnalysis = () => {
         })
         }
       </Carousel>
+      :
+      <Row>
+        <Descriptions title='Não existe palestras pendendes de aprovação!' style={{padding:'50px', fontSize:'20px', fontWeight:'bold', textAlign:'center'}}>
+        </Descriptions>
+      </Row>
+
+    }
     </>
   )
 }
