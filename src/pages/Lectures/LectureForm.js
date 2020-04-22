@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Redirect } from 'react-router'
 import { Row, Button, notification } from 'antd'
 import { getEnvironment } from './../../utils/environment'
@@ -18,6 +19,7 @@ import Header from './../../components/Header'
 const { TextArea } = Input
 
 const LectureForm = () => {
+  let history = useHistory()
 	let [ profile, setProfile ] = useState([])
 	let [ event, setEvent ] = useState([])
 	let [ goHome, setGoHome ] = useState(false)
@@ -47,7 +49,8 @@ const LectureForm = () => {
 		},
 		body: JSON.stringify(values)
 		}).then(function (response) {
-			openNotification('success', 'Atividade cadastrada com sucesso!')
+      openNotification('success', 'Atividade cadastrada com sucesso!')
+      setTimeout(function(){ history.push('/events/' + parseInt(eventId))}, 3000);
 			return response.json()
 		}).catch(function (error) {
 			console.log('error', error)

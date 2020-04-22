@@ -56,22 +56,22 @@ const SubmissionInfo = ({ lecture }) => {
             <Item >
               <Space direction='horizontal' style={{ fontSize: '1.75em' }}>
                 {lecture.facebookLink ?
-                  <a href={`${lecture.facebookLink}`}><FontAwesomeIcon icon={faFacebook} /> </a>
+                  <a href={`${lecture.facebookLink}`} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faFacebook} /> </a>
                   : <FontAwesomeIcon icon={faFacebook} />}
                 {lecture.linkedinLink ?
-                  <a href={`${lecture.linkedinLink}`}><FontAwesomeIcon icon={faLinkedin} /></a>
+                  <a href={`${lecture.linkedinLink}`} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedin} /></a>
                   : <FontAwesomeIcon icon={faLinkedin} />}
                 {lecture.githubLink ?
-                  <a href={`${lecture.githubLink}`}><FontAwesomeIcon icon={faGithub} /></a>
+                  <a href={`${lecture.githubLink}`} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faGithub} /></a>
                   : <FontAwesomeIcon icon={faGithub} />}
                 {lecture.twitter ?
-                  <a href={`${lecture.twitter}`}><FontAwesomeIcon icon={faTwitter} /></a>
+                  <a href={`${lecture.twitter}`} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faTwitter} /></a>
                   : <FontAwesomeIcon icon={faTwitter} />}
                 {lecture.instagram ?
-                  <a href={`${lecture.instagram}`}><FontAwesomeIcon icon={faInstagram} /></a>
+                  <a href={`${lecture.instagram}`} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram} /></a>
                   : <FontAwesomeIcon icon={faInstagram} />}
                 {lecture.youtube ?
-                  <a href={`${lecture.youtube}`}><FontAwesomeIcon icon={faYoutube} /></a>
+                  <a href={`${lecture.youtube}`} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faYoutube} /></a>
                   : <FontAwesomeIcon icon={faYoutube} />}
               </Space>
             </Item>

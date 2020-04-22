@@ -21,7 +21,7 @@ const callProducer = [
     description: 'Gerencie facilmente os eventos, as palestras submetidas e aprovadas',
   },
   {
-    description: 'Adicione o Call of Papers no site do seu evento',
+    description: 'Adicione o Call for Papers no site do seu evento',
   },
 ];
 
@@ -60,7 +60,7 @@ const Home = () => {
           <div style={{ position: 'relative', height: '85%', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <img style={{ opacity: 0.6, width: '100%' }} src={require('../../assets/home/banner-1.jpg')} alt='Produtor de evento' />
           </div>
-          <div style={{ paddingBottom: '3rem', backgroundColor: '#f8f8f8' }}>
+          <div id="lectures" style={{ paddingBottom: '3rem', backgroundColor: '#f8f8f8' }}>
             <Header text="Sharing Talks para palestrantes" />
             <Row gutter={[16, 24]} justify="space-between" style={{ display: 'flex', justifyContent: 'space-evenly', alignContent: 'center' }}>
               <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
@@ -81,9 +81,9 @@ const Home = () => {
               Ainda sem <b>palestrantes</b> para o seu evento? <br/> Veja abaixo 😉
             </p>
           </Row>
-          <div style={{ paddingBottom: '3rem', backgroundColor: '#f8f8f8' }}>
+          <div id="events" style={{ paddingBottom: '3rem', backgroundColor: '#f8f8f8' }}>
             <Header text="Sharing Talks para produtores de eventos" />
-            <Row gutter={[16, 24]} id="events" justify="space-between" style={{ display: 'flex', justifyContent: 'space-evenly', alignContent: 'center' }}>
+            <Row gutter={[16, 24]} justify="space-between" style={{ display: 'flex', justifyContent: 'space-evenly', alignContent: 'center' }}>
               <img style={{ width: 400, maxWidth: '100%' }} src={require('../../assets/events-producer.png')} alt='Produtor de evento' />
               <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
                 {callProducer.map(item => {
