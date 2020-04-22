@@ -3,18 +3,11 @@ import { useParams, useHistory } from 'react-router'
 import { Row, Col, Tag, Button, Space } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
-import { getEnvironment } from './../../utils/environment'
+import { getUserIsOwner } from './../../utils/getUserIsOwner '
 import "./event.scss";
 
-const environment = getEnvironment()
-
-const getUserIsOwner = (userId) => {
-  const userIdLogged = localStorage.getItem('userId')
-  return String(userId) === String(userIdLogged)
-}
-
-const Event = () => {
-  const [ event, setEvent ] = useState({})
+const Event = ({ event }) => {
+  
   const [ isOwnerEvent, setIsOwnerEvent ] = useState(false)
   const { eventId } = useParams()
   const history = useHistory()
@@ -30,13 +23,6 @@ const Event = () => {
     document.execCommand('copy')
     document.body.removeChild(dummy)
   }
-
-  useEffect(() => {
-    fetch(`${environment}/events/${eventId}`)
-      .then(res => res.json())
-      .then(data => setEvent(data))
-      .catch(err => console.error(err, 'Nenhum evento por aqui!'))
-  }, [eventId])
 
   useEffect(() => {
     setIsOwnerEvent(getUserIsOwner(event.userId))
