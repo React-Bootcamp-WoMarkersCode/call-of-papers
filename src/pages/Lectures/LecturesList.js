@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Tag, Button, Typography, Spin, Card } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { getEnvironment } from './../../utils/environment'
 import TableComponent from '../../components/Table'
 import './lectures-list.scss'
@@ -67,6 +67,7 @@ const LecturesList = () => {
   const [ lectures, setLectures ] = useState([])
   const [ loadingData, setLoadingData ] = useState(true)
   const environment = getEnvironment()
+  const history = useHistory()
   const userId = localStorage.getItem('userId')
 
   useEffect(() => {
@@ -82,16 +83,16 @@ const LecturesList = () => {
 
   return (
     <>
-      <Header text="Minhas palestras" />
       { loadingData ?
         (
           <Row gutter={[16, 24]}>
             <Spin size='large' />
           </Row>
         )
-          : lectures.length > 0 ?
+        : lectures.length > 0 ?
         (
           <>
+            <Header text="Minhas palestras" />
             <Row justify="end" className='row-table'>
               <Button type='default'>
                 <Link to='/download-lectures'><span>Faça o download de suas palestras!</span></Link>
@@ -101,10 +102,18 @@ const LecturesList = () => {
               <TableComponent columns={columnsTable} dataSource={ loadingData ? [] : lectures } />
             </Row>
           </>
-        )
-        : (<Row justify="center" className='row-table'>
-        <Card style={{ width: '90%' }}><p>Você ainda não cadastrou nenhuma palestra</p></Card>
-      </Row>)
+        ) : (
+        <Row justify="center" className='empty-box'>
+          <Card>
+            <p>Você ainda não possui palestras!</p>
+            <Button
+              type='default'
+              className='login-btn'
+              onClick={() => history.push('/lectures/form')}>
+                Cadastrar uma nova palestra
+            </Button>
+          </Card>
+        </Row>)
       }
     </>
   )
