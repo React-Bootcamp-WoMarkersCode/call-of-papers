@@ -91,8 +91,7 @@ const EventForm = () => {
 	const openNotification = (type, description) => {
 		notification[type]({
 			message: type === 'success' ? 'Sucesso!' : 'Ops! Algo deu errado!',
-      description: description,
-      duration: 2
+      description: description
 		});
 	};
 
