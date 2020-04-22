@@ -18,6 +18,18 @@ const LectureForm = () => {
   const environment = getEnvironment()
   const { eventId } = useParams()
 
+  const openNotification = (type, description) => {
+		notification[type]({
+			message: type === 'success' ? 'Sucesso!' : 'Ops! Algo deu errado!',
+      description: description,
+      duration: 3
+    })
+
+    setTimeout(() => {
+      setGoHome(true)
+    }, 3000)
+	}
+
   const handleSubmit = () => {
     let values = {
       ...lectureChosen,
@@ -35,10 +47,12 @@ const LectureForm = () => {
         },
       body: JSON.stringify(values)
     }).then(function (response) {
-      alert('Atividade cadastrada com sucesso!')
-      return response.json()
+      openNotification('success', 'Atividade cadastrada com sucesso!')
+			return response.json()
     }).catch(function (error) {
-      alert(`Erro ao cadastrar: ${error}`)
+      atch(function (error) {
+      console.log('error', error)
+      openNotification('error', 'Não foi possível cadastrar a palestra!')
     })
   }
 
