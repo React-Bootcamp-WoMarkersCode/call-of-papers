@@ -4,7 +4,7 @@ import FacebookLogin from 'react-facebook-login'
 import { getCurrentDate } from './../../utils/currentDate'
 import { getEnvironment } from './../../utils/environment'
 
-const FBLogin = ({ isDisabled, role }) => {
+const FBLogin = ({ isDisabled, event, role }) => {
   let history = useHistory()
   const environment = getEnvironment()
 
@@ -16,7 +16,9 @@ const FBLogin = ({ isDisabled, role }) => {
     localStorage.setItem('userEmail', response.email)
     localStorage.setItem('userRole', role)
 
-    // Redireciona para a página inicial
+    // Se ele já tinha escolhido o evento anteriormente, será redirecionado para lá após login
+    event? history.push(`/events/${event}`) :
+    // Senão redireciona para a página inicial
     history.push('/')
 
     // Verifica se é um novo usuário ou não. Se for, adiciona no json de usuários

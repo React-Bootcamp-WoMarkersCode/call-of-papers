@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router'
 import { Row, Card, Button } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle } from "@fortawesome/free-brands-svg-icons"
@@ -7,6 +8,8 @@ import FBLogin from './FBLogin'
 import Header from './../../components/Header'
 
 const Login = () => {
+
+  const { eventId } = useParams()
 
   const [role, setRole] = useState('')
 
@@ -52,7 +55,7 @@ const Login = () => {
         </Card>
       </Row>
       <Row gutter={[16, 24]} className='btn-group' justify='center'>
-        <FBLogin isDisabled={role === ''} role={role} />
+        <FBLogin isDisabled={role === ''} event={eventId} role={role} />
         <Button type='primary' className='google-button' disabled>
           <FontAwesomeIcon icon={faGoogle} />
           Continuar com o Google
