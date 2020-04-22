@@ -80,7 +80,7 @@ const EventsList = () => {
             <p>Você ainda não possui eventos!</p>
             <Button
               type='default'
-              className='login-btn'
+              className='btn-outline'
               onClick={() => history.push('/events/form')}>
                 Cadastrar um novo evento
             </Button>
