@@ -98,7 +98,7 @@ const LecturesList = () => {
               <p>Você ainda não possui palestras!</p>
               <Button
                 type='default'
-                className='login-btn'
+                className='btn-outline'
                 onClick={() => history.push('/lectures/form')}>
                   Cadastrar uma nova palestra
               </Button>
