@@ -58,47 +58,45 @@ const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
 
   return (
     <>
-      <Header text="Palestras pendentes de aprovação" />
-      <Row justify='end'>
-        <Col span={8}>
-          <Space>
-            <Button onClick={() => slider.current.prev()}><LeftOutlined /></Button>
-            <Button onClick={() => slider.current.next()}><RightOutlined /></Button>
-          </Space>
-        </Col>
-      </Row>
+
       {
         lecturesPending.length > 0 ? (
-          <Carousel
-            style={{ marginBottom: '20px' }}
-            {...settings}
-            ref={ref => {
-              slider.current = ref
-            }}
-          >
-            {lecturesPending.map((item) => {
-              return (
-                <div key={item.id}>
-                  <SubmissionInfo lecture={item} />
-                  <Row justify='end'>
-                    <Col span={10}>
-                      <Space>
-                        <Button value="REPROVADA" className='button-reprovado' onClick={() => setStatus(item, 'REPROVADA')} disabled={desabilitado}>REPROVAR</Button>
-                        <Button value="APROVADA" type='primary' onClick={() => setStatus(item, 'APROVADA')} disabled={desabilitado} >APROVAR</Button>
-                      </Space>
-                    </Col>
-                  </Row>
-                </div>
-              )
-            })
-            }
-          </Carousel>
-        ) : (
-          <Row>
-            <Descriptions title='Não existe palestras pendendes de aprovação!' style={{ padding: '50px', fontSize: '20px', fontWeight: 'bold', textAlign: 'center' }}>
-            </Descriptions>
-          </Row>
-        )
+          <>
+            <Header text="Palestras pendentes de aprovação" />
+            <Row justify='end'>
+              <Col span={8}>
+                <Space>
+                  <Button onClick={() => slider.current.prev()}><LeftOutlined /></Button>
+                  <Button onClick={() => slider.current.next()}><RightOutlined /></Button>
+                </Space>
+              </Col>
+            </Row>
+            <Carousel
+              style={{ marginBottom: '20px' }}
+              {...settings}
+              ref={ref => {
+                slider.current = ref
+              }}
+            >
+              {lecturesPending.map((item) => {
+                return (
+                  <div key={item.id}>
+                    <SubmissionInfo lecture={item} />
+                    <Row justify='end'>
+                      <Col span={10}>
+                        <Space>
+                          <Button value="REPROVADA" className='button-reprovado' onClick={() => setStatus(item, 'REPROVADA')} disabled={desabilitado}>REPROVAR</Button>
+                          <Button value="APROVADA" type='primary' onClick={() => setStatus(item, 'APROVADA')} disabled={desabilitado} >APROVAR</Button>
+                        </Space>
+                      </Col>
+                    </Row>
+                  </div>
+                )
+              })
+              }
+            </Carousel>
+          </>
+        ) : ('')
       }
     </>
   )

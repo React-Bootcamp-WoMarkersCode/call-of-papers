@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router'
-import { Row, Table, Typography } from 'antd'
+import { Row, Table, Typography, Card, Col, Button } from 'antd'
 import { Link } from 'react-router-dom'
 import Header from './../../components/Header'
+import { copyToCliboard } from '../../utils/copyToCliboard'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLink } from '@fortawesome/free-solid-svg-icons'
 
 const { Paragraph } = Typography
 
@@ -17,7 +20,7 @@ const useColumnsTable = () => {
       width: '30%',
       render: name => {
         let tmp = name.split(" ");
-        name = tmp[0] + " " + tmp[tmp.length -1];
+        name = tmp[0] + " " + tmp[tmp.length - 1];
         return <Paragraph>{name}</Paragraph>
       }
     },
@@ -63,10 +66,29 @@ const SubmissionsTable = ({ lectures }) => {
 
   return (
     <>
-      <Header text="Palestras aprovadas" />
-      <Row justify="center" className='row-table'>
-        <Table columns={columnsTable} dataSource={aprovadas} rowKey='id' />
-      </Row>
+    <Header text="Palestras aprovadas" />
+      {
+        aprovadas.length > 0 ?
+          (
+            <Row justify="center" className='row-table'>
+              <Table columns={columnsTable} dataSource={aprovadas} rowKey='id' />
+            </Row>
+          )
+          :
+          (
+            <Row>
+              <Col span={16} offset={4} justify="center">
+                <Card style={{textAlign:'center'}}>
+                  <p>Quando os palestrantes submeterem as palestas, você poderá gerenciá-las aqui.</p>
+                  <p>Compartilhe o link do seu evento para realizar o Call of Papers.</p>
+                  <Button type="link" onClick={() => copyToCliboard()} style={{ padding: 0 }}>
+                  <FontAwesomeIcon icon={faLink} />Copiar link para Call of Papers
+                </Button>
+                </Card>
+              </Col>
+            </Row>)
+      }
+
     </>
   )
 }
