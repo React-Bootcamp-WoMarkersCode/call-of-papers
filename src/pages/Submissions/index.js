@@ -26,7 +26,7 @@ const Submissions = () => {
 
   useEffect(() => {
     eventId && getLectures()
-  })
+  }, [eventId])
 
   return (
     <div>
