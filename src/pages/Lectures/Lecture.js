@@ -40,9 +40,7 @@ const Lecture = () => {
     } else {
       return 'volcano';
     }
-
   }
-
   return (
     <>
       {loadingData ?
@@ -82,7 +80,7 @@ const Lecture = () => {
             <Row justify='center' className='row-table'>
               <Button
                 type='primary'
-                onClick={() => history.push('/lectures/form')}
+                onClick={() => history.push(`/lectures/form/${event.id}`)}
                 disabled={lecture && lecture.status !== 'EM ANÁLISE'}
               >
                 Editar
