@@ -63,13 +63,11 @@ const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
         lecturesPending.length > 0 ? (
           <>
             <Header text="Palestras pendentes de aprovação" />
-            <Row justify='end'>
-              <Col span={8}>
+            <Row justify='end' style={{marginRight:'16.67%'}}>
                 <Space>
                   <Button onClick={() => slider.current.prev()}><LeftOutlined /></Button>
                   <Button onClick={() => slider.current.next()}><RightOutlined /></Button>
                 </Space>
-              </Col>
             </Row>
             <Carousel
               style={{ marginBottom: '20px' }}
@@ -82,8 +80,8 @@ const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
                 return (
                   <div key={item.id}>
                     <SubmissionInfo lecture={item} />
-                    <Row justify='end'>
-                      <Col span={10}>
+                    <Row justify='center'>
+                      <Col style={{marginTop:'0'}}>
                         <Space>
                           <Button value="REPROVADA" className='button-reprovado' onClick={() => setStatus(item, 'REPROVADA')} disabled={desabilitado}>REPROVAR</Button>
                           <Button value="APROVADA" type='primary' onClick={() => setStatus(item, 'APROVADA')} disabled={desabilitado} >APROVAR</Button>
