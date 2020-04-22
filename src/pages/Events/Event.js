@@ -4,6 +4,7 @@ import { Row, Col, Tag, Button, Space } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
 import { getUserIsOwner } from './../../utils/getUserIsOwner '
+import { copyToCliboard } from '../../utils/copyToCliboard'
 import "./event.scss";
 
 const Event = ({ event }) => {
@@ -11,18 +12,6 @@ const Event = ({ event }) => {
   const [ isOwnerEvent, setIsOwnerEvent ] = useState(false)
   const { eventId } = useParams()
   const history = useHistory()
-
-  const copyToCliboard = () => {
-    // https://stackoverflow.com/questions/49618618/copy-current-url-to-clipboard
-    var dummy = document.createElement('input'),
-    text = window.location.href
-
-    document.body.appendChild(dummy)
-    dummy.value = text
-    dummy.select()
-    document.execCommand('copy')
-    document.body.removeChild(dummy)
-  }
 
   useEffect(() => {
     setIsOwnerEvent(getUserIsOwner(event.userId))
