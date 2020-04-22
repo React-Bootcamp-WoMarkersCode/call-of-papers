@@ -60,6 +60,10 @@ h3 {
   p {
     font-size: 16px;
     margin-bottom: 2em;
+
+    &:first-child {
+      margin-bottom: 1em;
+    }
   }
 }
 

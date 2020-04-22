@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Button } from 'antd'
+import { Row, Button, notification } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import { Formik } from 'formik'
 import { useParams } from 'react-router'
@@ -17,7 +17,7 @@ const PartnersForm = () => {
 	let { eventId } = useParams()
 
 	let { event } = api
-	const environment = getEnvironment();
+	const environment = getEnvironment()
 
 	useEffect(() => {
 		fetch(`${environment}/events/${eventId}`)
@@ -26,7 +26,14 @@ const PartnersForm = () => {
 			setApi(data)
 		})
 		.catch(err => console.error(err, 'Nenhum evento por aqui!'))
-	}, [environment, eventId])
+  }, [environment, eventId])
+
+  const openNotification = (type, description) => {
+		notification[type]({
+			message: type === 'success' ? 'Sucesso!' : 'Ops! Algo deu errado!',
+      description: description
+		})
+	}
 
 	const handleSubmit = values => {
 		fetch(`${environment}/candidates`, {
@@ -38,10 +45,11 @@ const PartnersForm = () => {
 			},
 			body: JSON.stringify(values)
 			}).then(function (response) {
-				alert('Mensagem enviada! A equipe responsável pelo evento entrará em contato.')
+        openNotification('success', 'Mensagem enviada! A equipe responsável pelo evento entrará em contato.')
 				return response.json()
 			}).catch(function (error) {
-				alert(`Erro ao cadastrar: ${error}`)
+				console.log('error', error)
+        openNotification('error', 'Ocorreu um erro durante o envio da mensagem. Tente novamente!')
 			})
 	}
 
