@@ -73,9 +73,9 @@ const EventsList = () => {
           <Row justify='center' gutter={[16, 24]} className='row-table'>
             <TableComponent columns={columnsTable} dataSource={api} />
           </Row>
-        </>)
-          :
-        (<Row justify="center" className='empty-box'>
+        </>
+        ) : (
+        <Row justify="center" className='empty-box'>
           <Card>
             <p>Você ainda não possui eventos!</p>
             <Button
