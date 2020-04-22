@@ -15,9 +15,11 @@ const useColumnsTable = () => {
       dataIndex: 'name',
       key: 'name',
       width: '30%',
-      render: name => (
-        <Paragraph ellipsis={{ rows: 2, expandable: false }}>{name}</Paragraph>
-      )
+      render: name => {
+        let tmp = name.split(" ");
+        name = tmp[0] + " " + tmp[tmp.length -1];
+        return <Paragraph>{name}</Paragraph>
+      }
     },
     {
       title: 'Título da Palestra',
