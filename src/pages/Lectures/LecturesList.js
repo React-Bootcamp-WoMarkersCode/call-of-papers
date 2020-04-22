@@ -106,10 +106,11 @@ const LecturesList = () => {
         <Row justify="center" className='empty-box'>
           <Card>
             <p>Você ainda não possui palestras!</p>
+            <p>Dê uma olhada nos nossos eventos e cadastre sua palestra!</p>
             <Button
               type='default'
               className='login-btn'
-              onClick={() => history.push('/lectures/form')}>
+              onClick={() => history.push('/')}>
                 Cadastrar uma nova palestra
             </Button>
           </Card>
