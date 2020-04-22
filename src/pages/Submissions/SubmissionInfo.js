@@ -20,7 +20,7 @@ const SubmissionInfo = ({ lecture }) => {
         <Col span={5}>
           <Space direction='vertical'>
             <Space>
-              <Avatar size={50} src={lecture.uploadedImage ? lecture.uploadedImage : faUser} />
+              <Avatar size={50} src={lecture.uploadedImage && lecture.uploadedImage} ><FontAwesomeIcon icon={faUser} /></Avatar>
                 <Item>
                   {lecture.name ? `${lecture.name}` : 'Sem dados'}
                 </Item>
