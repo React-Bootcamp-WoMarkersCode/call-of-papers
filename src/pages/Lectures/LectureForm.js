@@ -97,12 +97,16 @@ const LectureForm = () => {
 		return (
 			<>
 			<Header text="Submissão de atividades" />
-			<Row justify="center" style={{ marginBottom: 20 }}>
-				Para participar, preencha o formulário e aguarde o contato da equipe organizadora do evento&nbsp;<strong> {`${event.event}`} </strong>
-			</Row>
-			<Row justify="center" style={{ marginBottom: 20 }}>
-				Clique&nbsp;<Link to={`/lectures/copylecture/${eventId}`}>aqui</Link>&nbsp;para reaproveitar uma palestra já submetida em outro evento
-			</Row>
+      { event ?
+        (<>
+          <Row justify="center" style={{ marginBottom: 20 }}>
+            Para participar, preencha o formulário e aguarde o contato da equipe organizadora do evento&nbsp;<strong> {`${event.event}`} </strong>
+          </Row>
+          <Row justify="center" style={{ marginBottom: 20 }}>
+            Clique&nbsp;<Link to={`/lectures/copylecture/${eventId}`}>aqui</Link>&nbsp;para reaproveitar uma palestra já submetida em outro evento
+          </Row>
+        </>) : (<></>)
+      }
 			<Row justify="center" className="row-table">
 				<Formik
 					initialValues={profile}
