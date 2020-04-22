@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Button } from 'antd'
+import { Row, Button, notification } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import './lectures-list.scss'
 import { Link } from 'react-router-dom'
@@ -8,15 +8,28 @@ import {
   Select,
   Form,
 } from 'formik-antd'
-import { useParams } from 'react-router'
+import { useParams, useHistory } from 'react-router'
 import Header from './../../components/Header'
 
 const LectureForm = () => {
   let [lectures, setLectures] = useState([])
   let [event, setEvent] = useState([])
   let [lectureChosen, setLectureChosen] = useState([])
+  const history = useHistory()
   const environment = getEnvironment()
   const { eventId } = useParams()
+
+  const openNotification = (type, description) => {
+		notification[type]({
+			message: type === 'success' ? 'Sucesso!' : 'Ops! Algo deu errado!',
+      description: description,
+      duration: 3
+    })
+
+    setTimeout(() => {
+      history.push('/');
+    }, 3000)
+	}
 
   const handleSubmit = () => {
     let values = {
@@ -35,10 +48,11 @@ const LectureForm = () => {
         },
       body: JSON.stringify(values)
     }).then(function (response) {
-      alert('Atividade cadastrada com sucesso!')
-      return response.json()
+      openNotification('success', 'Atividade cadastrada com sucesso!')
+			return response.json()
     }).catch(function (error) {
-      alert(`Erro ao cadastrar: ${error}`)
+      console.log('error', error)
+      openNotification('error', 'Não foi possível cadastrar a palestra!')
     })
   }
 

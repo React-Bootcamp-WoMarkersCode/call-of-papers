@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router'
-import { Row, Button } from 'antd'
+import { Row, Button, notification } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import './lectures-list.scss'
 import { Link } from 'react-router-dom'
@@ -23,7 +23,19 @@ const LectureForm = () => {
 	let [ goHome, setGoHome ] = useState(false)
 	const environment = getEnvironment()
 	const { eventId } = useParams()
-	let userPicture = localStorage.getItem('userPicture')
+  let userPicture = localStorage.getItem('userPicture')
+
+  const openNotification = (type, description) => {
+		notification[type]({
+			message: type === 'success' ? 'Sucesso!' : 'Ops! Algo deu errado!',
+      description: description,
+      duration: 3
+    })
+
+    setTimeout(() => {
+      setGoHome(true)
+    }, 3000)
+	}
 
 	const handleSubmit = (values) => {
 		fetch(`${environment}/lectures`, {
@@ -35,12 +47,12 @@ const LectureForm = () => {
 		},
 		body: JSON.stringify(values)
 		}).then(function (response) {
-			alert('Atividade cadastrada com sucesso!')
+			openNotification('success', 'Atividade cadastrada com sucesso!')
 			return response.json()
 		}).catch(function (error) {
-			alert(`Erro ao cadastrar: ${error}`)
+			console.log('error', error)
+      openNotification('error', 'Não foi possível cadastrar a palestra!')
 		})
-		setGoHome(true)
 	}
 
 	useEffect(() => {
@@ -85,12 +97,16 @@ const LectureForm = () => {
 		return (
 			<>
 			<Header text="Submissão de atividades" />
-			<Row justify="center" style={{ marginBottom: 20 }}>
-				Para participar, preencha o formulário e aguarde o contato da equipe organizadora do evento&nbsp;<strong> {`${event.event}`} </strong>
-			</Row>
-			<Row justify="center" style={{ marginBottom: 20 }}>
-				Clique&nbsp;<Link to={`/lectures/copylecture/${eventId}`}>aqui</Link>&nbsp;para reaproveitar uma palestra já submetida em outro evento
-			</Row>
+      { event ?
+        (<>
+          <Row justify="center" style={{ marginBottom: 20 }}>
+            Para participar, preencha o formulário e aguarde o contato da equipe organizadora do evento&nbsp;<strong> {`${event.event}`} </strong>
+          </Row>
+          <Row justify="center" style={{ marginBottom: 20 }}>
+            Clique&nbsp;<Link to={`/lectures/copylecture/${eventId}`}>aqui</Link>&nbsp;para reaproveitar uma palestra já submetida em outro evento
+          </Row>
+        </>) : (<></>)
+      }
 			<Row justify="center" className="row-table">
 				<Formik
 					initialValues={profile}

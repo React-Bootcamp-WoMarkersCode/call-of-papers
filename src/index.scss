@@ -60,10 +60,14 @@ h3 {
   p {
     font-size: 16px;
     margin-bottom: 2em;
+
+    &:first-child {
+      margin-bottom: 1em;
+    }
   }
 }
 
-.login-btn {
+.btn-outline {
   &:hover {
     background-color: #6999EB !important;
     color: white !important;

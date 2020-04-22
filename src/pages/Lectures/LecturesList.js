@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Tag, Button, Typography, Spin, Card } from 'antd'
+import { Row, Tag, Button, Typography, Card } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
 import { getEnvironment } from './../../utils/environment'
 import TableComponent from '../../components/Table'
@@ -65,7 +65,6 @@ const columnsTable = [
 
 const LecturesList = () => {
   const [ lectures, setLectures ] = useState([])
-  const [ loadingData, setLoadingData ] = useState(true)
   const environment = getEnvironment()
   const history = useHistory()
   const userId = localStorage.getItem('userId')
@@ -74,46 +73,37 @@ const LecturesList = () => {
     fetch(`${environment}/lectures`)
       .then(res => res.json())
       .then(data => {
-        let filter = data.filter(lecture => lecture.userId === userId)
+        let filter = data.filter(lecture => lecture.userId === Number(userId))
         setLectures(filter)
       })
-      .then(setLoadingData(false))
       .catch(err => console.error(err, 'Nenhum usuário encontrado'))
   }, [environment, userId])
 
   return (
     <>
-      { loadingData ?
-        (
-          <Row gutter={[16, 24]}>
-            <Spin size='large' />
-          </Row>
-        )
-        : lectures.length > 0 ?
-        (
-          <>
-            <Header text="Minhas palestras" />
-            <Row justify="end" className='row-table'>
-              <Button type='default'>
-                <Link to='/download-lectures'><span>Faça o download de suas palestras!</span></Link>
-              </Button>
-            </Row>
-            <Row justify="center" className='row-table'>
-              <TableComponent columns={columnsTable} dataSource={ loadingData ? [] : lectures } />
-            </Row>
-          </>
-        ) : (
-        <Row justify="center" className='empty-box'>
-          <Card>
-            <p>Você ainda não possui palestras!</p>
-            <Button
-              type='default'
-              className='login-btn'
-              onClick={() => history.push('/lectures/form')}>
-                Cadastrar uma nova palestra
+      { lectures.length > 0 ?
+        (<>
+          <Header text="Minhas palestras" />
+          <Row justify="end" className='row-table'>
+            <Button type='default'>
+              <Link to='/download-lectures'><span>Faça o download de suas palestras!</span></Link>
             </Button>
-          </Card>
-        </Row>)
+          </Row>
+          <Row justify="center" className='row-table'>
+            <TableComponent columns={columnsTable} dataSource={ lectures } />
+          </Row>
+        </>) : (
+          <Row justify="center" className='empty-box'>
+            <Card>
+              <p>Você ainda não possui palestras!</p>
+              <Button
+                type='default'
+                className='btn-outline'
+                onClick={() => history.push('/lectures/form')}>
+                  Cadastrar uma nova palestra
+              </Button>
+            </Card>
+          </Row>)
       }
     </>
   )

@@ -1,129 +1,97 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router'
-import { Row, Col, Card, Tag, Button, Descriptions } from 'antd'
-import { Link } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router'
+import { Row, Col, Tag, Button, Space } from 'antd'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLink } from '@fortawesome/free-solid-svg-icons'
 import { getEnvironment } from './../../utils/environment'
 import "./event.scss";
-import Header from '../../components/Header'
 
-const { Item } = Descriptions
+const environment = getEnvironment()
+
+const getUserIsOwner = (userId) => {
+  const userIdLogged = localStorage.getItem('userId')
+  return String(userId) === String(userIdLogged)
+}
 
 const Event = () => {
-  const [api, setApi] = useState([])
+  const [ event, setEvent ] = useState({})
+  const [ isOwnerEvent, setIsOwnerEvent ] = useState(false)
+  const { eventId } = useParams()
+  const history = useHistory()
 
-  let { eventId } = useParams()
+  const copyToCliboard = () => {
+    // https://stackoverflow.com/questions/49618618/copy-current-url-to-clipboard
+    var dummy = document.createElement('input'),
+    text = window.location.href
 
-  const { event, schedule, description, organizer, local, partners, categories, tickets, limited_spaces } = api
-
-  const environment = getEnvironment();
+    document.body.appendChild(dummy)
+    dummy.value = text
+    dummy.select()
+    document.execCommand('copy')
+    document.body.removeChild(dummy)
+  }
 
   useEffect(() => {
     fetch(`${environment}/events/${eventId}`)
       .then(res => res.json())
-      .then(data => {
-        setApi(data)
-      })
+      .then(data => setEvent(data))
       .catch(err => console.error(err, 'Nenhum evento por aqui!'))
-  }, [environment, eventId])
+  }, [eventId])
+
+  useEffect(() => {
+    setIsOwnerEvent(getUserIsOwner(event.userId))
+  }, [event.userId])
 
   return (
-    <>
-      <Header text={event} />
-
-      {/* Descrição  */}
-      <Row className="content-detalhe">
+    !event ? (
+      ''
+    ) : (
+      <Row style={{ marginTop: '3rem' }}>
         <Col span={16} offset={4}>
           <Row>
-            <Col span={16} className="pr-50">
-
-              <Descriptions layout='vertical' style={{ textAlign: 'justify' }}>
-                <Item label='Descrição' span={3}>
-                  {description}
-                </Item>
-                <Item label='Categorias' span={3}>
-                  {categories && categories.length === 0 ? 'Sem informações' :
-                    <>
-                      {categories && categories.map((category) => {
-                        return(<Tag style={{ marginBottom: '8px' }} key={category}>{category}</Tag>)
-                      })}
-                    </>
-                  }
-                </Item>
-                <Item label='Parceiros aceitos' span={3}>
-                  {(partners && partners.length === 0) || ((partners && partners.includes("Nao"))) ?
-                    'Não aceita parceiros'
-                      :
-                    <>
-                      {partners && partners.map((partner) => {
-                        return(<Tag style={{ marginBottom: '8px' }} key={partner}>{partner}</Tag>)
-                      })}
-                    </>
-                  }
-                </Item>
-                {(partners && partners.includes("Nao")) ? <></> :
-                  (<Item span={3}>
-                    <Button type='primary'>
-                      <Link to={`/partners/${eventId}`}><span>Seja um parceiro</span></Link>
-                    </Button>
-                  </Item>)
-                }
-              </Descriptions>
+            <Col span={6}>
+              <Space direction="vertical">
+                <span>Organizado por {event.organizer}</span>
+                <img src="https://www.4devs.com.br/4devs_gerador_imagem.php?acao=gerar_imagem&txt_largura=203&txt_altura=149&extensao=png&fundo_r=0.7209085375070572&fundo_g=0.7467041015625&fundo_b=0.7456202543332797&texto_r=0&texto_g=0&texto_b=0&texto=Foto&tamanho_fonte=10" alt=""/>
+                <Button type="link" onClick={() => copyToCliboard()} style={{ padding: 0 }}>
+                  <FontAwesomeIcon icon={faLink} />Copiar link para Call of Papers
+                </Button>
+              </Space>
             </Col>
-            <Col span={8} style={{textAlign: 'center'}}>
-              <Button type='primary'>
-                <Link id="btn-cadastrar" to={`/lectures/form/${eventId}`}><span>Submeta uma atividade para este evento!</span></Link>
-              </Button>
-              {
-                organizer ?
-                  <Card className="mt-15">
-                    <i style={{ textSize: 10 }}>
-                      <div>
-                        <b>Organizador(a):</b>
-                        <span> {organizer}</span>
-                      </div>
-                    </i>
-                  </Card> : ''
-              }
-              <Card className="mt-15">
-                <p>
-                  <small>Data/Horário</small>
-                  <br />
+            <Col span={18}>
+              <Space direction="vertical" style={{ width: '100%', height: '100%', justifyContent: 'space-between'}}>
+                <Space direction="vertical" size={5} style={{ width: '100%'}}>
+                  <Row justify="space-between">
+                    <h2>{event.event}</h2>
+                    <Button
+                      type='default'
+                      className="btn-outline"
+                      onClick={() => history.push(isOwnerEvent ? `/events/form/${eventId}` : `/lectures/form/${eventId}`)}
+                    >
+                      {isOwnerEvent ? 'Editar' : 'Submeta sua palestra'}
+                    </Button>
+                  </Row>
+                  <Row justify="space-between">
+                    <span>{event.local}</span>
+                    <span>{event.schedule}</span>
+                  </Row>
+                  <Row>
+                    {event.description}
+                  </Row>
+                </Space>
+                <Row style={{ alignSelf: 'end'}}>
                   {
-                    schedule ?
-                      <b>{schedule}</b> : 'Nenhuma data ou horário informado'
+                    event.categories && event.categories.map(categorie => (
+                      <Tag key={categorie}>{categorie}</Tag>
+                    ))
                   }
-                </p>
-                <p>
-                  <small>Local</small>
-                  <br />
-                  {
-                    local ?
-                      <Link to="">{local}</Link> : 'Nenhum local informado'
-                  }
-                </p>
-                <p>
-                  <small>Espaço limitado?</small>
-                  <br />
-                  {
-                    limited_spaces === true ? <strong>Sim</strong> : <strong>Não</strong>
-
-                  }
-                </p>
-              </Card>
-              {
-                tickets ?
-                  <Card className="mt-15">
-                    <small>Ingressos</small>
-                    <br />
-                    <b>Grátis</b>
-                  </Card> : ''
-              }
+                </Row>
+              </Space>
             </Col>
           </Row>
         </Col>
       </Row>
-
-    </>
+    )
   )
 }
 

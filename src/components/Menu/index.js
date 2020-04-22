@@ -43,14 +43,20 @@ const HeaderComponent = () => {
                   Destaques
                 </Menu.Item>
               </Menu>
-              <Button type='default' className='login-btn' onClick={() => history.push('/login')}>Login</Button>
+              <Button type='default' className='btn-outline' onClick={() => history.push('/login')}>Login</Button>
             </>)
               :
             (<Menu theme='light' mode='horizontal'>
-              <Menu.Item key='/events' onClick={() => history.push('/events')}>
+              <Menu.Item
+                key='/events'
+                disabled={userRole === 'Speaker'}
+                onClick={() => history.push('/events')}>
                 Sou produtor de eventos
               </Menu.Item>
-              <Menu.Item key='/lectures' onClick={() => history.push('/lectures')}>
+              <Menu.Item
+                key='/lectures'
+                disabled={userRole === 'Producer'}
+                onClick={() => history.push('/lectures')}>
                 Sou palestrante
               </Menu.Item>
               <SubMenu title={<Avatar src={userPicture} />}>
