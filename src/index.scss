@@ -39,3 +39,33 @@ h3 {
   color: red;
   margin: 0 5px 0 5px;
 }
+
+.empty-box {
+  margin: 5em auto !important;
+  width: 50%;
+
+  .ant-card {
+    width: 100%;
+  }
+
+  .ant-card-body {
+    padding: 75px;
+    text-align: center;
+  }
+
+  button, p {
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 2em;
+  }
+}
+
+.login-btn {
+  &:hover {
+    background-color: #6999EB !important;
+    color: white !important;
+  }
+}

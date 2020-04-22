@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 
 const About = React.lazy(() => import('pages/About'))
 const DownloadLectures = React.lazy(() => import('pages/Lectures/LecturesCSV'))
-const Event = React.lazy(() => import('pages/Submissions/telaProdutor'))
+const Event = React.lazy(() => import('pages/Submissions'))
 const EventsList = React.lazy(() => import('pages/Events/EventsList'))
 const EventForm = React.lazy(() => import('pages/Events/EventForm'))
 const Home = React.lazy(() => import('pages/Home/Home'))
@@ -35,6 +35,7 @@ const Routes = props => (
 
       <Route exact path="/lectures" component={routerProps => <LecturesList {...routerProps} />} />
       <Route exact path="/download-lectures" component={routerProps => <DownloadLectures {...routerProps} />} />
+      <Route exact path="/lectures/form" component={routerProps => <LectureForm {...routerProps} />} />
       <Route exact path="/lectures/form/:eventId" component={routerProps => <LectureForm {...routerProps} />} />
       <Route exact path="/lectures/copylecture/:eventId" component={routerProps => <CopyLecture {...routerProps} />} />
       <Route path="/lectures/:lectureId" component={routerProps => <Lecture {...routerProps} />} />
