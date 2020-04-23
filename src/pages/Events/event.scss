@@ -34,3 +34,11 @@ $pr-50: 50px;
 .pr-50{
     padding-right: 50px;
 }
+
+.imagem-event {
+    width: 100%;
+    //height: 100%;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}

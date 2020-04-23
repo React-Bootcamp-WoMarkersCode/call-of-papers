@@ -17,6 +17,7 @@
         "universidade",
         "startup"
       ],
+      "uploadedImage": "https://www.phpit.com.br/storage/2017/10/womakers.jpg",
       "id": 1
     },
     {
@@ -29,6 +30,7 @@
       "categories": [],
       "limited_spaces": false,
       "partners": [],
+      "uploadedImage": "https://www.phpit.com.br/storage/2017/10/womakers.jpg",
       "id": 2
     },
     {
@@ -45,22 +47,28 @@
       "partners": [
         "sponsors"
       ],
+      "uploadedImage": "https://www.phpit.com.br/storage/2017/10/womakers.jpg",
       "id": 3
     },
     {
-      "event": "Bootcamp",
+      "event": "Bootcamp React Online",
       "userId": 3154754594535841,
-      "description": "Bootcamp react online",
+      "description": "Velit duis minim nulla cillum pariatur voluptate aliqua fugiat quis dolore in culpa magna. Sit id dolor sunt incididunt culpa irure adipisicing officia anim minim aliquip. In commodo minim ullamco veniam cillum ex.",
       "schedule": "18 Abril, 07:30",
       "local": "online",
-      "organizer": "Olívia",
+      "organizer": "Olívia Resende",
+      "uploadedImage": "https://www.phpit.com.br/storage/2017/10/womakers.jpg",
       "categories": [
         "bootcamp"
       ],
       "limited_spaces": true,
       "partners": [
+        "universidade",
         "startups",
-        "palestrantes"
+        "sponsors",
+        "comunidades",
+        "palestrantes",
+        "imprensa"
       ],
       "id": 4
     },
@@ -76,6 +84,7 @@
       ],
       "limited_spaces": true,
       "partners": [],
+      "uploadedImage": "https://www.phpit.com.br/storage/2017/10/womakers.jpg",
       "id": 5
     }
   ],
