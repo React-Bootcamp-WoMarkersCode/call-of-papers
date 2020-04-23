@@ -74,8 +74,6 @@ const Event = ({ event }) => {
                         <Tag key={categorie}>{categorie}</Tag>
                       ))
                     }
-                  </Row>
-                  <Row style={{ alignSelf: 'end' }}>
                     {
                       event.partners && event.partners.map(partner => (
                         <Tag key={partner}>{partner}</Tag>
