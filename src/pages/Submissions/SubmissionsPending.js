@@ -52,6 +52,17 @@ const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
     Email(payload.name, payload.email, message)
   }
 
+  const footerCard = (item) => (
+    <Row justify='end'>
+      <Col style={{marginTop:'0'}}>
+        <Space>
+          <Button value="REPROVADA" className='button-reprovado' onClick={() => setStatus(item, 'REPROVADA')} disabled={desabilitado}>REPROVAR</Button>
+          <Button value="APROVADA" type='primary' onClick={() => setStatus(item, 'APROVADA')} disabled={desabilitado} >APROVAR</Button>
+        </Space>
+      </Col>
+    </Row>
+  )
+
   return (
     <>
 
@@ -75,15 +86,7 @@ const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
               {lecturesPending.map((item) => {
                 return (
                   <div key={item.id}>
-                    <SubmissionInfo lecture={item} />
-                    <Row justify='center'>
-                      <Col style={{marginTop:'0'}}>
-                        <Space>
-                          <Button value="REPROVADA" className='button-reprovado' onClick={() => setStatus(item, 'REPROVADA')} disabled={desabilitado}>REPROVAR</Button>
-                          <Button value="APROVADA" type='primary' onClick={() => setStatus(item, 'APROVADA')} disabled={desabilitado} >APROVAR</Button>
-                        </Space>
-                      </Col>
-                    </Row>
+                    <SubmissionInfo lecture={item} footerCard={footerCard} />
                   </div>
                 )
               })

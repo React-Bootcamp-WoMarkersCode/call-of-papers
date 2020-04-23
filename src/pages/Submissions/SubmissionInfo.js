@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Row, Col, Divider, Descriptions, Typography, Tag, Avatar, Space, Card, Spin } from 'antd'
+import { Row, Col, Descriptions, Typography, Tag, Avatar, Space, Card } from 'antd'
 import { faEnvelope, faPhoneAlt, faUser } from "@fortawesome/free-solid-svg-icons"
 import { faFacebook, faLinkedin, faTwitter, faInstagram, faYoutube, faGithub } from "@fortawesome/free-brands-svg-icons"
 import './style.scss'
@@ -8,10 +8,10 @@ import './style.scss'
 const { Item } = Descriptions
 const { Title } = Typography
 
-const SubmissionInfo = ({ lecture }) => {
+const SubmissionInfo = ({ lecture, footerCard }) => {
   return (
     <>
-      <Row style={{ marginBottom: '20px' }}>
+      <Row style={{ marginBottom: '20px' }} className='submission-info-container'>
         <Col span={16} offset={4}>
           <Card>
             <Row justify='start'>
@@ -51,7 +51,7 @@ const SubmissionInfo = ({ lecture }) => {
                     </Item>
                   </Space>
                 </Col>
-                <Divider type='vertical' style={{ border: '1px solid', height: '100%' }} orientation='center' />
+                <div className="line-vertical"></div>
                 <Col>
                   <Descriptions>
                     <Item span={3} style={{ textAlign: 'justify' }}>
@@ -60,22 +60,22 @@ const SubmissionInfo = ({ lecture }) => {
                     <Item >
                       <Space direction='horizontal' style={{ fontSize: '1.75em' }}>
                         {lecture.facebookLink ?
-                          <a href={`${lecture.facebookLink}`}><FontAwesomeIcon icon={faFacebook} /> </a>
+                          <a target="_blank" rel="noopener noreferrer" href={`${lecture.facebookLink}`}><FontAwesomeIcon icon={faFacebook} /> </a>
                           : <FontAwesomeIcon icon={faFacebook} />}
                         {lecture.linkedinLink ?
-                          <a href={`${lecture.linkedinLink}`}><FontAwesomeIcon icon={faLinkedin} /></a>
+                          <a target="_blank" rel="noopener noreferrer" href={`${lecture.linkedinLink}`}><FontAwesomeIcon icon={faLinkedin} /></a>
                           : <FontAwesomeIcon icon={faLinkedin} />}
                         {lecture.githubLink ?
-                          <a href={`${lecture.githubLink}`}><FontAwesomeIcon icon={faGithub} /></a>
+                          <a target="_blank" rel="noopener noreferrer" href={`${lecture.githubLink}`}><FontAwesomeIcon icon={faGithub} /></a>
                           : <FontAwesomeIcon icon={faGithub} />}
                         {lecture.twitter ?
-                          <a href={`${lecture.twitter}`}><FontAwesomeIcon icon={faTwitter} /></a>
+                          <a target="_blank" rel="noopener noreferrer" href={`${lecture.twitter}`}><FontAwesomeIcon icon={faTwitter} /></a>
                           : <FontAwesomeIcon icon={faTwitter} />}
                         {lecture.instagram ?
-                          <a href={`${lecture.instagram}`}><FontAwesomeIcon icon={faInstagram} /></a>
+                          <a target="_blank" rel="noopener noreferrer" href={`${lecture.instagram}`}><FontAwesomeIcon icon={faInstagram} /></a>
                           : <FontAwesomeIcon icon={faInstagram} />}
                         {lecture.youtube ?
-                          <a href={`${lecture.youtube}`}><FontAwesomeIcon icon={faYoutube} /></a>
+                          <a target="_blank" rel="noopener noreferrer" href={`${lecture.youtube}`}><FontAwesomeIcon icon={faYoutube} /></a>
                           : <FontAwesomeIcon icon={faYoutube} />}
                       </Space>
                     </Item>
@@ -99,13 +99,10 @@ const SubmissionInfo = ({ lecture }) => {
                 </Descriptions>
               </Col>
             </Row>
+            {footerCard && footerCard(lecture)}
           </Card>
         </Col>
       </Row>
-
-
-
-
     </>
   )
 }

@@ -1,19 +1,35 @@
-.social-network {
+.submission-info-container{
+  .social-network {
     padding: 5px;
+  }
 
-}
+  .ant-col-4 {
+    background-color: #f3f3f3;
+  }
 
-.ant-col-4 {
-  background-color: #f3f3f3;
-}
+  .ant-col-4 .ant-descriptions-row > th {
+    padding-bottom: 0 !important;
+  }
 
-.ant-col-4 .ant-descriptions-row > th {
-  padding-bottom: 0 !important;
-}
+  .ant-descriptions-title {
+    margin-bottom: 0 !important;
+    font-weight: normal;
+  }
 
-.ant-descriptions-title {
-  margin-bottom: 0 !important;
-  font-weight: normal;
+  .ant-avatar-string {
+    svg {
+      margin: 0;
+    }
+  }
+
+  .ant-space-item:nth-child(2) {
+    height: 100%;
+  }
+
+  .line-vertical {
+    height: 100%;
+    border: 0.5px solid #666666;
+  }
 }
 
 .button-reprovado {
@@ -25,14 +41,4 @@
   color: white;
   background: #FA8072;
   border-color: #FA8072
-}
-
-.ant-avatar-string {
-  svg {
-    margin: 0;
-  }
-}
-
-.ant-space-item:nth-child(2) {
-  height: 100%;
 }
