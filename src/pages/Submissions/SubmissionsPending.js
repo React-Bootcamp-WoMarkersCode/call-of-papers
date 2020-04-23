@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { Row, Col, Button, Descriptions, Carousel, Space } from 'antd'
+import React, { useState, useRef } from 'react'
+import { Row, Col, Button, Carousel, Space } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import Email from '../../utils/Email/Email'
 import Header from './../../components/Header'
@@ -20,13 +20,9 @@ const settings = {
 const environment = 'http://localhost:3001'
 
 const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
-  const [lecturesPending, setLecturesPending] = useState([])
+  const [lecturesPending, setLecturesPending] = useState(lectures)
   const slider = useRef()
   const [desabilitado, setDesabilitado] = useState(false)
-
-  useEffect(() => {
-    lectures && setLecturesPending(lectures.filter(lecture => lecture.status === 'EM ANÁLISE'))
-  }, [lectures])
 
   const setStatus = (item, status) => {
     item.status = status
@@ -58,47 +54,43 @@ const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
 
   return (
     <>
-      <Header text="Palestras pendentes de aprovação" />
-      <Row justify='end'>
-        <Col span={8}>
-          <Space>
-            <Button onClick={() => slider.current.prev()}><LeftOutlined /></Button>
-            <Button onClick={() => slider.current.next()}><RightOutlined /></Button>
-          </Space>
-        </Col>
-      </Row>
+
       {
         lecturesPending.length > 0 ? (
-          <Carousel
-            style={{ marginBottom: '20px' }}
-            {...settings}
-            ref={ref => {
-              slider.current = ref
-            }}
-          >
-            {lecturesPending.map((item) => {
-              return (
-                <div key={item.id}>
-                  <SubmissionInfo lecture={item} />
-                  <Row justify='end'>
-                    <Col span={10}>
-                      <Space>
-                        <Button value="REPROVADA" className='button-reprovado' onClick={() => setStatus(item, 'REPROVADA')} disabled={desabilitado}>REPROVAR</Button>
-                        <Button value="APROVADA" type='primary' onClick={() => setStatus(item, 'APROVADA')} disabled={desabilitado} >APROVAR</Button>
-                      </Space>
-                    </Col>
-                  </Row>
-                </div>
-              )
-            })
-            }
-          </Carousel>
-        ) : (
-          <Row>
-            <Descriptions title='Não existe palestras pendendes de aprovação!' style={{ padding: '50px', fontSize: '20px', fontWeight: 'bold', textAlign: 'center' }}>
-            </Descriptions>
-          </Row>
-        )
+          <>
+            <Header text="Palestras pendentes de aprovação" />
+            <Row justify='end' style={{marginRight:'16.67%'}}>
+                <Space>
+                  <Button onClick={() => slider.current.prev()}><LeftOutlined /></Button>
+                  <Button onClick={() => slider.current.next()}><RightOutlined /></Button>
+                </Space>
+            </Row>
+            <Carousel
+              style={{ marginBottom: '20px' }}
+              {...settings}
+              ref={ref => {
+                slider.current = ref
+              }}
+            >
+              {lecturesPending.map((item) => {
+                return (
+                  <div key={item.id}>
+                    <SubmissionInfo lecture={item} />
+                    <Row justify='center'>
+                      <Col style={{marginTop:'0'}}>
+                        <Space>
+                          <Button value="REPROVADA" className='button-reprovado' onClick={() => setStatus(item, 'REPROVADA')} disabled={desabilitado}>REPROVAR</Button>
+                          <Button value="APROVADA" type='primary' onClick={() => setStatus(item, 'APROVADA')} disabled={desabilitado} >APROVAR</Button>
+                        </Space>
+                      </Col>
+                    </Row>
+                  </div>
+                )
+              })
+              }
+            </Carousel>
+          </>
+        ) : ('')
       }
     </>
   )

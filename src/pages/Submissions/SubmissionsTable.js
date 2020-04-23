@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useLocation } from 'react-router'
-import { Row, Table, Typography } from 'antd'
+import { Row, Table, Typography, Col } from 'antd'
 import { Link } from 'react-router-dom'
 import Header from './../../components/Header'
 
@@ -15,9 +15,11 @@ const useColumnsTable = () => {
       dataIndex: 'name',
       key: 'name',
       width: '30%',
-      render: name => (
-        <Paragraph ellipsis={{ rows: 2, expandable: false }}>{name}</Paragraph>
-      )
+      render: name => {
+        let tmp = name.split(" ");
+        name = tmp[0] + " " + tmp[tmp.length - 1];
+        return <Paragraph>{name}</Paragraph>
+      }
     },
     {
       title: 'Título da Palestra',
@@ -51,20 +53,27 @@ const useColumnsTable = () => {
   ]
 }
 
-const SubmissionsTable = ({ lectures }) => {
+const SubmissionsTable = ({ aprovadas }) => {
   const columnsTable = useColumnsTable()
-  const [aprovadas, setAprovadas] = useState([])
-
-  useEffect(() => {
-    lectures && setAprovadas(lectures.filter(lecture => lecture.status === 'APROVADA'))
-  }, [lectures])
 
   return (
     <>
-      <Header text="Palestras aprovadas" />
-      <Row justify="center" className='row-table'>
-        <Table columns={columnsTable} dataSource={aprovadas} rowKey='id' />
-      </Row>
+      {
+        aprovadas.length > 0 ?
+          (
+            <>
+              <Header text="Palestras aprovadas" />
+              <Row>
+                <Col span={16} offset={4} justify="center">
+                  <Table columns={columnsTable} dataSource={aprovadas} rowKey='id' />
+                </Col>
+              </Row>
+            </>
+          )
+          :
+          ('')
+      }
+
     </>
   )
 }
