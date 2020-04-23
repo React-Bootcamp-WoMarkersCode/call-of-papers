@@ -21,60 +21,67 @@ const Event = ({ event }) => {
     !event ? (
       ''
     ) : (
-      <Row style={{ marginTop: '3rem' }}>
-        <Col span={16} offset={4}>
-          <Row>
-            <Col span={6}>
-              <Space direction="vertical">
-                <span>Organizado por {event.organizer}</span>
-                <img src="https://www.4devs.com.br/4devs_gerador_imagem.php?acao=gerar_imagem&txt_largura=203&txt_altura=149&extensao=png&fundo_r=0.7209085375070572&fundo_g=0.7467041015625&fundo_b=0.7456202543332797&texto_r=0&texto_g=0&texto_b=0&texto=Foto&tamanho_fonte=10" alt=""/>
-                <Button type="link" onClick={() => copyToCliboard()} style={{ padding: 0 }}>
-                  <FontAwesomeIcon icon={faLink} />Copiar link para Call of Papers
+        <Row style={{ marginTop: '3rem' }}>
+          <Col span={16} offset={4}>
+            <Row>       
+              <Col span={6} style={{marginRight:'4.167%'}}>
+                <Space direction="vertical" style={{ width: '100%', height: '100%', justifyContent: 'space-between' }}>
+                  <span>Organizado por {event.organizer}</span>
+                  <img src={event.uploadedImage} alt="" width="100%" />
+                  <Button type="link" onClick={() => copyToCliboard()} style={{ padding: 0 }}>
+                    <FontAwesomeIcon icon={faLink} />Copiar link para Call of Papers
                 </Button>
-              </Space>
-            </Col>
-            <Col span={18}>
-              <Space direction="vertical" style={{ width: '100%', height: '100%', justifyContent: 'space-between'}}>
-                <Space direction="vertical" size={5} style={{ width: '100%'}}>
-                  <Row justify="space-between">
-                    <h2>{event.event}</h2>
-                    {localStorage.getItem('userId') ?
-                      <Button
-                        type='default'
-                        className="btn-outline"
-                        onClick={() => history.push(isOwnerEvent ? `/events/form/${eventId}` : `/lectures/form/${eventId}`)}>
-                        {isOwnerEvent ? 'Editar' : 'Submeta sua palestra'}
+                </Space>
+              </Col>
+              <Col span={17}>
+                <Space direction="vertical" style={{ width: '100%', height: '100%', justifyContent: 'space-between' }}>
+                  <Space direction="vertical" size={5} style={{ width: '100%' }}>
+                    <Row justify="space-between">
+                      <h2>{event.event}</h2>
+                      {localStorage.getItem('userId') ?
+                        <Button
+                          type='default'
+                          className="btn-outline"
+                          onClick={() => history.push(isOwnerEvent ? `/events/form/${eventId}` : `/lectures/form/${eventId}`)}>
+                          {isOwnerEvent ? 'Editar' : 'Submeta sua palestra'}
+                        </Button>
+                        :
+                        <Button
+                          type='default'
+                          className="btn-outline"
+                          onClick={() => history.push(`/login/${eventId}`)}>
+                          Submeta sua palestra
                       </Button>
-                      :
-                      <Button
-                        type='default'
-                        className="btn-outline"
-                        onClick={() => history.push(`/login/${eventId}`)}>
-                        Submeta sua palestra
-                      </Button>
+                      }
+                    </Row>
+                    <Row justify="space-between">
+                      <span>{event.local}</span>
+                      <span>{event.schedule}</span>
+                    </Row>
+                    <Row style={{textAlign:'justify'}}>
+                      {event.description}
+                    </Row>
+                  </Space>
+                  <Row style={{ alignSelf: 'end' }}>
+                    {
+                      event.categories && event.categories.map(categorie => (
+                        <Tag key={categorie}>{categorie}</Tag>
+                      ))
                     }
                   </Row>
-                  <Row justify="space-between">
-                    <span>{event.local}</span>
-                    <span>{event.schedule}</span>
-                  </Row>
-                  <Row>
-                    {event.description}
+                  <Row style={{ alignSelf: 'end' }}>
+                    {
+                      event.partners && event.partners.map(partner => (
+                        <Tag key={partner}>{partner}</Tag>
+                      ))
+                    }
                   </Row>
                 </Space>
-                <Row style={{ alignSelf: 'end'}}>
-                  {
-                    event.categories && event.categories.map(categorie => (
-                      <Tag key={categorie}>{categorie}</Tag>
-                    ))
-                  }
-                </Row>
-              </Space>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-    )
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      )
   )
 }
 

@@ -15,12 +15,12 @@ const EventForm = () => {
 	//Carrega o id do evento que é passado pela url
 	let { eventId } = useParams();
 
-	const [ values, setValuesChecked ] = useState([]);
-	const [ radio, setValuesRadio ] = useState(true);
-	const [ partner, setValuesPartner ] = useState([]);
+	const [values, setValuesChecked] = useState([]);
+	const [radio, setValuesRadio] = useState(true);
+	const [partner, setValuesPartner] = useState([]);
 
 	// Se já houver evento com o id, ou seja, se for uma edição, os dados será carregados nessa variável
-	const [ dados, setDados ] = useState([]);
+	const [dados, setDados] = useState([]);
 
 	const environment = getEnvironment();
 
@@ -34,7 +34,7 @@ const EventForm = () => {
 				})
 				.catch((err) => console.error(err, 'Nenhum evento por aqui!'));
 		},
-		[ environment, eventId ]
+		[environment, eventId]
 	);
 
 	let valoresIniciais;
@@ -43,16 +43,17 @@ const EventForm = () => {
 	eventId
 		? (valoresIniciais = dados)
 		: (valoresIniciais = {
-				event: '',
-				description: '',
-				local: '',
-				schedule: '',
-				organizer: '',
-				categories: [],
-				limited_spaces: true,
-				partners: [],
-				dados
-			});
+			event: '',
+			description: '',
+			local: '',
+			schedule: '',
+			organizer: '',
+			uploadedImage: '',
+			categories: [],
+			limited_spaces: true,
+			partners: [],
+			dados
+		});
 
 	let formik = useFormik({
 		enableReinitialize: true,
@@ -72,7 +73,7 @@ const EventForm = () => {
 		formik.values.partners = partners;
 	};
 
-	const { event, description, local, schedule, organizer } = formik.values;
+	const { event, description, local, schedule, organizer, uploadedImage } = formik.values;
 
 	bodyApi = {
 		event,
@@ -81,6 +82,7 @@ const EventForm = () => {
 		schedule,
 		local,
 		organizer,
+		uploadedImage,
 		categories: values,
 		limited_spaces: radio,
 		partners: partner
@@ -91,7 +93,7 @@ const EventForm = () => {
 	const openNotification = (type, description) => {
 		notification[type]({
 			message: type === 'success' ? 'Sucesso!' : 'Ops! Algo deu errado!',
-      description: description
+			description: description
 		});
 	};
 
@@ -107,12 +109,12 @@ const EventForm = () => {
 				},
 				body: JSON.stringify(bodyApi)
 			})
-				.then(function(response) {
+				.then(function (response) {
 					history.push('/events');
 					openNotification('success', 'Evento cadastrado com sucesso!');
 					return response.json();
 				})
-				.catch(function(error) {
+				.catch(function (error) {
 					console.log('error', error);
 					openNotification('error', 'Não foi possível cadastrar o evento!');
 				});
@@ -127,12 +129,12 @@ const EventForm = () => {
 				},
 				body: JSON.stringify(bodyApi)
 			})
-				.then(function(response) {
+				.then(function (response) {
 					history.push('/events');
 					openNotification('success', 'Evento atualizado com sucesso!');
 					return response.json();
 				})
-				.catch(function(error) {
+				.catch(function (error) {
 					console.log('error', error);
 					openNotification('error', 'Não foi possível atualizar o evento!');
 				});
@@ -150,7 +152,7 @@ const EventForm = () => {
 						<Form.Item
 							label="Nome do evento:"
 							htmlFor="event"
-							rules={[ { required: true, message: 'Preencha corretamente o campo de evento!' } ]}
+							rules={[{ required: true, message: 'Preencha corretamente o campo de evento!' }]}
 						>
 							<Input
 								name="event"
@@ -164,7 +166,7 @@ const EventForm = () => {
 						<Form.Item
 							label="Descrição do evento:"
 							htmlFor="description"
-							rules={[ { required: true, message: 'Preencha corretamente o campo de descrição do evento.' } ]}
+							rules={[{ required: true, message: 'Preencha corretamente o campo de descrição do evento.' }]}
 						>
 							<TextArea
 								name="description"
@@ -176,7 +178,7 @@ const EventForm = () => {
 						<Row>
 							<Col span={12} style={{ paddingRight: 10 }}>
 								{/* Data-Horário do evento */}
-								<Form.Item label="Data/Horário do evento:" htmlFor="schedule" rules={[ { required: false } ]}>
+								<Form.Item label="Data/Horário do evento:" htmlFor="schedule" rules={[{ required: false }]}>
 									<Input
 										name="schedule"
 										placeholder="Digite a data e horário"
@@ -188,7 +190,7 @@ const EventForm = () => {
 							</Col>
 							<Col span={12} style={{ paddingLeft: 10 }}>
 								{/* Local do evento */}
-								<Form.Item label="Local do evento:" htmlFor="local" rules={[ { required: false } ]}>
+								<Form.Item label="Local do evento:" htmlFor="local" rules={[{ required: false }]}>
 									<Input
 										name="local"
 										placeholder="Digite o local do evento"
@@ -203,7 +205,7 @@ const EventForm = () => {
 						<Form.Item
 							label="Organizador do evento:"
 							htmlFor="organizer"
-							rules={[ { required: true, message: 'Preencha corretamente o campo de organizador!' } ]}
+							rules={[{ required: true, message: 'Preencha corretamente o campo de organizador!' }]}
 						>
 							<Input
 								name="organizer"
@@ -212,13 +214,22 @@ const EventForm = () => {
 								value={formik.values.organizer}
 							/>
 						</Form.Item>
-
+						{/* Identidade visual */}
+						<Form.Item label="Identidade visual:" name="uploadedImage">
+							Já tem uma imagem que seja a cara do seu evento ou organização? Insira o link no campo abaixo:
+							<Input 
+								name="uploadedImage" 
+								placeholder="Insira um link"
+								onChange={formik.handleChange}
+								value={formik.values.uploadedImage}
+							/>
+						</Form.Item>
 						<Row>
 							<Col span={12}>
 								<Form.Item
 									label="Categoria do evento: "
 									htmlFor="categories"
-									rules={[ { required: true, message: 'Preencha corretamente o campo de categoria!' } ]}
+									rules={[{ required: true, message: 'Preencha corretamente o campo de categoria!' }]}
 								>
 									<Checkbox.Group onChange={onChangeCategories} value={formik.values.categories}>
 										<Row>
@@ -239,7 +250,7 @@ const EventForm = () => {
 								</Form.Item>
 							</Col>
 							<Col span={12}>
-								<Form.Item label="Quais parceiros aceita ?" htmlFor="partners" rules={[ { required: false } ]}>
+								<Form.Item label="Quais parceiros aceita ?" htmlFor="partners" rules={[{ required: false }]}>
 									<Checkbox.Group onChange={onChangePartners} value={formik.values.partners}>
 										<Row>
 											<Col span={10}>
@@ -268,7 +279,7 @@ const EventForm = () => {
 								</Form.Item>
 							</Col>
 						</Row>
-						<Form.Item label="Vagas limitadas ?" htmlFor="limited_spaces" rules={[ { required: true } ]}>
+						<Form.Item label="Vagas limitadas ?" htmlFor="limited_spaces" rules={[{ required: true }]}>
 							<Radio.Group name="limited_spaces" onChange={onChangeSpaces}>
 								<Radio value={true} checked={formik.values.limited_spaces}>
 									Sim
@@ -284,10 +295,10 @@ const EventForm = () => {
 									Atualizar evento
 								</Button>
 							) : (
-								<Button type="primary" onClick={onsubmit}>
-									Cadastrar evento
-								</Button>
-							)}
+									<Button type="primary" onClick={onsubmit}>
+										Cadastrar evento
+									</Button>
+								)}
 						</Form.Item>
 					</Form>
 				</Col>
