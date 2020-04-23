@@ -29,7 +29,7 @@ const Submissions = () => {
     fetch(`${environment}/lectures`)
       .then(res => res.json())
       .then(response => {
-        let lecturesById = response.filter(lecture => lecture.eventId === eventId)
+        let lecturesById = response.filter(lecture => lecture.eventId.string === eventId.string)
         setAprovadas(lecturesById.filter(lecture => lecture.status === 'APROVADA'))
         setLecturesPending(lecturesById.filter(lecture => lecture.status === 'EM ANÁLISE'))
       })
