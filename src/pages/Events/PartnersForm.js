@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Row, Button, notification } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import { Formik } from 'formik'
@@ -12,6 +13,7 @@ import Header from './../../components/Header'
 const { TextArea } = Input
 
 const PartnersForm = () => {
+  let history = useHistory()
 	const [api, setApi] = useState([])
 
 	let { eventId } = useParams()
@@ -46,6 +48,7 @@ const PartnersForm = () => {
 			body: JSON.stringify(values)
 			}).then(function (response) {
         openNotification('success', 'Mensagem enviada! A equipe responsável pelo evento entrará em contato.')
+        setTimeout(function(){ history.push('/events/' + parseInt(eventId))}, 3000);
 				return response.json()
 			}).catch(function (error) {
 				console.log('error', error)
