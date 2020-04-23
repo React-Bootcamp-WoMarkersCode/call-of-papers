@@ -44,6 +44,14 @@
   margin-left: 2em;
 }
 
+.menu-container .menu-mobile {
+  display: contents;
+
+  .menu-hamburguer {
+    height: 100% !important;
+  }
+}
+
 .svg-inline--fa {
   margin-right: 0.5em;
 }
