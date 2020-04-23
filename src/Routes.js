@@ -23,6 +23,7 @@ const Routes = props => (
       <Route exact path="/" component={routerProps => <Home {...routerProps} />} />
 
       <Route exact path="/login" component={routerProps => <Login {...routerProps} />} />
+      <Route exact path="/login/:eventId" component={routerProps => <Login {...routerProps} />} />
 
       <Route exact path="/about" component={routerProps => <About {...routerProps} />} />
 

@@ -49,6 +49,7 @@ const LectureForm = () => {
       body: JSON.stringify(values)
     }).then(function (response) {
       openNotification('success', 'Atividade cadastrada com sucesso!')
+      setTimeout(function(){ history.push('/events/' + parseInt(eventId))}, 3000);
 			return response.json()
     }).catch(function (error) {
       console.log('error', error)

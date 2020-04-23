@@ -38,13 +38,21 @@ const Event = ({ event }) => {
                 <Space direction="vertical" size={5} style={{ width: '100%'}}>
                   <Row justify="space-between">
                     <h2>{event.event}</h2>
-                    <Button
-                      type='default'
-                      className="btn-outline"
-                      onClick={() => history.push(isOwnerEvent ? `/events/form/${eventId}` : `/lectures/form/${eventId}`)}
-                    >
-                      {isOwnerEvent ? 'Editar' : 'Submeta sua palestra'}
-                    </Button>
+                    {localStorage.getItem('userId') ?
+                      <Button
+                        type='default'
+                        className="btn-outline"
+                        onClick={() => history.push(isOwnerEvent ? `/events/form/${eventId}` : `/lectures/form/${eventId}`)}>
+                        {isOwnerEvent ? 'Editar' : 'Submeta sua palestra'}
+                      </Button>
+                      :
+                      <Button
+                        type='default'
+                        className="btn-outline"
+                        onClick={() => history.push(`/login/${eventId}`)}>
+                        Submeta sua palestra
+                      </Button>
+                    }
                   </Row>
                   <Row justify="space-between">
                     <span>{event.local}</span>
