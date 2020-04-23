@@ -24,7 +24,7 @@ const Event = ({ event }) => {
         <Row style={{ marginTop: '3rem' }}>
           <Col span={16} offset={4}>
             <Row>       
-              <Col span={6} style={{marginRight:'4.167%'}}>
+              <Col xs={24} lg={6} style={{marginRight:'4.167%'}}>
                 <Space direction="vertical" style={{ width: '100%', height: '100%', justifyContent: 'space-between' }}>
                   <span>Organizado por {event.organizer}</span>
                   <img src={event.uploadedImage} alt="" width="100%" />
@@ -33,7 +33,7 @@ const Event = ({ event }) => {
                 </Button>
                 </Space>
               </Col>
-              <Col span={17}>
+              <Col xs={24} lg={17}>
                 <Space direction="vertical" style={{ width: '100%', height: '100%', justifyContent: 'space-between' }}>
                   <Space direction="vertical" size={5} style={{ width: '100%' }}>
                     <Row justify="space-between">
