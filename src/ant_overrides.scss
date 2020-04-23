@@ -29,6 +29,19 @@
   padding: 15px 50px !important;
   display: flex !important;
   justify-content: space-evenly !important;
+
+  @media (max-width: 425px) {
+    font-size: 12px !important;
+    padding: 10px 30px !important;
+
+    .ant-row {
+      justify-content: center !important;
+
+      .ant-space-horizontal {
+        margin-top: 0.5em !important;
+      }
+    }
+  }
 }
 
 .ant-divider-inner-text {
