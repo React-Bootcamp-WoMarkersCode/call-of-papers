@@ -53,22 +53,26 @@ const Submissions = () => {
             {
               aprovadas.length === 0 && lecturesPending.length === 0 ?
                 (
-                  <Row style={{marginTop:'20px'}}>
+                  <Row style={{ marginTop: '20px' }}>
                     <Col span={16} offset={4} justify="center">
                       <Card style={{ textAlign: 'center' }}>
                         <p>Quando os palestrantes submeterem as palestas, você poderá gerenciá-las aqui.</p>
                         <p>Compartilhe o link do seu evento para realizar o Call of Papers.</p>
                         <Button type="link" onClick={() => copyToCliboard()} style={{ padding: 0 }}>
                           <FontAwesomeIcon icon={faLink} />Copiar link para Call of Papers
-                  </Button>
+                        </Button>
                       </Card>
                     </Col>
                   </Row>
                 )
                 :
-                (<SubmissionsTable aprovadas={aprovadas} />)
+                (
+                  <>
+                    <SubmissionsTable aprovadas={aprovadas} />
+                    <SubmissionsPending lectures={lecturesPending} handleUpdateLecture={handleUpdateLecture} />
+                  </>
+                )
             }
-            <SubmissionsPending lectures={lecturesPending} handleUpdateLecture={handleUpdateLecture} />
           </>
           :
           ''
