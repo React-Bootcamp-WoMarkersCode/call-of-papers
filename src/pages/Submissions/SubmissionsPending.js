@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { Row, Col, Button, Descriptions, Carousel, Space } from 'antd'
+import React, { useState, useRef } from 'react'
+import { Row, Col, Button, Carousel, Space } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import Email from '../../utils/Email/Email'
 import Header from './../../components/Header'
@@ -20,13 +20,9 @@ const settings = {
 const environment = 'http://localhost:3001'
 
 const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
-  const [lecturesPending, setLecturesPending] = useState([])
+  const [lecturesPending, setLecturesPending] = useState(lectures)
   const slider = useRef()
   const [desabilitado, setDesabilitado] = useState(false)
-
-  useEffect(() => {
-    lectures && setLecturesPending(lectures.filter(lecture => lecture.status === 'EM ANÁLISE'))
-  }, [lectures])
 
   const setStatus = (item, status) => {
     item.status = status
