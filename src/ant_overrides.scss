@@ -100,3 +100,7 @@
     border-bottom: 2px solid transparent !important;
   }
 }
+
+.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
+ border-right: none !important;
+}
