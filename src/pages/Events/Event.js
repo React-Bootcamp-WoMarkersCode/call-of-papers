@@ -8,7 +8,7 @@ import { copyToCliboard } from '../../utils/copyToCliboard'
 import "./event.scss";
 
 const Event = ({ event }) => {
-  
+
   const [ isOwnerEvent, setIsOwnerEvent ] = useState(false)
   const { eventId } = useParams()
   const history = useHistory()
@@ -21,15 +21,21 @@ const Event = ({ event }) => {
     !event ? (
       ''
     ) : (
-        <Row style={{ marginTop: '3rem' }}>
+        <Row style={{ marginTop: '3rem', marginBottom: '2rem' }}>
           <Col span={16} offset={4}>
-            <Row>       
+            <Row>
               <Col span={6} style={{marginRight:'4.167%'}}>
                 <Space direction="vertical" style={{ width: '100%', height: '100%', justifyContent: 'space-between' }}>
                   <span>Organizado por {event.organizer}</span>
                   <img src={event.uploadedImage} alt="" width="100%" />
                   <Button type="link" onClick={() => copyToCliboard()} style={{ padding: 0 }}>
                     <FontAwesomeIcon icon={faLink} />Copiar link para Call of Papers
+                </Button>
+                <Button
+                  type='default'
+                  className="btn-outline"
+                  onClick={() => history.push(`/partners/${eventId}`)}>
+                  Ser parceiro
                 </Button>
                 </Space>
               </Col>
