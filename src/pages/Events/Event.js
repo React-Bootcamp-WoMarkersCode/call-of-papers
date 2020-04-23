@@ -21,7 +21,7 @@ const Event = ({ event }) => {
     !event ? (
       ''
     ) : (
-        <Row style={{ marginTop: '3rem' }}>
+        <Row style={{ marginTop: '3rem', marginBottom: '2rem' }}>
           <Col span={16} offset={4}>
             <Row>
               <Col span={6} style={{marginRight:'4.167%'}}>
@@ -30,6 +30,12 @@ const Event = ({ event }) => {
                   <img src={event.uploadedImage} alt="" width="100%" />
                   <Button type="link" onClick={() => copyToCliboard()} style={{ padding: 0 }}>
                     <FontAwesomeIcon icon={faLink} />Copiar link para Call of Papers
+                </Button>
+                <Button
+                  type='default'
+                  className="btn-outline"
+                  onClick={() => history.push(`/partners/${eventId}`)}>
+                  Ser parceiro
                 </Button>
                 </Space>
               </Col>
@@ -57,12 +63,6 @@ const Event = ({ event }) => {
                     <Row justify="space-between">
                       <span>{event.local}</span>
                       <span>{event.schedule}</span>
-                      <Button
-                          type='default'
-                          className="btn-outline"
-                          onClick={() => history.push(`/partners/${eventId}`)}>
-                          Ser parceiro
-                      </Button>
                     </Row>
                     <Row style={{textAlign:'justify'}}>
                       {event.description}
