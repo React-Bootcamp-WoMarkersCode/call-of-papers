@@ -37,8 +37,8 @@
     .ant-row {
       justify-content: center !important;
 
-      div:nth-child(2) {
-        margin-top: 0.5em;
+      .ant-space-horizontal {
+        margin-top: 0.5em !important;
       }
     }
   }
