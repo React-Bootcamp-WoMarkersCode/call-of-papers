@@ -97,9 +97,9 @@ const LectureForm = () => {
 		activityCategory: [],
 		haveLecturedBefore: '',
 		status: 'EM ANÁLISE',
-		eventId: parseInt(eventId),
-		id: Math.ceil(Math.random() * Math.pow(10,5)),
-		userId: parseInt(profile.id)
+		eventId: String(eventId),
+		id: String(Math.ceil(Math.random() * Math.pow(10,5))),
+		userId: String(profile.id)
 	}
 
 	if (goHome === false) {
