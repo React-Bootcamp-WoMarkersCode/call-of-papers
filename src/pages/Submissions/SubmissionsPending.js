@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { Row, Col, Button, Carousel, Space } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
+import { getEnvironment } from './../../utils/environment';
 import Email from '../../utils/Email/Email'
 import Header from './../../components/Header'
 import SubmissionInfo from './SubmissionInfo'
@@ -17,7 +18,7 @@ const settings = {
   accessibility: false
 }
 
-const environment = 'http://localhost:3001'
+const environment = getEnvironment();
 
 const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
   const [lecturesPending, setLecturesPending] = useState(lectures)

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
+import { getEnvironment } from '../../utils/environment'
 import Header from '../../components/Header'
 import SubmissionInfo from './SubmissionInfo'
 import './style.scss'
 
-const environment = 'http://localhost:3001'
+const environment = getEnvironment()
 const SubmissionInAnalysis = () => {
   let { submissionId } = useParams()
   const [lecture, setLecture] = useState([])

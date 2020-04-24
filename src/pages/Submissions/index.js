@@ -26,12 +26,11 @@ const Submissions = () => {
   }, [eventId])
 
   const getLectures = () => {
-    fetch(`${environment}/lectures`)
+    fetch(`${environment}/lectures?eventId=${eventId}`)
       .then(res => res.json())
       .then(response => {
-        let lecturesById = response.filter(lecture => lecture.eventId.string === eventId.string)
-        setAprovadas(lecturesById.filter(lecture => lecture.status === 'APROVADA'))
-        setLecturesPending(lecturesById.filter(lecture => lecture.status === 'EM ANÁLISE'))
+        setAprovadas(response.filter(lecture => lecture.status === 'APROVADA'))
+        setLecturesPending(response.filter(lecture => lecture.status === 'EM ANÁLISE'))
       })
       .catch(err => console.error(err, 'Nenhuma palestra por aqui!'))
   }
