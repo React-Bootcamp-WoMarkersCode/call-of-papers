@@ -76,7 +76,7 @@ const LecturesList = () => {
     fetch(`${environment}/lectures`)
       .then(res => res.json())
       .then(data => {
-        let filter = data.filter(lecture => lecture.userId === Number(userId))
+        let filter = data.filter(lecture => lecture.userId.toString === userId.toString)
         setLectures(filter)
       })
       .catch(err => console.error(err, 'Nenhum usuário encontrado'))
