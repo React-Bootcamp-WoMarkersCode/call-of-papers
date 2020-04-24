@@ -17,8 +17,6 @@ const Submissions = () => {
   const [event, setEvent] = useState({})
   const [lectures, setLectures] = useState([])
   const [isOwner, setIsOwner] = useState(false)
-  // const [aprovadas, setAprovadas] = useState([])
-  // const [lecturesPending, setLecturesPending] = useState([])
 
   useEffect(() => {
     fetch(`${environment}/events/${eventId}`)
@@ -40,13 +38,6 @@ const Submissions = () => {
       .then(res => res.json())
       .then(response => setLectures(response))
       .catch(err => console.error(err, 'Nenhuma palestra por aqui!'))
-        // let lecturesById = response.filter(lecture => lecture.eventId.string === eventId.string)
-        // setAprovadas(lecturesById.filter(lecture => lecture.status === 'APROVADA'))
-        // setLecturesPending(lecturesById.filter(lecture => lecture.status === 'EM ANÁLISE'))
-  }
-
-  const handleUpdateLecture = () => {
-    getLectures()
   }
 
   return (
@@ -74,7 +65,7 @@ const Submissions = () => {
                 (
                   <>
                     <SubmissionsTable lectures={lectures} />
-                    <SubmissionsPending lectures={lectures} handleUpdateLecture={handleUpdateLecture} />
+                    <SubmissionsPending lectures={lectures} handleUpdateLecture={getLectures} />
                   </>
                 )
             }
