@@ -11,7 +11,9 @@ const CardEvent = ({ event }) => {
 
 
       <Space direction="vertical">
-        <img src={event.uploadedImage} alt="" width="100%" style={{ margin: '0' }} />
+        <div style={{width: '100%',height: '150px',overflow: 'hidden'}}>
+          <img src={event.uploadedImage} alt="" width="100%" style={{ margin: '0' }} />
+        </div>
         <Text strong>{event.event}</Text>
         <Space direction="vertical" size={0}>
           <Text type="secondary">{event.schedule}</Text>
