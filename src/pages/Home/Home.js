@@ -42,7 +42,8 @@ const callSpeaker = [
 
 const Home = () => {
   const [events, setEvents] = useState([])
-  const environment = getEnvironment();
+  const environment = getEnvironment()
+  const mobileViewport = (window.innerWidth <= 425 )
 
   useEffect(() => {
     fetch(`${environment}/events`)
@@ -66,9 +67,9 @@ const Home = () => {
               <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
                 {callSpeaker.map(item => {
                   return (
-                    <div key={item.description}>
-                      <FontAwesomeIcon style={{ fontSize: 24 }} icon={faCheck} className="check-icon" />
-                      <Text style={{ fontSize: 24 }}>{item.description}</Text>
+                    <div key={item.description} className='responsive-text'>
+                      <FontAwesomeIcon style={{ fontSize: '1.5em' }} icon={faCheck} className="check-icon" />
+                      <Text style={{ fontSize: '1.5em' }}>{item.description}</Text>
                     </div>
                   )
                 })}
@@ -88,9 +89,9 @@ const Home = () => {
               <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
                 {callProducer.map(item => {
                   return (
-                    <div key={item.description}>
-                      <FontAwesomeIcon style={{ fontSize: 24 }} icon={faCheck} className="check-icon" />
-                      <Text style={{ fontSize: 24 }}>{item.description}</Text>
+                    <div key={item.description} className='responsive-text'>
+                      <FontAwesomeIcon style={{ fontSize: '1.5em' }} icon={faCheck} className="check-icon" />
+                      <Text style={{ fontSize: '1.5em' }}>{item.description}</Text>
                     </div>
                   )
                 })}

@@ -117,3 +117,10 @@
 .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
  border-right: none !important;
 }
+
+.ant-divider-horizontal.ant-divider-with-text-left::after,
+.ant-divider-horizontal.ant-divider-with-text-left::before {
+  @media (max-width: 425px) {
+    width: 10% !important;
+  }
+}

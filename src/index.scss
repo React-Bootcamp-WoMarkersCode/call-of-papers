@@ -79,3 +79,9 @@ h3 {
     color: white !important;
   }
 }
+
+.divider-style {
+  @media (max-width: 425px) {
+    white-space: normal;
+  }
+}
