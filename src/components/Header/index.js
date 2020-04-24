@@ -4,9 +4,9 @@ import { Divider, Row } from 'antd'
 
 const Header = ({ text }) => {
   return (
-    <Row gutter={[16, 24]}>
+    <Row>
       <Divider orientation="left">
-        {text}
+        <div className='divider-style'>{text}</div>
       </Divider>
     </Row>
   )

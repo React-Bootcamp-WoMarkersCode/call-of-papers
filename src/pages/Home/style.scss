@@ -96,4 +96,11 @@
   .check-icon {
     color: #009500;
   }
+
+  .responsive-text {
+    @media (max-width: 425px) {
+      padding: 0 1.5em;
+      text-align: center;
+    }
+  }
 }
