@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Row, Col, Button, Carousel, Space } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { getEnvironment } from './../../utils/environment';
@@ -24,6 +24,10 @@ const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
   const [lecturesPending, setLecturesPending] = useState(lectures)
   const slider = useRef()
   const [desabilitado, setDesabilitado] = useState(false)
+
+  useEffect(() => {
+    setLecturesPending(lectures.filter(lecture => lecture.status === 'EM ANÁLISE'))
+  }, [lectures])
 
   const setStatus = (item, status) => {
     item.status = status
@@ -73,8 +77,8 @@ const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
             <Header text="Palestras pendentes de aprovação" />
             <Row justify='end' style={{marginRight:'16.67%'}}>
                 <Space>
-                  <Button onClick={() => slider.current.prev()}><LeftOutlined /></Button>
-                  <Button onClick={() => slider.current.next()}><RightOutlined /></Button>
+                  <Button onClick={() => slider.current.prev()} className="btn-outline"><LeftOutlined /></Button>
+                  <Button onClick={() => slider.current.next()} className="btn-outline"><RightOutlined /></Button>
                 </Space>
             </Row>
             <Carousel

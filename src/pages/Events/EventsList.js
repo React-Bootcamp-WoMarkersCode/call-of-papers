@@ -66,8 +66,16 @@ const EventsList = () => {
         <>
           <Header text="Meus eventos" />
           <Row justify="end" className='row-table'>
-            <Button type='default'>
-              <Link id="btn-cadastrar" to="/events/form" onClick={() => localStorage.removeItem('idEvent')}><span>Cadastre um evento!</span></Link>
+            <Button
+              id="btn-cadastrar"
+              type='default'
+              className="btn-outline"
+              onClick={() => {
+                history.push('/events/form')
+                localStorage.removeItem('idEvent')
+              }}
+            >
+              Novo evento
             </Button>
           </Row>
           <Row justify='center' gutter={[16, 24]} className='row-table'>

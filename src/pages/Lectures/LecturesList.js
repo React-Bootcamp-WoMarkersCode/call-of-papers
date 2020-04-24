@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Tag, Button, Typography, Card } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDownload } from '@fortawesome/free-solid-svg-icons'
+
 import { getEnvironment } from './../../utils/environment'
 import TableComponent from '../../components/Table'
 import './lectures-list.scss'
@@ -84,15 +87,20 @@ const LecturesList = () => {
       { lectures.length > 0 ?
         (<>
           <Header text="Minhas palestras" />
-          <Row justify="space-between" className='row-table'>
+          <Row justify="end" className='row-table'>
             <Button
               type='default'
               className='btn-outline'
-              onClick={() => history.push('/lectures/form')}>
-                Cadastrar uma nova palestra
+              onClick={() => history.push('/download-lectures')}
+            >
+              <FontAwesomeIcon icon={faDownload} /> Excel
             </Button>
-            <Button type='default' className='btn-outline'>
-              <Link to='/download-lectures'><span>Faça o download de suas palestras!</span></Link>
+            <Button
+              type='default'
+              className='btn-outline'
+              style={{ marginLeft: '0.5rem' }}
+              onClick={() => history.push('/lectures/form')}>
+                Nova palestra
             </Button>
           </Row>
           <Row justify="center" className='row-table'>

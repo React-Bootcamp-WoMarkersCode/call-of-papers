@@ -77,6 +77,10 @@ h3 {
   &:hover {
     background-color: #6999EB !important;
     color: white !important;
+
+    svg {
+      fill: white
+    }
   }
 }
 
