@@ -85,7 +85,8 @@ const EventForm = () => {
 		uploadedImage,
 		categories: values,
 		limited_spaces: radio,
-		partners: partner
+    partners: partner,
+    id: Math.ceil(Math.random() * Math.pow(10,6))
 	};
 
 	const history = useHistory();
@@ -110,8 +111,8 @@ const EventForm = () => {
 				body: JSON.stringify(bodyApi)
 			})
 				.then(function (response) {
-					history.push('/events');
 					openNotification('success', 'Evento cadastrado com sucesso!');
+          history.push(`/events/${bodyApi.id}`)
 					return response.json();
 				})
 				.catch(function (error) {
@@ -130,8 +131,8 @@ const EventForm = () => {
 				body: JSON.stringify(bodyApi)
 			})
 				.then(function (response) {
-					history.push('/events');
 					openNotification('success', 'Evento atualizado com sucesso!');
+          history.push(`/events/${eventId}`)
 					return response.json();
 				})
 				.catch(function (error) {
@@ -217,8 +218,8 @@ const EventForm = () => {
 						{/* Identidade visual */}
 						<Form.Item label="Identidade visual:" name="uploadedImage">
 							Já tem uma imagem que seja a cara do seu evento ou organização? Insira o link no campo abaixo:
-							<Input 
-								name="uploadedImage" 
+							<Input
+								name="uploadedImage"
 								placeholder="Insira um link"
 								onChange={formik.handleChange}
 								value={formik.values.uploadedImage}
