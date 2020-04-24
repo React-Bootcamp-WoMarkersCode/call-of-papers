@@ -83,7 +83,7 @@ const Lecture = () => {
             <Row justify='center' className='row-table'>
               <Button
                 type='primary'
-                onClick={() => history.push(`/lectures/form/editar/${lectureId}`)}
+                onClick={() => history.push(`/lectures/form/edit/${lectureId}`)}
                 disabled={lecture && lecture.status !== 'EM ANÁLISE'}
               >
                 Editar
