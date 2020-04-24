@@ -84,8 +84,14 @@ const LecturesList = () => {
       { lectures.length > 0 ?
         (<>
           <Header text="Minhas palestras" />
-          <Row justify="end" className='row-table'>
-            <Button type='default'>
+          <Row justify="space-between" className='row-table'>
+            <Button
+              type='default'
+              className='btn-outline'
+              onClick={() => history.push('/lectures/form')}>
+                Cadastrar uma nova palestra
+            </Button>
+            <Button type='default' className='btn-outline'>
               <Link to='/download-lectures'><span>Faça o download de suas palestras!</span></Link>
             </Button>
           </Row>
