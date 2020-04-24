@@ -24,7 +24,7 @@ const SubmissionInfo = ({ lecture, footerCard }) => {
                 <Col>
                   <Space direction='vertical'>
                     <Space>
-                      <Avatar size={50} src={lecture.uploadedImage && lecture.uploadedImage} ><FontAwesomeIcon icon={faUser} /></Avatar>
+                      <Avatar size={50} src={lecture.userPicture && lecture.userPicture} ><FontAwesomeIcon icon={faUser} /></Avatar>
                       <Item>
                         {lecture.name ? `${lecture.name}` : 'Sem dados'}
                       </Item>

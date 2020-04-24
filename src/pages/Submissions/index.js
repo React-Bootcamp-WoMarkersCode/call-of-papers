@@ -36,12 +36,9 @@ const Submissions = () => {
   }, [event.userId])
 
   const getLectures = () => {
-    fetch(`${environment}/lectures`)
+    fetch(`${environment}/lectures?eventId=${eventId}`)
       .then(res => res.json())
-      .then(response => {
-        let lecturesById = response.filter(lecture => lecture.eventId.string === eventId.string)
-        setLectures(lecturesById)
-      })
+      .then(response => setLectures(response))
       .catch(err => console.error(err, 'Nenhuma palestra por aqui!'))
         // let lecturesById = response.filter(lecture => lecture.eventId.string === eventId.string)
         // setAprovadas(lecturesById.filter(lecture => lecture.status === 'APROVADA'))
