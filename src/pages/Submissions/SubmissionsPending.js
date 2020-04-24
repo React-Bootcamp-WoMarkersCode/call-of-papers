@@ -77,8 +77,8 @@ const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
             <Header text="Palestras pendentes de aprovação" />
             <Row justify='end' style={{marginRight:'16.67%'}}>
                 <Space>
-                  <Button onClick={() => slider.current.prev()}><LeftOutlined /></Button>
-                  <Button onClick={() => slider.current.next()}><RightOutlined /></Button>
+                  <Button onClick={() => slider.current.prev()} className="btn-outline"><LeftOutlined /></Button>
+                  <Button onClick={() => slider.current.next()} className="btn-outline"><RightOutlined /></Button>
                 </Space>
             </Row>
             <Carousel
