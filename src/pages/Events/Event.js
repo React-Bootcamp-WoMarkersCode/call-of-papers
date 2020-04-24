@@ -63,12 +63,6 @@ const Event = ({ event }) => {
                     <Row justify="space-between">
                       <span>{event.local}</span>
                       <span>{event.schedule}</span>
-                      <Button
-                          type='default'
-                          className="btn-outline"
-                          onClick={() => history.push(`/partners/${eventId}`)}>
-                          Ser parceiro
-                      </Button>
                     </Row>
                     <Row style={{textAlign:'justify'}}>
                       {event.description}
