@@ -13,8 +13,8 @@ const LecturesCSV = () => {
 		.then((res) => res.json())
 		.then((data) => {
 			// Convertendo arrays em string para não dar problema na hora de converter para csv
-			data.map(lecture => lecture.interests = lecture.interests.toString())
-			data.map(lecture => lecture.activityCategory = lecture.activityCategory.toString())
+			data.map(lecture => lecture.interests? lecture.interests=lecture.interests.toString() : "")
+			data.map(lecture => lecture.activityCategory? lecture.activityCategory = lecture.activityCategory.toString() : "")
 			downloadCSVFromJson('palestras.csv', data)
 		})
 		.catch((err) => console.error(err, 'Nenhuma palestra encontrada'))
