@@ -15,8 +15,10 @@ const environment = getEnvironment()
 const Submissions = () => {
   const { eventId } = useParams()
   const [event, setEvent] = useState({})
-  const [aprovadas, setAprovadas] = useState([])
-  const [lecturesPending, setLecturesPending] = useState([])
+  const [lectures, setLectures] = useState([])
+  const [isOwner, setIsOwner] = useState(false)
+  // const [aprovadas, setAprovadas] = useState([])
+  // const [lecturesPending, setLecturesPending] = useState([])
 
   useEffect(() => {
     fetch(`${environment}/events/${eventId}`)
@@ -25,33 +27,39 @@ const Submissions = () => {
       .catch(err => console.error(err, 'Nenhum evento por aqui!'))
   }, [eventId])
 
+  useEffect(() => {
+    eventId && getLectures()
+  }, [eventId])
+
+  useEffect(() => {
+    setIsOwner(getUserIsOwner(event.userId))
+  }, [event.userId])
+
   const getLectures = () => {
     fetch(`${environment}/lectures`)
       .then(res => res.json())
       .then(response => {
         let lecturesById = response.filter(lecture => lecture.eventId.string === eventId.string)
-        setAprovadas(lecturesById.filter(lecture => lecture.status === 'APROVADA'))
-        setLecturesPending(lecturesById.filter(lecture => lecture.status === 'EM ANÁLISE'))
+        setLectures(lecturesById)
       })
       .catch(err => console.error(err, 'Nenhuma palestra por aqui!'))
+        // let lecturesById = response.filter(lecture => lecture.eventId.string === eventId.string)
+        // setAprovadas(lecturesById.filter(lecture => lecture.status === 'APROVADA'))
+        // setLecturesPending(lecturesById.filter(lecture => lecture.status === 'EM ANÁLISE'))
   }
 
   const handleUpdateLecture = () => {
     getLectures()
   }
 
-  useEffect(() => {
-    eventId && getLectures()
-  }, [eventId])
-
   return (
     <div>
       <Event event={event} />
       {
-        getUserIsOwner(event.userId) ?
+        isOwner ?
           <>
             {
-              aprovadas.length === 0 && lecturesPending.length === 0 ?
+              lectures.length === 0 ?
                 (
                   <Row style={{ marginTop: '20px' }}>
                     <Col span={16} offset={4} justify="center">
@@ -68,8 +76,8 @@ const Submissions = () => {
                 :
                 (
                   <>
-                    <SubmissionsTable aprovadas={aprovadas} />
-                    <SubmissionsPending lectures={lecturesPending} handleUpdateLecture={handleUpdateLecture} />
+                    <SubmissionsTable lectures={lectures} />
+                    <SubmissionsPending lectures={lectures} handleUpdateLecture={handleUpdateLecture} />
                   </>
                 )
             }
