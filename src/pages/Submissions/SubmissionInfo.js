@@ -55,7 +55,7 @@ const SubmissionInfo = ({ lecture, footerCard }) => {
                 <Col>
                   <Descriptions>
                     <Item span={3} style={{ textAlign: 'justify' }}>
-                      {lecture.miniBio ? `${lecture.miniBio}` : 'Sem dados'}
+                      {lecture.apresentation ? `${lecture.apresentation}` : 'Sem dados'}
                     </Item>
                     <Item >
                       <Space direction='horizontal' style={{ fontSize: '1.75em' }}>

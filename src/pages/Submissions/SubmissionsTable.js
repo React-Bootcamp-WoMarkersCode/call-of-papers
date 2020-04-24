@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router'
 import { Row, Table, Typography, Col } from 'antd'
 import { Link } from 'react-router-dom'
@@ -53,8 +53,13 @@ const useColumnsTable = () => {
   ]
 }
 
-const SubmissionsTable = ({ aprovadas }) => {
+const SubmissionsTable = ({ lectures }) => {
   const columnsTable = useColumnsTable()
+  const [aprovadas, setAprovadas] = useState([])
+
+  useEffect(() => {
+    setAprovadas(lectures.filter(lecture => lecture.status === 'APROVADA'))
+  }, [lectures])
 
   return (
     <>
