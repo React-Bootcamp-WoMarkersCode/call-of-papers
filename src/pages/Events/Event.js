@@ -25,18 +25,25 @@ const Event = ({ event }) => {
           <Col span={16} offset={4}>
             <Row>
               <Col span={6} style={{marginRight:'4.167%'}}>
-                <Space direction="vertical" style={{ width: '100%', height: '100%', justifyContent: 'space-between' }}>
+                <Space direction="vertical" size={8} style={{ width: '100%', height: '100%' }}>
                   <span>Organizado por {event.organizer}</span>
-                  <img src={event.uploadedImage} alt="" width="100%" />
-                  <Button type="link" onClick={() => copyToCliboard()} style={{ padding: 0 }}>
-                    <FontAwesomeIcon icon={faLink} />Copiar link para Call of Papers
-                </Button>
-                <Button
-                  type='default'
-                  className="btn-outline"
-                  onClick={() => history.push(`/partners/${eventId}`)}>
-                  Ser parceiro
-                </Button>
+                  <img src={event.uploadedImage} alt={`Lôgo do evento ${event.event}`} width="100%" />
+                  {
+                    isOwnerEvent ? (
+                      <Button type="link" onClick={() => copyToCliboard()} style={{ padding: 0 }}>
+                        <FontAwesomeIcon icon={faLink} />Copiar link para Call of Papers
+                      </Button>
+                    ) : (
+                      <Button
+                        style={{ width: '100%', marginTop: '0.5rem' }}
+                        type='default'
+                        className="btn-outline"
+                        onClick={() => history.push(`/partners/${eventId}`)}
+                      >
+                        Quero ser parceiro
+                      </Button>
+                    )
+                  }
                 </Space>
               </Col>
               <Col span={17}>
