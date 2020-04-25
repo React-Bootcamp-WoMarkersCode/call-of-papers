@@ -21,11 +21,17 @@ const { TextArea } = Input
 const LectureForm = () => {
   let history = useHistory()
 	let [ profile, setProfile ] = useState([])
-	let [ event, setEvent ] = useState([])
+  let [ event, setEvent ] = useState([])
+  let [ lecture, setLecture ] = useState([])
 	let [ goHome, setGoHome ] = useState(false)
-	const environment = getEnvironment()
-	const { eventId } = useParams()
+  const environment = getEnvironment()
   let userPicture = localStorage.getItem('userPicture')
+
+  // Para criar uma nova palestra, criaremos com base no id do evento
+  const { eventId } = useParams()
+
+  // Para editar, já teremos a plaestra criada, então só precisaremos do id da palestra
+  const { lectureId } = useParams()
 
   const openNotification = (type, description) => {
 		notification[type]({
@@ -37,18 +43,35 @@ const LectureForm = () => {
     setTimeout(() => {
       setGoHome(true)
     }, 3000)
-	}
+  }
+
+  const post = (values) => {
+		return fetch(`${environment}/lectures`, {
+      method: 'post',
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify(values)
+      })
+  }
+
+  const put = (values) => {
+		return fetch(`${environment}/lectures/` + lectureId , {
+      method: 'put',
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: JSON.stringify(values)
+      })
+  }
 
 	const handleSubmit = (values) => {
-		fetch(`${environment}/lectures`, {
-		method: 'post',
-		headers: {
-			Accept: "application/json",
-			"Content-Type": "application/json",
-			'Access-Control-Allow-Origin': '*'
-		},
-		body: JSON.stringify(values)
-		}).then(function (response) {
+    (lectureId? put(values) : post(values))
+    .then(function (response) {
       openNotification('success', 'Atividade cadastrada com sucesso!')
 
       if (eventId) {
@@ -82,7 +105,20 @@ const LectureForm = () => {
       .catch(err => console.error(err, 'Nenhum evento encontrado'))
   }, [environment, eventId])
 
-	profile = {
+  useEffect(() => {
+    fetch(`${environment}/lectures?id=${lectureId}`)
+      .then(res => res.json())
+      .then(data => {
+        setLecture(data[0])
+      })
+      .catch(err => console.error(err, 'Nenhuma palestra encontrado'))
+  }, [environment, lectureId])
+
+  let initialValues;
+
+  lectureId? initialValues = {...lecture} :
+
+	initialValues = {
 		...profile,
 		userPicture,
 		name: localStorage.getItem('userName'),
@@ -97,9 +133,9 @@ const LectureForm = () => {
 		activityCategory: [],
 		haveLecturedBefore: '',
 		status: 'EM ANÁLISE',
-		eventId: parseInt(eventId),
-		id: Math.ceil(Math.random() * Math.pow(10,5)),
-		userId: parseInt(profile.id)
+		eventId: String(eventId),
+		id: String(Math.ceil(Math.random() * Math.pow(10,5))),
+		userId: String(profile.id)
 	}
 
 	if (goHome === false) {
@@ -118,7 +154,7 @@ const LectureForm = () => {
       }
 			<Row justify="center" className="row-table">
 				<Formik
-					initialValues={profile}
+					initialValues={initialValues}
 					onSubmit={handleSubmit}
 					enableReinitialize={true}
 					render={(formik) => (

@@ -63,7 +63,7 @@ const PartnersForm = () => {
 		subject: '',
 		telephone: '',
 		message: '',
-		id: (Math.floor(Math.random() * 1000)).toString()
+		id: String(Math.floor(Math.random() * 1000))
 	}
 
 	return (
