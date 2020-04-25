@@ -24,19 +24,37 @@ const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
   const [lecturesPending, setLecturesPending] = useState(lectures)
   const slider = useRef()
   const [desabilitado, setDesabilitado] = useState(false)
+  const [event, setEvent] = useState([]);
 
   useEffect(() => {
     setLecturesPending(lectures.filter(lecture => lecture.status === 'EM ANÁLISE'))
   }, [lectures])
 
   const setStatus = (item, status) => {
+    console.log(item);
+    
+    fetch(`${environment}/events?id=${item.eventId}`)
+				.then((res) => res.json())
+				.then((data) => {
+          console.log(data);
+          
+          setEvent(data)
+				})
+				.catch((err) => console.error(err, 'Nenhum evento por aqui!'));
+
     item.status = status
     setDesabilitado(true)
     let message = `
-      <p>Olá ${item.name}, tudo bem?</p>
-      <p>Parabéns! A palestra "${item.activityTitle}" foi ${status.toLowerCase()}. Consulte mais informações no site.</p>
-      <p><i>Sharing Talks</i></p>
-    `
+      <header>
+        <img src="src/assets/banner.png" />
+      </header>
+      <section style="text-align: center;">
+        <h1>Welcome!</h1>
+        <h6>Olá, ${item.name}. Tudo bem ?</h6>
+        <p>Sua palestra "${item.activityTitle}" foi ${status.toLowerCase()} para o evento de "${event[0].event}" as ${event[0].schedule}.</p>
+      </section>
+    `;
+
     submitEvaluation(item, message)
     handleUpdateLecture()
   }
