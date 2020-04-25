@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useHistory } from 'react-router'
-import { Link } from 'react-router-dom'
 import { Row, Descriptions, Button, Spin, Tag } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import Header from './../../components/Header'
@@ -68,7 +67,11 @@ const Lecture = () => {
                   {lecture && lecture.activityType}
                 </Item>
                 <Item label='Categoria' span={3}>
-                  {lecture && lecture.activityCategory}
+                {
+                  lecture && lecture.activityCategory && lecture.activityCategory.map(activityCategory => (
+                    <Tag key={activityCategory}>{activityCategory}</Tag>
+                  ))
+                }
                 </Item>
                 <Item label='Status' span={3}>
                   <Tag color={StatusColor(lecture && lecture.status)} key={lecture && lecture.status}>
@@ -80,7 +83,7 @@ const Lecture = () => {
             <Row justify='center' className='row-table'>
               <Button
                 type='primary'
-                onClick={() => history.push(`/lectures/form/${event.id}`)}
+                onClick={() => history.push(`/lectures/form/edit/${lectureId}`)}
                 disabled={lecture && lecture.status !== 'EM ANÁLISE'}
               >
                 Editar
