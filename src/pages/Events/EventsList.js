@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Button, Card } from 'antd'
+import { Row, Button, Card, Col } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
 import TableComponent from '../../components/Table'
 import './events-list.scss'
@@ -83,16 +83,18 @@ const EventsList = () => {
           </Row>
         </>
         ) : (
-        <Row justify="center" className='empty-box'>
-          <Card>
-            <p>Você ainda não possui eventos!</p>
-            <Button
-              type='default'
-              className='btn-outline'
-              onClick={() => history.push('/events/form')}>
-                Cadastrar um novo evento
-            </Button>
-          </Card>
+        <Row>
+          <Col xs={{ span: 24 }} className='empty-box'>
+            <Card>
+              <p>Você ainda não possui eventos!</p>
+              <Button
+                type='default'
+                className='btn-outline'
+                onClick={() => history.push('/events/form')}>
+                  Cadastrar um novo evento
+              </Button>
+            </Card>
+          </Col>
         </Row>)
       }
     </>
