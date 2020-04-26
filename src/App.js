@@ -1,11 +1,12 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 import { Space, Row } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import 'antd/dist/antd.css'
 
 import Routes from './Routes'
-import { Layout } from 'antd'
+import { Col,Layout } from 'antd'
 import { Link } from 'react-router-dom'
 import Menu from './components/Menu'
 import './index.scss'
@@ -13,15 +14,27 @@ import './index.scss'
 const { Header, Footer, Content } = Layout
 
 const App = () => {
+  const location = useLocation();
+  console.log('location.pathname', location.pathname);
+
 	return (
 		<Layout>
 			<Header>
 				<Menu />
 			</Header>
 
-			<Content>
-				<Routes />
-			</Content>
+      <Content>
+        {location.pathname === '/' ? (
+          <Routes />
+        ) : (
+          <Row style={{ paddingTop: '2rem'}}>
+            <Col xs={{ span: 22, offset: 1 }} md={{ span: 16, offset: 4 }}>
+              <Routes />
+            </Col>
+          </Row>
+        )
+      }
+      </Content>
 
 			<Footer>
         <Row justify="space-between" style={{ width: '100%' }}>

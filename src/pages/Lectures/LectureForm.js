@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Redirect } from 'react-router'
-import { Row, Button, notification } from 'antd'
+import { Row, Col, Button, notification, Space } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import './lectures-list.scss'
 import { Link } from 'react-router-dom'
@@ -10,7 +10,6 @@ import {
 	Checkbox,
 	Input,
 	Radio,
-	Select,
 	Form
 } from 'formik-antd'
 import { useParams } from 'react-router'
@@ -77,7 +76,7 @@ const LectureForm = () => {
       if (eventId) {
         history.push('/events/' + parseInt(eventId))
       } else {
-        history.push('/lectures')
+        history.push(`/lectures/${lectureId}`)
       }
 
 			return response.json()
@@ -141,179 +140,134 @@ const LectureForm = () => {
 	if (goHome === false) {
 		return (
 			<>
-			<Header text="Submissão de atividades" />
-      { event ?
-        (<>
-          <Row justify="center" style={{ marginBottom: 20 }}>
-            Para participar, preencha o formulário e aguarde o contato da equipe organizadora do evento&nbsp;<strong> {`${event.event}`} </strong>
-          </Row>
-          <Row justify="center" style={{ marginBottom: 20 }}>
-            Clique&nbsp;<Link to={`/lectures/copylecture/${eventId}`}>aqui</Link>&nbsp;para reaproveitar uma palestra já submetida em outro evento
-          </Row>
-        </>) : (<></>)
+      <Header text="Palestra" />
+      {
+        event ? (
+          <>
+            <Row justify="center" style={{ marginBottom: 20 }}>
+              Para participar, preencha o formulário e aguarde o contato da equipe organizadora do evento&nbsp;<strong> {`${event.event}`} </strong>
+            </Row>
+            <Row justify="center" style={{ marginBottom: 20 }}>
+              Clique&nbsp;<Link to={`/lectures/copylecture/${eventId}`}>aqui</Link>&nbsp;para reaproveitar uma palestra já submetida em outro evento
+            </Row>
+          </>
+        ) : (<></>)
       }
-			<Row justify="center" className="row-table">
-				<Formik
-					initialValues={initialValues}
-					onSubmit={handleSubmit}
-					enableReinitialize={true}
-					render={(formik) => (
-						<Form layout="vertical" style={{ width: '70%' }}>
-							<div className="container">
-								<div className="component-container">
-									{/* Nome completo */}
-									<Form.Item
-										label="Nome completo:"
-										name="name"
-										rules={[ { required: true, message: 'Por favor, insira seu nome completo!' } ]}
-									>
-										<Input name="name" />
-									</Form.Item>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        enableReinitialize={true}
+        render={(formik) => (
+          <Form layout="vertical">
+            <div className="container">
+              <div className="component-container">
+                  <Row justify='space-between' >
+                    <Col xs={24} md={11}>
+                      <Form.Item
+                        label="Nome:"
+                        name="name"
+                        rules={[ { required: true, disabled: true, message: 'Por favor, insira seu nome completo!' } ]}
+                      >
+                        <Input name="name" />
+                      </Form.Item>
+                    </Col>
+                    <Col xs={24} md={{ span: 11, offset: 2 }}>
+                      <Form.Item
+                        label="Email:"
+                        name="email"
+                        type="email"
+                        rules={[ { type: 'email', required: true, message: 'Por favor, insira um email válido!' } ]}
+                      >
+                        <Input name="email" />
+                      </Form.Item>
+                    </Col>
+                  </Row>
 
-									{/* Email */}
-									<Form.Item
-										label="Email:"
-										name="email"
-										rules={[ { type: 'email', required: true, message: 'Por favor, insira um email válido!' } ]}
-									>
-										<Input name="email" />
-									</Form.Item>
+                  <Row>
+                    <Col xs={24} md={11}>
+                      <Form.Item
+                        label="Título da atividade proposta:"
+                        name="activityTitle"
+                        rules={[ { required: true, message: 'Por favor, insira um título para a atividade!' } ]}
+                      >
+                        <Input name="activityTitle" />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                  <Form.Item
+                    label="Descrição da atividade proposta:"
+                    name="activityDescription"
+                    rules={[ { required: true, message: 'Por favor, insira uma descrição para a atividade!' } ]}
+                  >
+                    <TextArea
+                      rows={4}
+                      name="activityDescription"
+                    />
+                  </Form.Item>
 
-									{/* Minibiografia */}
-									<Form.Item label="Minibiografia:" name="apresentation">
-										<TextArea rows={4} name="apresentation" />
-									</Form.Item>
+                  <Form.Item
+                    label="Tipo de atividade proposta:"
+                    name="activityType"
+                    rules={[ { required: true, message: 'Por favor, informe um tipo de atividade' } ]}
+                  >
+                    <Radio.Group
+                      name="activityType"
+                      options={[
+                        { label: 'Palestra (1 palestrante)', value: 'Palestra' },
+                        { label: 'Painel (1 moderador + até 3 painelistas)', value: 'Painel' },
+                        { label: 'Workshop (1 palestrante + até 2 facilitadores)', value: 'Workshop' }
+                      ]}
+                    />
+                  </Form.Item>
 
-									{/* Linkedin */}
-									<Form.Item label="Linkedin:" name="linkedinLink">
-										<Input name="linkedinLink" />
-									</Form.Item>
+                  <Form.Item
+                    label="Categoria da atividade proposta:"
+                    name="activityCategory"
+                    rules={[ { required: true, message: 'Por favor, informe pelo menos uma categoria!' } ]}
+                  >
+                    <Checkbox.Group
+                      style={{ textAlign: 'left' }}
+                      name="activityCategory"
+                    >
+                      <Checkbox style={({ display: 'block' }, { marginLeft: '8px' })} value="Segurança">
+                        Segurança
+                      </Checkbox>
+                      <Checkbox
+                        style={{ display: 'block' }}
+                        value="Criatividade/ Design / Entretenimento/ Marketing Digital"
+                      >
+                        Criatividade/Design/ Entretenimento/Marketing Digital
+                      </Checkbox>
+                      <Checkbox style={{ display: 'block' }} value="Empreendedorismo">
+                        Empreendedorismo
+                      </Checkbox>
+                      <Checkbox style={{ display: 'block' }} value="IoT">
+                        IoT (Internet of Things)
+                      </Checkbox>
+                      <Checkbox style={{ display: 'block' }} value="Realidade Virtual/Realidade Aumentada">
+                        Realidade Virtual/Realidade Aumentada
+                      </Checkbox>
+                      <Checkbox style={{ display: 'block' }} value="Biohacking/Cyborg">
+                        Biohacking/Cyborg
+                      </Checkbox>
+                      <Checkbox style={{ display: 'block' }} value="Big Data e Machine Learning">
+                        Big Data e Machine Learning
+                      </Checkbox>
+                    </Checkbox.Group>
+                  </Form.Item>
 
-									{/* Facebook */}
-									<Form.Item label="Facebook:" name="facebookLink">
-										<Input name="facebookLink" />
-									</Form.Item>
-
-									{/* Twitter */}
-									<Form.Item label="Twitter:" name="twitterLink">
-										<Input name="twitterLink" />
-									</Form.Item>
-
-									{/* Instagram */}
-									<Form.Item label="Instagram:" name="instagram">
-										<Input name="instagram" />
-									</Form.Item>
-
-									{/* Youtube */}
-									<Form.Item label="Youtube:" name="youtube">
-										<Input name="youtube" />
-									</Form.Item>
-
-									{/* Link de algum trabalho relevante */}
-									<Form.Item label="Github:" name="githubLink">
-										<Input name="githubLink" />
-									</Form.Item>
-
-									{/* Já ministrou alguma atividade em eventos?  */}
-									<Form.Item label="Já ministrou alguma atividade em eventos?" name="haveLecturedBefore">
-										<Select name="haveLecturedBefore" style={{ width: '30%' }}>
-											<Select.Option value={'Sim'}>Sim</Select.Option>
-											<Select.Option value={'Não'}>Não</Select.Option>
-										</Select>
-									</Form.Item>
-
-									{/* Tipo de atividade proposta */}
-									<Form.Item
-										label="Tipo de atividade proposta:"
-										name="activityType"
-										rules={[ { required: true, message: 'Por favor, informe um tipo de atividade' } ]}
-									>
-										<Radio.Group
-											name="activityType"
-											options={[
-												{ label: 'Palestra (1 palestrante)', value: 'Palestra' },
-												{ label: 'Painel (1 moderador + até 3 painelistas)', value: 'Painel' },
-												{ label: 'Workshop (1 palestrante + até 2 facilitadores)', value: 'Workshop' }
-											]}
-										/>
-									</Form.Item>
-
-									{/* Segmento da atividade proposta */}
-									<Form.Item
-										label="Categoria da atividade proposta:"
-										name="activityCategory"
-										rules={[ { required: true, message: 'Por favor, informe pelo menos uma categoria!' } ]}
-									>
-										<Checkbox.Group
-											style={{ textAlign: 'left' }}
-											name="activityCategory"
-										>
-											<Checkbox style={({ display: 'block' }, { marginLeft: '8px' })} value="Segurança">
-												Segurança
-											</Checkbox>
-											<Checkbox
-												style={{ display: 'block' }}
-												value="Criatividade/ Design / Entretenimento/ Marketing Digital"
-											>
-												Criatividade/Design/ Entretenimento/Marketing Digital
-											</Checkbox>
-											<Checkbox style={{ display: 'block' }} value="Empreendedorismo">
-												Empreendedorismo
-											</Checkbox>
-											<Checkbox style={{ display: 'block' }} value="IoT">
-												IoT (Internet of Things)
-											</Checkbox>
-											<Checkbox style={{ display: 'block' }} value="Realidade Virtual/Realidade Aumentada">
-												Realidade Virtual/Realidade Aumentada
-											</Checkbox>
-											<Checkbox style={{ display: 'block' }} value="Biohacking/Cyborg">
-												Biohacking/Cyborg
-											</Checkbox>
-											<Checkbox style={{ display: 'block' }} value="Big Data e Machine Learning">
-												Big Data e Machine Learning
-											</Checkbox>
-										</Checkbox.Group>
-									</Form.Item>
-
-									{/* Título da atividade proposta */}
-									<Form.Item
-										label="Título da atividade proposta:"
-										name="activityTitle"
-										rules={[ { required: true, message: 'Por favor, insira um título para a atividade!' } ]}
-									>
-										<Input name="activityTitle" />
-									</Form.Item>
-
-									{/* Descrição da atividade proposta */}
-									<Form.Item
-										label="Descrição da atividade proposta:"
-										name="activityDescription"
-										rules={[ { required: true, message: 'Por favor, insira uma descrição para a atividade!' } ]}
-									>
-										<TextArea
-											rows={4}
-											name="activityDescription"
-										/>
-									</Form.Item>
-									{/* Identidade visual */}
-									<Form.Item label="Identidade visual:" name="uploadedImage">
-										Já tem uma imagem que seja a cara da sua atividade? Insira o link no campo abaixo:
-										<Input name="uploadedImage" />
-									</Form.Item>
-
-									<Button type='primary' htmlType='submit'>
-										Enviar
-									</Button>
-								</div>
-							</div>
-						</Form>
-					)}
-				/>
-			</Row>
-			</>)
-		} else {
-			return <Redirect to='/' />
-		}
+                  <Button type='default' className='btn-outline' htmlType='submit'>
+                    Enviar
+                  </Button>
+                </div>
+              </div>
+            </Form>
+          )}
+      />
+  </>)
+  } else {
+    return <Redirect to='/' />
+  }
 }
 
 export default LectureForm

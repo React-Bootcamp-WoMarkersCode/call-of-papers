@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Tag, Button, Typography, Card } from 'antd'
+import { Row, Col, Tag, Button, Typography, Card } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
@@ -84,30 +84,37 @@ const LecturesList = () => {
 
   return (
     <>
-      { lectures.length > 0 ?
-        (<>
-          <Header text="Minhas palestras" />
-          <Row justify="end" className='row-table'>
-            <Button
-              type='default'
-              className='btn-outline'
-              onClick={() => history.push('/download-lectures')}
-            >
-              <FontAwesomeIcon icon={faDownload} /> Excel
-            </Button>
-            <Button
-              type='default'
-              className='btn-outline'
-              style={{ marginLeft: '0.5rem' }}
-              onClick={() => history.push('/lectures/form')}>
-                Nova palestra
-            </Button>
-          </Row>
-          <Row justify="center" className='row-table'>
-            <TableComponent columns={columnsTable} dataSource={ lectures } />
-          </Row>
-        </>) : (
-          <Row justify="center" className='empty-box'>
+      { lectures.length > 0 ? (
+        <Row>
+          <Col>
+            <Row justify="space-between">
+              <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                <Header text="Minhas palestras" />
+              </Col>
+              <Col>
+                <Button
+                  type='default'
+                  className='btn-outline'
+                  onClick={() => history.push('/download-lectures')}
+                >
+                  <FontAwesomeIcon icon={faDownload} /> Excel
+                </Button>
+                <Button
+                  type='default'
+                  className='btn-outline'
+                  style={{ marginLeft: '0.5rem' }}
+                  onClick={() => history.push('/lectures/form')}>
+                    Nova palestra
+                </Button>
+              </Col>
+            </Row>
+            <Row style={{ marginTop: '1rem'}}>
+              <TableComponent columns={columnsTable} dataSource={ lectures } />
+            </Row>
+          </Col>
+        </Row>
+      ) : (
+          <Row className='empty-box'>
             <Card>
               <p>Você ainda não possui palestras!</p>
               <Button

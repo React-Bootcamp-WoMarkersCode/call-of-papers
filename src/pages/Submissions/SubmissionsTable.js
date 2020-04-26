@@ -4,7 +4,7 @@ import { Row, Table, Typography, Col } from 'antd'
 import { Link } from 'react-router-dom'
 import Header from './../../components/Header'
 
-const { Paragraph } = Typography
+const { Paragraph, Title } = Typography
 
 const useColumnsTable = () => {
   let location = useLocation()
@@ -40,6 +40,7 @@ const useColumnsTable = () => {
       )
     },
     {
+      title: 'Ações',
       dataIndex: 'id',
       key: 'id',
       width: '10%',
@@ -56,29 +57,31 @@ const useColumnsTable = () => {
 const SubmissionsTable = ({ lectures }) => {
   const columnsTable = useColumnsTable()
   const [aprovadas, setAprovadas] = useState([])
+  const [reprovadas, setReprovadas] = useState([])
 
   useEffect(() => {
     setAprovadas(lectures.filter(lecture => lecture.status === 'APROVADA'))
+    setReprovadas(lectures.filter(lecture => lecture.status === 'REPROVADA'))
   }, [lectures])
 
   return (
     <>
       {
-        aprovadas.length > 0 ?
-          (
-            <>
-              <Header text="Palestras aprovadas" />
-              <Row>
-                <Col span={16} offset={4} justify="center">
-                  <Table columns={columnsTable} dataSource={aprovadas} rowKey='id' />
-                </Col>
-              </Row>
-            </>
-          )
-          :
-          ('')
+        aprovadas.length > 0 ?(
+          <>
+            <Header text="Palestras aprovadas" />
+            <Table columns={columnsTable} dataSource={aprovadas} rowKey='id' />
+          </>
+        ) : ('')
       }
-
+      {
+        reprovadas.length > 0 ?(
+          <>
+            <Header text="Palestras reprovadas" />
+            <Table columns={columnsTable} dataSource={reprovadas} rowKey='id' />
+          </>
+        ) : ('')
+      }
     </>
   )
 }

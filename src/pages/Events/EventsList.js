@@ -64,8 +64,8 @@ const EventsList = () => {
     <>
       {api.length > 0 ? (
         <>
-          <Header text="Meus eventos" />
-          <Row justify="end" className='row-table'>
+          <Row justify='space-between'>
+            <Header text="Meus eventos" />
             <Button
               id="btn-cadastrar"
               type='default'
@@ -78,7 +78,7 @@ const EventsList = () => {
               Novo evento
             </Button>
           </Row>
-          <Row justify='center' gutter={[16, 24]} className='row-table'>
+          <Row style={{ marginTop: '1rem'}}>
             <TableComponent columns={columnsTable} dataSource={api} />
           </Row>
         </>
