@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import HorizontalMenu from './HorizontalMenu'
@@ -7,10 +7,18 @@ import './style.scss'
 
 const HeaderComponent = () => {
   const history = useHistory()
+  const [ mobileViewport, setMobileViewport ] = useState(window.innerWidth <= 425)
   const userPicture = localStorage.getItem('userPicture')
   const userRole = localStorage.getItem('userId') ? localStorage.getItem('userRole') : ''
   const location = useLocation()
-  const mobileViewport = (window.innerWidth <= 425 )
+
+  const handleResize = () => {
+    setMobileViewport(window.innerWidth <= 425)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+  })
 
   const logout = () => {
     localStorage.clear()
