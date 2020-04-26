@@ -45,21 +45,8 @@
 
 .login-card {
   background-color: transparent;
-  width: 20%;
-
-  @media (max-width: 425px) {
-    width: 60%;
-  }
-
-  .ant-card-body {
-    padding: 24px 24px 0 24px;
-  }
 
   .card-span {
-    font-weight: bold;
-    margin-top: 1.5em;
-    margin-bottom: 24px;
-
     @media (max-width: 425px) {
       font-size: 1.2em;
       text-align: center;

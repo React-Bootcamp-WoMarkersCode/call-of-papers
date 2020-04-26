@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Row, Col, Button, Carousel, Space } from 'antd'
+import { Row, Col, Button, Carousel, Space, Typography } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { getEnvironment } from './../../utils/environment';
 import Email from '../../utils/Email/Email'
 import Header from './../../components/Header'
 import SubmissionInfo from './SubmissionInfo'
 import './style.scss'
+
+const { Title } = Typography
 
 const settings = {
   dots: false,
@@ -68,19 +70,22 @@ const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
     </Row>
   )
 
+  const headerCard = () => (
+    <Row justify='space-between'>
+      <Space>
+        <Button onClick={() => slider.current.prev()} className="btn-outline"><LeftOutlined /></Button>
+        <Button onClick={() => slider.current.next()} className="btn-outline"><RightOutlined /></Button>
+      </Space>
+    </Row>
+  )
+
   return (
     <>
 
       {
         lecturesPending.length > 0 ? (
           <>
-            <Header text="Palestras pendentes de aprovação" />
-            <Row justify='end' style={{marginRight:'16.67%'}}>
-                <Space>
-                  <Button onClick={() => slider.current.prev()} className="btn-outline"><LeftOutlined /></Button>
-                  <Button onClick={() => slider.current.next()} className="btn-outline"><RightOutlined /></Button>
-                </Space>
-            </Row>
+            <Header text='Palestras pendentes de aprovação' />
             <Carousel
               style={{ marginBottom: '20px' }}
               {...settings}
@@ -91,7 +96,7 @@ const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
               {lecturesPending.map((item) => {
                 return (
                   <div key={item.id}>
-                    <SubmissionInfo lecture={item} footerCard={footerCard} />
+                    <SubmissionInfo lecture={item} headerCard={headerCard} footerCard={footerCard} />
                   </div>
                 )
               })

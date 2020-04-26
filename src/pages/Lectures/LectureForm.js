@@ -140,17 +140,21 @@ const LectureForm = () => {
 	if (goHome === false) {
 		return (
 			<>
-			<Header text="Submissão de atividades" />
-      { event ?
-        (<>
-          <Row justify="center" style={{ marginBottom: 20 }}>
-            Para participar, preencha o formulário e aguarde o contato da equipe organizadora do evento&nbsp;<strong> {`${event.event}`} </strong>
-          </Row>
-          <Row justify="center" style={{ marginBottom: 20 }}>
-            Clique&nbsp;<Link to={`/lectures/copylecture/${eventId}`}>aqui</Link>&nbsp;para reaproveitar uma palestra já submetida em outro evento
-          </Row>
-        </>) : (<></>)
-      }
+      <Col xs={{ span: 22, offset: 1 }} md={{ span: 16, offset: 4 }}>
+        <Header text="Palestra" />
+        {
+          event ? (
+            <>
+              <Row justify="center" style={{ marginBottom: 20 }}>
+                Para participar, preencha o formulário e aguarde o contato da equipe organizadora do evento&nbsp;<strong> {`${event.event}`} </strong>
+              </Row>
+              <Row justify="center" style={{ marginBottom: 20 }}>
+                Clique&nbsp;<Link to={`/lectures/copylecture/${eventId}`}>aqui</Link>&nbsp;para reaproveitar uma palestra já submetida em outro evento
+              </Row>
+            </>
+          ) : (<></>)
+        }
+      </Col>
 			<Row>
         <Col xs={{ span: 22, offset: 1 }} md={{ span: 16, offset: 4 }}>
 				<Formik

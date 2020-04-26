@@ -43,7 +43,6 @@ const callSpeaker = [
 const Home = () => {
   const [events, setEvents] = useState([])
   const environment = getEnvironment()
-  const mobileViewport = (window.innerWidth <= 425 )
 
   useEffect(() => {
     fetch(`${environment}/events`)

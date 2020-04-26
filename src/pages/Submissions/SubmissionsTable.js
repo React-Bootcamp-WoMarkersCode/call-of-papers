@@ -4,7 +4,7 @@ import { Row, Table, Typography, Col } from 'antd'
 import { Link } from 'react-router-dom'
 import Header from './../../components/Header'
 
-const { Paragraph } = Typography
+const { Paragraph, Title } = Typography
 
 const useColumnsTable = () => {
   let location = useLocation()
@@ -40,6 +40,7 @@ const useColumnsTable = () => {
       )
     },
     {
+      title: 'Ações',
       dataIndex: 'id',
       key: 'id',
       width: '10%',
@@ -56,29 +57,43 @@ const useColumnsTable = () => {
 const SubmissionsTable = ({ lectures }) => {
   const columnsTable = useColumnsTable()
   const [aprovadas, setAprovadas] = useState([])
+  const [reprovadas, setReprovadas] = useState([])
 
   useEffect(() => {
     setAprovadas(lectures.filter(lecture => lecture.status === 'APROVADA'))
+    setReprovadas(lectures.filter(lecture => lecture.status === 'REPROVADA'))
   }, [lectures])
 
   return (
     <>
       {
-        aprovadas.length > 0 ?
-          (
-            <>
-              <Header text="Palestras aprovadas" />
-              <Row>
-                <Col span={16} offset={4} justify="center">
-                  <Table columns={columnsTable} dataSource={aprovadas} rowKey='id' />
-                </Col>
-              </Row>
-            </>
-          )
-          :
-          ('')
+        aprovadas.length > 0 ?(
+          <>
+            <Row>
+              <Col xs={{ span: 22, offset: 1 }} md={{ span: 16, offset: 4 }}>
+                <Title level={3}>
+                  Palestras aprovadas
+                </Title>
+                <Table columns={columnsTable} dataSource={aprovadas} rowKey='id' />
+              </Col>
+            </Row>
+          </>
+        ) : ('')
       }
-
+      {
+        reprovadas.length > 0 ?(
+          <>
+            <Row>
+              <Col xs={{ span: 22, offset: 1 }} md={{ span: 16, offset: 4 }}>
+                <Title level={3}>
+                  Palestras reprovadas
+                </Title>
+                <Table columns={columnsTable} dataSource={reprovadas} rowKey='id' />
+              </Col>
+            </Row>
+          </>
+        ) : ('')
+      }
     </>
   )
 }
