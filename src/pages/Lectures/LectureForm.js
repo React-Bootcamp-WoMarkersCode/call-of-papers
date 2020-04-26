@@ -10,7 +10,6 @@ import {
 	Checkbox,
 	Input,
 	Radio,
-	Select,
 	Form
 } from 'formik-antd'
 import { useParams } from 'react-router'
@@ -153,7 +152,7 @@ const LectureForm = () => {
         </>) : (<></>)
       }
 			<Row>
-        <Col span={16} offset={4}>
+        <Col xs={{ span: 22, offset: 1 }} md={{ span: 16, offset: 4 }}>
 				<Formik
 					initialValues={initialValues}
 					onSubmit={handleSubmit}
@@ -162,8 +161,8 @@ const LectureForm = () => {
 						<Form layout="vertical">
 							<div className="container">
 								<div className="component-container">
-                  <Row>
-                    <Col span={11}>
+                  <Row justify='space-between' >
+                    <Col xs={24} md={11}>
                       <Form.Item
                         label="Nome:"
                         name="name"
@@ -172,7 +171,7 @@ const LectureForm = () => {
                         <Input name="name" />
                       </Form.Item>
                     </Col>
-                    <Col span={11} offset={2}>
+                    <Col xs={24} md={{ span: 11, offset: 2 }}>
                       <Form.Item
                         label="Email:"
                         name="email"
@@ -185,7 +184,7 @@ const LectureForm = () => {
                   </Row>
 
                   <Row>
-                    <Col span={11}>
+                    <Col xs={24} md={11}>
                       <Form.Item
                         label="Título da atividade proposta:"
                         name="activityTitle"
@@ -194,7 +193,6 @@ const LectureForm = () => {
                         <Input name="activityTitle" />
                       </Form.Item>
                     </Col>
-                    <Col span={11} offset={2}></Col>
                   </Row>
                   <Form.Item
                     label="Descrição da atividade proposta:"
