@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useHistory } from 'react-router'
-import { Row, Descriptions, Button, Spin, Tag } from 'antd'
+import { Row, Space, Typography, Button, Spin, Tag } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import Header from './../../components/Header'
+import SubmissionInfo from './../Submissions/SubmissionInfo'
 
-const { Item } = Descriptions
+const { Title } = Typography
 
 const Lecture = () => {
   let { lectureId } = useParams()
@@ -40,6 +41,41 @@ const Lecture = () => {
       return 'volcano';
     }
   }
+
+  const headerCard = (item) => (
+    <Row justify='end'>
+      <Button
+        type='default'
+        className="btn-outline"
+        onClick={() => history.push(`/lectures/form/edit/${lectureId}`)}
+        disabled={item && item.status !== 'EM ANÁLISE'}
+      >
+        Editar
+      </Button>
+    </Row>
+  )
+
+  const footerCard = (item) => (
+    <>
+      <Row justify='start'>
+        <Title level={4}>
+          Status
+        </Title>
+      </Row>
+      <Row>
+        <Space>
+          <span>{event.event}</span>
+          <Tag
+            color={StatusColor(item && item.status)}
+            key={item && item.status}
+          >
+            {item && item.status}
+          </Tag>
+        </Space>
+      </Row>
+    </>
+  )
+
   return (
     <>
       {loadingData ?
@@ -47,48 +83,10 @@ const Lecture = () => {
           <Row gutter={[16, 24]}>
             <Spin size='large' />
           </Row>
-        )
-        :
-        (
+        ) : (
           <>
-            <Header text={lecture && lecture.activityTitle} />
-            <Row justify='center' className='row-table'>
-              <Descriptions layout='vertical' style={{ textAlign: 'justify' }}>
-                <Item label='Evento' span={3}>
-                  {event.event}
-                </Item>
-                <Item label='Descrição' span={3}>
-                  {lecture && lecture.activityDescription}
-                </Item>
-                <Item label='Apresentação do Palestrante' span={3}>
-                  {lecture && lecture.apresentation}
-                </Item>
-                <Item label='Tipo' span={3}>
-                  {lecture && lecture.activityType}
-                </Item>
-                <Item label='Categoria' span={3}>
-                {
-                  lecture && lecture.activityCategory && lecture.activityCategory.map(activityCategory => (
-                    <Tag key={activityCategory}>{activityCategory}</Tag>
-                  ))
-                }
-                </Item>
-                <Item label='Status' span={3}>
-                  <Tag color={StatusColor(lecture && lecture.status)} key={lecture && lecture.status}>
-                    {lecture && lecture.status}
-                  </Tag>
-                </Item>
-              </Descriptions>
-            </Row>
-            <Row justify='center' className='row-table'>
-              <Button
-                type='primary'
-                onClick={() => history.push(`/lectures/form/edit/${lectureId}`)}
-                disabled={lecture && lecture.status !== 'EM ANÁLISE'}
-              >
-                Editar
-              </Button>
-            </Row>
+            <Header text={`Detalhes de ${lecture && lecture.activityTitle}`} />
+          <SubmissionInfo lecture={lecture} headerCard={headerCard} footerCard={footerCard} />
           </>
         )
       }

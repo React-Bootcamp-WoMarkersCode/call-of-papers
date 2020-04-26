@@ -8,19 +8,22 @@ import './style.scss'
 const { Item } = Descriptions
 const { Title } = Typography
 
-const SubmissionInfo = ({ lecture, footerCard }) => {
+const SubmissionInfo = ({ lecture, headerCard, footerCard }) => {
   return (
     <>
       <Row style={{ marginBottom: '20px' }} className='submission-info-container'>
         <Col span={16} offset={4}>
           <Card>
+            <Col style={{ marginBottom: '8px' }}>
+              {headerCard && headerCard(lecture)}
+            </Col>
             <Row justify='start'>
               <Title level={4}>
                 Palestrante
               </Title>
             </Row>
             <Row style={{ marginBottom: '2em' }}>
-              <Space>
+              <Space className="speaker-container">
                 <Col>
                   <Space direction='vertical'>
                     <Space>

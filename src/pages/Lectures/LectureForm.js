@@ -173,7 +173,8 @@ const LectureForm = () => {
 									{/* Email */}
 									<Form.Item
 										label="Email:"
-										name="email"
+                    name="email"
+                    type="email"
 										rules={[ { type: 'email', required: true, message: 'Por favor, insira um email válido!' } ]}
 									>
 										<Input name="email" />

@@ -22,8 +22,10 @@
     }
   }
 
-  .ant-space-item:nth-child(2) {
-    height: 100%;
+  .speaker-container{
+    .ant-space-item:nth-child(2) {
+      height: 100%;
+    }
   }
 
   .line-vertical {
