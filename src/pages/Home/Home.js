@@ -61,7 +61,11 @@ const Home = () => {
             <img style={{ opacity: 0.6, width: '100%' }} src={require('../../assets/home/banner-1.jpg')} alt='Produtor de evento' />
           </div>
           <div id="lectures" style={{ paddingBottom: '3rem', backgroundColor: '#f8f8f8' }}>
-            <Header text="Sharing Talks para palestrantes" />
+          <Row>
+            <Col xs={{ span: 22, offset: 1 }} style={{ marginTop: '2rem' }}>
+              <Header text="Sharing Talks para palestrantes" />
+            </Col>
+          </Row>
             <Row gutter={[16, 24]} justify="space-between" style={{ display: 'flex', justifyContent: 'space-evenly', alignContent: 'center' }}>
               <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
                 {callSpeaker.map(item => {
@@ -76,13 +80,17 @@ const Home = () => {
               <img style={{ width: 400, maxWidth: '100%' }} src={require('../../assets/speaker.png')} alt='Produtor de evento' />
             </Row>
           </div>
-          <Row gutter={[16, 24]} style={{ backgroundColor: '#6597EB' }}>
+          <Row style={{ backgroundColor: '#6597EB' }}>
             <p style={{ color: '#fff', fontSize: '30px', width: '100%', textAlign: 'center', padding: '50px 10px' }}>
               Ainda sem <b>palestrantes</b> para o seu evento? <br/> Veja abaixo 😉
             </p>
           </Row>
           <div id="events" style={{ paddingBottom: '3rem', backgroundColor: '#f8f8f8' }}>
-            <Header text="Sharing Talks para produtores de eventos" />
+            <Row>
+              <Col xs={{ span: 22, offset: 1 }} style={{ marginTop: '2rem' }}>
+                <Header text="Sharing Talks para produtores de eventos" />
+              </Col>
+            </Row>
             <Row gutter={[16, 24]} justify="space-between" style={{ display: 'flex', justifyContent: 'space-evenly', alignContent: 'center' }}>
               <img style={{ width: 400, maxWidth: '100%' }} src={require('../../assets/events-producer.png')} alt='Produtor de evento' />
               <Space direction="vertical" style={{ justifyContent: 'space-evenly' }}>
@@ -100,57 +108,65 @@ const Home = () => {
         </>
       )}
       {/* Melhores eventos */}
-      <Header text="Categorias em destaque" />
-      <Row gutter={[16, 24]} id="highlights">
-        <div className="home-card">
-          <div className="card-content">
-            <div className="card-img">
-              <img src={require('../../assets/home/student-1.jpg')} alt="" />
-            </div>
-            <span>Aprender</span>
+      <Row>
+        <Col xs={{ span: 22, offset: 1 }}>
+          <div style={{ marginTop: '2rem' }}>
+            <Header text="Categorias em destaque"/>
           </div>
-          <div className="card-content">
-            <div className="card-img">
-              <img src={require("../../assets/home/people-1.jpg")} alt="" />
-            </div>
-            <span>Workshops</span>
-          </div>
-          <div className="card-content">
-            <div className="card-img">
-              <img src={require("../../assets/home/bootcamps-2.jpg")} alt="" />
-            </div>
-            <span>Bootcamps</span>
-          </div>
-          <div className="card-content">
-            <div className="card-img">
-              <img src={require("../../assets/home/young.jpg")} alt="" />
-            </div>
-            <span>Meetups</span>
-          </div>
-          <div className="card-content">
-            <div className="card-img">
-              <img src={require("../../assets/home/online.jpg")} alt="" />
-            </div>
-            <span>Eventos Online</span>
-          </div>
-          <div className="card-content">
-            <div className="card-img">
-              <img src={require("../../assets/home/events.jpg")} alt="" />
-            </div>
-            <span>Eventos Tecnologia</span>
-          </div>
+          <Row id="highlights">
+            <div className="home-card">
+              <div className="card-content">
+                <div className="card-img">
+                  <img src={require('../../assets/home/student-1.jpg')} alt="" />
+                </div>
+                <span>Aprender</span>
+              </div>
+              <div className="card-content">
+                <div className="card-img">
+                  <img src={require("../../assets/home/people-1.jpg")} alt="" />
+                </div>
+                <span>Workshops</span>
+              </div>
+              <div className="card-content">
+                <div className="card-img">
+                  <img src={require("../../assets/home/bootcamps-2.jpg")} alt="" />
+                </div>
+                <span>Bootcamps</span>
+              </div>
+              <div className="card-content">
+                <div className="card-img">
+                  <img src={require("../../assets/home/young.jpg")} alt="" />
+                </div>
+                <span>Meetups</span>
+              </div>
+              <div className="card-content">
+                <div className="card-img">
+                  <img src={require("../../assets/home/online.jpg")} alt="" />
+                </div>
+                <span>Eventos Online</span>
+              </div>
+              <div className="card-content">
+                <div className="card-img">
+                  <img src={require("../../assets/home/events.jpg")} alt="" />
+                </div>
+                <span>Eventos Tecnologia</span>
+              </div>
 
-        </div>
-      </Row>
-      <Header text="Eventos em destaque" />
-      <Row gutter={[16, 24]} className="content-padding">
-        {events.map((event) => {
-          return (
-            <Col key={event.id} xs={24} sm={12} lg={6}>
-              <CardEvent event={event} />
-            </Col>
-          )
-        })}
+            </div>
+          </Row>
+          <div style={{ marginTop: '2rem' }}>
+            <Header text="Eventos em destaque" />
+          </div>
+          <Row gutter={[16, 24]}>
+            {events.map((event) => {
+              return (
+                <Col key={event.id} xs={24} sm={12} lg={6}>
+                  <CardEvent event={event} />
+                </Col>
+              )
+            })}
+          </Row>
+        </Col>
       </Row>
     </div>
   )

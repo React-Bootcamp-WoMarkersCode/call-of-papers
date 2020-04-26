@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Typography, Col, Row } from 'antd'
+import { Typography } from 'antd'
 
 const { Title } = Typography
 

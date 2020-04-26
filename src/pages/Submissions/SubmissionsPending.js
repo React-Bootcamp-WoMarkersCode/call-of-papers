@@ -71,7 +71,7 @@ const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
   )
 
   const headerCard = () => (
-    <Row justify='space-between'>
+    <Row justify='end'>
       <Space>
         <Button onClick={() => slider.current.prev()} className="btn-outline"><LeftOutlined /></Button>
         <Button onClick={() => slider.current.next()} className="btn-outline"><RightOutlined /></Button>

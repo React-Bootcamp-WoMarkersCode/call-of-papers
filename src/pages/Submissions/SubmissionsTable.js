@@ -69,28 +69,16 @@ const SubmissionsTable = ({ lectures }) => {
       {
         aprovadas.length > 0 ?(
           <>
-            <Row>
-              <Col xs={{ span: 22, offset: 1 }} md={{ span: 16, offset: 4 }}>
-                <Title level={3}>
-                  Palestras aprovadas
-                </Title>
-                <Table columns={columnsTable} dataSource={aprovadas} rowKey='id' />
-              </Col>
-            </Row>
+            <Header text="Palestras aprovadas" />
+            <Table columns={columnsTable} dataSource={aprovadas} rowKey='id' />
           </>
         ) : ('')
       }
       {
         reprovadas.length > 0 ?(
           <>
-            <Row>
-              <Col xs={{ span: 22, offset: 1 }} md={{ span: 16, offset: 4 }}>
-                <Title level={3}>
-                  Palestras reprovadas
-                </Title>
-                <Table columns={columnsTable} dataSource={reprovadas} rowKey='id' />
-              </Col>
-            </Row>
+            <Header text="Palestras reprovadas" />
+            <Table columns={columnsTable} dataSource={reprovadas} rowKey='id' />
           </>
         ) : ('')
       }

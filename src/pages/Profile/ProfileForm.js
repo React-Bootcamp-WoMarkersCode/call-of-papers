@@ -71,7 +71,7 @@ const ProfileForm = () => {
 		<>
 			<Header text="Edição de Perfil" />
 			<Row gutter={[16, 24]}>
-				<Col span={14} offset={5}>
+				<Col span={24}>
 					<Form onFinish={formik.handleSubmit} layout='vertical'>
             <Form.Item
               label="Quem é você ?"

@@ -21,8 +21,8 @@ const Event = ({ event }) => {
     !event ? (
       ''
     ) : (
-        <Row style={{ marginTop: '3rem', marginBottom: '2rem' }}>
-          <Col xs={{ span: 22, offset: 1 }} md={{ span: 16, offset: 4 }}>
+        <Row style={{ marginBottom: '2rem' }}>
+          <Col>
             <Row>
               <Col xs={{ span: 24 }} md={{ span: 6 }} style={{marginRight:'4.167%'}}>
                 <Space direction="vertical" size={8} style={{ width: '100%', height: '100%' }}>

@@ -12,7 +12,7 @@ const SubmissionInfo = ({ lecture, headerCard, footerCard }) => {
   return (
     <>
       <Row style={{ marginBottom: '20px' }} className='submission-info-container'>
-        <Col xs={{ span: 22, offset:1 }} md={{ span:16, offset:4 }}>
+        <Col>
           <Card>
             <Col style={{ marginBottom: '8px' }}>
               {headerCard && headerCard(lecture)}
