@@ -86,7 +86,7 @@ const LecturesList = () => {
     <>
       { lectures.length > 0 ? (
         <Row>
-          <Col xs={{ span: 22, offset: 1 }} md={{ span: 16, offset: 4 }}>
+          <Col>
             <Row justify="space-between">
               <Col xs={{ span: 24 }} md={{ span: 12 }}>
                 <Header text="Minhas palestras" />

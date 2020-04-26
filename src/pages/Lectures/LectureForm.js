@@ -140,31 +140,27 @@ const LectureForm = () => {
 	if (goHome === false) {
 		return (
 			<>
-      <Col xs={{ span: 22, offset: 1 }} md={{ span: 16, offset: 4 }}>
-        <Header text="Palestra" />
-        {
-          event ? (
-            <>
-              <Row justify="center" style={{ marginBottom: 20 }}>
-                Para participar, preencha o formulário e aguarde o contato da equipe organizadora do evento&nbsp;<strong> {`${event.event}`} </strong>
-              </Row>
-              <Row justify="center" style={{ marginBottom: 20 }}>
-                Clique&nbsp;<Link to={`/lectures/copylecture/${eventId}`}>aqui</Link>&nbsp;para reaproveitar uma palestra já submetida em outro evento
-              </Row>
-            </>
-          ) : (<></>)
-        }
-      </Col>
-			<Row>
-        <Col xs={{ span: 22, offset: 1 }} md={{ span: 16, offset: 4 }}>
-				<Formik
-					initialValues={initialValues}
-					onSubmit={handleSubmit}
-					enableReinitialize={true}
-					render={(formik) => (
-						<Form layout="vertical">
-							<div className="container">
-								<div className="component-container">
+      <Header text="Palestra" />
+      {
+        event ? (
+          <>
+            <Row justify="center" style={{ marginBottom: 20 }}>
+              Para participar, preencha o formulário e aguarde o contato da equipe organizadora do evento&nbsp;<strong> {`${event.event}`} </strong>
+            </Row>
+            <Row justify="center" style={{ marginBottom: 20 }}>
+              Clique&nbsp;<Link to={`/lectures/copylecture/${eventId}`}>aqui</Link>&nbsp;para reaproveitar uma palestra já submetida em outro evento
+            </Row>
+          </>
+        ) : (<></>)
+      }
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        enableReinitialize={true}
+        render={(formik) => (
+          <Form layout="vertical">
+            <div className="container">
+              <div className="component-container">
                   <Row justify='space-between' >
                     <Col xs={24} md={11}>
                       <Form.Item
@@ -209,71 +205,69 @@ const LectureForm = () => {
                     />
                   </Form.Item>
 
-									<Form.Item
-										label="Tipo de atividade proposta:"
-										name="activityType"
-										rules={[ { required: true, message: 'Por favor, informe um tipo de atividade' } ]}
-									>
-										<Radio.Group
-											name="activityType"
-											options={[
-												{ label: 'Palestra (1 palestrante)', value: 'Palestra' },
-												{ label: 'Painel (1 moderador + até 3 painelistas)', value: 'Painel' },
-												{ label: 'Workshop (1 palestrante + até 2 facilitadores)', value: 'Workshop' }
-											]}
-										/>
-									</Form.Item>
+                  <Form.Item
+                    label="Tipo de atividade proposta:"
+                    name="activityType"
+                    rules={[ { required: true, message: 'Por favor, informe um tipo de atividade' } ]}
+                  >
+                    <Radio.Group
+                      name="activityType"
+                      options={[
+                        { label: 'Palestra (1 palestrante)', value: 'Palestra' },
+                        { label: 'Painel (1 moderador + até 3 painelistas)', value: 'Painel' },
+                        { label: 'Workshop (1 palestrante + até 2 facilitadores)', value: 'Workshop' }
+                      ]}
+                    />
+                  </Form.Item>
 
-									<Form.Item
-										label="Categoria da atividade proposta:"
-										name="activityCategory"
-										rules={[ { required: true, message: 'Por favor, informe pelo menos uma categoria!' } ]}
-									>
-										<Checkbox.Group
-											style={{ textAlign: 'left' }}
-											name="activityCategory"
-										>
-											<Checkbox style={({ display: 'block' }, { marginLeft: '8px' })} value="Segurança">
-												Segurança
-											</Checkbox>
-											<Checkbox
-												style={{ display: 'block' }}
-												value="Criatividade/ Design / Entretenimento/ Marketing Digital"
-											>
-												Criatividade/Design/ Entretenimento/Marketing Digital
-											</Checkbox>
-											<Checkbox style={{ display: 'block' }} value="Empreendedorismo">
-												Empreendedorismo
-											</Checkbox>
-											<Checkbox style={{ display: 'block' }} value="IoT">
-												IoT (Internet of Things)
-											</Checkbox>
-											<Checkbox style={{ display: 'block' }} value="Realidade Virtual/Realidade Aumentada">
-												Realidade Virtual/Realidade Aumentada
-											</Checkbox>
-											<Checkbox style={{ display: 'block' }} value="Biohacking/Cyborg">
-												Biohacking/Cyborg
-											</Checkbox>
-											<Checkbox style={{ display: 'block' }} value="Big Data e Machine Learning">
-												Big Data e Machine Learning
-											</Checkbox>
-										</Checkbox.Group>
-									</Form.Item>
+                  <Form.Item
+                    label="Categoria da atividade proposta:"
+                    name="activityCategory"
+                    rules={[ { required: true, message: 'Por favor, informe pelo menos uma categoria!' } ]}
+                  >
+                    <Checkbox.Group
+                      style={{ textAlign: 'left' }}
+                      name="activityCategory"
+                    >
+                      <Checkbox style={({ display: 'block' }, { marginLeft: '8px' })} value="Segurança">
+                        Segurança
+                      </Checkbox>
+                      <Checkbox
+                        style={{ display: 'block' }}
+                        value="Criatividade/ Design / Entretenimento/ Marketing Digital"
+                      >
+                        Criatividade/Design/ Entretenimento/Marketing Digital
+                      </Checkbox>
+                      <Checkbox style={{ display: 'block' }} value="Empreendedorismo">
+                        Empreendedorismo
+                      </Checkbox>
+                      <Checkbox style={{ display: 'block' }} value="IoT">
+                        IoT (Internet of Things)
+                      </Checkbox>
+                      <Checkbox style={{ display: 'block' }} value="Realidade Virtual/Realidade Aumentada">
+                        Realidade Virtual/Realidade Aumentada
+                      </Checkbox>
+                      <Checkbox style={{ display: 'block' }} value="Biohacking/Cyborg">
+                        Biohacking/Cyborg
+                      </Checkbox>
+                      <Checkbox style={{ display: 'block' }} value="Big Data e Machine Learning">
+                        Big Data e Machine Learning
+                      </Checkbox>
+                    </Checkbox.Group>
+                  </Form.Item>
 
-									<Button type='default' className='btn-outline' htmlType='submit'>
-										Enviar
-									</Button>
-								</div>
-							</div>
-						</Form>
-					)}
-				/>
-        </Col>
-			</Row>
-			</>)
-		} else {
-			return <Redirect to='/' />
-		}
+                  <Button type='default' className='btn-outline' htmlType='submit'>
+                    Enviar
+                  </Button>
+                </div>
+              </div>
+            </Form>
+          )}
+      />
+  </>)
+  } else {
+    return <Redirect to='/' />
+  }
 }
 
 export default LectureForm
