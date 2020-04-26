@@ -47,10 +47,18 @@ const Lecture = () => {
       <Button
         type='default'
         className="btn-outline"
+        onClick={() => history.push(`/profile`)}
+      >
+        Editar perfil
+      </Button>
+      <Button
+        type='default'
+        className="btn-outline"
         onClick={() => history.push(`/lectures/form/edit/${lectureId}`)}
+        style={{ marginLeft: '1rem' }}
         disabled={item && item.status !== 'EM ANÁLISE'}
       >
-        Editar
+        Editar palestra
       </Button>
     </Row>
   )
