@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Redirect } from 'react-router'
-import { Row, Button, notification } from 'antd'
+import { Row, Col, Button, notification, Space } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import './lectures-list.scss'
 import { Link } from 'react-router-dom'
@@ -77,7 +77,7 @@ const LectureForm = () => {
       if (eventId) {
         history.push('/events/' + parseInt(eventId))
       } else {
-        history.push('/lectures')
+        history.push(`/lectures/${lectureId}`)
       }
 
 			return response.json()
@@ -152,78 +152,61 @@ const LectureForm = () => {
           </Row>
         </>) : (<></>)
       }
-			<Row justify="center" className="row-table">
+			<Row>
+        <Col span={16} offset={4}>
 				<Formik
 					initialValues={initialValues}
 					onSubmit={handleSubmit}
 					enableReinitialize={true}
 					render={(formik) => (
-						<Form layout="vertical" style={{ width: '70%' }}>
+						<Form layout="vertical">
 							<div className="container">
 								<div className="component-container">
-									{/* Nome completo */}
-									<Form.Item
-										label="Nome completo:"
-										name="name"
-										rules={[ { required: true, message: 'Por favor, insira seu nome completo!' } ]}
-									>
-										<Input name="name" />
-									</Form.Item>
+                  <Row>
+                    <Col span={11}>
+                      <Form.Item
+                        label="Nome:"
+                        name="name"
+                        rules={[ { required: true, disabled: true, message: 'Por favor, insira seu nome completo!' } ]}
+                      >
+                        <Input name="name" />
+                      </Form.Item>
+                    </Col>
+                    <Col span={11} offset={2}>
+                      <Form.Item
+                        label="Email:"
+                        name="email"
+                        type="email"
+                        rules={[ { type: 'email', required: true, message: 'Por favor, insira um email válido!' } ]}
+                      >
+                        <Input name="email" />
+                      </Form.Item>
+                    </Col>
+                  </Row>
 
-									{/* Email */}
-									<Form.Item
-										label="Email:"
-                    name="email"
-                    type="email"
-										rules={[ { type: 'email', required: true, message: 'Por favor, insira um email válido!' } ]}
-									>
-										<Input name="email" />
-									</Form.Item>
+                  <Row>
+                    <Col span={11}>
+                      <Form.Item
+                        label="Título da atividade proposta:"
+                        name="activityTitle"
+                        rules={[ { required: true, message: 'Por favor, insira um título para a atividade!' } ]}
+                      >
+                        <Input name="activityTitle" />
+                      </Form.Item>
+                    </Col>
+                    <Col span={11} offset={2}></Col>
+                  </Row>
+                  <Form.Item
+                    label="Descrição da atividade proposta:"
+                    name="activityDescription"
+                    rules={[ { required: true, message: 'Por favor, insira uma descrição para a atividade!' } ]}
+                  >
+                    <TextArea
+                      rows={4}
+                      name="activityDescription"
+                    />
+                  </Form.Item>
 
-									{/* Minibiografia */}
-									<Form.Item label="Minibiografia:" name="apresentation">
-										<TextArea rows={4} name="apresentation" />
-									</Form.Item>
-
-									{/* Linkedin */}
-									<Form.Item label="Linkedin:" name="linkedinLink">
-										<Input name="linkedinLink" />
-									</Form.Item>
-
-									{/* Facebook */}
-									<Form.Item label="Facebook:" name="facebookLink">
-										<Input name="facebookLink" />
-									</Form.Item>
-
-									{/* Twitter */}
-									<Form.Item label="Twitter:" name="twitterLink">
-										<Input name="twitterLink" />
-									</Form.Item>
-
-									{/* Instagram */}
-									<Form.Item label="Instagram:" name="instagram">
-										<Input name="instagram" />
-									</Form.Item>
-
-									{/* Youtube */}
-									<Form.Item label="Youtube:" name="youtube">
-										<Input name="youtube" />
-									</Form.Item>
-
-									{/* Link de algum trabalho relevante */}
-									<Form.Item label="Github:" name="githubLink">
-										<Input name="githubLink" />
-									</Form.Item>
-
-									{/* Já ministrou alguma atividade em eventos?  */}
-									<Form.Item label="Já ministrou alguma atividade em eventos?" name="haveLecturedBefore">
-										<Select name="haveLecturedBefore" style={{ width: '30%' }}>
-											<Select.Option value={'Sim'}>Sim</Select.Option>
-											<Select.Option value={'Não'}>Não</Select.Option>
-										</Select>
-									</Form.Item>
-
-									{/* Tipo de atividade proposta */}
 									<Form.Item
 										label="Tipo de atividade proposta:"
 										name="activityType"
@@ -239,7 +222,6 @@ const LectureForm = () => {
 										/>
 									</Form.Item>
 
-									{/* Segmento da atividade proposta */}
 									<Form.Item
 										label="Categoria da atividade proposta:"
 										name="activityCategory"
@@ -276,33 +258,7 @@ const LectureForm = () => {
 										</Checkbox.Group>
 									</Form.Item>
 
-									{/* Título da atividade proposta */}
-									<Form.Item
-										label="Título da atividade proposta:"
-										name="activityTitle"
-										rules={[ { required: true, message: 'Por favor, insira um título para a atividade!' } ]}
-									>
-										<Input name="activityTitle" />
-									</Form.Item>
-
-									{/* Descrição da atividade proposta */}
-									<Form.Item
-										label="Descrição da atividade proposta:"
-										name="activityDescription"
-										rules={[ { required: true, message: 'Por favor, insira uma descrição para a atividade!' } ]}
-									>
-										<TextArea
-											rows={4}
-											name="activityDescription"
-										/>
-									</Form.Item>
-									{/* Identidade visual */}
-									<Form.Item label="Identidade visual:" name="uploadedImage">
-										Já tem uma imagem que seja a cara da sua atividade? Insira o link no campo abaixo:
-										<Input name="uploadedImage" />
-									</Form.Item>
-
-									<Button type='primary' htmlType='submit'>
+									<Button type='default' className='btn-outline' htmlType='submit'>
 										Enviar
 									</Button>
 								</div>
@@ -310,6 +266,7 @@ const LectureForm = () => {
 						</Form>
 					)}
 				/>
+        </Col>
 			</Row>
 			</>)
 		} else {

@@ -86,7 +86,7 @@ const Lecture = () => {
         ) : (
           <>
             <Header text={`Detalhes de ${lecture && lecture.activityTitle}`} />
-          <SubmissionInfo lecture={lecture} headerCard={headerCard} footerCard={footerCard} />
+            <SubmissionInfo lecture={lecture} headerCard={headerCard} footerCard={footerCard} />
           </>
         )
       }
