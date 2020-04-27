@@ -31,7 +31,7 @@ const ProfileForm = () => {
 		enableReinitialize: true,
 		onSubmit: (values) => {
 			let interestsArray =
-				values.interests && values.interests.includes(',') ? values.interests.split(',') : values.interests
+				values.interests && values.interests.includes(',') ? values.interests.split(',') : values.interests.split()
 
 			fetch(`${environment}/profiles/` + values.id, {
 				method: 'PATCH',
