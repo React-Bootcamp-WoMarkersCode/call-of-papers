@@ -114,7 +114,8 @@ const LecturesList = () => {
           </Col>
         </Row>
       ) : (
-          <Row className='empty-box'>
+        <Row>
+          <Col xs={{ span: 24 }} className='empty-box'>
             <Card>
               <p>Você ainda não possui palestras!</p>
               <Button
@@ -124,8 +125,9 @@ const LecturesList = () => {
                   Cadastrar uma nova palestra
               </Button>
             </Card>
-          </Row>)
-      }
+          </Col>
+        </Row>
+      )}
     </>
   )
 }

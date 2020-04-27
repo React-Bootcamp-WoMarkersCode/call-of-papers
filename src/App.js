@@ -15,8 +15,6 @@ const { Header, Footer, Content } = Layout
 
 const App = () => {
   const location = useLocation();
-  console.log('location.pathname', location.pathname);
-
 	return (
 		<Layout>
 			<Header>
