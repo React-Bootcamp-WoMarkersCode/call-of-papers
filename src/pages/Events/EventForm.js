@@ -86,7 +86,7 @@ const EventForm = () => {
 		categories: values,
 		limited_spaces: radio,
     partners: partner,
-    id: Math.ceil(Math.random() * Math.pow(10,6))
+    id: String(Math.ceil(Math.random() * Math.pow(10,6)))
 	};
 
 	const history = useHistory();
