@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router'
 import { Row, Card, Button, Col } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGoogle } from "@fortawesome/free-brands-svg-icons"
+import { faGoogle, faAt } from "@fortawesome/free-solid-svg-icons"
 import './style.scss'
 import FBLogin from './FBLogin'
 import Header from './../../components/Header'
@@ -62,6 +62,10 @@ const Login = () => {
       </Row>
       <Row className='btn-group' justify='center'>
         <FBLogin isDisabled={role === ''} event={eventId} role={role} />
+        <Button className='mail-button' disabled={role === ''}>
+          <FontAwesomeIcon icon={faAt} />
+          Continuar com o seu e-mail
+        </Button>
         {/* <Button type='primary' className='google-button' disabled>
           <FontAwesomeIcon icon={faGoogle} />
           Continuar com o Google
