@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router'
-import { Row, Table, Typography, Col } from 'antd'
+import { Table, Typography } from 'antd'
 import { Link } from 'react-router-dom'
 import Header from './../../components/Header'
 
-const { Paragraph, Title } = Typography
+const { Paragraph } = Typography
 
 const useColumnsTable = () => {
   let location = useLocation()

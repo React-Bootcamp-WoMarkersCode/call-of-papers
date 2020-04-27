@@ -1,13 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Row, Col, Button, Carousel, Space, Typography } from 'antd'
+import { Row, Col, Button, Carousel, Space } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { getEnvironment } from './../../utils/environment';
 import Email from '../../utils/Email/Email'
 import Header from './../../components/Header'
 import SubmissionInfo from './SubmissionInfo'
 import './style.scss'
-
-const { Title } = Typography
 
 const settings = {
   dots: false,
