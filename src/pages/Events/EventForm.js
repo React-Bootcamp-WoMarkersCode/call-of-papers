@@ -153,7 +153,7 @@ const EventForm = () => {
             <Row>
               <Col xs={{ span: 24 }} md={{ span: 11 }}>
                 <Form.Item
-                  label="Nome do evento:"
+                  label="Nome"
                   htmlFor="event"
                   rules={[{ required: true, message: 'Preencha corretamente o campo de evento!' }]}
                 >
@@ -167,13 +167,13 @@ const EventForm = () => {
               </Col>
               <Col xs={{ span: 24 }} md={{ span: 11, offset: 2 }}>
                 <Form.Item
-                  label="Organizador do evento:"
+                  label="Organizador"
                   htmlFor="organizer"
                   rules={[{ required: true, message: 'Preencha corretamente o campo de organizador!' }]}
                 >
                   <Input
                     name="organizer"
-                    placeholder="Digite o nome do organizador responsável"
+                    placeholder="Digite o nome da sua comunidade"
                     onChange={formik.handleChange}
                     value={formik.values.organizer}
                   />
@@ -182,7 +182,7 @@ const EventForm = () => {
             </Row>
             <Row>
               <Col xs={{ span: 24 }} md={{ span: 11 }}>
-                <Form.Item label="Data/Horário do evento:" htmlFor="schedule" rules={[{ required: false }]}>
+                <Form.Item label="Data/Horário" htmlFor="schedule" rules={[{ required: false }]}>
                   <Input
                     name="schedule"
                     placeholder="Digite a data e horário"
@@ -193,7 +193,7 @@ const EventForm = () => {
                 </Form.Item>
               </Col>
               <Col xs={{ span: 24 }} md={{ span: 11, offset: 2 }}>
-                <Form.Item label="Local do evento:" htmlFor="local" rules={[{ required: false }]}>
+                <Form.Item label="Local" htmlFor="local" rules={[{ required: false }]}>
 									<Input
 										name="local"
 										placeholder="Digite o local do evento"
@@ -206,7 +206,7 @@ const EventForm = () => {
 
 						{/* Descrição do evento */}
 						<Form.Item
-							label="Descrição do evento:"
+							label="Descrição"
 							htmlFor="description"
 							rules={[{ required: true, message: 'Preencha corretamente o campo de descrição do evento.' }]}
 						>
@@ -220,10 +220,9 @@ const EventForm = () => {
 
 						{/* Identidade visual */}
 						<Form.Item label="Identidade visual:" name="uploadedImage">
-							Já tem uma imagem que seja a cara do seu evento ou organização? Insira o link no campo abaixo:
 							<Input
 								name="uploadedImage"
-								placeholder="Insira um link"
+								placeholder="Insira o link da imagem do evento"
 								onChange={formik.handleChange}
 								value={formik.values.uploadedImage}
 							/>

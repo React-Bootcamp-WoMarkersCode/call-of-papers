@@ -164,7 +164,7 @@ const LectureForm = () => {
                   <Row justify='space-between' >
                     <Col xs={24} md={11}>
                       <Form.Item
-                        label="Nome:"
+                        label="Nome"
                         name="name"
                         rules={[ { required: true, disabled: true, message: 'Por favor, insira seu nome completo!' } ]}
                       >
@@ -173,7 +173,7 @@ const LectureForm = () => {
                     </Col>
                     <Col xs={24} md={{ span: 11, offset: 2 }}>
                       <Form.Item
-                        label="Email:"
+                        label="Email"
                         name="email"
                         type="email"
                         rules={[ { type: 'email', required: true, message: 'Por favor, insira um email válido!' } ]}
@@ -186,7 +186,7 @@ const LectureForm = () => {
                   <Row>
                     <Col xs={24} md={11}>
                       <Form.Item
-                        label="Título da atividade proposta:"
+                        label="Título"
                         name="activityTitle"
                         rules={[ { required: true, message: 'Por favor, insira um título para a atividade!' } ]}
                       >
@@ -195,7 +195,7 @@ const LectureForm = () => {
                     </Col>
                   </Row>
                   <Form.Item
-                    label="Descrição da atividade proposta:"
+                    label="Descrição"
                     name="activityDescription"
                     rules={[ { required: true, message: 'Por favor, insira uma descrição para a atividade!' } ]}
                   >
@@ -206,7 +206,7 @@ const LectureForm = () => {
                   </Form.Item>
 
                   <Form.Item
-                    label="Tipo de atividade proposta:"
+                    label="Tipo"
                     name="activityType"
                     rules={[ { required: true, message: 'Por favor, informe um tipo de atividade' } ]}
                   >
@@ -221,7 +221,7 @@ const LectureForm = () => {
                   </Form.Item>
 
                   <Form.Item
-                    label="Categoria da atividade proposta:"
+                    label="Categoria"
                     name="activityCategory"
                     rules={[ { required: true, message: 'Por favor, informe pelo menos uma categoria!' } ]}
                   >
