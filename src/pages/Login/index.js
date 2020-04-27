@@ -66,7 +66,7 @@ const Login = () => {
       </Row>
       <Row className='btn-group' justify='center'>
         <FBLogin isDisabled={role === ''} event={eventId} role={role} />
-        <GglLogin disabled={role === ''} />
+        <GglLogin disabled={role === ''}  role={role}/>
         <Button className='mail-button' disabled={role === ''} onClick={() => setMailLogin(true)}>
           <FontAwesomeIcon icon={faAt} />
           Continuar com o seu e-mail
