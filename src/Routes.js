@@ -2,6 +2,7 @@ import React, { Suspense } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 const About = React.lazy(() => import('pages/About'))
+const Termos = React.lazy(() => import('pages/Termos'))
 const DownloadLectures = React.lazy(() => import('pages/Lectures/LecturesCSV'))
 const Event = React.lazy(() => import('pages/Submissions'))
 const EventsList = React.lazy(() => import('pages/Events/EventsList'))
@@ -26,6 +27,7 @@ const Routes = props => (
       <Route exact path="/login/:eventId" component={routerProps => <Login {...routerProps} />} />
 
       <Route exact path="/about" component={routerProps => <About {...routerProps} />} />
+      <Route exact path="/termos-de-uso" component={routerProps => <Termos {...routerProps} />} />
 
       <Route exact path="/events" component={routerProps => <EventsList {...routerProps} />} />
       <Route exact path="/events/form" component={routerProps => <EventForm {...routerProps} />} />
