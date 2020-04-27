@@ -58,8 +58,7 @@ const EventsList = () => {
       .then(data => {
         setApi(data)
       })
-      .then(setTimeout(() => {setLoading(false)},200)
-        )
+      .then(setTimeout(() => {setLoading(false)},200))
       .catch(err => console.error(err, 'Nenhum evento por aqui!'))
   }, [environment])
 

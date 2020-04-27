@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Tag, Button, Typography, Card } from 'antd'
+import { Row, Col, Tag, Button, Typography, Card, Spin } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
@@ -67,7 +67,8 @@ const columnsTable = [
 ]
 
 const LecturesList = () => {
-  const [ lectures, setLectures ] = useState([])
+  const [lectures, setLectures] = useState([])
+  const [loading, setLoading] = useState(true)
   const environment = getEnvironment()
   const history = useHistory()
   const userId = localStorage.getItem('userId')
@@ -79,55 +80,61 @@ const LecturesList = () => {
         let filter = data.filter(lecture => lecture.userId === userId)
         setLectures(filter)
       })
+      .then(setTimeout(() => { setLoading(false) }, 200))
       .catch(err => console.error(err, 'Nenhum usuário encontrado'))
   }, [environment, userId])
 
   return (
     <>
-      { lectures.length > 0 ? (
-        <Row>
-          <Col>
-            <Row justify="space-between">
-              <Col xs={{ span: 24 }} md={{ span: 12 }}>
-                <Header text="Minhas palestras" />
-              </Col>
-              <Col>
-                <Button
-                  type='default'
-                  className='btn-outline'
-                  onClick={() => history.push('/download-lectures')}
-                >
-                  <FontAwesomeIcon icon={faDownload} /> Excel
+      {loading ? (
+        <Row gutter={[16, 24]}>
+          <Spin size='large' />
+        </Row>
+        ) :
+        lectures.length > 0 ? (
+          <Row>
+            <Col>
+              <Row justify="space-between">
+                <Col xs={{ span: 24 }} md={{ span: 12 }}>
+                  <Header text="Minhas palestras" />
+                </Col>
+                <Col>
+                  <Button
+                    type='default'
+                    className='btn-outline'
+                    onClick={() => history.push('/download-lectures')}
+                  >
+                    <FontAwesomeIcon icon={faDownload} /> Excel
                 </Button>
-                <Button
-                  type='default'
-                  className='btn-outline'
-                  style={{ marginLeft: '0.5rem' }}
-                  onClick={() => history.push('/lectures/form')}>
+                  <Button
+                    type='default'
+                    className='btn-outline'
+                    style={{ marginLeft: '0.5rem' }}
+                    onClick={() => history.push('/lectures/form')}>
                     Nova palestra
                 </Button>
+                </Col>
+              </Row>
+              <Row style={{ marginTop: '1rem' }}>
+                <TableComponent columns={columnsTable} dataSource={lectures} />
+              </Row>
+            </Col>
+          </Row>
+        ) : (
+            <Row>
+              <Col xs={{ span: 24 }} className='empty-box'>
+                <Card>
+                  <p>Você ainda não possui palestras!</p>
+                  <Button
+                    type='default'
+                    className='btn-outline'
+                    onClick={() => history.push('/lectures/form')}>
+                    Cadastrar uma nova palestra
+              </Button>
+                </Card>
               </Col>
             </Row>
-            <Row style={{ marginTop: '1rem'}}>
-              <TableComponent columns={columnsTable} dataSource={ lectures } />
-            </Row>
-          </Col>
-        </Row>
-      ) : (
-        <Row>
-          <Col xs={{ span: 24 }} className='empty-box'>
-            <Card>
-              <p>Você ainda não possui palestras!</p>
-              <Button
-                type='default'
-                className='btn-outline'
-                onClick={() => history.push('/lectures/form')}>
-                  Cadastrar uma nova palestra
-              </Button>
-            </Card>
-          </Col>
-        </Row>
-      )}
+          )}
     </>
   )
 }
