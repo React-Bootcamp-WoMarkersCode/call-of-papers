@@ -29,6 +29,7 @@ const FBLogin = ({ isDisabled, event, role }) => {
           let newProfile = {
             id: response.userID,
             role: role,
+            name: response.name,
             email: response.email? response.email : '',
             localization: '',
             registerDate: `${getCurrentDate()}`,
@@ -49,7 +50,7 @@ const FBLogin = ({ isDisabled, event, role }) => {
             body: JSON.stringify(newProfile)
           })
             .then(function(response) {
-              console.log(response)
+              // console.log(response)
             })
             .catch((err) => console.error(err, 'Não foi possível criar usuário'))
         }
