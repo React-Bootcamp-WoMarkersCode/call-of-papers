@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router'
+import { Link } from 'react-router-dom'
 import { Row, Card, Button, Col } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGoogle, faAt } from "@fortawesome/free-solid-svg-icons"
+import { faAt } from "@fortawesome/free-solid-svg-icons"
 import './style.scss'
 import FBLogin from './FBLogin'
+import GglLogin from './GglLogin'
 import Header from './../../components/Header'
 import MailLogin from './MailLogin'
 
@@ -64,14 +66,12 @@ const Login = () => {
       </Row>
       <Row className='btn-group' justify='center'>
         <FBLogin isDisabled={role === ''} event={eventId} role={role} />
+        <GglLogin disabled={role === ''} />
         <Button className='mail-button' disabled={role === ''} onClick={() => setMailLogin(true)}>
           <FontAwesomeIcon icon={faAt} />
           Continuar com o seu e-mail
         </Button>
-        {/* <Button type='primary' className='google-button' disabled>
-          <FontAwesomeIcon icon={faGoogle} />
-          Continuar com o Google
-        </Button> */}
+        <p>Ao entrar, você concorda com os nossos <Link to="/termos-de-uso">Termos</Link> e <Link to="/politica-de-privacidade">Política de Privacidade</Link>.</p>
       </Row>
       <Row className='btn-group' justify='center'>
         {mailLogin && <MailLogin role={role} />}

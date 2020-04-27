@@ -1,8 +1,10 @@
 import React from 'react'
 import { GoogleLogin } from 'react-google-login';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGoogle } from "@fortawesome/free-brands-svg-icons"
+import './style.scss'
 
-
-const GglLogin = () => {
+const GglLogin = (props) => {
 
   const responseGoogle = (response) => {
     console.log(response);
@@ -11,11 +13,13 @@ const GglLogin = () => {
   return (
 
     <GoogleLogin
-      clientId="838499203923-03pulm3dqm3u3695g98co9qomj3kd835.apps.googleusercontent.com"
-      render={renderProps => (
-        <button onClick={renderProps.onClick} disabled={renderProps.disabled}>This is my custom Google button</button>
-      )}
-      buttonText="Login"
+      clientId={process.env.REACT_APP_GOOGLE_ID}
+      render={(renderProps) => {
+        return (<button className="google-button" onClick={renderProps.onClick} disabled={props.disabled}>
+          <FontAwesomeIcon icon={faGoogle} />
+          Continuar com o Google
+        </button>);
+      }}
       onSuccess={responseGoogle}
       onFailure={responseGoogle}
       cookiePolicy={'single_host_origin'}

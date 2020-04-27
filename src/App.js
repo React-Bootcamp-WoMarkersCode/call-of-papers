@@ -44,6 +44,8 @@ const App = () => {
           <div>
           <Space size="large">
             <Link to="/about">Sobre</Link>
+            <Link to="/termos-de-uso">Termos</Link>
+            <Link to="/politica-de-privacidade">Política de Privacidade</Link>
             <a
               href=" mailto:sharingtalks@hotmail.com?subject=Fale com Sharing Talks"
               target="_blank"

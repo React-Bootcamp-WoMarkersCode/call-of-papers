@@ -4,6 +4,8 @@
   margin-top: 2em !important;
 
   button {
+    width: 430px;
+    height: 50px;
     border-radius: 8px;
     font-size: 16px;
     margin-bottom: 1em;
@@ -18,6 +20,10 @@
     }
   }
 
+  p {
+    font-size: 13px;
+  }
+
   .facebook-button {
     background-color: #2C88D9 !important;
     border-color: #2C88D9 !important;
@@ -26,12 +32,25 @@
   .google-button {
     background-color: #EB4632 !important;
     border-color: #EB4632 !important;
+    color: white;
+    font-weight: 700;
+    border: none;
+    box-shadow: none !important;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: pointer;
+
+      &:hover {
+        color: white;
+      }
+    }
   }
 
   .mail-button {
     background-color: #2C88D9 !important;
     border-color: #2C88D9 !important;
-    box-sizing: content-box;
     color: white;
     font-weight: 700;
     padding: 0.3em;

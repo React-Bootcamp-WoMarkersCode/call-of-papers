@@ -19,6 +19,9 @@ const Privacidade = () => {
             <Descriptions.Item label="Para que os Dados são Utilizados?" span={16}>
               As informações que você compartilha com a <i>Sharing Talks</i> têm como finalidade a gestão, administração, prestação, ampliação e melhoramento dos Sites e dos Serviços.
             </Descriptions.Item>
+            <Descriptions.Item label="Cookies" span={16}>
+              Armazenamos certas informações do seu navegador usando "cookies". Um cookie é um dado armazenado no computador do usuário vinculado a informações sobre o usuário. Usamos cookies para, entre outras coisas, obter dados e permitir o funcionamento da nossa plataforma, melhorando sua experiência.
+            </Descriptions.Item>
             <Descriptions.Item label="Com quem meus dados serão compartilhados?" span={16}>
               O organizador de eventos terá acesso as infomações cadastradas pelo palestrante a fim de analisar uma possivel aprovação da palestra cadastrada no evento.
             </Descriptions.Item>
