@@ -27,6 +27,23 @@
     background-color: #EB4632 !important;
     border-color: #EB4632 !important;
   }
+
+  .mail-button {
+    background-color: #2C88D9 !important;
+    border-color: #2C88D9 !important;
+    box-sizing: content-box;
+    color: white;
+    font-weight: 700;
+    padding: 0.3em;
+
+    &:disabled {
+      cursor: pointer;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
 }
 
 .content-login-padding {

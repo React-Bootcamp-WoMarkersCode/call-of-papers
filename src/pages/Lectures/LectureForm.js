@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Redirect } from 'react-router'
-import { Row, Col, Button, notification, Space } from 'antd'
+import { Row, Col, Button, notification } from 'antd'
 import { getEnvironment } from './../../utils/environment'
 import './lectures-list.scss'
 import { Link } from 'react-router-dom'
