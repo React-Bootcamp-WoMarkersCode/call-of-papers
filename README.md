@@ -63,7 +63,10 @@ Para ver as definições das **páginas**, clique em [aqui](https://www.dropbox.
 ```
 NODE_PATH=src/
 SKIP_PREFLIGHT_CHECK=true
-PASSWORD_EMAIL=**********
+PASSWORD_EMAIL= ***
+REACT_APP_FACEBOOK_ID = ***
+REACT_APP_GOOGLE_ID= ***
+REACT_APP_CIPHER_KEY= **
 ```
 
 5. E por ultimo dar o comando para **rodar** seu projeto:
