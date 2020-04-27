@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Redirect } from 'react-router'
 import { Row, Col, Button } from 'antd'
 import { getEnvironment } from './../../utils/environment'
-import '../Lectures/lectures-list.scss'
 import { Formik } from 'formik'
 import { Input, Form } from 'formik-antd'
 import { getCurrentDate } from './../../utils/currentDate'
 
+var CryptoJS = require("crypto-js");
+
 const MailLoginForm = ({ role }) => {
   let history = useHistory()
-	let [ profile, setProfile ] = useState([])
   const environment = getEnvironment()
 
   const validateUsername = (value) => {
@@ -47,11 +46,14 @@ const MailLoginForm = ({ role }) => {
       .then((res) => res.json())
       .then((data) => {
         if (!data.find((profile) => profile.email === values.email)) {
+          const cipherPassword = CryptoJS.AES.encrypt(JSON.stringify(values.password), process.env.REACT_APP_CIPHER_KEY).toString();
+
           let newProfile = {
             id: values.userID,
             role: role,
             name: values.name,
             email: values.email? values.email : '',
+            password: cipherPassword,
             localization: '',
             registerDate: `${getCurrentDate()}`,
             apresentation: '',
