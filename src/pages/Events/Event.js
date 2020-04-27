@@ -48,7 +48,9 @@ const Event = ({ event }) => {
               <Col xs={{ span: 24 }} md={{ span: 6 }} style={{marginRight:'4.167%'}}>
                 <Space direction="vertical" size={8} style={{ width: '100%', height: '100%' }}>
                   <span>Organizado por {event.organizer}</span>
-                  <img src={event.uploadedImage} alt={`Lôgo do evento ${event.event}`} width="100%" />
+                  { event.uploadedImage &&
+                    <img src={event.uploadedImage} alt='Imagem do evento' width='100%' height='100%' />
+                  }
                   {
                     isOwnerEvent ? (
                       <Button type="link" onClick={() => copyToCliboard()} style={{ padding: 0 }}>
