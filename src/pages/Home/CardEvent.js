@@ -10,8 +10,6 @@ const CardEvent = ({ event }) => {
 
   return (
     <Card actions={[<Link to={`/events/${event.id}`} >Submeta sua palestra</Link>]} >
-
-
       <Space direction='vertical' style={{width: '100%'}}>
         <div className='event-img'>
           { event.uploadedImage ?
