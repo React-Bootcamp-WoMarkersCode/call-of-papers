@@ -30,7 +30,7 @@ const Login = () => {
     <>
       <Header text="Seja bem-vinda(o)!" />
       <Row style={{marginTop: '3em', alignItems: 'center'}}>
-        <Col xs={{ span:22, offset:1}} md={10} className='btn-group'>
+        <Col xs={{ span:22, offset:1}} md={{ span: 11, offset: 0 }} className='btn-group'>
           <FBLogin event={eventId} setCookiesLocalStorage={setCookiesLocalStorage} />
           <GglLogin setCookiesLocalStorage={setCookiesLocalStorage} />
           <Button className='mail-button' onClick={() => setMailLogin(true)} >
