@@ -79,6 +79,13 @@ h3 {
       fill: white
     }
   }
+
+  &:hover {
+    &:disabled {
+      background-color: white !important;
+      color: #6999EB !important;
+    }
+  }
 }
 
 .divider-style {
