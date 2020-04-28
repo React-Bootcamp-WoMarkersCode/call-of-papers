@@ -49,7 +49,7 @@ const MailLoginForm = ({ role }) => {
           const cipherPassword = CryptoJS.AES.encrypt(JSON.stringify(values.password), process.env.REACT_APP_CIPHER_KEY).toString();
 
           let newProfile = {
-            id: values.userID,
+            id: values.id,
             facebookId: '',
             googleId: '',
             role: role,
@@ -64,7 +64,8 @@ const MailLoginForm = ({ role }) => {
             twitterLink: '',
             facebookLink: '',
             mediumLink: '',
-            interests: []
+            interests: [],
+            userPicture: ''
           }
           fetch(`${environment}/profiles`, {
             method: 'post',
