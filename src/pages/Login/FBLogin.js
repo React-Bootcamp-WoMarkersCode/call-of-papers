@@ -4,7 +4,7 @@ import FacebookLogin from 'react-facebook-login'
 import { getCurrentDate } from './../../utils/currentDate'
 import { getEnvironment } from './../../utils/environment'
 
-const FBLogin = ({ event }) => {
+const FBLogin = ({ event, setCookiesLocalStorage }) => {
   let history = useHistory()
   const environment = getEnvironment()
 
@@ -44,28 +44,19 @@ const FBLogin = ({ event }) => {
             .then(response => response.json())
             .then(function(response) {
               // Armazena os dados do usuário no navegador. Quando houver logout eles serão apagados
-              localStorage.setItem('userId', response.id)
-              localStorage.setItem('userPicture', response.userPicture)
-              localStorage.setItem('userName', response.name)
-              localStorage.setItem('userEmail', response.email)
-              localStorage.setItem('userRole', '')
+              setCookiesLocalStorage(response)
 
-              !user.role ? history.push('/welcome') : (event ? history.push(`/events/${event}`) : history.push('/'))
+              !response.role ? history.push('/welcome') : (event ? history.push(`/events/${event}`) : history.push('/'))
             })
             .catch((err) => console.error(err, 'Não foi possível criar usuário'))
         } else {
-          localStorage.setItem('userId', user.id)
-          localStorage.setItem('userName', user.name)
-          localStorage.setItem('userEmail', user.email)
-          localStorage.setItem('userRole', user.role)
-          localStorage.setItem('userPicture', user.userPicture)
+          setCookiesLocalStorage(user)
 
           !user.role ? history.push('/welcome') : (event ? history.push(`/events/${event}`) : history.push('/'))
         }
       })
       .catch((err) => console.error(err, 'Nenhum usuário encontrado'))
   }
-
 
 	return <FacebookLogin
     appId={process.env.REACT_APP_FACEBOOK_ID}

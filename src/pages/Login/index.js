@@ -16,13 +16,21 @@ const Login = () => {
   const [mailLogin, setMailLogin] = useState(false)
   const [displayButtons, setDisplayButtons] = useState(true)
 
+  const setCookiesLocalStorage = (user) => {
+    localStorage.setItem('userId', user.id)
+    localStorage.setItem('userPicture', user.userPicture)
+    localStorage.setItem('userName', user.name)
+    localStorage.setItem('userEmail', user.email)
+    localStorage.setItem('userRole', user?.role)
+  }
+
   return(
     <>
       <Header text="Seja bem-vinda(o)!" />
       { displayButtons &&
         <Row className='btn-group' justify='center'>
-          <FBLogin event={eventId} />
-          <GglLogin />
+          <FBLogin event={eventId} setCookiesLocalStorage={setCookiesLocalStorage} />
+          <GglLogin setCookiesLocalStorage={setCookiesLocalStorage} />
           <Button className='mail-button'
             onClick={() => {
               setMailLogin(true)

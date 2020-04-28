@@ -7,7 +7,7 @@ import { getCurrentDate } from './../../utils/currentDate'
 import { getEnvironment } from './../../utils/environment'
 import './style.scss'
 
-const GglLogin = () => {
+const GglLogin = ({ setCookiesLocalStorage }) => {
   const environment = getEnvironment()
   let history = useHistory()
 
@@ -47,21 +47,13 @@ const GglLogin = () => {
           })
             .then(response => response.json())
             .then(function (response) {
-              localStorage.setItem('userId', response.id)
-              localStorage.setItem('userName', response.name)
-              localStorage.setItem('userEmail', response.email)
-              localStorage.setItem('userRole', '')
-              localStorage.setItem('userPicture', response.userPicture)
+              setCookiesLocalStorage(response)
               history.push('/welcome')
             })
             .catch((err) => console.error(err, 'Não foi possível criar usuário'))
         }
         else {
-          localStorage.setItem('userId', user.id)
-          localStorage.setItem('userName', user.name)
-          localStorage.setItem('userEmail', user.email)
-          localStorage.setItem('userRole', user.role)
-          localStorage.setItem('userPicture', user.userPicture)
+          setCookiesLocalStorage(user)
           history.push('/')
         }
       })
