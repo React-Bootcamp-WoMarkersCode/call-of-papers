@@ -8,7 +8,7 @@ import { getCurrentDate } from './../../utils/currentDate'
 
 var CryptoJS = require("crypto-js");
 
-const MailLoginForm = () => {
+const MailLoginForm = ({ register }) => {
   let history = useHistory()
   const environment = getEnvironment()
 
@@ -102,15 +102,17 @@ const MailLoginForm = () => {
       render={() => (
         <Form layout="vertical" style={{textAlign: 'center'}}>
           <Row justify='center'>
-            <Col xs={24} md={14}>
-              <Form.Item
-                label="Nome"
-                name="name"
-                validate={validateUsername}
-              >
-                <Input name="name" />
-              </Form.Item>
-            </Col>
+            { register &&
+              <Col xs={24} md={14}>
+                <Form.Item
+                  label="Nome"
+                  name="name"
+                  validate={validateUsername}
+                >
+                  <Input name="name" />
+                </Form.Item>
+              </Col>
+            }
             <Col xs={24} md={14}>
               <Form.Item
                 label="Email"
@@ -132,12 +134,7 @@ const MailLoginForm = () => {
             </Col>
             <Col xs={24} md={14}>
               <Button type='default' className='btn-outline' htmlType='submit'>
-                Enviar
-              </Button>
-            </Col>
-            <Col xs={24} md={14} style={{marginTop: '2em'}}>
-              <Button type='default' className='btn-register'>
-                Ainda não tem cadastro? Clique aqui e faça seu cadastro!
+                { register ? 'Cadastrar' : 'Entrar' }
               </Button>
             </Col>
           </Row>
