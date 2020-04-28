@@ -11,19 +11,25 @@ const HorizontalMenu = ({ history, userPicture, userRole, logout }) => {
     !localStorage.getItem('userId') ?
       (<>
         <Menu theme='light' mode='horizontal'>
-          <Menu.Item key='/events' onClick={() => window.location.href='#events'}>
-            Produtores de eventos
+          <Menu.Item key='/events'>
+            <a href="#events">
+              Produtores de eventos
+            </a>
           </Menu.Item>
-          <Menu.Item key='/lectures' onClick={() => window.location.href='#lectures'}>
-            Palestrantes
+          <Menu.Item key='/lectures'>
+            <a href="#lectures">
+              Palestrantes
+            </a>
           </Menu.Item>
-          <Menu.Item key='/highlights' onClick={() => window.location.href='#highlights'}>
-            Destaques
+          <Menu.Item key='/highlights'>
+            <a href="#highlights">
+              Destaques
+            </a>
           </Menu.Item>
         </Menu>
         <Button type='default' className='btn-outline' onClick={() => history.push('/login')}>Login</Button>
       </>)
-        :
+      :
       (<Menu theme='light' mode='horizontal'>
         <Menu.Item
           key='/events'

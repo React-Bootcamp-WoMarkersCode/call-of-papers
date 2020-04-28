@@ -18,14 +18,12 @@ const About = () => {
               O projeto está disponível no <a href="https://github.com/React-Bootcamp-WoMarkersCode/call-of-papers" target="_blank" rel="noopener noreferrer">GitHub <GithubOutlined />.</a>
             </p>
             <List>
-              <Col span={12}>
               <h3>Desenvolvedoras</h3>
               <List.Item>Alessandra Nastassja: <a href="https://github.com/Alessandra-Nastassja" target="_blank" rel="noopener noreferrer">GitHub <GithubOutlined /></a> e <a href="https://www.linkedin.com/in/alessandra-nastassja/" target="_blank" rel="noopener noreferrer">Linkedin <LinkedinOutlined /></a></List.Item>
               <List.Item>Isabella Soares: <a href="https://github.com/IsabellaSoares" target="_blank" rel="noopener noreferrer">GitHub <GithubOutlined /></a> e <a href="https://www.linkedin.com/in/isabella-soares-lima/" target="_blank" rel="noopener noreferrer">Linkedin <LinkedinOutlined /></a></List.Item>
               <List.Item>Kathleen Pallotta: <a href="https://github.com/kathleenpallotta" target="_blank" rel="noopener noreferrer">GitHub <GithubOutlined /></a> e <a href="https://www.linkedin.com/in/kathleen-pallotta-ab8346199/" target="_blank" rel="noopener noreferrer">Linkedin <LinkedinOutlined /></a></List.Item>
               <List.Item>Mariana Tancredi: <a href="https://github.com/matancredi" target="_blank" rel="noopener noreferrer">GitHub <GithubOutlined /></a> e <a href="https://www.linkedin.com/in/mariana-t-52aa8b8b/" target="_blank" rel="noopener noreferrer">Linkedin <LinkedinOutlined /></a></List.Item>
               <List.Item>Olívia Resende: <a href="https://github.com/oliviaresende" target="_blank" rel="noopener noreferrer">GitHub <GithubOutlined /></a> e <a href="https://www.linkedin.com/in/oliviasilvaresende/" target="_blank" rel="noopener noreferrer">Linkedin <LinkedinOutlined /></a></List.Item>
-              </Col>
             </List>
           </Col>
         </Row>

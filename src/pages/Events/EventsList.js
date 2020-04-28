@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Button, Card, Col } from 'antd'
+import { Row, Button, Card, Col, Spin } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
 import TableComponent from '../../components/Table'
 import './events-list.scss'
@@ -32,7 +32,7 @@ const columnsTable = [
     key: 'id',
     render: (key) => (
       <span>
-        <Link to={`/events/${key}`} onClick={() => localStorage.setItem("idEvent", key)}>Detalhes</Link>
+        <Link to={`/events/${key}`}>Detalhes</Link>
       </span>
     )
   }, {
@@ -40,13 +40,14 @@ const columnsTable = [
     key: 'id',
     render: (key) => (
       <span>
-        <Link to={`/events/form/${key}`} onClick={() => localStorage.setItem("idEvent", key)}>Editar</Link>
+        <Link to={`/events/form/${key}`}>Editar</Link>
       </span>
     )
   },
 ]
 const EventsList = () => {
   const [api, setApi] = useState([])
+  const [loading, setLoading] = useState(true)
   const history = useHistory()
 
   const environment = getEnvironment();
@@ -58,44 +59,55 @@ const EventsList = () => {
         setApi(data)
       })
       .catch(err => console.error(err, 'Nenhum evento por aqui!'))
+      .finally(() => setLoading(false))
   }, [environment])
-
   return (
     <>
-      {api.length > 0 ? (
-        <>
-          <Row justify='space-between'>
-            <Header text="Meus eventos" />
-            <Button
-              id="btn-cadastrar"
-              type='default'
-              className="btn-outline"
-              onClick={() => {
-                history.push('/events/form')
-                localStorage.removeItem('idEvent')
-              }}
-            >
-              Novo evento
-            </Button>
+      {
+        loading ? (
+          <Row gutter={[16, 24]}>
+            <Spin size='large' />
           </Row>
-          <Row style={{ marginTop: '1rem'}}>
-            <TableComponent columns={columnsTable} dataSource={api} />
-          </Row>
-        </>
-        ) : (
-        <Row>
-          <Col xs={{ span: 24 }} className='empty-box'>
-            <Card>
-              <p>Você ainda não possui eventos!</p>
-              <Button
-                type='default'
-                className='btn-outline'
-                onClick={() => history.push('/events/form')}>
-                  Cadastrar um novo evento
-              </Button>
-            </Card>
-          </Col>
-        </Row>)
+        ) :
+          (
+            api ?
+              (
+                <>
+                  <Row justify='space-between'>
+                    <Header text="Meus eventos" />
+                    <Button
+                      id="btn-cadastrar"
+                      type='default'
+                      className="btn-outline"
+                      onClick={() => {
+                        history.push('/events/form')
+                        localStorage.removeItem('idEvent')
+                      }}
+                    >
+                      Novo evento
+                </Button>
+                  </Row>
+                  <Row style={{ marginTop: '1rem' }}>
+                    <TableComponent columns={columnsTable} dataSource={api} />
+                  </Row>
+                </>
+              ) :
+              (
+                <Row>
+                  <Col xs={{ span: 24 }} className='empty-box'>
+                    <Card>
+                      <p>Você ainda não possui eventos!</p>
+                      <Button
+                        type='default'
+                        className='btn-outline'
+                        onClick={() => history.push('/events/form')}>
+                        Cadastrar um novo evento
+                  </Button>
+                    </Card>
+                  </Col>
+                </Row>
+              )
+          )
       }
     </>
   )
