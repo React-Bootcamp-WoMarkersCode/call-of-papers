@@ -1,7 +1,10 @@
+import { getEnvironment } from './../../utils/environment'
 const axios = require('axios')
 
+const environment = getEnvironment();
+
 async function registerEvent (bodyApi) {
-	return axios.post(`http://localhost:3001/events`, {
+	return axios.post(`${environment}/events`, {
     method: 'post',
     headers: {
         Accept: "application/json",
