@@ -45,10 +45,10 @@ const Event = ({ event }) => {
                   }
                 </Row>
               </Col>
-              <Col xs={{ span: 24 }} md={{ span: 6 }} style={{marginRight:'4.167%'}}>
+              <Col xs={{ span: 24 }} md={{ span: 6 }} >
                 <Space direction="vertical" size={8} style={{ width: '100%', height: '100%' }}>
                   <span>Organizado por {event.organizer}</span>
-                  <div className='event-img event-details'>
+                  <div >
                     { event.uploadedImage ?
                       (<img src={event.uploadedImage} alt='Imagem do evento' width='100%' height='100%' />) :
                       (<FontAwesomeIcon icon={faImage} />)
@@ -72,7 +72,7 @@ const Event = ({ event }) => {
                   }
                 </Space>
               </Col>
-              <Col xs={{ span: 24 }} md={{ span: 16, offset: 1 }}>
+              <Col xs={{ span: 24 }} md={{ span: 17, offset: 1 }}>
                 <Space direction="vertical" style={{ width: '100%', height: '100%', justifyContent: 'space-between' }}>
                   <Space direction="vertical" size={5} style={{ width: '100%' }}>
                     <Row justify="space-between">
