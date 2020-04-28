@@ -14,7 +14,6 @@ const Login = () => {
 
   const { eventId } = useParams()
   const [mailLogin, setMailLogin] = useState(false)
-  const [displayButtons, setDisplayButtons] = useState(true)
 
   const setCookiesLocalStorage = (user) => {
     localStorage.setItem('userId', user.id)
@@ -27,23 +26,15 @@ const Login = () => {
   return(
     <>
       <Header text="Seja bem-vinda(o)!" />
-      { displayButtons &&
-        <Row className='btn-group' justify='center'>
-          <FBLogin event={eventId} setCookiesLocalStorage={setCookiesLocalStorage} />
-          <GglLogin setCookiesLocalStorage={setCookiesLocalStorage} />
-          <Button className='mail-button'
-            onClick={() => {
-              setMailLogin(true)
-              setDisplayButtons(false)
-            }}
-          >
-            <FontAwesomeIcon icon={faAt} />
-            <span>Continuar com o seu e-mail</span>
-          </Button>
-          <p>Ao entrar, você concorda com os nossos <Link to="/termos-de-uso">Termos</Link> e <Link to="/politica-de-privacidade">Política de Privacidade</Link>.</p>
-        </Row>
-      }
-
+      <Row className='btn-group' justify='center'>
+        <FBLogin event={eventId} setCookiesLocalStorage={setCookiesLocalStorage} />
+        <GglLogin setCookiesLocalStorage={setCookiesLocalStorage} />
+        <Button className='mail-button' onClick={() => setMailLogin(true)} >
+          <FontAwesomeIcon icon={faAt} />
+          Continuar com o seu e-mail
+        </Button>
+        <p>Ao entrar, você concorda com os nossos <Link to="/termos-de-uso">Termos</Link> e <Link to="/politica-de-privacidade">Política de Privacidade</Link>.</p>
+      </Row>
       <Row justify='center'>
         {mailLogin && <MailLogin />}
       </Row>
