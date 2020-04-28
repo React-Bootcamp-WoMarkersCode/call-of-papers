@@ -30,7 +30,7 @@ const Login = () => {
     <>
       <Header text="Seja bem-vinda(o)!" />
       <Row style={{marginTop: '3em', alignItems: 'center'}}>
-        <Col xs={24} md={12} className='btn-group' justify='center' style={{padding: '2em 0'}}>
+        <Col xs={{ span:22, offset:1}} md={10} className='btn-group'>
           <FBLogin event={eventId} setCookiesLocalStorage={setCookiesLocalStorage} />
           <GglLogin setCookiesLocalStorage={setCookiesLocalStorage} />
           <Button className='mail-button' onClick={() => setMailLogin(true)} >
@@ -39,10 +39,10 @@ const Login = () => {
           </Button>
           <p>Ao entrar, você concorda com os nossos <Link to="/termos-de-uso">Termos</Link> e <Link to="/politica-de-privacidade">Política de Privacidade</Link>.</p>
         </Col>
-        <Col xs={24} md={12} style={{textAlign: 'center'}}>
+        <Col xs={{ span:22, offset:1}} md={12} style={{textAlign: 'center'}}>
           { mailLogin ?
             <MailLogin register={register} /> : (
-              <div style={{marginTop: '-80px'}}>
+              <div>
                 <Title level={3}>Ainda não tem cadastro?</Title>
                 <Button className='btn-outline'
                   onClick={() => {
