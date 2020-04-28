@@ -50,6 +50,7 @@ const MailLoginForm = ({ register }) => {
           const cipherPassword = CryptoJS.AES.encrypt(JSON.stringify(values.password), process.env.REACT_APP_CIPHER_KEY).toString();
           let updateProfile = {
             ...user,
+            name: values.name,
             password: cipherPassword,
           }
           fetch(`${environment}/profiles/${user.id}`, {
