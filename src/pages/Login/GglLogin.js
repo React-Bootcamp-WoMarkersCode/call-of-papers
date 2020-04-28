@@ -7,23 +7,25 @@ import { getCurrentDate } from './../../utils/currentDate'
 import { getEnvironment } from './../../utils/environment'
 import './style.scss'
 
-const GglLogin = (props) => {
+const GglLogin = ({ setCookiesLocalStorage }) => {
   const environment = getEnvironment()
   let history = useHistory()
-  console.log(props.role)
 
   const responseGoogle = (response) => {
-
     // Verifica se é um novo usuário ou não. Se for, adiciona no json de usuários
     fetch(`${environment}/profiles`)
       .then((res) => res.json())
       .then((data) => {
-        if (!data.find((profile) => profile.email === response.profileObj.email)) {
+
+        const user = data.find((profile) => profile.email === response.profileObj.email)
+
+        if (!user) {
           let newProfile = {
-            id: response.profileObj.googleId,
-            role: props.role,
+            id: String(Math.ceil(Math.random() * Math.pow(10,5))),
+            googleId: response.profileObj.googleId,
             name: response.profileObj.name,
             email: response.profileObj.email,
+            password: '',
             localization: '',
             registerDate: `${getCurrentDate()}`,
             apresentation: '',
@@ -45,21 +47,13 @@ const GglLogin = (props) => {
           })
             .then(response => response.json())
             .then(function (response) {
-              localStorage.setItem('userId', response.id)
-              localStorage.setItem('userName', response.name)
-              localStorage.setItem('userEmail', response.email)
-              localStorage.setItem('userRole', response.role)
-              localStorage.setItem('userPicture', response.userPicture)
-              history.push('/')
+              setCookiesLocalStorage(response)
+              history.push('/welcome')
             })
             .catch((err) => console.error(err, 'Não foi possível criar usuário'))
         }
         else {
-          localStorage.setItem('userId', response.profileObj.googleId)
-          localStorage.setItem('userName', response.profileObj.name)
-          localStorage.setItem('userEmail', response.profileObj.email)
-          localStorage.setItem('userRole', props.role)
-          localStorage.setItem('userPicture', response.profileObj.imageUrl)
+          setCookiesLocalStorage(user)
           history.push('/')
         }
       })
@@ -72,7 +66,7 @@ const GglLogin = (props) => {
     <GoogleLogin
       clientId={process.env.REACT_APP_GOOGLE_ID}
       render={(renderProps) => {
-        return (<button className="google-button" onClick={renderProps.onClick} disabled={props.disabled}>
+        return (<button className="google-button" onClick={renderProps.onClick}>
           <FontAwesomeIcon icon={faGoogle} />
           Continuar com o Google
         </button>);

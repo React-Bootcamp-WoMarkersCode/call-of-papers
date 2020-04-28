@@ -1,9 +1,9 @@
 import React, { Suspense } from 'react'
 import { Route, Switch } from 'react-router-dom'
+import { Spin } from 'antd'
 
 const About = React.lazy(() => import('pages/About'))
-const Termos = React.lazy(() => import('pages/Termos'))
-const Privacidade = React.lazy(() => import('pages/Privacidade'))
+const CopyLecture = React.lazy(() => import('pages/Lectures/CopyLecture'))
 const DownloadLectures = React.lazy(() => import('pages/Lectures/LecturesCSV'))
 const Event = React.lazy(() => import('pages/Submissions'))
 const EventsList = React.lazy(() => import('pages/Events/EventsList'))
@@ -15,12 +15,14 @@ const LectureForm = React.lazy(() => import('pages/Lectures/LectureForm'))
 const Login = React.lazy(() => import('pages/Login'))
 const MyProfile = React.lazy(() => import('pages/Profile/MyProfile'))
 const PartnersForm = React.lazy(() => import('pages/Events/PartnersForm'))
+const Privacidade = React.lazy(() => import('pages/Privacidade'))
 const ProfileForm = React.lazy(() => import('pages/Profile/ProfileForm'))
+const RoleComponent = React.lazy(() => import('pages/Login/RoleComponent'))
 const SubmissionDetails = React.lazy(() => import('pages/Submissions/submissionDetails'))
-const CopyLecture = React.lazy(() => import('pages/Lectures/CopyLecture'))
+const Termos = React.lazy(() => import('pages/Termos'))
 
 const Routes = props => (
-  <Suspense fallback="Loading..." >
+  <Suspense fallback={<Spin size="large" />} >
     <Switch>
       <Route exact path="/" component={routerProps => <Home {...routerProps} />} />
 
@@ -48,6 +50,7 @@ const Routes = props => (
 
       <Route path="/profile/" component={routerProps => <MyProfile {...routerProps} />} />
       <Route path="/profileForm" component={routerProps => <ProfileForm {...routerProps} />} />
+      <Route path="/welcome" component={routerProps => <RoleComponent {...routerProps} />} />
     </Switch>
   </Suspense>
 )

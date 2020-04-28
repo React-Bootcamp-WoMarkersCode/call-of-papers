@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
-import { Row, Card, Button, Col } from 'antd'
+import { Row, Button, Col, Typography } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAt } from "@fortawesome/free-solid-svg-icons"
 import './style.scss'
@@ -10,71 +10,51 @@ import GglLogin from './GglLogin'
 import Header from './../../components/Header'
 import MailLogin from './MailLogin'
 
+const { Title } = Typography
+
 const Login = () => {
 
   const { eventId } = useParams()
-
-  const [role, setRole] = useState('')
   const [mailLogin, setMailLogin] = useState(false)
+  const [register, setRegister] = useState(false)
+
+  const setCookiesLocalStorage = (user) => {
+    localStorage.setItem('userId', user.id)
+    localStorage.setItem('userPicture', user.userPicture)
+    localStorage.setItem('userName', user.name)
+    localStorage.setItem('userEmail', user.email)
+    localStorage.setItem('userRole', user?.role)
+  }
 
   return(
     <>
-      <Header text="QUEM É VOCÊ ?" />
-      <Row style={{ marginBottom: '1rem'}}>
-        Depois é possível mudar essa opção no seu perfil.
-      </Row>
-      <Row justify='space-between'>
-        <Col xs={{ span: 12 }} md={{ span: 6 }}>
-          <Card
-            hoverable
-            className={['login-card', (role === 'Producer' ? 'card-selected' : '')]}
-            onClick={() => setRole('Producer')}>
-            <Row justify='center'>
-              <img
-                src={require('../../assets/events-producer.png')}
-                alt='Produtor de evento' />
-              <span className='card-span'>Sou produtor de eventos</span>
-            </Row>
-          </Card>
+      <Header text="Seja bem-vinda(o)!" />
+      <Row style={{marginTop: '3em', alignItems: 'center'}}>
+        <Col xs={{ span:22, offset:1}} md={10} className='btn-group'>
+          <FBLogin event={eventId} setCookiesLocalStorage={setCookiesLocalStorage} />
+          <GglLogin setCookiesLocalStorage={setCookiesLocalStorage} />
+          <Button className='mail-button' onClick={() => setMailLogin(true)} >
+            <FontAwesomeIcon icon={faAt} />
+            Continuar com o seu e-mail
+          </Button>
+          <p>Ao entrar, você concorda com os nossos <Link to="/termos-de-uso">Termos</Link> e <Link to="/politica-de-privacidade">Política de Privacidade</Link>.</p>
         </Col>
-        <Col xs={{ span: 12 }} md={{ span: 6 }}>
-          <Card
-            hoverable
-            className={['login-card', (role === 'Speaker' ? 'card-selected' : '')]}
-            onClick={() => setRole('Speaker')}>
-            <Row justify='center'>
-              <img
-                src={require('../../assets/speaker.png')}
-                alt='Palestrante' />
-              <span className='card-span'>Sou palestrante</span>
-            </Row>
-          </Card>
+        <Col xs={{ span:22, offset:1}} md={12} style={{textAlign: 'center'}}>
+          { mailLogin ?
+            <MailLogin register={register} /> : (
+              <div>
+                <Title level={3}>Ainda não tem cadastro?</Title>
+                <Button className='btn-outline'
+                  onClick={() => {
+                    setMailLogin(true)
+                    setRegister(true)
+                  }} >
+                  Cadastre-se aqui!
+                </Button>
+              </div>
+            )
+          }
         </Col>
-        <Col xs={{ span: 12 }} md={{ span: 6 }}>
-          <Card
-            hoverable
-            className={['login-card', (role === 'Both' ? 'card-selected' : '')]}
-            onClick={() => setRole('Both')}>
-            <Row justify='center'>
-              <img
-                src={require('../../assets/both.png')}
-                alt='Produtor e palestrante' />
-              <span className='card-span'>Sou ambos</span>
-            </Row>
-          </Card>
-        </Col>
-      </Row>
-      <Row className='btn-group' justify='center'>
-        <FBLogin isDisabled={role === ''} event={eventId} role={role} />
-        <GglLogin disabled={role === ''}  role={role}/>
-        <Button className='mail-button' disabled={role === ''} onClick={() => setMailLogin(true)}>
-          <FontAwesomeIcon icon={faAt} />
-          Continuar com o seu e-mail
-        </Button>
-        <p>Ao entrar, você concorda com os nossos <Link to="/termos-de-uso">Termos</Link> e <Link to="/politica-de-privacidade">Política de Privacidade</Link>.</p>
-      </Row>
-      <Row className='btn-group' justify='center'>
-        {mailLogin && <MailLogin role={role} />}
       </Row>
     </>
   )

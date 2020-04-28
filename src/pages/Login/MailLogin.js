@@ -8,7 +8,7 @@ import { getCurrentDate } from './../../utils/currentDate'
 
 var CryptoJS = require("crypto-js");
 
-const MailLoginForm = ({ role }) => {
+const MailLoginForm = ({ register }) => {
   let history = useHistory()
   const environment = getEnvironment()
 
@@ -45,12 +45,37 @@ const MailLoginForm = ({ role }) => {
     fetch(`${environment}/profiles`)
       .then((res) => res.json())
       .then((data) => {
-        if (!data.find((profile) => profile.email === values.email)) {
+        const user = data.filter((profile) => profile.email === values.email)[0]
+        if (user) {
+          const cipherPassword = CryptoJS.AES.encrypt(JSON.stringify(values.password), process.env.REACT_APP_CIPHER_KEY).toString();
+          let updateProfile = {
+            ...user,
+            password: cipherPassword,
+          }
+          fetch(`${environment}/profiles/${user.id}`, {
+            method: 'put',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updateProfile)
+          })
+            .then(response => response.json())
+            .then(function(response) {
+              localStorage.setItem('userId', response.id)
+              localStorage.setItem('userName', response.name)
+              localStorage.setItem('userEmail', response.email)
+              localStorage.setItem('userRole', '')
+              history.push('/welcome')
+            })
+            .catch((err) => console.error(err, 'Não foi possível criar usuário'))
+
+        }
+        else{
           const cipherPassword = CryptoJS.AES.encrypt(JSON.stringify(values.password), process.env.REACT_APP_CIPHER_KEY).toString();
 
           let newProfile = {
-            id: values.userID,
-            role: role,
+            id: values.id,
             name: values.name,
             email: values.email? values.email : '',
             password: cipherPassword,
@@ -62,7 +87,8 @@ const MailLoginForm = ({ role }) => {
             twitterLink: '',
             facebookLink: '',
             mediumLink: '',
-            interests: []
+            interests: [],
+            userPicture: ''
           }
           fetch(`${environment}/profiles`, {
             method: 'post',
@@ -77,8 +103,8 @@ const MailLoginForm = ({ role }) => {
               localStorage.setItem('userId', response.id)
               localStorage.setItem('userName', response.name)
               localStorage.setItem('userEmail', response.email)
-              localStorage.setItem('userRole', response.role)
-              history.push('/')
+              localStorage.setItem('userRole', '')
+              history.push('/welcome')
             })
             .catch((err) => console.error(err, 'Não foi possível criar usuário'))
         }
@@ -100,17 +126,19 @@ const MailLoginForm = ({ role }) => {
       onSubmit={handleSubmit}
       enableReinitialize={true}
       render={() => (
-        <Form layout="vertical">
+        <Form layout="vertical" style={{textAlign: 'center'}}>
           <Row justify='center'>
-            <Col xs={24} md={14}>
-              <Form.Item
-                label="Nome"
-                name="name"
-                validate={validateUsername}
-              >
-                <Input name="name" />
-              </Form.Item>
-            </Col>
+            { register &&
+              <Col xs={24} md={14}>
+                <Form.Item
+                  label="Nome"
+                  name="name"
+                  validate={validateUsername}
+                >
+                  <Input name="name" />
+                </Form.Item>
+              </Col>
+            }
             <Col xs={24} md={14}>
               <Form.Item
                 label="Email"
@@ -132,7 +160,7 @@ const MailLoginForm = ({ role }) => {
             </Col>
             <Col xs={24} md={14}>
               <Button type='default' className='btn-outline' htmlType='submit'>
-                Enviar
+                { register ? 'Cadastrar' : 'Entrar' }
               </Button>
             </Col>
           </Row>
