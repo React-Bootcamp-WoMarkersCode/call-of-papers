@@ -4,7 +4,7 @@ import FacebookLogin from 'react-facebook-login'
 import { getCurrentDate } from './../../utils/currentDate'
 import { getEnvironment } from './../../utils/environment'
 
-const FBLogin = ({ isDisabled, event, role }) => {
+const FBLogin = ({ event }) => {
   let history = useHistory()
   const environment = getEnvironment()
 
@@ -21,7 +21,7 @@ const FBLogin = ({ isDisabled, event, role }) => {
             id: String(Math.ceil(Math.random() * Math.pow(10,5))),
             facebookId: response.userID,
             googleId: '',
-            role: role,
+            role: '',
             name: response.name,
             email: response.email? response.email : '',
             localization: '',
@@ -51,12 +51,12 @@ const FBLogin = ({ isDisabled, event, role }) => {
               localStorage.setItem('userPicture', response.userPicture)
               localStorage.setItem('userName', response.name)
               localStorage.setItem('userEmail', response.email)
-              localStorage.setItem('userRole', response.role)
+              localStorage.setItem('userRole', '')
 
               // Se ele já tinha escolhido o evento anteriormente, será redirecionado para lá após login
               event? history.push(`/events/${event}`) :
               // Senão redireciona para a página inicial
-              history.push('/')
+              history.push('/welcome')
             })
             .catch((err) => console.error(err, 'Não foi possível criar usuário'))
         } else {
@@ -85,7 +85,6 @@ const FBLogin = ({ isDisabled, event, role }) => {
     language="pt"
     textButton="Continuar com o facebook"
     size="small"
-    // isDisabled={isDisabled}
   />
 }
 

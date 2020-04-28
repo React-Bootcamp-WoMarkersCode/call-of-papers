@@ -8,7 +8,7 @@ import { getCurrentDate } from './../../utils/currentDate'
 
 var CryptoJS = require("crypto-js");
 
-const MailLoginForm = ({ role }) => {
+const MailLoginForm = () => {
   let history = useHistory()
   const environment = getEnvironment()
 
@@ -52,7 +52,7 @@ const MailLoginForm = ({ role }) => {
             id: values.id,
             facebookId: '',
             googleId: '',
-            role: role,
+            role: '',
             name: values.name,
             email: values.email? values.email : '',
             password: cipherPassword,
@@ -80,8 +80,8 @@ const MailLoginForm = ({ role }) => {
               localStorage.setItem('userId', response.id)
               localStorage.setItem('userName', response.name)
               localStorage.setItem('userEmail', response.email)
-              localStorage.setItem('userRole', response.role)
-              history.push('/')
+              localStorage.setItem('userRole', '')
+              history.push('/welcome')
             })
             .catch((err) => console.error(err, 'Não foi possível criar usuário'))
         }

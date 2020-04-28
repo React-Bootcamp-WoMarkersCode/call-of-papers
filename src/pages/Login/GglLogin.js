@@ -7,7 +7,7 @@ import { getCurrentDate } from './../../utils/currentDate'
 import { getEnvironment } from './../../utils/environment'
 import './style.scss'
 
-const GglLogin = (props) => {
+const GglLogin = () => {
   const environment = getEnvironment()
   let history = useHistory()
 
@@ -24,7 +24,7 @@ const GglLogin = (props) => {
             id: String(Math.ceil(Math.random() * Math.pow(10,5))),
             facebookId: '',
             googleId: response.profileObj.googleId,
-            role: props.role,
+            role: '',
             name: response.profileObj.name,
             email: response.profileObj.email,
             password: '',
@@ -52,9 +52,9 @@ const GglLogin = (props) => {
               localStorage.setItem('userId', response.id)
               localStorage.setItem('userName', response.name)
               localStorage.setItem('userEmail', response.email)
-              localStorage.setItem('userRole', response.role)
+              localStorage.setItem('userRole', '')
               localStorage.setItem('userPicture', response.userPicture)
-              history.push('/')
+              history.push('/welcome')
             })
             .catch((err) => console.error(err, 'Não foi possível criar usuário'))
         }
@@ -76,9 +76,7 @@ const GglLogin = (props) => {
     <GoogleLogin
       clientId={process.env.REACT_APP_GOOGLE_ID}
       render={(renderProps) => {
-        return (<button className="google-button" onClick={renderProps.onClick}
-        // disabled={props.disabled}
-        >
+        return (<button className="google-button" onClick={renderProps.onClick}>
           <FontAwesomeIcon icon={faGoogle} />
           Continuar com o Google
         </button>);
