@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react'
 import { Route, Switch } from 'react-router-dom'
+import { Spin } from 'antd'
 
 const About = React.lazy(() => import('pages/About'))
 const CopyLecture = React.lazy(() => import('pages/Lectures/CopyLecture'))
@@ -21,7 +22,7 @@ const SubmissionDetails = React.lazy(() => import('pages/Submissions/submissionD
 const Termos = React.lazy(() => import('pages/Termos'))
 
 const Routes = props => (
-  <Suspense fallback="Loading..." >
+  <Suspense fallback={<Spin size="large" />} >
     <Switch>
       <Route exact path="/" component={routerProps => <Home {...routerProps} />} />
 
