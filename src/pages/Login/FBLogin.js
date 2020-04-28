@@ -53,10 +53,7 @@ const FBLogin = ({ event }) => {
               localStorage.setItem('userEmail', response.email)
               localStorage.setItem('userRole', '')
 
-              // Se ele já tinha escolhido o evento anteriormente, será redirecionado para lá após login
-              event? history.push(`/events/${event}`) :
-              // Senão redireciona para a página inicial
-              history.push('/welcome')
+              !user.role ? history.push('/welcome') : (event ? history.push(`/events/${event}`) : history.push('/'))
             })
             .catch((err) => console.error(err, 'Não foi possível criar usuário'))
         } else {
@@ -66,10 +63,7 @@ const FBLogin = ({ event }) => {
           localStorage.setItem('userRole', user.role)
           localStorage.setItem('userPicture', user.userPicture)
 
-          // Se ele já tinha escolhido o evento anteriormente, será redirecionado para lá após login
-          event? history.push(`/events/${event}`) :
-          // Senão redireciona para a página inicial
-          history.push('/')
+          !user.role ? history.push('/welcome') : (event ? history.push(`/events/${event}`) : history.push('/'))
         }
       })
       .catch((err) => console.error(err, 'Nenhum usuário encontrado'))
