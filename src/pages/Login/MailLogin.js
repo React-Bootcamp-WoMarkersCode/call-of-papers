@@ -45,7 +45,33 @@ const MailLoginForm = ({ register }) => {
     fetch(`${environment}/profiles`)
       .then((res) => res.json())
       .then((data) => {
-        if (!data.find((profile) => profile.email === values.email)) {
+        const user = data.filter((profile) => profile.email === values.email)[0]
+        if (user) {
+          const cipherPassword = CryptoJS.AES.encrypt(JSON.stringify(values.password), process.env.REACT_APP_CIPHER_KEY).toString();
+          let updateProfile = {
+            ...user,
+            password: cipherPassword,
+          }
+          fetch(`${environment}/profiles/${user.id}`, {
+            method: 'put',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updateProfile)
+          })
+            .then(response => response.json())
+            .then(function(response) {
+              localStorage.setItem('userId', response.id)
+              localStorage.setItem('userName', response.name)
+              localStorage.setItem('userEmail', response.email)
+              localStorage.setItem('userRole', '')
+              history.push('/welcome')
+            })
+            .catch((err) => console.error(err, 'Não foi possível criar usuário'))
+
+        }
+        else{
           const cipherPassword = CryptoJS.AES.encrypt(JSON.stringify(values.password), process.env.REACT_APP_CIPHER_KEY).toString();
 
           let newProfile = {
