@@ -10,20 +10,23 @@ import './style.scss'
 const GglLogin = (props) => {
   const environment = getEnvironment()
   let history = useHistory()
-  console.log(props.role)
 
   const responseGoogle = (response) => {
-
     // Verifica se é um novo usuário ou não. Se for, adiciona no json de usuários
     fetch(`${environment}/profiles`)
       .then((res) => res.json())
       .then((data) => {
-        if (!data.find((profile) => profile.email === response.profileObj.email)) {
+
+        const user = data.find((profile) => profile.email === response.profileObj.email)
+
+        if (!user) {
           let newProfile = {
-            id: response.profileObj.googleId,
+            id: String(Math.ceil(Math.random() * Math.pow(10,5))),
+            googleId: response.profileObj.googleId,
             role: props.role,
             name: response.profileObj.name,
             email: response.profileObj.email,
+            password: '',
             localization: '',
             registerDate: `${getCurrentDate()}`,
             apresentation: '',
@@ -55,11 +58,11 @@ const GglLogin = (props) => {
             .catch((err) => console.error(err, 'Não foi possível criar usuário'))
         }
         else {
-          localStorage.setItem('userId', response.profileObj.googleId)
-          localStorage.setItem('userName', response.profileObj.name)
-          localStorage.setItem('userEmail', response.profileObj.email)
-          localStorage.setItem('userRole', props.role)
-          localStorage.setItem('userPicture', response.profileObj.imageUrl)
+          localStorage.setItem('userId', user.id)
+          localStorage.setItem('userName', user.name)
+          localStorage.setItem('userEmail', user.email)
+          localStorage.setItem('userRole', user.role)
+          localStorage.setItem('userPicture', user.imageUrl)
           history.push('/')
         }
       })
@@ -72,7 +75,9 @@ const GglLogin = (props) => {
     <GoogleLogin
       clientId={process.env.REACT_APP_GOOGLE_ID}
       render={(renderProps) => {
-        return (<button className="google-button" onClick={renderProps.onClick} disabled={props.disabled}>
+        return (<button className="google-button" onClick={renderProps.onClick}
+        // disabled={props.disabled}
+        >
           <FontAwesomeIcon icon={faGoogle} />
           Continuar com o Google
         </button>);
