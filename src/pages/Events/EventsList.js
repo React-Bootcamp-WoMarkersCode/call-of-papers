@@ -58,11 +58,9 @@ const EventsList = () => {
       .then(data => {
         setApi(data)
       })
-      .then(setTimeout(() => {setLoading(false)},200))
       .catch(err => console.error(err, 'Nenhum evento por aqui!'))
+      .finally(() => setLoading(false))
   }, [environment])
-
-  console.log(loading)
   return (
     <>
       {
@@ -71,30 +69,30 @@ const EventsList = () => {
             <Spin size='large' />
           </Row>
         ) :
-        (
-            api.length > 0 ?
-            (
-              <>
-                <Row justify='space-between'>
-                  <Header text="Meus eventos" />
-                  <Button
-                    id="btn-cadastrar"
-                    type='default'
-                    className="btn-outline"
-                    onClick={() => {
-                      history.push('/events/form')
-                      localStorage.removeItem('idEvent')
-                    }}
-                  >
-                    Novo evento
+          (
+            api ?
+              (
+                <>
+                  <Row justify='space-between'>
+                    <Header text="Meus eventos" />
+                    <Button
+                      id="btn-cadastrar"
+                      type='default'
+                      className="btn-outline"
+                      onClick={() => {
+                        history.push('/events/form')
+                        localStorage.removeItem('idEvent')
+                      }}
+                    >
+                      Novo evento
                 </Button>
-                </Row>
-                <Row style={{ marginTop: '1rem' }}>
-                  <TableComponent columns={columnsTable} dataSource={api} />
-                </Row>
-              </>
-            ) :
-            (
+                  </Row>
+                  <Row style={{ marginTop: '1rem' }}>
+                    <TableComponent columns={columnsTable} dataSource={api} />
+                  </Row>
+                </>
+              ) :
+              (
                 <Row>
                   <Col xs={{ span: 24 }} className='empty-box'>
                     <Card>
@@ -108,8 +106,8 @@ const EventsList = () => {
                     </Card>
                   </Col>
                 </Row>
-            )
-        )
+              )
+          )
       }
     </>
   )

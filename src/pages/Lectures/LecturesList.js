@@ -80,8 +80,8 @@ const LecturesList = () => {
         let filter = data.filter(lecture => lecture.userId === userId)
         setLectures(filter)
       })
-      .then(setTimeout(() => { setLoading(false) }, 200))
       .catch(err => console.error(err, 'Nenhum usuário encontrado'))
+      .finally(() => setLoading(false))
   }, [environment, userId])
 
   return (

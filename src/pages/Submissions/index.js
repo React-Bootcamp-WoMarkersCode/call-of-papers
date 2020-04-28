@@ -23,7 +23,7 @@ const Submissions = () => {
     fetch(`${environment}/events/${eventId}`)
       .then(res => res.json())
       .then(data => setEvent(data))
-      .then(setTimeout(() => { setLoading(false) }, 200))
+      .then(() => setLoading(false))
       .catch(err => console.error(err, 'Nenhum evento por aqui!'))
   }, [eventId])
 
