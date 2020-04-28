@@ -19,9 +19,6 @@ const FBLogin = ({ event }) => {
         if (!user) {
           let newProfile = {
             id: String(Math.ceil(Math.random() * Math.pow(10,5))),
-            facebookId: response.userID,
-            googleId: '',
-            role: '',
             name: response.name,
             email: response.email? response.email : '',
             localization: '',

@@ -50,9 +50,6 @@ const MailLoginForm = () => {
 
           let newProfile = {
             id: values.id,
-            facebookId: '',
-            googleId: '',
-            role: '',
             name: values.name,
             email: values.email? values.email : '',
             password: cipherPassword,
