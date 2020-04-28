@@ -132,7 +132,9 @@ const LectureForm = () => {
 		activityCategory: [],
 		haveLecturedBefore: '',
 		status: 'EM ANÁLISE',
-		eventId: String(eventId),
+		eventId: eventId ? String(eventId) : "",
+    eventName: String(event.event),
+    eventSchedule: String(event.schedule),
 		id: String(Math.ceil(Math.random() * Math.pow(10,5))),
 		userId: String(profile.id)
 	}
