@@ -32,7 +32,7 @@ const ProfileDescription = ({ profile }) => {
         {profile.email ? `${(profile.email)}` : 'Sem dados'}
       </Item>
       <Item label="Interesses" span={3}>
-        {profile.interests ? profile.interests && profile.interests.map(item => <Tag style={{ marginBottom: '8px' }} key={item}>{item}</Tag>) : "Sem dados"}
+        {profile.interests ? profile.interests.lenght > 0 && profile.interests.map(item => <Tag style={{ marginBottom: '8px' }} key={item}>{item}</Tag>) : profile.interests}
       </Item>
       <Item label="Quem sou eu" span={1}>
         { getUserRole(profile.role) }
