@@ -43,18 +43,40 @@ const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
 				.catch((err) => console.error(err, 'Nenhum evento por aqui!'));
 
     item.status = status
-    setDesabilitado(true)
-    let message = `
-      <header>
-        <img src="src/assets/banner.png" />
-      </header>
-      <section style="text-align: center;">
-        <h1>Welcome!</h1>
-        <h6>Olá, ${item.name}. Tudo bem ?</h6>
-        <p>Sua palestra "${item.activityTitle}" foi ${status.toLowerCase()} para o evento de "${event[0].event}" as ${event[0].schedule}.</p>
-      </section>
-    `;
 
+    console.log('item.status',item);
+    
+    setDesabilitado(true)
+
+    let message = `
+      <div>
+        <h1>Welcome!</h1>
+        <p>Olá, ${item.name}. Tudo bem ?</p>
+        <p>Somos a Sharing talks, uma plataforma que conecta produtores de eventos com palestrantes.</p>
+        <h4>Ficamos muito felizes em você ter submetido a palestra ${item.activityTitle} no 
+            evento de ${item.eventName} no dia ${item.eventSchedule}.
+        </h4>
+        ${
+          item.status === 'APROVADA' ?
+            `<div>
+              <img src="https://i.pinimg.com/originals/90/6a/d9/906ad9a5dc4ed6ee65fd1b03d63e1663.gif" />
+              <h3>Aeh! Sua palestra foi aprovada! 😉</h3>
+              <p>
+                Veja mais detalhes sobre o evento, 
+                <a href="https://sharingtalks.netlify.app/events/${item.eventId}">aqui.</a>
+              </p>
+            </div>` : 
+            `<div>
+                <h3>Uh, que pena! Infelizente a sua palestra foi reprovada.</h3>
+                <p>
+                  <img src="https://i.gifer.com/X3Qh.gif" />
+                  Não desiste! Submeta a sua palestra para outros eventos.
+                  <a href="https://sharingtalks.netlify.app/events/">Aqui</a> tem outros eventos! 😉
+                </p>
+            </div>`
+          }
+      </div>
+    `
     submitEvaluation(item, message)
     handleUpdateLecture()
   }
@@ -77,7 +99,7 @@ const SubmissionsPending = ({ lectures, handleUpdateLecture }) => {
 
   const footerCard = (item) => (
     <Row justify='end'>
-      <Col style={{marginTop:'0'}}>
+      <Col style={{ marginTop: '0' }}>
         <Space>
           <Button value="REPROVADA" className='button-reprovado' onClick={() => setStatus(item, 'REPROVADA')} disabled={desabilitado}>REPROVAR</Button>
           <Button value="APROVADA" type='primary' onClick={() => setStatus(item, 'APROVADA')} disabled={desabilitado} >APROVAR</Button>

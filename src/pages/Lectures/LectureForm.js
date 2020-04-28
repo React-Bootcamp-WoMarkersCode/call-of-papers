@@ -77,7 +77,7 @@ const LectureForm = () => {
     fetch(`${environment}/events?id=${eventId}`)
       .then(res => res.json())
       .then(data => {
-        setEvent(data[0])
+        setEvent(data[0])        
       })
       .catch(err => console.error(err, 'Nenhum evento encontrado'))
   }, [environment, eventId])
@@ -97,7 +97,9 @@ const LectureForm = () => {
 		activityCategory: [],
 		haveLecturedBefore: '',
 		status: 'EM ANÁLISE',
-		eventId: String(eventId),
+    eventId: String(eventId),
+    eventName: String(event.event),
+    eventSchedule: String(event.schedule),
 		id: String(Math.ceil(Math.random() * Math.pow(10,5))),
 		userId: String(profile.id)
 	}
