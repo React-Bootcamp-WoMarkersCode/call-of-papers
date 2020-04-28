@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Button, Card } from 'antd'
+import { Row, Button, Card, Col } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
 import TableComponent from '../../components/Table'
 import './events-list.scss'
@@ -64,8 +64,8 @@ const EventsList = () => {
     <>
       {api.length > 0 ? (
         <>
-          <Header text="Meus eventos" />
-          <Row justify="end" className='row-table'>
+          <Row justify='space-between'>
+            <Header text="Meus eventos" />
             <Button
               id="btn-cadastrar"
               type='default'
@@ -78,21 +78,23 @@ const EventsList = () => {
               Novo evento
             </Button>
           </Row>
-          <Row justify='center' gutter={[16, 24]} className='row-table'>
+          <Row style={{ marginTop: '1rem'}}>
             <TableComponent columns={columnsTable} dataSource={api} />
           </Row>
         </>
         ) : (
-        <Row justify="center" className='empty-box'>
-          <Card>
-            <p>Você ainda não possui eventos!</p>
-            <Button
-              type='default'
-              className='btn-outline'
-              onClick={() => history.push('/events/form')}>
-                Cadastrar um novo evento
-            </Button>
-          </Card>
+        <Row>
+          <Col xs={{ span: 24 }} className='empty-box'>
+            <Card>
+              <p>Você ainda não possui eventos!</p>
+              <Button
+                type='default'
+                className='btn-outline'
+                onClick={() => history.push('/events/form')}>
+                  Cadastrar um novo evento
+              </Button>
+            </Card>
+          </Col>
         </Row>)
       }
     </>

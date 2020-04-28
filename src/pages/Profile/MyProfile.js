@@ -30,9 +30,8 @@ const MyProfile = () => {
   return (
     <>
       <Header text="Meu Perfil" />
-      <Row justify='center' gutter={[16, 24]}>
+      <Row gutter={[16, 24]} style={{ marginTop: '1rem' }}>
         <Card
-          style={{ width: '70%' }}
           actions={[
             <Button
               type='primary'

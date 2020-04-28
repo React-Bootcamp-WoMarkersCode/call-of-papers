@@ -144,28 +144,69 @@ const EventForm = () => {
 
 	return (
 		<>
-			<Header text={eventId ? `Edite o evento - ${formik.values.event}` : `Crie um evento`} />
+			<Header text={eventId ? `Edite o evento - ${formik.values.event}` : `Evento`} />
 
 			<Row style={{ marginTop: 30 }}>
-				<Col span={16} offset={4}>
+				<Col>
 					<Form layout="vertical">
 						{/* Nome do evento */}
-						<Form.Item
-							label="Nome do evento:"
-							htmlFor="event"
-							rules={[{ required: true, message: 'Preencha corretamente o campo de evento!' }]}
-						>
-							<Input
-								name="event"
-								placeholder="Digite o nome do evento"
-								onChange={formik.handleChange}
-								value={formik.values.event}
-							/>
-						</Form.Item>
+            <Row>
+              <Col xs={{ span: 24 }} md={{ span: 11 }}>
+                <Form.Item
+                  label="Nome"
+                  htmlFor="event"
+                  rules={[{ required: true, message: 'Preencha corretamente o campo de evento!' }]}
+                >
+                  <Input
+                    name="event"
+                    placeholder="Digite o nome do evento"
+                    onChange={formik.handleChange}
+                    value={formik.values.event}
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={{ span: 24 }} md={{ span: 11, offset: 2 }}>
+                <Form.Item
+                  label="Organizador"
+                  htmlFor="organizer"
+                  rules={[{ required: true, message: 'Preencha corretamente o campo de organizador!' }]}
+                >
+                  <Input
+                    name="organizer"
+                    placeholder="Digite o nome da sua comunidade"
+                    onChange={formik.handleChange}
+                    value={formik.values.organizer}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={{ span: 24 }} md={{ span: 11 }}>
+                <Form.Item label="Data/Horário" htmlFor="schedule" rules={[{ required: false }]}>
+                  <Input
+                    name="schedule"
+                    placeholder="Digite a data e horário"
+                    onChange={formik.handleChange}
+                    value={formik.values.schedule}
+                  />
+                  <small>Exemplo: 18 Abril, 07:30</small>
+                </Form.Item>
+              </Col>
+              <Col xs={{ span: 24 }} md={{ span: 11, offset: 2 }}>
+                <Form.Item label="Local" htmlFor="local" rules={[{ required: false }]}>
+									<Input
+										name="local"
+										placeholder="Digite o local do evento"
+										onChange={formik.handleChange}
+										value={formik.values.local}
+									/>
+								</Form.Item>
+              </Col>
+            </Row>
 
 						{/* Descrição do evento */}
 						<Form.Item
-							label="Descrição do evento:"
+							label="Descrição"
 							htmlFor="description"
 							rules={[{ required: true, message: 'Preencha corretamente o campo de descrição do evento.' }]}
 						>
@@ -176,57 +217,18 @@ const EventForm = () => {
 								value={formik.values.description}
 							/>
 						</Form.Item>
-						<Row>
-							<Col span={12} style={{ paddingRight: 10 }}>
-								{/* Data-Horário do evento */}
-								<Form.Item label="Data/Horário do evento:" htmlFor="schedule" rules={[{ required: false }]}>
-									<Input
-										name="schedule"
-										placeholder="Digite a data e horário"
-										onChange={formik.handleChange}
-										value={formik.values.schedule}
-									/>
-									<small>Exemplo: 18 Abril, 07:30</small>
-								</Form.Item>
-							</Col>
-							<Col span={12} style={{ paddingLeft: 10 }}>
-								{/* Local do evento */}
-								<Form.Item label="Local do evento:" htmlFor="local" rules={[{ required: false }]}>
-									<Input
-										name="local"
-										placeholder="Digite o local do evento"
-										onChange={formik.handleChange}
-										value={formik.values.local}
-									/>
-								</Form.Item>
-							</Col>
-						</Row>
 
-						{/* Organizador do evento */}
-						<Form.Item
-							label="Organizador do evento:"
-							htmlFor="organizer"
-							rules={[{ required: true, message: 'Preencha corretamente o campo de organizador!' }]}
-						>
-							<Input
-								name="organizer"
-								placeholder="Digite o nome do organizador responsável"
-								onChange={formik.handleChange}
-								value={formik.values.organizer}
-							/>
-						</Form.Item>
 						{/* Identidade visual */}
 						<Form.Item label="Identidade visual:" name="uploadedImage">
-							Já tem uma imagem que seja a cara do seu evento ou organização? Insira o link no campo abaixo:
 							<Input
 								name="uploadedImage"
-								placeholder="Insira um link"
+								placeholder="Insira o link da imagem do evento"
 								onChange={formik.handleChange}
 								value={formik.values.uploadedImage}
 							/>
 						</Form.Item>
 						<Row>
-							<Col span={12}>
+							<Col xs={{ span: 24 }} md={{ span: 11}}>
 								<Form.Item
 									label="Categoria do evento: "
 									htmlFor="categories"
@@ -250,7 +252,7 @@ const EventForm = () => {
 									</Checkbox.Group>
 								</Form.Item>
 							</Col>
-							<Col span={12}>
+							<Col xs={{ span: 24 }} md={{ span: 11, offset: 2}}>
 								<Form.Item label="Quais parceiros aceita ?" htmlFor="partners" rules={[{ required: false }]}>
 									<Checkbox.Group onChange={onChangePartners} value={formik.values.partners}>
 										<Row>
@@ -292,11 +294,11 @@ const EventForm = () => {
 						</Form.Item>
 						<Form.Item>
 							{eventId ? (
-								<Button type="primary" onClick={onsubmit}>
+								<Button type="default" className='btn-outline' onClick={onsubmit}>
 									Atualizar evento
 								</Button>
 							) : (
-									<Button type="primary" onClick={onsubmit}>
+									<Button type="default" className='btn-outline' onClick={onsubmit}>
 										Cadastrar evento
 									</Button>
 								)}
