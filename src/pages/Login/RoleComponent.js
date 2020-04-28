@@ -1,36 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Card, Button, Col, notification } from 'antd';
-import { useHistory } from 'react-router-dom';
-import { getEnvironment } from './../../utils/environment';
-import Header from './../../components/Header';
-import './style.scss';
+import React, { useState, useEffect } from 'react'
+import { Row, Card, Button, Col, notification } from 'antd'
+import { useHistory } from 'react-router-dom'
+import { getEnvironment } from './../../utils/environment'
+import Header from './../../components/Header'
+import './style.scss'
 
 const RoleComponent = () => {
-	const [ role, setRole ] = useState('');
-	const environment = getEnvironment();
-	const [ profile, setProfile ] = useState([]);
-	const history = useHistory();
+	const [ role, setRole ] = useState('')
+	const [ profile, setProfile ] = useState([])
+	const [ loading, setLoading ] = useState(false)
+	const environment = getEnvironment()
+	const history = useHistory()
 
 	const openNotification = (type, description) => {
 		notification[type]({
 			message: type === 'success' ? 'Sucesso!' : 'Ops! Algo deu errado!',
 			description: description
-		});
-	};
+		})
+	}
 
 	useEffect(
 		() => {
 			fetch(`${environment}/profiles/` + localStorage.getItem('userId'))
 				.then((res) => res.json())
 				.then((data) => {
-					setProfile(data.find((profile) => profile.id === localStorage.getItem('userId')));
+					setProfile(data.find((profile) => profile.id === localStorage.getItem('userId')))
 				})
-				.catch((err) => console.error(err, 'Nenhum usuário encontrado'));
+				.catch((err) => console.error(err, 'Nenhum usuário encontrado'))
 		},
 		[ environment ]
-	);
+	)
 
 	const handleSubmit = () => {
+    setLoading(true)
+
 		fetch(`${environment}/profiles/` + localStorage.getItem('userId'), {
 			method: 'PATCH',
 			headers: {
@@ -43,15 +46,17 @@ const RoleComponent = () => {
 			})
 		})
 			.then(() => {
-				localStorage.setItem('userRole', role);
-				openNotification('success', 'Cadastro realizado com sucesso!');
-				history.push('/');
+        localStorage.setItem('userRole', role)
+        setLoading(false)
+				openNotification('success', 'Cadastro realizado com sucesso!')
+				history.push('/')
 			})
 			.catch((err) => {
-				console.error(err);
-				openNotification('error', 'Não foi possível finalizar seu cadastro! Tente novamente!');
-			});
-	};
+        console.error(err)
+        setLoading(false)
+				openNotification('error', 'Não foi possível finalizar seu cadastro! Tente novamente!')
+      })
+	}
 
 	return (
 		<>
@@ -101,15 +106,14 @@ const RoleComponent = () => {
 					type="default"
 					className="btn-outline"
 					disabled={role === ''}
-					onClick={() => {
-						handleSubmit();
-					}}
+          onClick={() => handleSubmit() }
+          loading={loading}
 				>
 					Completar cadastro
 				</Button>
 			</Row>
 		</>
-	);
-};
+	)
+}
 
-export default RoleComponent;
+export default RoleComponent
