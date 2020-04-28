@@ -50,6 +50,8 @@ const MailLoginForm = ({ role }) => {
 
           let newProfile = {
             id: values.userID,
+            facebookId: '',
+            googleId: '',
             role: role,
             name: values.name,
             email: values.email? values.email : '',
@@ -100,7 +102,7 @@ const MailLoginForm = ({ role }) => {
       onSubmit={handleSubmit}
       enableReinitialize={true}
       render={() => (
-        <Form layout="vertical">
+        <Form layout="vertical" style={{textAlign: 'center'}}>
           <Row justify='center'>
             <Col xs={24} md={14}>
               <Form.Item
@@ -133,6 +135,11 @@ const MailLoginForm = ({ role }) => {
             <Col xs={24} md={14}>
               <Button type='default' className='btn-outline' htmlType='submit'>
                 Enviar
+              </Button>
+            </Col>
+            <Col xs={24} md={14} style={{marginTop: '2em'}}>
+              <Button type='default' className='btn-register'>
+                Ainda não tem cadastro? Clique aqui e faça seu cadastro!
               </Button>
             </Col>
           </Row>
