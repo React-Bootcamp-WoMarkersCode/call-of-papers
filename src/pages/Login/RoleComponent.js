@@ -42,7 +42,7 @@ const RoleComponent = () => {
 			},
 			body: JSON.stringify({
 				...profile,
-				role: role
+				role
 			})
 		})
 			.then(() => {
